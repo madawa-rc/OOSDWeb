@@ -38,8 +38,9 @@ public class sendMail {
 			message.setFrom(new InternetAddress("slomfoundation@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse("isuruf@gmail.com"));
-			message.setSubject("Test");
-			message.setText("Test,"
+			message.setSubject("Confirm email address");
+			message.setText("Follow the link to register,"+
+                                "http://localhost:8080/OOSDWeb/EmailConfirmation?id=asdkbvxkcvxjcvs"
 				+ "\n\n");
 
 			Transport.send(message);
