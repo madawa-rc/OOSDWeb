@@ -60,13 +60,12 @@ public class StudentServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folder if not working
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/slomf", "root", "123456");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/oosd", "root", "123456");
             Statement st = con.createStatement();
 
-            int rs = st.executeUpdate("INSERT INTO student_data " + "VALUES ('" + s.getName() + "','" + s.getAge() + "')"); //insert code
+            int rs = st.executeUpdate("INSERT INTO student " + "VALUES ('" + s.getName() + "','" + s.getAge() + "')"); //insert code
             out.print("Successfully registered!<br>Please wait....<br>page will be redirected.");
-            Thread.sleep(10000);
-            response.sendRedirect("index.jsp");
+            response.setHeader("Refresh", "3; index.jsp");
         } catch (Exception ex) {
             out.println("*******Problem in connecting to the database*********");
             String sErrorMessage = ex.getMessage();
