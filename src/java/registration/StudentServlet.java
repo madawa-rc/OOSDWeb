@@ -6,6 +6,10 @@ package registration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +55,29 @@ public class StudentServlet extends HttpServlet {
         
         s.setAge(Integer.parseInt(request.getParameter("age")));
         s.setName(request.getParameter("name"));
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folder if not working
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/oosd_", "root", "1234");
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("INSERT INTO student_info"); //insert code
+            if (rs.next()) {
+            	//valid username and password
+            	//send the user (redirect) into the main page
+            	response.sendRedirect("mainPage.html");  //ridirect karana widiha, result set eka one naa. 
+            } else {
+            	//invlid username/ password
+    			//sned the user (redirect) to a Error page
+            	response.sendRedirect("loginErrorPage.html");
+            }
+		} catch (Exception ex) {
+            System.out.println("********Problem in connecting to the database**********");
+            String sErrorMessage = ex.getMessage();
+            System.out.println(sErrorMessage);
+            System.out.println("--------------------");
+            ex.printStackTrace();
+        }
+        
         
     }
 
