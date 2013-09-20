@@ -31,7 +31,7 @@ public class EmailConfirmation extends HttpServlet {
             out.println("<title>Servlet EmailConfirmation</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println(request.getParameter("name"));
+            out.println(request.getParameter("id"));
             out.println("<h1>Servlet EmailConfirmation at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
