@@ -11,6 +11,7 @@ package registration;
 public class Student {
     private String name;
     private int age;
+    private int index;
 
     public String getName() {
         return name;
@@ -18,6 +19,10 @@ public class Student {
 
     public int getAge() {
         return age;
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     public void setName(String name) {
