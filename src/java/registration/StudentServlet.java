@@ -48,7 +48,7 @@ public class StudentServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         } finally {            
-            out.close();
+           // out.close();
         }
         
         Student s = new Student();
@@ -58,19 +58,14 @@ public class StudentServlet extends HttpServlet {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folder if not working
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/oosd_", "root", "1234");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/oosd", "root", "123456");
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("INSERT INTO student_info"); //insert code
-            if (rs.next()) {
-            	//valid username and password
-            	//send the user (redirect) into the main page
-            	response.sendRedirect("mainPage.html");  //ridirect karana widiha, result set eka one naa. 
-            } else {
-            	//invlid username/ password
-    			//sned the user (redirect) to a Error page
-            	response.sendRedirect("loginErrorPage.html");
-            }
+            out.println("asdas");
+    
+            int rs = st.executeUpdate("INSERT INTO student " + "VALUES ('"+s.getName()+"','"+s.getAge()+"')"); //insert code
+             out.println("qwe");
 		} catch (Exception ex) {
+                    out.println("asdasdasd");
             System.out.println("*******Problem in connecting to the database*********");
             String sErrorMessage = ex.getMessage();
             System.out.println(sErrorMessage);
