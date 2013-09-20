@@ -36,44 +36,45 @@ public class StudentServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
+            /*
+             * TODO output your page here. You may use following sample code.
+             */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet StudentServlet</title>");            
+            out.println("<title>Servlet StudentServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println(request.getParameter("name"));
             out.println("<h1>Servlet StudentServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        } finally {            
-           // out.close();
+        } finally {
+            // out.close();
         }
-        
+
         Student s = new Student();
-        
+
         s.setAge(Integer.parseInt(request.getParameter("age")));
         s.setName(request.getParameter("name"));
-        
+
         try {
             Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folder if not working
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/oosd", "root", "123456");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/slomf", "root", "123456");
             Statement st = con.createStatement();
-            out.println("asdas");
-    
-            int rs = st.executeUpdate("INSERT INTO student " + "VALUES ('"+s.getName()+"','"+s.getAge()+"')"); //insert code
-             out.println("qwe");
-		} catch (Exception ex) {
-                    out.println("asdasdasd");
-            System.out.println("*******Problem in connecting to the database*********");
+
+            int rs = st.executeUpdate("INSERT INTO student_data " + "VALUES ('" + s.getName() + "','" + s.getAge() + "')"); //insert code
+            out.print("Successfully registered!<br>Please wait....<br>page will be redirected.");
+            Thread.sleep(10000);
+            response.sendRedirect("index.jsp");
+        } catch (Exception ex) {
+            out.println("*******Problem in connecting to the database*********");
             String sErrorMessage = ex.getMessage();
-            System.out.println(sErrorMessage);
-            System.out.println("--------------------");
-            ex.printStackTrace();
+            out.println(sErrorMessage);
+            out.println("--------------------");
         }
-        
-        
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
