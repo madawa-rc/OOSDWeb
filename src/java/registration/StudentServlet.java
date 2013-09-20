@@ -39,6 +39,7 @@ public class StudentServlet extends HttpServlet {
             out.println("<title>Servlet StudentServlet</title>");            
             out.println("</head>");
             out.println("<body>");
+            out.println(request.getParameter("name"));
             out.println("<h1>Servlet StudentServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
