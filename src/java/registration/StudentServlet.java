@@ -71,7 +71,7 @@ public class StudentServlet extends HttpServlet {
             	response.sendRedirect("loginErrorPage.html");
             }
 		} catch (Exception ex) {
-            System.out.println("********Problem in connecting to the database**********");
+            System.out.println("*******Problem in connecting to the database*********");
             String sErrorMessage = ex.getMessage();
             System.out.println(sErrorMessage);
             System.out.println("--------------------");
