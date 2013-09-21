@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -53,17 +52,14 @@ public class StudentServlet extends HttpServlet {
             // out.close();
         }
 
-        Student s = new Student();
-
-        s.setAge(Integer.parseInt(request.getParameter("age")));
-        s.setName(request.getParameter("name"));
+        Student s = new Student(123, null, null, null, null, null, null, null, null, true, true, true);//Should be initailized
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folder if not working
+            Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folde h if not working
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/oosd", "root", "123456");
             Statement st = con.createStatement();
 
-            int rs = st.executeUpdate("INSERT INTO student " + "VALUES ('" + s.getName() + "','" + s.getAge() + "')"); //insert code
+            int rs = st.executeUpdate("INSERT INTO student " + "VALUES ('" + s.getName() + "','" + s.getDob() + "')"); //Should be initialized
             out.print("Successfully registered!<br>Please wait....<br>page will be redirected.");
             response.setHeader("Refresh", "3; index.jsp");
         } catch (Exception ex) {
