@@ -37,26 +37,20 @@ public class StudentDA {
             Statement st = con.createStatement();
          //   st.executeUpdate("INSERT INTO student VALUES ('"+student.getName()+"','2013-01-01','1','1','1','1','1','1','1','1','1','1','1','443','1','1','12','1','1');");
             String queryCheck = "INSERT INTO student ("
-                    + "name,dob,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre,"
-                    + "assigned_classrm) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                    + "name,dob,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre"
+                    +") VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, student.getName());
-            Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.YEAR, 1988);
-            cal.set(Calendar.MONTH, 1);
-            cal.set(Calendar.DAY_OF_MONTH, 1);
-            Date t = cal.getTime();
-            ps.setDate(2, new java.sql.Date(t.getTime()));
+            ps.setDate(2, student.getDob());
       //      ps.setString(2, "2013-01-01");
             ps.setString(3, student.getEmail());
-            ps.setString(4, "asda");
-            ps.setString(5, "asda");
-            ps.setString(6, "asda");
+            ps.setString(4, student.getSchool());
+            ps.setString(5, student.getSchool_addr());
+            ps.setString(6, student.getHome_addr());
             ps.setInt(7, 1);
-            ps.setInt(8, 23);
-            ps.setString(9, "asda");
-            ps.setString(10, "a");
-            ps.setString(11, "a");
+            ps.setString(8, student.getPhone());
+            ps.setString(9, student.getMedium());
+            ps.setString(10, student.getPreferred_centre());
             
             ps.executeUpdate();
             

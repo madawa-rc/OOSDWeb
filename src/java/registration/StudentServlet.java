@@ -7,6 +7,7 @@ package registration;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.servlet.ServletException;
@@ -52,16 +53,28 @@ public class StudentServlet extends HttpServlet {
             // out.close();
         }
 
-        Student s = new Student(123, null, null, null, null, null, null, null, null, true, true, true);//Should be initailized
-
+       // Student s = new Student(123, null, null, null, null, null, null, null, null, true, true, true);//Should be initailized
+        Student s = new Student();
+        s.setName(request.getParameter("name"));
+ /*       s.setDob((request.getParameter("dob")));
+        s.setEmail(request.getParameter("email"));
+        s.setDob(request.getParameter("dob"));
+            ps.setDate(2, student.getDob());
+            ps.setString(3, student.getEmail());
+            ps.setString(4, student.getSchool());
+            ps.setString(5, student.getSchool_addr());
+            ps.setString(6, student.getHome_addr());
+            ps.setInt(7, student.getPvt_applicant());
+            ps.setString(8, student.getPhone());
+            ps.setString(9, student.getMedium());
+            ps.setString(10, student.getPreferred_centre());*/
+        
         try {
             Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folde h if not working
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/oosd", "root", "123456");
             Statement st = con.createStatement();
 
-            int rs = st.executeUpdate("INSERT INTO student " + "VALUES ('" + s.getName() + "','" + s.getDob() + "')"); //Should be initialized
-            out.print("Successfully registered!<br>Please wait....<br>page will be redirected.");
-            response.setHeader("Refresh", "3; index.jsp");
+         
         } catch (Exception ex) {
             out.println("*******Problem in connecting to the database*********");
             String sErrorMessage = ex.getMessage();

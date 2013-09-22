@@ -53,6 +53,41 @@ public class Student{
         this.index = index;
     }
 
+    public Date getDob() {
+        return dob;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public int getPvt_applicant() {
+        return pvt_applicant;
+    }
+
+    public String getVerification() {
+        return verification;
+    }
+
+    public int getWithin16() {
+        return within16;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPvt_applicant(int pvt_applicant) {
+        this.pvt_applicant = pvt_applicant;
+    }
+
+    public void setVerification(String verification) {
+        this.verification = verification;
+    }
 
     public void setMedium(String medium) {
         this.medium = medium;
@@ -95,9 +130,6 @@ public class Student{
         return award;
     }
 
-    public String getDob() {
-        return dob;
-    }
 
     public String getEmail() {
         return email;
@@ -120,9 +152,6 @@ public class Student{
     }
 
 
-    public int getPhone() {
-        return phone;
-    }
 
     public String getPreferred_centre() {
         return preferred_centre;
@@ -136,13 +165,8 @@ public class Student{
         return school_addr;
     }
 
-    public boolean isPvt_applicant() {
-        return pvt_applicant;
-    }
 
-    public boolean isWithin16() {
-        return within16;
-    }
+
 
     public int getId() {
         return id;
@@ -150,10 +174,6 @@ public class Student{
 
     public int getSchoolId() {
         return schoolId;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
     }
 
     public void setHome_addr(String home_addr) {
@@ -168,14 +188,6 @@ public class Student{
         this.payment = payment;
     }
 
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
-    public void setPvt_applicant(boolean pvt_applicant) {
-        this.pvt_applicant = pvt_applicant;
-    }
-
     public void setSchool(String school) {
         this.school = school;
     }
@@ -188,9 +200,6 @@ public class Student{
         this.school_addr = school_addr;
     }
 
-    public void setWithin16(boolean within16) {
-        this.within16 = within16;
-    }
     public int getPayment() {
         return payment;
     }
