@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : Sep 19, 2013, 3:53:21 PM
-    Author     : New
+    Document   : login
+    Created on : Sep 22, 2013, 5:16:45 PM
+    Author     : Kasun
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -56,12 +56,36 @@
                                 <div class="post">
                                 </div>
                             </section>
-                            <div style= "width:850px; margin:auto;">
-                                <p>
-                                You can add your all the stuff here. Blarck area at the bottom will be reduced as you add stuff...
-                                </p>
+                            <div style= "width:350px; margin: 0 auto">
+                                <div class="box-2">
+                                    <p class="para">
+                                        <strong>
+                                            Enter your Login details
+                                            <br><br>
+                                        </strong>
+                                    </p>
+                                    <p class="p1">
+                                    <form name="login" method="post" action="validate.php">
+                                        <input type="text" value="Enter your email" name="email"
+                                               onBlur="if(this.value=='') this.value='Enter your email'"
+                                               onFocus="if(this.value =='Enter your email' ) this.value=''" ><br><br>
+                                        <input type="password" value="******" name="password"
+                                               onBlur="if(this.value=='') this.value='******'"
+                                               onFocus="if(this.value =='******' ) this.value=''" ><br><br>
+                                        <input type="submit" value="Login" class="button"/>
+                                        <input type="reset" value="Clear" class="button"/>
+                                    </form>
+                                    </p><br>
+                                    <p class="para" align="right">New user?</p>
+                                    <p class="para" align="right"><a href="school.jsp">Sign up</a> here.</p>
+                                </div>
                             </div>
-                        </div>	            
+                        </div>
+                        <div class="3u" id="sidebar2">
+                            <section>
+                                <div class="sbox1"></div>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
