@@ -66,7 +66,9 @@ public class StudentServlet extends HttpServlet {
         }
         Student s = new Student(
                 request.getParameter("name"),
-                new java.sql.Date(a.getTime()),
+                Integer.parseInt(request.getParameter("date")),
+                Integer.parseInt(request.getParameter("date")),
+                Integer.parseInt(request.getParameter("date")),
                 request.getParameter("email"),
                 request.getParameter("school"),
                 request.getParameter("school_addr"),
@@ -74,10 +76,9 @@ public class StudentServlet extends HttpServlet {
                 1,
                 request.getParameter("phone"),
                 request.getParameter("medium"),
-                request.getParameter("preferred_centre")
+                request.getParameter("preferred_centre"),
+                UniqueID.generate()
                 );
-        s.setVerification(UniqueID.generate());
-        
         try {
             StudentDA.addStudent(s);
 

@@ -38,21 +38,23 @@ public class StudentDA {
             Statement st = con.createStatement();
          //   st.executeUpdate("INSERT INTO student VALUES ('"+student.getName()+"','2013-01-01','1','1','1','1','1','1','1','1','1','1','1','443','1','1','12','1','1');");
             String queryCheck = "INSERT INTO student ("
-                    + "name,dob,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre,"
+                    + "name,date,month,year,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre,"
                     + "verification"
-                    +") VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                    +") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, student.getName());
-            ps.setDate(2, student.getDob());
-            ps.setString(3, student.getEmail());
-            ps.setString(4, student.getSchool());
-            ps.setString(5, student.getSchool_addr());
-            ps.setString(6, student.getHome_addr());
-            ps.setInt(7, student.getPvt_applicant());
-            ps.setString(8, student.getPhone());
-            ps.setString(9, student.getMedium());
-            ps.setString(10, student.getPreferred_centre());
-            ps.setString(11, student.getVerification());
+            ps.setInt(2, student.getDate());
+            ps.setInt(3, student.getMonth());
+            ps.setInt(4, student.getYear());
+            ps.setString(5, student.getEmail());
+            ps.setString(6, student.getSchool());
+            ps.setString(7, student.getSchool_addr());
+            ps.setString(8, student.getHome_addr());
+            ps.setInt(9, student.getPvt_applicant());
+            ps.setString(10, student.getPhone());
+            ps.setString(11, student.getMedium());
+            ps.setString(12, student.getPreferred_centre());
+            ps.setString(13, student.getVerification());
             ps.executeUpdate();
             
             sendVerification(student);

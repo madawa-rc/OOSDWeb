@@ -6,6 +6,9 @@ import java.sql.Date;
 public class Student{
     private String name;
     private Date dob;
+    private int date;
+    private int month;
+    private int year;
     private String email;
     private String school;
     private String school_addr;
@@ -24,10 +27,14 @@ public class Student{
     private int within16; 
     private String verification;
     private int schoolId;
+    private int verified;
 
-    public Student(String name, Date dob, String email, String school, String school_addr, String home_addr, int pvt_applicant, String phone, String medium, String preferred_centre) {
+    public Student(String name, int date, int month, int year, String email, String school, String school_addr, String home_addr, int pvt_applicant, String phone, String medium, String preferred_centre, String verification) {
         this.name = name;
-        this.dob = dob;
+     //   this.dob = dob;
+        this.date = date;
+        this.month = month;
+        this.year = year;
         this.email = email;
         this.school = school;
         this.school_addr = school_addr;
@@ -36,7 +43,10 @@ public class Student{
         this.phone = phone;
         this.medium = medium;
         this.preferred_centre = preferred_centre;
+        this.verification=verification;
     }
+
+    
     
     public void execute(){ 
         String empty = "";
@@ -66,8 +76,40 @@ public class Student{
         this.index = index;
     }
 
+    public int getVerified() {
+        return verified;
+    }
+
+    public void setVerified(int verified) {
+        this.verified = verified;
+    }
+
     public Date getDob() {
         return dob;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public String getPhone() {
