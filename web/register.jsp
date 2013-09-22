@@ -95,11 +95,11 @@
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Home address:</span>
-                                                <div class="bg"><input type="text" class="input" name="homeaddr"></div>								
+                                                <div class="bg"><input type="text" class="input" name="home_addr"></div>								
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>School address:</span>
-                                                <div class="bg"><input type="text" class="input" name="schooladdr"></div>								
+                                                <div class="bg"><input type="text" class="input" name="school_addr"></div>								
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Telephone:</span>
@@ -112,22 +112,23 @@
                                                     <label for="sinhala">Sinhala</label>
                                                     <input type="radio" name="medium" value="english">
                                                     <label for="english">English</label>
-                                                </div>								
-                                            </div>
-                                            <div  class="wrapper">
-                                                <span>Type:</span>
-                                                <div class="bg">
-                                                    <input type="radio" name="type" value="private">
-                                                    <label for="private">Private applicant</label>
-                                                    <input type="radio" name="medium" value="school">
-                                                    <label for="school">School applicant</label>
+                                                    <input type="radio" name="medium" value="tamil">
+                                                    <label for="english">Tamil</label>
                                                 </div>								
                                             </div>
                                             <div  class="wrapper">
                                                 <span>Exam center:</span>
                                                 <div class="bg">
-                                                    <select name="country" id="country">
-                                                        <option value="">Select center...</option>
+                                                    <select name="preferred_centre" id="preferred_centre">
+                                                        <option value="">Select centre...</option>
+                                                        <option value="Colombo">Colombo</option>
+                                                        <option value="Galle">Galle</option>
+                                                        <option value="Matara">Matara</option>
+                                                        <option value="Kurunegala">Kurunegala</option>
+                                                        <option value="Trincomalee">Trincomalee</option>
+                                                        <option value="Jaffna">Jaffna</option>
+                                                        <option value="Anuradhapura">Anuradhapura</option>
+                                                        <option value="Kandy">Kandy</option>
                                                     </select>
                                                 </div>
                                             </div>
