@@ -24,6 +24,19 @@ public class Student{
     private int within16; 
     private String verification;
     private int schoolId;
+
+    public Student(String name, Date dob, String email, String school, String school_addr, String home_addr, int pvt_applicant, String phone, String medium, String preferred_centre) {
+        this.name = name;
+        this.dob = dob;
+        this.email = email;
+        this.school = school;
+        this.school_addr = school_addr;
+        this.home_addr = home_addr;
+        this.pvt_applicant = pvt_applicant;
+        this.phone = phone;
+        this.medium = medium;
+        this.preferred_centre = preferred_centre;
+    }
     
     public void execute(){ 
         String empty = "";
@@ -113,7 +126,7 @@ public class Student{
     public void setAssigned_centre(String assigned_centre) {
         this.assigned_centre = assigned_centre;
     }
-
+    
     public void setMarks(int marks) {
         this.marks = marks;
     }
