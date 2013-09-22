@@ -40,7 +40,7 @@ public class StudentDA {
             String queryCheck = "INSERT INTO student ("
                     + "name,dob,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre,"
                     + "verification"
-                    +") VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    +") VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, student.getName());
             ps.setDate(2, student.getDob());
