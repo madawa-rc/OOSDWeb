@@ -1,6 +1,6 @@
 package registration;
 
-import Database.db;
+import Database.DatabaseConnectionHandler;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ public class UniqueID {
     }
 
     private boolean searchAndAdd(String id) {
-        Db db = new Db();
+        DatabaseConnectionHandler db = new DatabaseConnectionHandler();
         try {
             Connection con = db.getConnection();
             String queryCheck = "SELECT count(*) from id WHERE id = ?";

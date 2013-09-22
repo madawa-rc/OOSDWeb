@@ -13,7 +13,7 @@ import java.sql.Statement;
  *
  * @author New
  */
-public class db {
+public class DatabaseConnectionHandler {
     public Connection getConnection() throws SQLException, ClassNotFoundException{
         try {
             Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folde h if not working

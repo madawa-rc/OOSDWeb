@@ -1,67 +1,70 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package registration;
 
 import java.sql.Date;
 
-/**
- *
- * @author Madawa
- */
-public class Student {
-    private int phone;
-    private int index;
-    private int marks;
-    private Date dob;
+
+public class Student{
     private String name;
+    private Date dob;
     private String email;
-    private String password;
     private String school;
     private String school_addr;
     private String home_addr;
+    private int pvt_applicant;
+    private String phone;
+    private String medium;
     private String preferred_centre;
     private String assigned_classrm;
+    private int index;
+    private int id;
     private String assigned_centre;
-    private String award;
-    private boolean gender;
-    private boolean pvt_applicant;
-    private boolean medium;
-    private boolean payment;
-    private boolean within16;
+    private int payment;
+    private int marks;
+    private String award;    
+    private int within16; 
+    private String verification;
+    private int schoolId;
+    
+    public void execute(){ 
+        String empty = "";
+        System.out.println(getName());
+        System.out.println(getPreferred_centre());
+        System.out.println(getMedium());
+        StudentDA.addStudent(this);
+    }
+    public void validate(){
+       // if(getName().length()==0)
+        
+    }
 
-    public Student(int phone, Date dob, String name, String email, String password, String school, String school_addr, String home_addr, String preferred_centre, boolean gender, boolean pvt_applicant, boolean medium) {
-        this.phone = phone;
-        this.marks = 0;
-        this.dob = dob;
-        this.name = name;
+    public void setEmail(String email) {
         this.email = email;
-        this.password = password;
-        this.school = school;
-        this.school_addr = school_addr;
-        this.home_addr = home_addr;
+    }
+
+    public String getMedium() {
+        return medium;
+    }
+    
+    public void setPreferred_centre(String preferred_centre) {
         this.preferred_centre = preferred_centre;
-        this.assigned_classrm = null;
-        this.assigned_centre = null;
-        this.award = null;
-        this.gender = gender;
-        this.pvt_applicant = pvt_applicant;
-        this.medium = medium;
-        this.payment = false;
-        this.within16 = false;
     }
 
     public void setIndex(int index) {
         this.index = index;
     }
 
-    public void setPaid() {
-        this.payment = true;
+
+    public void setMedium(String medium) {
+        this.medium = medium;
+    }
+    
+
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setWithin16() {
-        this.within16 = true;
+    public void setWithin16(int within16) {
+        this.within16 = within16;
     }
 
     public void setAward(String award) {
@@ -92,7 +95,7 @@ public class Student {
         return award;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
@@ -116,9 +119,6 @@ public class Student {
         return name;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
     public int getPhone() {
         return phone;
@@ -136,18 +136,6 @@ public class Student {
         return school_addr;
     }
 
-    public boolean isMale() {
-        return gender;
-    }
-
-    public boolean isSinhala() {
-        return medium;
-    }
-
-    public boolean isPaid() {
-        return payment;
-    }
-
     public boolean isPvt_applicant() {
         return pvt_applicant;
     }
@@ -155,6 +143,58 @@ public class Student {
     public boolean isWithin16() {
         return within16;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getSchoolId() {
+        return schoolId;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public void setHome_addr(String home_addr) {
+        this.home_addr = home_addr;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPayment(int payment) {
+        this.payment = payment;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public void setPvt_applicant(boolean pvt_applicant) {
+        this.pvt_applicant = pvt_applicant;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public void setSchoolId(int schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public void setSchool_addr(String school_addr) {
+        this.school_addr = school_addr;
+    }
+
+    public void setWithin16(boolean within16) {
+        this.within16 = within16;
+    }
+    public int getPayment() {
+        return payment;
+    }
+    
 }
 
 /*
@@ -179,4 +219,5 @@ Field	Type	Collation	Attributes	Null	Default	Extra	Action
 	marks	int(11)			No			 Browse distinct values	 Change	 Drop	 Primary	 Unique	 Index	Fulltext
 	award	text	utf8_general_ci		No			 Browse distinct values	 Change	 Drop	Primary	Unique	Index	 Fulltext
 	within16
+>>>>>>> updated fields:src/java/registration/Student.java
  */
