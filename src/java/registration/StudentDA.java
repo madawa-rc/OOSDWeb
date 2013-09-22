@@ -66,10 +66,15 @@ public class StudentDA {
         } 
     }
     public static void sendVerification(Student student){
-         sendMail.sendmail(student.getEmail(),"Email Verificaiton for SLMC 2014", 
-                 "Please click the following to verify your email address \n\n\n"+
+         sendMail.sendmail(student.getEmail(),"Email Verification for SLMC 2014", 
+                 "Thank you for registering for Sri Lanka Mathematics Competition 2013.\n\n"
+                 + "If you did not register, please ignore this email.\n\n"
+                 + "Please click the following to verify your email address \n\n\n"+
                  "http://localhost:8080/OOSDWeb/EmailConfirmation?id="
-                 + student.getVerification());
+                 + student.getVerification()
+                 +"\n\nSri Lanka Mathematics Olympiad Foundation,\n"
+                 + "Department of Mathematics,\n"
+                 + "University of Colombo.");
         
     }
 }
