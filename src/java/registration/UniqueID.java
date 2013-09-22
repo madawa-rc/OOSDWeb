@@ -23,7 +23,7 @@ public class UniqueID {
         DatabaseConnectionHandler db = new DatabaseConnectionHandler();
         try {
             Connection con = db.getConnection();
-            String queryCheck = "SELECT count(*) from id WHERE id = ?";
+            String queryCheck = "SELECT COUNT(*) from id WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, id);
             ResultSet resultSet = ps.executeQuery();
@@ -45,7 +45,7 @@ public class UniqueID {
         DatabaseConnectionHandler db = new DatabaseConnectionHandler();
         try {
             Connection con = db.getConnection();
-            String queryCheck = "SELECT count(*) from school WHERE email = ?";
+            String queryCheck = "SELECT COUNT(*) from school WHERE email = ?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, email);
             ResultSet resultSet = ps.executeQuery();
@@ -62,17 +62,18 @@ public class UniqueID {
         DatabaseConnectionHandler db = new DatabaseConnectionHandler();
         try {
             Connection con = db.getConnection();
-            String queryCheck = "SELECT count(*) from student WHERE email = ?";
+            String queryCheck = "SELECT COUNT(*) from student WHERE email = ?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, email);
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.next()) {
                 final int count = resultSet.getInt(1);
                 if (count > 0) {
-                    return false;
+                    return true;
             }}
         } catch (Exception e) {
+            e.printStackTrace();
         }
-        return true;
+        return false;
     }
 }

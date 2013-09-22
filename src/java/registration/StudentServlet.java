@@ -6,14 +6,6 @@ package registration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.util.Date;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,11 +41,13 @@ public class StudentServlet extends HttpServlet {
             out.println("<title>Servlet StudentServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            if(UniqueID.searchSchoolEmail(request.getParameter("email")))
+            if(UniqueID.searchStudentEmail(request.getParameter("email")))
             {
                 out.println("Email is already registered.");
                 response.setHeader("Refresh", "10; URL=register.jsp");
+                return;
             }
+            System.out.println("adsadsasasdas");
             out.println(request.getParameter("name"));
             out.println("<h1>Servlet StudentServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
