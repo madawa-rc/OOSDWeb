@@ -58,12 +58,7 @@ public class StudentServlet extends HttpServlet {
         }
 
        // Student s = new Student(123, null, null, null, null, null, null, null, null, true, true, true);//Should be initailized
-        Date a=null;
-        try {
-            a = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dob"));
-        } catch (ParseException ex) {
-            Logger.getLogger(StudentServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         Student s = new Student(
                 request.getParameter("name"),
                 Integer.parseInt(request.getParameter("date")),
