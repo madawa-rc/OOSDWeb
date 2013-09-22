@@ -45,7 +45,7 @@ public class EmailConfirmation extends HttpServlet {
             String queryCheck = "UPDATE student SET verified=1 WHERE verification =?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, link);
-            ps.executeQuery();
+            ps.executeUpdate();
             } catch (Exception ex) {
                
             }
