@@ -55,6 +55,7 @@ public class StudentDA {
             ps.setString(11, student.getVerification());
             ps.executeUpdate();
             
+            sendVerification(student);
            
             
             System.out.println("done");
