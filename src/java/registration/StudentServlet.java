@@ -79,9 +79,7 @@ public class StudentServlet extends HttpServlet {
 
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folde h if not working
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/oosd", "root", "123456");
-            Statement st = con.createStatement();
+            StudentDA.addStudent(s);
 
          
         } catch (Exception ex) {
