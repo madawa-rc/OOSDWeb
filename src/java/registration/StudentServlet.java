@@ -7,9 +7,13 @@ package registration;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -54,20 +58,25 @@ public class StudentServlet extends HttpServlet {
         }
 
        // Student s = new Student(123, null, null, null, null, null, null, null, null, true, true, true);//Should be initailized
-        Student s = new Student();
-        s.setName(request.getParameter("name"));
- /*       s.setDob((request.getParameter("dob")));
-        s.setEmail(request.getParameter("email"));
-        s.setDob(request.getParameter("dob"));
-            ps.setDate(2, student.getDob());
-            ps.setString(3, student.getEmail());
-            ps.setString(4, student.getSchool());
-            ps.setString(5, student.getSchool_addr());
-            ps.setString(6, student.getHome_addr());
-            ps.setInt(7, student.getPvt_applicant());
-            ps.setString(8, student.getPhone());
-            ps.setString(9, student.getMedium());
-            ps.setString(10, student.getPreferred_centre());*/
+        Date a=null;
+        try {
+            a = new SimpleDateFormat("dd-MMM-yyyy").parse(request.getParameter("dob"));
+        } catch (ParseException ex) {
+            Logger.getLogger(StudentServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Student s = new Student(
+                request.getParameter("name"),
+                new java.sql.Date(a.getTime()),
+                request.getParameter("email"),
+                request.getParameter("school"),
+                request.getParameter("school_addr"),
+                request.getParameter("home_addr"),
+                1,
+                request.getParameter("phone"),
+                request.getParameter("medium"),
+                request.getParameter("preferred_centre")
+                );
+
         
         try {
             Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folde h if not working
