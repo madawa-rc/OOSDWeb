@@ -27,7 +27,7 @@ import registration.Student;
  * @author Dell
  */
 public class SchoolDA  {
-
+    
     public static void addSchool(School school) {
         try {
             DatabaseConnectionHandler dbc=null;
@@ -53,7 +53,7 @@ public class SchoolDA  {
             ps.executeUpdate();
             
             sendVerification(school);
-           
+            
             
             System.out.println("done");
         } catch (SQLException ex) {

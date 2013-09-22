@@ -32,6 +32,10 @@ public class SchoolServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            if(UniqueID.searchSchoolEmail(request.getParameter("email")))
+            {
+                
+            }
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -40,6 +44,11 @@ public class SchoolServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SchoolServlet at " + request.getContextPath() + "</h1>");
+            if(UniqueID.searchSchoolEmail(request.getParameter("email")))
+            {
+                out.println("Email is already registered.");
+                response.setHeader("Refresh", "10; URL=register.jsp");
+            }
             out.println("</body>");
             out.println("</html>");
         } finally {            

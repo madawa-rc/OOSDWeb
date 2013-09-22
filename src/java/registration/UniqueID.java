@@ -41,4 +41,38 @@ public class UniqueID {
         }
         return false;
     }
+    public static boolean searchSchoolEmail(String email) {
+        DatabaseConnectionHandler db = new DatabaseConnectionHandler();
+        try {
+            Connection con = db.getConnection();
+            String queryCheck = "SELECT count(*) from school WHERE email = ?";
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, email);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                final int count = resultSet.getInt(1);
+                if (count > 0) {
+                    return true;
+            }}
+        } catch (Exception e) {
+        }
+        return false;
+    }
+    public static boolean searchStudentEmail(String email) {
+        DatabaseConnectionHandler db = new DatabaseConnectionHandler();
+        try {
+            Connection con = db.getConnection();
+            String queryCheck = "SELECT count(*) from student WHERE email = ?";
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, email);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                final int count = resultSet.getInt(1);
+                if (count > 0) {
+                    return false;
+            }}
+        } catch (Exception e) {
+        }
+        return true;
+    }
 }
