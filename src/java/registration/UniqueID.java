@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class UniqueID {
 
-    public String generate() {
+    public static String generate() {
         UUID uuid = UUID.randomUUID();
         String id = (uuid + "").replace("-", "");
         while (searchAndAdd(id)) {
@@ -19,7 +19,7 @@ public class UniqueID {
         return id;
     }
 
-    private boolean searchAndAdd(String id) {
+    private static boolean searchAndAdd(String id) {
         DatabaseConnectionHandler db = new DatabaseConnectionHandler();
         try {
             Connection con = db.getConnection();

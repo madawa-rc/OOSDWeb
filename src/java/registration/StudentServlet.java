@@ -76,7 +76,7 @@ public class StudentServlet extends HttpServlet {
                 request.getParameter("medium"),
                 request.getParameter("preferred_centre")
                 );
-
+        s.setVerification(UniqueID.generate());
         
         try {
             StudentDA.addStudent(s);

@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 
 public class sendMail {
 
-    private Message setUp(String email, String title) {
+    private static Message setUp(String email, String title) {
         final String username = "slomfoundation@gmail.com";
 
         final String password = "mathcat@slomf";
@@ -45,7 +45,7 @@ public class sendMail {
     }
 
     
-    public void sendmail(String email, String title, String text) {
+    public static void sendmail(String email, String title, String text) {
         Message message = setUp(email, title);
         try {
             message.setText(text);

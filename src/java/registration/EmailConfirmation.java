@@ -1,12 +1,14 @@
 package registration;
-//ADSASD
+import Database.DatabaseConnectionHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//utiiuiu
 public class EmailConfirmation extends HttpServlet {
 
     /**
@@ -32,6 +34,25 @@ public class EmailConfirmation extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println(request.getParameter("id"));
+            DatabaseConnectionHandler dbc=null;
+            Connection con=null;
+            try {
+                 dbc = new DatabaseConnectionHandler();
+                con = dbc.getConnection();
+                String link = request.getParameter("id");
+            Statement st = con.createStatement();
+         //   st.executeUpdate("INSERT INTO student VALUES ('"+student.getName()+"','2013-01-01','1','1','1','1','1','1','1','1','1','1','1','443','1','1','12','1','1');");
+            String queryCheck = "UPDATE student SET verified=1 WHERE verification =?";
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, link);
+            ps.executeQuery();
+            } catch (Exception ex) {
+               
+            }
+            
+            
+           
+            
             out.println("<h1>Servlet EmailConfirmation at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");

@@ -5,6 +5,7 @@
 package registration;
 
 import Database.DatabaseConnectionHandler;
+import Mail.sendMail;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,11 +35,11 @@ public class StudentDA {
             } catch (ClassNotFoundException ex) {
                
             }
-
             Statement st = con.createStatement();
          //   st.executeUpdate("INSERT INTO student VALUES ('"+student.getName()+"','2013-01-01','1','1','1','1','1','1','1','1','1','1','1','443','1','1','12','1','1');");
             String queryCheck = "INSERT INTO student ("
-                    + "name,dob,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre"
+                    + "name,dob,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre,"
+                    + "verification"
                     +") VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, student.getName());
@@ -51,12 +52,21 @@ public class StudentDA {
             ps.setString(8, student.getPhone());
             ps.setString(9, student.getMedium());
             ps.setString(10, student.getPreferred_centre());
-            
+            ps.setString(11, student.getVerification());
             ps.executeUpdate();
+            
+           
             
             System.out.println("done");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } 
+    }
+    public static void sendVerification(Student student){
+         sendMail.sendmail(student.getEmail(),"Email Verificaiton for SLMC 2014", 
+                 "Please click the following to verify your email address \n\n\n"+
+                 "http://localhost:8080/OOSDWeb/EmailConfirmation?id="
+                 + student.getVerification());
+        
     }
 }
