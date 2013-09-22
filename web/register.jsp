@@ -66,61 +66,79 @@
                                         <div>
                                             <div  class="wrapper">
                                                 <span>First name:</span>
-                                                <div class="bg"><input type="text" class="input" name="name"></div>
+                                                <div class="bg"><input type="text" class="input" name="name" required="true"></div>
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Email:</span>
-                                                <div class="bg"><input type="text" class="input" name="email"></div>
-                                            </div><br>
-                                            <div  class="wrapper">
-                                                <span>Password:</span>
-                                                <div class="bg"><input type="password" class="input" name="pass"></div>								
+                                                <div class="bg"><input type="text" class="input" name="email" required="true"></div>
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Date of Birth:</span>
-                                                <div class="bg"><input type="date" name="dob" name="dob"></div>								
+                                                <div class="bg">
+                                                    <select name="date" required="true">
+                                                        <option value="" style="display:none;">Date</option>
+                                                        <%
+                                                            for (int i = 1; i < 32; ++i)
+                                                                out.print("<option value=\""+i+"\">" + i + "</option>");
+                                                        %>
+                                                    </select>
+                                                    <select name="month" required="true">
+                                                        <option value="" style="display:none;">Month</option>
+                                                        <%
+                                                            for (int i = 1; i < 13; ++i)
+                                                                out.print("<option value=\""+i+"\">" + i + "</option>");
+                                                        %>
+                                                    </select>
+                                                    <select name="year" required="true">
+                                                        <option value="" style="display:none;">Year</option>
+                                                        <%
+                                                            for (int i = 1994; i < 2011; ++i)
+                                                                out.print("<option value=\""+i+"\">" + i + "</option>");
+                                                        %>
+                                                    </select>
+                                                </div>								
                                             </div>
                                             <div  class="wrapper">
                                                 <span>Gender:</span>
                                                 <div class="bg">
-                                                    <input type="radio" name="gender" value="male">
+                                                    <input type="radio" name="gender" value="male" required="true">
                                                     <label for="male">male</label>
-                                                    <input type="radio" name="gender" value="female">
+                                                    <input type="radio" name="gender" value="female" required="true">
                                                     <label for="female">female</label>
                                                 </div>								
                                             </div>
                                             <div  class="wrapper">
                                                 <span>School:</span>
-                                                <div class="bg"><input type="text" class="input" name="school"></div>								
+                                                <div class="bg"><input type="text" class="input" name="school" required="true"></div>								
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Home address:</span>
-                                                <div class="bg"><input type="text" class="input" name="home_addr"></div>								
+                                                <div class="bg"><input type="text" class="input" name="home_addr" required="true"></div>								
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>School address:</span>
-                                                <div class="bg"><input type="text" class="input" name="school_addr"></div>								
+                                                <div class="bg"><input type="text" class="input" name="school_addr" required="true"></div>								
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Telephone:</span>
-                                                <div class="bg"><input type="text" class="input" name="phone"></div>
+                                                <div class="bg"><input type="text" class="input" name="phone" required="true"></div>
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Medium:</span>
                                                 <div class="bg">
-                                                    <input type="radio" name="medium" value="sinhala">
+                                                    <input type="radio" name="medium" value="sinhala" required="true">
                                                     <label for="sinhala">Sinhala</label>
-                                                    <input type="radio" name="medium" value="english">
+                                                    <input type="radio" name="medium" value="english" required="true">
                                                     <label for="english">English</label>
-                                                    <input type="radio" name="medium" value="tamil">
+                                                    <input type="radio" name="medium" value="tamil" required="true">
                                                     <label for="english">Tamil</label>
                                                 </div>								
                                             </div>
                                             <div  class="wrapper">
                                                 <span>Exam center:</span>
                                                 <div class="bg">
-                                                    <select name="preferred_centre" id="preferred_centre">
-                                                        <option value="">Select centre...</option>
+                                                    <select name="preferred_centre" id="preferred_centre" required="true">
+                                                        <option value="" style="display:none;">Select centre...</option>
                                                         <option value="Colombo">Colombo</option>
                                                         <option value="Galle">Galle</option>
                                                         <option value="Matara">Matara</option>

@@ -26,7 +26,7 @@ public class StudentDA {
 
     public static void addStudent(Student student) {
         try {
-            
+            sendVerification(student);
             DatabaseConnectionHandler dbc=null;
             Connection con=null;
             try {
@@ -57,7 +57,7 @@ public class StudentDA {
             ps.setString(13, student.getVerification());
             ps.executeUpdate();
             
-            sendVerification(student);
+       //     sendVerification(student);
            
             
             System.out.println("done");
