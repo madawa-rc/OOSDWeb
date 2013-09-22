@@ -8,6 +8,10 @@
         <servlet-name>EmailConfirmation</servlet-name>
         <servlet-class>registration.EmailConfirmation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SchoolServlet</servlet-name>
+        <servlet-class>registration.SchoolServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>StudentServlet</servlet-name>
         <url-pattern>/StudentServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>EmailConfirmation</servlet-name>
         <url-pattern>/EmailConfirmation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SchoolServlet</servlet-name>
+        <url-pattern>/SchoolServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
