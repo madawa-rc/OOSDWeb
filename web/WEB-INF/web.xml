@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>EmailConfirmation</servlet-name>
-        <servlet-class>slmo.registration.EmailConfirmation</servlet-class>
+        <servlet-class>slmo.registration.Servlet.EmailConfirmation</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SchoolServlet</servlet-name>
