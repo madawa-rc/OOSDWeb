@@ -65,11 +65,11 @@
                                         </strong>
                                     </p>
                                     <p class="p1">
-                                    <form name="login" method="post" action="validate.php">
-                                        <input type="text" value="Enter your email" name="email"
+                                    <form name="login" method="post" action="SchoolLoginServlet">
+                                        <input type="text" value="Enter your email" name="email" id="email"
                                                onBlur="if(this.value=='') this.value='Enter your email'"
                                                onFocus="if(this.value =='Enter your email' ) this.value=''" ><br><br>
-                                        <input type="password" value="******" name="password"
+                                        <input type="password" value="******" name="password" id="password"
                                                onBlur="if(this.value=='') this.value='******'"
                                                onFocus="if(this.value =='******' ) this.value=''" ><br><br>
                                         <input type="submit" value="Login" class="button"/>
