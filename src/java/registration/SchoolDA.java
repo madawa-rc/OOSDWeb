@@ -72,6 +72,33 @@ public class SchoolDA  {
                  + "University of Colombo.");
         
     }
+    public static void addStudents(School school){
+        for(int i=0;i<school.StudentList.size();i++){
+            StudentDA.addStudent(school.StudentList.get(i));
+        }
+    }
+    public static School getSchool(String email){
+        try {
+            DatabaseConnectionHandler dbc=null;
+            Connection con=null;
+            try {
+                    dbc = new DatabaseConnectionHandler();
+                    con = dbc.getConnection();
+            } catch (ClassNotFoundException ex) {
+               
+            }
+            // SQL query to get school with the email
+           
+            
+            System.out.println("done");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } 
+        
+        
+        School school= null;
+        return school;
+    }
 }
 
 

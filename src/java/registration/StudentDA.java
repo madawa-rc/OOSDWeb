@@ -64,4 +64,7 @@ public class StudentDA {
                  + "University of Colombo.");
         
     }
+   public static void getStudent(){
+       // get a student from database
+   }
 }
