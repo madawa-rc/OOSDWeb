@@ -55,9 +55,7 @@ public class StudentServlet extends HttpServlet {
         } finally {
             // out.close();
         }
-
-       // Student s = new Student(123, null, null, null, null, null, null, null, null, true, true, true);//Should be initailized
-        
+    
         Student s = new Student(
                 request.getParameter("name"),
                 Integer.parseInt(request.getParameter("date")),
@@ -75,6 +73,10 @@ public class StudentServlet extends HttpServlet {
                 );
         try {
             StudentDA.addStudent(s);
+            out.println("Please wait while we send you the verification email and redirect you.");
+            out.close();
+            StudentDA.sendVerification(s);
+            System.out.println("email sent to "+s.getEmail());
 
          
         } catch (Exception ex) {
@@ -82,6 +84,7 @@ public class StudentServlet extends HttpServlet {
             String sErrorMessage = ex.getMessage();
             out.println(sErrorMessage);
             out.println("--------------------");
+            out.close();
         }
 
 

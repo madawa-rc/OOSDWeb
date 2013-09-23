@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package registration;
 
 import Database.DatabaseConnectionHandler;
@@ -18,15 +14,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import registration.Student;
 
-/**
- *
- * @author Madawa
- */
 public class StudentDA {
 
     public static void addStudent(Student student) {
         try {
-            sendVerification(student);
             DatabaseConnectionHandler dbc=null;
             Connection con=null;
             try {
@@ -36,7 +27,6 @@ public class StudentDA {
                
             }
             Statement st = con.createStatement();
-         //   st.executeUpdate("INSERT INTO student VALUES ('"+student.getName()+"','2013-01-01','1','1','1','1','1','1','1','1','1','1','1','443','1','1','12','1','1');");
             String queryCheck = "INSERT INTO student ("
                     + "name,date,month,year,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre,"
                     + "verification"
@@ -57,10 +47,7 @@ public class StudentDA {
             ps.setString(13, student.getVerification());
             ps.executeUpdate();
             
-       //     sendVerification(student);
-           
-            
-            System.out.println("done");
+            System.out.println("Database updated");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } 
