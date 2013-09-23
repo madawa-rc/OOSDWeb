@@ -2,19 +2,19 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
         <servlet-name>StudentServlet</servlet-name>
-        <servlet-class>registration.StudentServlet</servlet-class>
+        <servlet-class>slmo.registration.Servlet.StudentServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EmailConfirmation</servlet-name>
-        <servlet-class>registration.EmailConfirmation</servlet-class>
+        <servlet-class>slmo.registration.EmailConfirmation</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SchoolServlet</servlet-name>
-        <servlet-class>registration.SchoolServlet</servlet-class>
+        <servlet-class>slmo.registration.Servlet.SchoolServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SchoolLoginServlet</servlet-name>
-        <servlet-class>registration.SchoolLoginServlet</servlet-class>
+        <servlet-class>slmo.registration.Servlet.SchoolLoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>StudentServlet</servlet-name>
