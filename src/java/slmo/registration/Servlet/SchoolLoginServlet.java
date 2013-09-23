@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
+import slmo.registration.dao.SchoolDA;
 
 /**
  *
@@ -60,9 +62,14 @@ public class SchoolLoginServlet extends HttpServlet {
              * Redirection
              */
             if (resultSet.next()) 
-                response.setHeader("Refresh", "0; URL=schoolDashboard.jsp");
+            {    
+                System.out.println("loginsuccess");
+                request.setAttribute("schoolObject",SchoolDA.getSchool(email));
+                RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
+                rd.forward(request, response);
+            }
             else
-                response.setHeader("Refresh","0; URL=register.jsp");
+                response.setHeader("Refresh","0; URL=login.jsp");
                         
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

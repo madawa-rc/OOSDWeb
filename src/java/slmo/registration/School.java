@@ -14,6 +14,7 @@ public class School {
     private String contactname;
     private String email;
     private String name;
+    private String password;
     private String school_addr;
     private String phone;
     private String preferred_centre;
@@ -23,10 +24,11 @@ public class School {
     private int verified;
     ArrayList<Student> StudentList = new ArrayList<Student>();
 
-    public School(String contactname, String email, String name, String school_addr, String phone, String preferred_centre, int id, int payment, String verification, int verified) {
+    public School(String contactname, String email, String name, String password, String school_addr, String phone, String preferred_centre, int id, int payment, String verification, int verified) {
         this.contactname = contactname;
         this.email = email;
         this.name = name;
+        this.password = password;
         this.school_addr = school_addr;
         this.phone = phone;
         this.preferred_centre = preferred_centre;
@@ -37,10 +39,11 @@ public class School {
     }
 
     
-    public School(String contactname, String email, String school, String school_addr, String phone, String preferred_centre, String verification) {
+    public School(String contactname, String email, String school, String password, String school_addr, String phone, String preferred_centre, String verification) {
         this.contactname = contactname;
         this.email = email;
         this.name = school;
+        this.password=password;
         this.school_addr = school_addr;
         this.phone = phone;
         this.preferred_centre = preferred_centre;
@@ -63,6 +66,10 @@ public class School {
         this.email = email;
     }
 
+    public void setContactname(String contactname) {
+        this.contactname = contactname;
+    }
+    
     public void setSchool(String school) {
         this.name = school;
     }
@@ -102,7 +109,26 @@ public class School {
     public String getSchool() {
         return name;
     }
+    
+    public School() {
+    }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getContactname() {
+        return contactname;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setStudentList(ArrayList<Student> StudentList) {
+        this.StudentList = StudentList;
+    }
+    
     public String getSchool_addr() {
         return school_addr;
     }

@@ -32,17 +32,18 @@ public class SchoolDA  {
                 System.out.println(ex.getMessage());
             }
             String queryCheck = "INSERT INTO school ("
-                    + "contactname,email,name,school_addr,phone,preferred_centre,"
+                    + "contactname,email,name,password,school_addr,phone,preferred_centre,"
                     + "verification"
-                    +") VALUES (?,?,?,?,?,?,?)";
+                    +") VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, school.getName());
             ps.setString(2, school.getEmail());
             ps.setString(3, school.getSchool());
-            ps.setString(4, school.getSchool_addr());
-            ps.setString(5, school.getPhone());
-            ps.setString(6, school.getPreferred_centre());
-            ps.setString(7, school.getVerification());
+            ps.setString(4, school.getPassword());
+            ps.setString(5, school.getSchool_addr());
+            ps.setString(6, school.getPhone());
+            ps.setString(7, school.getPreferred_centre());
+            ps.setString(8, school.getVerification());
             ps.executeUpdate();
             
             sendVerification(school);
@@ -87,27 +88,29 @@ public class SchoolDA  {
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
+            rs.next();
             s = new School(
                     rs.getString("contactname"),
                     rs.getString("email"),
                     rs.getString("name"),
+                    rs.getString("password"),
                     rs.getString("school_addr"),
                     rs.getString("phone"),
-                    rs.getString("preferred_cantre"),
+                    rs.getString("preferred_centre"),
                     rs.getInt("id"),
                     rs.getInt("payment"),
                     rs.getString("verification"),                    
                     rs.getInt("verified")
                     );
             } catch (ClassNotFoundException ex) {
-               
+               ex.printStackTrace();
             }
             // SQL query to get school with the email
            
             
-            System.out.println("done");
+            System.out.println("School gotten from DB");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         } 
         return s;
     }

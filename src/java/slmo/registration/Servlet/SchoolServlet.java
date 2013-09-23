@@ -6,6 +6,7 @@ package slmo.registration.Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +62,7 @@ public class SchoolServlet extends HttpServlet {
                 request.getParameter("contactname"),
                 request.getParameter("email"),
                 request.getParameter("name"),
+                request.getParameter("password"),
                 request.getParameter("school_addr"),
                 request.getParameter("phone"),
                 request.getParameter("preferred_centre"),
@@ -68,6 +70,11 @@ public class SchoolServlet extends HttpServlet {
                 );
         try {
             SchoolDA.addSchool(s);
+            System.out.println("done adding school ");
+
+            request.setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("email")));
+            RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
+            rd.forward(request, response);
 
          
         } catch (Exception ex) {
