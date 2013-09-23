@@ -7,7 +7,6 @@ package Database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -16,11 +15,11 @@ import java.sql.Statement;
 public class DatabaseConnectionHandler {
     public Connection getConnection() throws SQLException, ClassNotFoundException{
         try {
-            Class.forName("com.mysql.jdbc.Driver");//put the j connector to the lib folde h if not working
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/oosd", "root", "123456");
+            Class.forName(Constants.DRIVER_NAME);
+            Connection con = DriverManager.getConnection(Constants.DB_URL,Constants.USERNAME,Constants.PASSWORD);
             return con;
         } catch (Exception ex) {
-            
+            System.out.println(ex.getMessage());
         }
         return null;
     }
