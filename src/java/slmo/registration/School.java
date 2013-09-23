@@ -130,5 +130,9 @@ public class School {
     public int getVerified() {
         return verified;
     }
-   
+
+    public ArrayList<Student> getStudentList() {
+        return StudentList;
+    }
+    
 }

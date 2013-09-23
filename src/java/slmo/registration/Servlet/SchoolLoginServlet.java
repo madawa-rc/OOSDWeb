@@ -5,7 +5,6 @@
 package slmo.registration.Servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +14,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +34,10 @@ public class SchoolLoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+        
+        /**
+         * Capture email and password from e-form login.jsp
+         */
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
@@ -45,16 +45,24 @@ public class SchoolLoginServlet extends HttpServlet {
         
         try {
             Connection con = dbc.getConnection();
+            /**
+             * E-mail/password validation query
+             */
+            String queryCheck = "SELECT * from school WHERE password = ? AND email = ? ";
             
-            String queryCheck = "SELECT * from school WHERE password = ? AND email =? ";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, password);
             ps.setString(2, email);
+            
             ResultSet resultSet = ps.executeQuery();
             
+            /**
+             * Redirection
+             */
             if (resultSet.next()) 
                 response.setHeader("Refresh", "0; URL=schoolDashboard.jsp");
-            
+            else
+                response.setHeader("Refresh","0; URL=register.jsp");
                         
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

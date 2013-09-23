@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import slmo.registration.Student;
-import slmo.registration.StudentDA;
+import slmo.registration.dao.StudentDA;
 import slmo.registration.UniqueID;
 
 /**

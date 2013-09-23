@@ -1,4 +1,4 @@
-package slmo.registration;
+package slmo.registration.Servlet;
 import Database.DatabaseConnectionHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 public class EmailConfirmation extends HttpServlet {
 
     /**
@@ -37,7 +38,7 @@ public class EmailConfirmation extends HttpServlet {
             DatabaseConnectionHandler dbc=null;
             Connection con=null;
             try {
-                 dbc = new DatabaseConnectionHandler();
+                dbc = new DatabaseConnectionHandler();
                 con = dbc.getConnection();
                 String link = request.getParameter("id");
             Statement st = con.createStatement();

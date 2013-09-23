@@ -1,5 +1,6 @@
 package slmo.registration;
 
+import slmo.registration.dao.StudentDA;
 import java.sql.Date;
 
 

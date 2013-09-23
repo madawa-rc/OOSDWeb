@@ -1,30 +1,24 @@
-package slmo.registration;
+package slmo.registration.dao;
 
 import Database.DatabaseConnectionHandler;
 import Mail.sendMail;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import slmo.registration.Student;
 
 public class StudentDA {
 
     public static void addStudent(Student student) {
         try {
-            DatabaseConnectionHandler dbc=null;
+            DatabaseConnectionHandler dbc;
             Connection con=null;
-            try {
+            try{
                  dbc = new DatabaseConnectionHandler();
-                con = dbc.getConnection();
-            } catch (ClassNotFoundException ex) {
-               
+                 con = dbc.getConnection();
+            }catch (ClassNotFoundException ex) {
+                System.out.println(ex.getMessage());
             }
             Statement st = con.createStatement();
             String queryCheck = "INSERT INTO student ("

@@ -2,11 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package slmo.registration;
+package slmo.registration.dao;
 
-import static slmo.registration.StudentDA.sendVerification;
-
- 
 
 import Database.DatabaseConnectionHandler;
 import Mail.sendMail;
@@ -14,29 +11,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import slmo.registration.School;
 import slmo.registration.Student;
 
 /**
  *
- * @author Dell
+ * @author Fiontar
  */
 public class SchoolDA  {
     
     public static void addSchool(School school) {
         try {
-            DatabaseConnectionHandler dbc=null;
+            DatabaseConnectionHandler dbc;
             Connection con=null;
             try {
-                 dbc = new DatabaseConnectionHandler();
+                dbc = new DatabaseConnectionHandler();
                 con = dbc.getConnection();
             } catch (ClassNotFoundException ex) {
-               
+                System.out.println(ex.getMessage());
             }
             String queryCheck = "INSERT INTO school ("
                     + "contactname,email,name,school_addr,phone,preferred_centre,"
@@ -73,9 +66,14 @@ public class SchoolDA  {
         
     }
     public static void addStudents(School school){
-        for(int i=0;i<school.StudentList.size();i++){
-            StudentDA.addStudent(school.StudentList.get(i));
+        ArrayList<Student> studentList = school.getStudentList();
+        
+        for(int i=0; i<school.getStudentList().size(); i++){
+            StudentDA.addStudent(studentList.get(i));
         }
+//        for(int i=0;i<school.StudentList.size();i++){
+//            StudentDA.addStudent(school.StudentList.get(i));
+//        }
     }
     public static School getSchool(String email){
         School s = null;
