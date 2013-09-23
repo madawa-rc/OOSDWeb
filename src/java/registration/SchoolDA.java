@@ -78,12 +78,29 @@ public class SchoolDA  {
         }
     }
     public static School getSchool(String email){
+        School s = null;
         try {
             DatabaseConnectionHandler dbc=null;
             Connection con=null;
             try {
                     dbc = new DatabaseConnectionHandler();
                     con = dbc.getConnection();
+            String queryCheck = "SELECT * from school WHERE email = ?";
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            s = new School(
+                    rs.getString("contactname"),
+                    rs.getString("email"),
+                    rs.getString("name"),
+                    rs.getString("school_addr"),
+                    rs.getString("phone"),
+                    rs.getString("preferred_cantre"),
+                    rs.getInt("id"),
+                    rs.getInt("payment"),
+                    rs.getString("verification"),                    
+                    rs.getInt("verified")
+                    );
             } catch (ClassNotFoundException ex) {
                
             }
@@ -94,10 +111,7 @@ public class SchoolDA  {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } 
-        
-        
-        School school= null;
-        return school;
+        return s;
     }
 }
 

@@ -23,6 +23,20 @@ public class School {
     private int verified;
     ArrayList<Student> StudentList = new ArrayList<Student>();
 
+    public School(String contactname, String email, String name, String school_addr, String phone, String preferred_centre, int id, int payment, String verification, int verified) {
+        this.contactname = contactname;
+        this.email = email;
+        this.name = name;
+        this.school_addr = school_addr;
+        this.phone = phone;
+        this.preferred_centre = preferred_centre;
+        this.id = id;
+        this.payment = payment;
+        this.verification = verification;
+        this.verified = verified;
+    }
+
+    
     public School(String contactname, String email, String school, String school_addr, String phone, String preferred_centre, String verification) {
         this.contactname = contactname;
         this.email = email;
