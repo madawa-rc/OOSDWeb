@@ -13,15 +13,22 @@ import java.sql.SQLException;
  * @author New
  */
 public class DatabaseConnectionHandler {
+    private static Connection con = null;
+    
     public static Connection getConnection() throws SQLException, ClassNotFoundException{
-        try {
-            Class.forName(Constants.DRIVER_NAME);
-            Connection con = DriverManager.getConnection(Constants.DB_URL,Constants.USERNAME,Constants.PASSWORD);
+        if(con == null){
+            try {
+
+                Class.forName(Constants.DRIVER_NAME);
+                Connection con = DriverManager.getConnection(Constants.DB_URL,Constants.USERNAME,Constants.PASSWORD);
+                return con;
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+            return null;
+        }else{
             return con;
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
         }
-        return null;
     }
     
 }

@@ -5,12 +5,13 @@
 package slmo.registration.Servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import slmo.registration.UniqueID;
+import slmo.registration.School;
+import slmo.registration.dao.SchoolDA;
+import slmo.registration.dao.StudentDA;
 
 /**
  *
@@ -31,25 +32,28 @@ public class SchoolModifyServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        
         try {
-            if(UniqueID.searchStudentEmail(request.getParameter("email")))
-            {
-                
-            }
+            //school
+            School school = SchoolDA.getSchool(request.getParameter("email"));
+            //added rows+previous student count
+            int newcount = Integer.parseInt(request.getParameter("count"));
+            //previous student count
+            int oldCount = school.getStudentList().size();
             
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SchoolServletAddStudent</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SchoolServletAddStudent at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            for(int i = 1; i <= newcount; i++){
+                if(i <= oldCount){
+                    String name = request.getParameter("studentname"+i);
+                    if(name.equals("deleted")){
+                        String id = request.getParameter("studentId"+i);
+                        StudentDA.deleteStudent(id);
+                    }else{
+                        
+                    }
+                }
+            }
         } finally {            
-            out.close();
+            
         }
     }
 
