@@ -18,12 +18,8 @@
     </head>
     <%
         School s = (School) request.getAttribute("schoolObject");
-        out.print(s.getName());
-        out.println("got the school from the database successfully to the jsp");
         ArrayList<Student> studentList = null;
         studentList = s.getStudentList();
-        out.print(studentList.size());
-
     %>
     <body>
         <h1>School Dashboard</h1>
@@ -148,7 +144,7 @@
                 try {
                     var table = document.getElementById(tableID);
                     var rowCount = table.rows.length;
-                    for (var i = document.getElementById("num2").value; i < rowCount - 1; i++) {
+                    for (var i = document.getElementById("num2").value+1; i < rowCount - 1; i++) {
                         var row = table.rows[i].cells[2].childNodes[2].value;
                         if (null != row) {
                             table.rows[i].cells[2].childNodes[2].style.display = "none";
@@ -161,7 +157,7 @@
             }
 
             function deleteRow(tableID, rw) {
-                var x = window.confirm("Are you sure you want to delete this row?");
+                var x = window.confirm("Are you sure you want to delete this row?")
                 if (x)
                 {
                     var Num = parseInt(rw);
@@ -190,7 +186,7 @@
 
 <BODY>
 
-    <form name="myform" action="SchoolModifyServlet" method="post">
+    <form name="myform" action="myServlet" method="post">
 
         <INPUT type="hidden" value=<%=studentList.size()%> id="num" name ="num" required="true"/>
         <INPUT type="hidden" value=<%=studentList.size()%> id="num2" name ="num2" required="true"/>
@@ -254,14 +250,9 @@
                             <option value="SINHALA">SINHALA</option>;
                             <option value="TAMIL">TAMIL</option>;
                                 }
-                         
+                            %>  
                         
-                            
-                        <INPUT type="hidden" value=<%=studentList.get(i).getId()%> name =<%="studentId"+String.valueOf(i+1)%>/>
-                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1');" />
-                        
-                        
-                        
+                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1')" /> 
                         
                     </td>
                 </tr>
@@ -272,7 +263,7 @@
 
         <br><br>
 
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Go!"/>
 
     </form>
 </body>
