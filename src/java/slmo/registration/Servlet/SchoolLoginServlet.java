@@ -4,17 +4,21 @@
  */
 package slmo.registration.Servlet;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import Database.DatabaseConnectionHandler;
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import slmo.registration.dao.SchoolDA;
 
 /**
@@ -34,19 +38,29 @@ public class SchoolLoginServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, NoSuchAlgorithmException {
         response.setContentType("text/html;charset=UTF-8");
         
         /**
          * Capture email and password from e-form login.jsp
          */
+        
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.reset();
+        md.update(request.getParameter("password").getBytes());
+        byte[] digest = md.digest();
+        StringBuilder sb = new StringBuilder();
+        for (byte b : digest) {
+            sb.append(Integer.toHexString((int) (b & 0xff)));
+        }
+        
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String password = sb.toString();
         
         DatabaseConnectionHandler dbc = new DatabaseConnectionHandler();
         
         try {
-            Connection con = dbc.getConnection();
+            Connection con = DatabaseConnectionHandler.getConnection();
             /**
              * E-mail/password validation query
              */
@@ -91,7 +105,11 @@ public class SchoolLoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(SchoolLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -106,7 +124,11 @@ public class SchoolLoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(SchoolLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
