@@ -44,10 +44,23 @@ public class SchoolModifyServlet extends HttpServlet {
             for(int i = 1; i <= newcount; i++){
                 if(i <= oldCount){
                     String name = request.getParameter("studentname"+i);
-                    if(name.equals("deleted")){
+                    if(name!=null&&name.equals("deleted")){
                         String id = request.getParameter("studentId"+i);
                         StudentDA.deleteStudent(id);
                     }else{
+                        SchoolDA.update(
+                                request.getParameter("studentId"+i),
+                                request.getParameter("student"+i),
+                                request.getParameter("date"+i),
+                                request.getParameter("month"+i),
+                                request.getParameter("year"+i),
+                                request.getParameter("medium"+i)
+                                );
+                    }
+                }
+                else{
+                    String name = request.getParameter("studentname"+i);
+                    if(name!=null){
                         
                     }
                 }

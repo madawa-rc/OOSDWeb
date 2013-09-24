@@ -148,7 +148,7 @@
                 try {
                     var table = document.getElementById(tableID);
                     var rowCount = table.rows.length;
-                    for (var i = document.getElementById("num2").value+1; i < rowCount - 1; i++) {
+                    for (var i = document.getElementById("num2").value; i < rowCount - 1; i++) {
                         var row = table.rows[i].cells[2].childNodes[2].value;
                         if (null != row) {
                             table.rows[i].cells[2].childNodes[2].style.display = "none";
@@ -190,11 +190,11 @@
 
 <BODY>
 
-    <form name="myform" action="myServlet" method="post">
+    <form name="myform" action="SchoolModifyServlet" method="post">
 
         <INPUT type="hidden" value=<%=studentList.size()%> id="num" name ="num" required="true"/>
         <INPUT type="hidden" value=<%=studentList.size()%> id="num2" name ="num2" required="true"/>
-        <INPUT type="button" value="Add Row" onclick="addRow('dataTable');" /> 
+        <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" /> 
         <br>    
 
 
@@ -254,9 +254,11 @@
                             <option value="SINHALA">SINHALA</option>;
                             <option value="TAMIL">TAMIL</option>;
                                 }
-                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1');" /> 
+                         
+                        
+                            
                         <INPUT type="hidden" value=<%=studentList.get(i).getId()%> name =<%="studentId"+String.valueOf(i+1)%>/>
-                            %>  
+                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1');" />
                         
                         
                         
@@ -270,7 +272,7 @@
 
         <br><br>
 
-        <input type="submit" value="Go!"/>
+        <input type="submit" value="Submit"/>
 
     </form>
 </body>

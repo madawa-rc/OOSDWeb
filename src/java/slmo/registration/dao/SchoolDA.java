@@ -165,7 +165,7 @@ public class SchoolDA  {
         return studentList;
     }
     
-    public static void update(String id, String name, int date, int month, int year, String medium){
+    public static void update(String id, String name, String date, String month, String year, String medium){
         try{
             Connection con = DatabaseConnectionHandler.getConnection();
             
@@ -175,11 +175,11 @@ public class SchoolDA  {
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, name);
-            ps.setInt(2, date);
-            ps.setInt(2, month);
-            ps.setInt(2, year);
-            ps.setString(1, medium);
-            ps.setString(1, id);
+            ps.setString(2, date);
+            ps.setString(3, month);
+            ps.setString(4, year);
+            ps.setString(5, medium);
+            ps.setString(6, id);
             
             ps.executeQuery();
             
