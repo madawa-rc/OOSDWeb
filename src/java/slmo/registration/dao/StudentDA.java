@@ -9,7 +9,7 @@ import java.sql.Statement;
 import slmo.registration.Student;
 
 public class StudentDA {
-
+    
     public static void addStudent(Student student) {
         try {
             Connection con = null;
@@ -60,6 +60,28 @@ public class StudentDA {
     public static Student getStudent(String schoolName, int pvt_applicant){
         
         return new Student();
+    }
+    
+    public static void deleteStudent(String id){
+        Connection con;
+        
+        try{
+            con = DatabaseConnectionHandler.getConnection();
+            
+            Statement st = con.createStatement();
+            String queryCheck = "DELETE FROM student WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, id);
+            ps.execute();
+        } catch (SQLException ex) {
+            
+        } catch (ClassNotFoundException ex) {
+            
+        }
+    }
+    
+    public static void update(){
+        
     }
    
 }

@@ -163,6 +163,31 @@ public class SchoolDA  {
         }
         return studentList;
     }
+    
+    public static void update(String id, String name, int date, int month, int year, String medium){
+        try{
+            Connection con = DatabaseConnectionHandler.getConnection();
+            
+            String queryCheck = "UPDATE students "
+                    + "SET name= ? ,SET date = ? ,SET month = ? ,SET year = ? ,SET medium = ?"
+                    + "WHERE id = ?";
+            
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, name);
+            ps.setInt(2, date);
+            ps.setInt(2, month);
+            ps.setInt(2, year);
+            ps.setString(1, medium);
+            ps.setString(1, id);
+            
+            ps.executeQuery();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
 
 

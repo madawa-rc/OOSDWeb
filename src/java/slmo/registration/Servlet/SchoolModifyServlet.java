@@ -5,21 +5,19 @@
 package slmo.registration.Servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import slmo.registration.School;
 import slmo.registration.dao.SchoolDA;
-import slmo.registration.UniqueID;
+import slmo.registration.dao.StudentDA;
 
 /**
  *
- * @author DELL
+ * @author Danula
  */
-public class SchoolServlet extends HttpServlet {
+public class SchoolModifyServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -34,54 +32,28 @@ public class SchoolServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
+        
         try {
-            if(UniqueID.searchSchoolEmail(request.getParameter("email")))
-            {
-                
+            //school
+            School school = SchoolDA.getSchool(request.getParameter("email"));
+            //added rows+previous student count
+            int newcount = Integer.parseInt(request.getParameter("count"));
+            //previous student count
+            int oldCount = school.getStudentList().size();
+            
+            for(int i = 1; i <= newcount; i++){
+                if(i <= oldCount){
+                    String name = request.getParameter("studentname"+i);
+                    if(name.equals("deleted")){
+                        String id = request.getParameter("studentId"+i);
+                        StudentDA.deleteStudent(id);
+                    }else{
+                        
+                    }
+                }
             }
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SchoolServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SchoolServlet at " + request.getContextPath() + "</h1>");
-            if(UniqueID.searchSchoolEmail(request.getParameter("email")))
-            {
-                out.println("Email is already registered.");
-                response.setHeader("Refresh", "10; URL=register.jsp");
-            }
-            out.println("</body>");
-            out.println("</html>");
         } finally {            
-          //  out.close();
-        }
-        School s = new School(
-                request.getParameter("contactname"),
-                request.getParameter("email"),
-                request.getParameter("name"),
-                request.getParameter("password"),
-                request.getParameter("school_addr"),
-                request.getParameter("phone"),
-                request.getParameter("preferred_centre"),
-                UniqueID.generate()
-                );
-        try {
-            SchoolDA.addSchool(s);
-            System.out.println("done adding school ");
-
-            request.setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("email")));
-            RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
-            rd.forward(request, response);
-
-         
-        } catch (Exception ex) {
-            out.println("*******Problem in connecting to the database*********");
-            String sErrorMessage = ex.getMessage();
-            out.println(sErrorMessage);
-            out.println("--------------------");
+            
         }
     }
 

@@ -6,17 +6,20 @@ package slmo.registration.Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import slmo.registration.School;
+import slmo.registration.dao.SchoolDA;
 import slmo.registration.UniqueID;
 
 /**
  *
- * @author Danula
+ * @author DELL
  */
-public class SchoolServletAddStudent extends HttpServlet {
+public class SchoolRegistrationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -33,23 +36,52 @@ public class SchoolServletAddStudent extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            if(UniqueID.searchStudentEmail(request.getParameter("email")))
+            if(UniqueID.searchSchoolEmail(request.getParameter("email")))
             {
                 
             }
-            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SchoolServletAddStudent</title>");            
+            out.println("<title>Servlet SchoolServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SchoolServletAddStudent at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SchoolServlet at " + request.getContextPath() + "</h1>");
+            if(UniqueID.searchSchoolEmail(request.getParameter("email")))
+            {
+                out.println("Email is already registered.");
+                response.setHeader("Refresh", "10; URL=register.jsp");
+            }
             out.println("</body>");
             out.println("</html>");
         } finally {            
-            out.close();
+          //  out.close();
+        }
+        School s = new School(
+                request.getParameter("contactname"),
+                request.getParameter("email"),
+                request.getParameter("name"),
+                request.getParameter("password"),
+                request.getParameter("school_addr"),
+                request.getParameter("phone"),
+                request.getParameter("preferred_centre"),
+                UniqueID.generate()
+                );
+        try {
+            SchoolDA.addSchool(s);
+            System.out.println("done adding school ");
+
+            request.setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("email")));
+            RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
+            rd.forward(request, response);
+
+         
+        } catch (Exception ex) {
+            out.println("*******Problem in connecting to the database*********");
+            String sErrorMessage = ex.getMessage();
+            out.println(sErrorMessage);
+            out.println("--------------------");
         }
     }
 
