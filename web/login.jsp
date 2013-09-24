@@ -3,6 +3,16 @@
     Created on : Sep 22, 2013, 5:16:45 PM
     Author     : Kasun
 --%>
+<%@page import="slmo.registration.School"%><font color="#ff0000">
+<%
+    session.setMaxInactiveInterval(10);
+    School school = (School) session.getAttribute("sch");
+    boolean loggedIn = false;
+    if (school != null) {
+        loggedIn = true;
+    }
+%>
+</font>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -60,7 +70,14 @@
                                 <div class="box-2">
                                     <p class="para">
                                         <strong>
-                                            Enter your Login details
+                                            <%
+                                                if (loggedIn) {
+                                                    out.print("You are logged in!");
+                                                } else {
+                                                    out.print("Enter your Login details");
+                                                
+                                            %>
+                                            
                                             <br><br>
                                         </strong>
                                     </p>
@@ -78,6 +95,8 @@
                                     </p><br>
                                     <p class="para" align="right">New user?</p>
                                     <p class="para" align="right"><a href="school.jsp">Sign up</a> here.</p>
+                                    <%}
+                                    %>
                                 </div>
                             </div>
                         </div>

@@ -12,8 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import slmo.registration.School;
 import slmo.registration.Student;
 
@@ -100,6 +98,8 @@ public class SchoolDA  {
                             rs.getString("verification"),                    
                             rs.getInt("verified")
                             );
+                    System.out.print(rs.getString(("name")));
+                    s.setStudentList(getStudents(s));
             } catch (ClassNotFoundException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -113,11 +113,10 @@ public class SchoolDA  {
         return s;
     }
     
-    public static void getStudents(String email){
+    public static ArrayList<Student> getStudents(School school){
         //array to store the students
         ArrayList<Student> studentList = new ArrayList<Student>();
         //school
-        School school = SchoolDA.getSchool(email);
         
         Student student;
         
@@ -126,7 +125,7 @@ public class SchoolDA  {
         try{
             con = DatabaseConnectionHandler.getConnection();
             
-            String queryCheck = "SELECT *FROM student WHERE school = ? AND pvt_applicant = ?";
+            String queryCheck = "SELECT * FROM student WHERE school = ? AND pvt_applicant = ?";
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, school.getName());
@@ -154,12 +153,14 @@ public class SchoolDA  {
                 //adding student to the arrayList
                 studentList.add(student);
             }
+            if(studentList.isEmpty())
+                System.out.println("Empty");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } catch (ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
-        
+        return studentList;
     }
 }
 

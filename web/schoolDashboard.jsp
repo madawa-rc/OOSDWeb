@@ -4,6 +4,8 @@
     Author     : Madawa
 --%>
 
+<%@page import="slmo.registration.Student"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="slmo.registration.School"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,13 +16,18 @@
         <link rel="shortcut icon" href="images/logo.png">
     </head>
     <%
-         School s = (School)request.getAttribute("schoolObject");
-         out.println("got the school from the database successfully to the jsp");
-     %>
+        School s = (School) request.getAttribute("schoolObject");
+        out.print(s.getName());
+        out.println("got the school from the database successfully to the jsp");
+        ArrayList<Student> studentList = null;
+            studentList = s.getStudentList();
+            out.print(studentList.size());
+            
+    %>
     <body>
         <h1>School Dashboard</h1>
-        
-        
+
+
         <SCRIPT language="javascript">
         
             function addRow(tableID) {
@@ -115,6 +122,16 @@
 <BODY>
 
     <form name="myform" action="myServlet" method="post">
+        <%
+            if(studentList != null)
+            for (int i = 0; i < studentList.size(); ++i) {
+                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getName() + "\" id=\"num\" name =\"name\" required=\"true\"/>");
+                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getDate() + "\" id=\"num\" name =\"date\" required=\"true\"/>");
+                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getMonth() + "\" id=\"num\" name =\"month\" required=\"true\"/>");
+                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getYear() + "\" id=\"num\" name =\"year\" required=\"true\"/>");
+                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getMedium() + "\" id=\"num\" name =\"medium\" required=\"true\"/>");
+            }
+        %>
         <INPUT type="hidden" value="0" id="num" name ="num" required="true"/>
         <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" /> 
         <br>
