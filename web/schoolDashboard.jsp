@@ -176,7 +176,7 @@
                 try {
                     var table = document.getElementById(tableID);
                     var rowCount = table.rows.length;
-                    for (var i = document.getElementById("num2").value+1; i < rowCount - 1; i++) {
+                    for (var i = document.getElementById("num2").value; i < rowCount - 1; i++) {
                         var row = table.rows[i].cells[2].childNodes[2].value;
                         if (null != row) {
                             table.rows[i].cells[2].childNodes[2].style.display = "none";
