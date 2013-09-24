@@ -161,7 +161,7 @@
             }
 
             function deleteRow(tableID, rw) {
-                var x = window.confirm("Are you sure you want to delete this row?")
+                var x = window.confirm("Are you sure you want to delete this row?");
                 if (x)
                 {
                     var Num = parseInt(rw);
@@ -194,7 +194,7 @@
 
         <INPUT type="hidden" value=<%=studentList.size()%> id="num" name ="num" required="true"/>
         <INPUT type="hidden" value=<%=studentList.size()%> id="num2" name ="num2" required="true"/>
-        <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" /> 
+        <INPUT type="button" value="Add Row" onclick="addRow('dataTable');" /> 
         <br>    
 
 
@@ -254,9 +254,12 @@
                             <option value="SINHALA">SINHALA</option>;
                             <option value="TAMIL">TAMIL</option>;
                                 }
+                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1');" /> 
+                        <INPUT type="hidden" value=<%=studentList.get(i).getId()%> name =<%="studentId"+String.valueOf(i+1)%>/>
                             %>  
                         
-                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1')" /> 
+                        
+                        
                         
                     </td>
                 </tr>
