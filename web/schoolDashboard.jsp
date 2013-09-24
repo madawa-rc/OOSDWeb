@@ -216,7 +216,7 @@
         </SCRIPT> 
     </HEAD> 
 
-    <form name="myform" action="myServlet" method="post">
+    <form name="myform" action="SchoolModifyServlet" method="post">
 
         <INPUT type="hidden" value=<%=studentList.size()%> id="num" name ="num" required="true"/>
         <INPUT type="hidden" value=<%=studentList.size()%> id="num2" name ="num2" required="true"/>
@@ -245,13 +245,8 @@
 
                 <tr>
                     <td >
-<<<<<<< HEAD
-                        <INPUT type="hidden" value=<%=String.valueOf(i+1)%> />
-                        <INPUT type="text" value="<%=studentList.get(i).getName()%>" name=<%="student"+String.valueOf(i+1)%> required="true"/>                
-=======
-                        <INPUT type="hidden" value=<%=String.valueOf(i + 1)%> id="hid"/>
-                        <INPUT type="text" value=<%=studentList.get(i).getName()%> id=<%="student" + String.valueOf(i + 1)%> name=<%="student" + String.valueOf(i + 1)%> required="true"/>                
->>>>>>> a6530da7964012c3740c1de2233ce5e01c89bb6b
+                        <INPUT type="hidden" value=<%=String.valueOf(i+1)%> />              
+                        <INPUT type="text" value="<%=studentList.get(i).getName()%>" id=<%="student" + String.valueOf(i + 1)%> name=<%="student" + String.valueOf(i + 1)%> required="true"/>                
                     </td>
                     <td>
                         <select name=<%="date" + String.valueOf(i + 1)%> required="true">
@@ -280,42 +275,15 @@
                         </select>
                     </td>
                     <td>
-<<<<<<< HEAD
                         <select name =<%="medium"+String.valueOf(i+1)%>  id = <%="medium"+String.valueOf(i+1)%>  required="true">
-=======
-                        <select name =<%="medium" + String.valueOf(i + 1)%>  required="true">
->>>>>>> a6530da7964012c3740c1de2233ce5e01c89bb6b
                             <option value="<%=studentList.get(i).getMedium()%>" style="display:none"><%=studentList.get(i).getMedium()%></option>
                             <option value="ENGLISH">ENGLISH</option>;
                             <option value="SINHALA">SINHALA</option>;
-                            <option value="TAMIL">TAMIL</option>;
-<<<<<<< HEAD
-                                }
-<<<<<<< HEAD
-<<<<<<< HEAD
-                         
-                        
+                            <option value="TAMIL">TAMIL</option>;        
+                        </select>
                             
                         <INPUT type="hidden" value=<%=studentList.get(i).getId()%> name=<%="studentId"+String.valueOf(i+1)%> />
-                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1');" />
-                        
-                        
-=======
-                            %>  
->>>>>>> 469f288d7ebc62361adce4bbb2ed1dcc8fa7de45
-=======
-                            %>  
->>>>>>> 469f288d7ebc62361adce4bbb2ed1dcc8fa7de45
-                        
-                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1')" /> 
-                        
-=======
-                            }
-                            %>  
-
-                            <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1')" /> 
-
->>>>>>> a6530da7964012c3740c1de2233ce5e01c89bb6b
+                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','<%=String.valueOf(i+1)%>');" />
                     </td>
                 </tr>
                 <% }%>
