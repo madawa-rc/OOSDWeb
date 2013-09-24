@@ -17,16 +17,16 @@
         <servlet-class>slmo.registration.Servlet.SchoolLoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>StudentServlet</servlet-name>
-        <url-pattern>/StudentServlet</url-pattern>
+        <servlet-name>SchoolRegistrationServlet</servlet-name>
+        <url-pattern>/SchoolRegistrationServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EmailConfirmation</servlet-name>
         <url-pattern>/EmailConfirmation</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SchoolServlet</servlet-name>
-        <url-pattern>/SchoolServlet</url-pattern>
+        <servlet-name>StudentRegistrationServlet</servlet-name>
+        <url-pattern>/StudentRegistrationServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SchoolLoginServlet</servlet-name>
