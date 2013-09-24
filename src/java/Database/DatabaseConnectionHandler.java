@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author New
  */
 public class DatabaseConnectionHandler {
-    public Connection getConnection() throws SQLException, ClassNotFoundException{
+    public static Connection getConnection() throws SQLException, ClassNotFoundException{
         try {
             Class.forName(Constants.DRIVER_NAME);
             Connection con = DriverManager.getConnection(Constants.DB_URL,Constants.USERNAME,Constants.PASSWORD);

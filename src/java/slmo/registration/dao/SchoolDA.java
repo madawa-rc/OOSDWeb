@@ -25,11 +25,9 @@ public class SchoolDA  {
     
     public static void addSchool(School school) {
         try {
-            DatabaseConnectionHandler dbc;
             Connection con=null;
             try {
-                dbc = new DatabaseConnectionHandler();
-                con = dbc.getConnection();
+                con = DatabaseConnectionHandler.getConnection();
             } catch (ClassNotFoundException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -81,11 +79,9 @@ public class SchoolDA  {
     public static School getSchool(String email){
         School s = null;
         try {
-            DatabaseConnectionHandler dbc;
             Connection con;
             try {
-                    dbc = new DatabaseConnectionHandler();
-                    con = dbc.getConnection();
+                    con = DatabaseConnectionHandler.getConnection();
                     String queryCheck = "SELECT * from school WHERE email = ?";
                     PreparedStatement ps = con.prepareStatement(queryCheck);
                     ps.setString(1, email);
@@ -125,12 +121,10 @@ public class SchoolDA  {
         
         Student student;
         
-        DatabaseConnectionHandler dbc;
         Connection con;
         
         try{
-            dbc = new DatabaseConnectionHandler();
-            con = dbc.getConnection();
+            con = DatabaseConnectionHandler.getConnection();
             
             String queryCheck = "SELECT *FROM student WHERE school = ? AND pvt_applicant = ?";
             

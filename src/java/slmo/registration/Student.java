@@ -47,7 +47,9 @@ public class Student{
         this.verification=verification;
     }
 
-    
+    public Student(){
+        
+    }
     
     public void execute(){ 
         String empty = "";

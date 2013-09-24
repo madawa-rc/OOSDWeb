@@ -12,11 +12,9 @@ public class StudentDA {
 
     public static void addStudent(Student student) {
         try {
-            DatabaseConnectionHandler dbc;
-            Connection con=null;
+            Connection con = null;
             try{
-                 dbc = new DatabaseConnectionHandler();
-                 con = dbc.getConnection();
+                 con = DatabaseConnectionHandler.getConnection();
             }catch (ClassNotFoundException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -58,7 +56,10 @@ public class StudentDA {
                  + "University of Colombo.");
         
     }
-   public static void getStudent(){
-       // get a student from database
-   }
+    
+    public static Student getStudent(String schoolName, int pvt_applicant){
+        
+        return new Student();
+    }
+   
 }
