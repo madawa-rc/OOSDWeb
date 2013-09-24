@@ -83,7 +83,7 @@ public class SchoolLoginServlet extends HttpServlet {
                 rd.forward(request, response);
             }
             else
-                response.setHeader("Refresh","0; URL=login.jsp");
+                response.setHeader("Refresh","0; URL=login.jsp?id=Invalid email address or password!");
                         
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

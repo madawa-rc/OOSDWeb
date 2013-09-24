@@ -11,17 +11,49 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SLOMF</title>
-        <link rel="shortcut icon" href="images/logo.png">        
+        <title>Home</title>
+        <link rel="shortcut icon" href="images/logo.png">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <noscript>
+        <link rel="stylesheet" href="css/5grid/core.css" />
+        <link rel="stylesheet" href="css/5grid/core-desktop.css" />
+        <link rel="stylesheet" href="css/5grid/core-1200px.css" />
+        <link rel="stylesheet" href="css/5grid/core-noscript.css" />
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-desktop.css" />
+        </noscript>
+        <script src="css/5grid/jquery.js"></script>
+        <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
     </head>
     <%
         School s = (School) request.getAttribute("schoolObject");
         ArrayList<Student> studentList = null;
         studentList = s.getStudentList();
-    %>
-    <body>
+    %><body><div id="header-wrapper">
+            <header id="header">
+                <div class="5grid-layout">
+                    <div class="row">
+                        <div class="4u" id="logo">
+                            <h1><a href="./" class="mobileUI-site-name">Sri Lanka Mathematics Olympiad</a></h1>
+                            <p>by Fiontar</p>
+                        </div>
+                        <div class="8u" id="menu">
+                            <nav class="mobileUI-site-nav">
+                                <ul>
+                                    <li><a href="./">Home</a></li>
+                                    <li><a href="#">News</a></li>
+                                    <li><a href="register.jsp">Register</a></li>
+                                    <li><a href="login.jsp">Login</a></li>
+                                    <li><a href="#">Contact us</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
         <h1>School Dashboard</h1>
 
 
@@ -109,9 +141,9 @@
                     if(i==0)
                         str="SINHALA";
                     else if(i==1)
-                         str="ENGLISH";
-                     else
-                         str="TAMIL";
+                        str="ENGLISH";
+                    else
+                        str="TAMIL";
                     opt.value=str;
                     opt.text=str;
                     element8.appendChild(opt);
@@ -184,8 +216,6 @@
         </SCRIPT> 
     </HEAD> 
 
-<BODY>
-
     <form name="myform" action="myServlet" method="post">
 
         <INPUT type="hidden" value=<%=studentList.size()%> id="num" name ="num" required="true"/>
@@ -215,11 +245,16 @@
 
                 <tr>
                     <td >
+<<<<<<< HEAD
                         <INPUT type="hidden" value=<%=String.valueOf(i+1)%> />
                         <INPUT type="text" value="<%=studentList.get(i).getName()%>" name=<%="student"+String.valueOf(i+1)%> required="true"/>                
+=======
+                        <INPUT type="hidden" value=<%=String.valueOf(i + 1)%> id="hid"/>
+                        <INPUT type="text" value=<%=studentList.get(i).getName()%> id=<%="student" + String.valueOf(i + 1)%> name=<%="student" + String.valueOf(i + 1)%> required="true"/>                
+>>>>>>> a6530da7964012c3740c1de2233ce5e01c89bb6b
                     </td>
                     <td>
-                        <select name=<%="date"+String.valueOf(i+1)%> required="true">
+                        <select name=<%="date" + String.valueOf(i + 1)%> required="true">
                             <option value="<%= studentList.get(i).getDate()%>" style="display:none"><%=studentList.get(i).getDate()%></option>
                             <%
                                 for (int j = 1; j < 32; ++j) {
@@ -227,7 +262,7 @@
                                 }
                             %>
                         </select>
-                        <select name=<%="month"+String.valueOf(i+1)%> required="true">
+                        <select name=<%="month" + String.valueOf(i + 1)%> required="true">
                             <option value="<%=studentList.get(i).getMonth()%>" style="display:none"><%=studentList.get(i).getMonth()%></option>
                             <%
                                 for (int j = 1; j < 13; ++j) {
@@ -235,7 +270,7 @@
                                 }
                             %>
                         </select>
-                        <select name=<%="year"+String.valueOf(i+1)%> required="true">
+                        <select name=<%="year" + String.valueOf(i + 1)%> required="true">
                             <option value="<%=studentList.get(i).getYear()%>" style="display:none"><%=studentList.get(i).getYear()%></option>
                             <%
                                 for (int j = 1994; j < 2011; ++j) {
@@ -245,11 +280,16 @@
                         </select>
                     </td>
                     <td>
+<<<<<<< HEAD
                         <select name =<%="medium"+String.valueOf(i+1)%>  id = <%="medium"+String.valueOf(i+1)%>  required="true">
+=======
+                        <select name =<%="medium" + String.valueOf(i + 1)%>  required="true">
+>>>>>>> a6530da7964012c3740c1de2233ce5e01c89bb6b
                             <option value="<%=studentList.get(i).getMedium()%>" style="display:none"><%=studentList.get(i).getMedium()%></option>
                             <option value="ENGLISH">ENGLISH</option>;
                             <option value="SINHALA">SINHALA</option>;
                             <option value="TAMIL">TAMIL</option>;
+<<<<<<< HEAD
                                 }
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -269,6 +309,13 @@
                         
                         <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1')" /> 
                         
+=======
+                            }
+                            %>  
+
+                            <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1')" /> 
+
+>>>>>>> a6530da7964012c3740c1de2233ce5e01c89bb6b
                     </td>
                 </tr>
                 <% }%>
