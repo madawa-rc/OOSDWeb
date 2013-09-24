@@ -19,7 +19,7 @@ import slmo.registration.UniqueID;
  *
  * @author DELL
  */
-public class SchoolServlet extends HttpServlet {
+public class SchoolRegistrationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP

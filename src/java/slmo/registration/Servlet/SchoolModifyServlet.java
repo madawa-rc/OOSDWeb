@@ -16,7 +16,7 @@ import slmo.registration.UniqueID;
  *
  * @author Danula
  */
-public class SchoolServletAddStudent extends HttpServlet {
+public class SchoolModifyServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
