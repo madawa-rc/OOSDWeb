@@ -122,21 +122,21 @@
 <BODY>
 
     <form name="myform" action="myServlet" method="post">
-        <%
-            if(studentList != null)
-            for (int i = 0; i < studentList.size(); ++i) {
-                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getName() + "\" id=\"num\" name =\"name\" required=\"true\"/>");
-                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getDate() + "\" id=\"num\" name =\"date\" required=\"true\"/>");
-                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getMonth() + "\" id=\"num\" name =\"month\" required=\"true\"/>");
-                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getYear() + "\" id=\"num\" name =\"year\" required=\"true\"/>");
-                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getMedium() + "\" id=\"num\" name =\"medium\" required=\"true\"/>");
-            }
-        %>
-        <INPUT type="hidden" value="0" id="num" name ="num" required="true"/>
+        
+        <INPUT type="text" value=<%=studentList.size() %> id="num" name ="num" required="true"/>
         <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" /> 
         <br>
         <TABLE id="dataTable" width="350px" border="0">         
-
+       <%
+            if(studentList != null)
+            for (int i = 0; i < studentList.size(); ++i) {
+                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getName() + "\" name =\"name\" required=\"true\"/>");
+                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getDate() + "\" name =\"date\" required=\"true\"/>");
+                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getMonth() + "\" name =\"month\" required=\"true\"/>");
+                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getYear() + "\" name =\"year\" required=\"true\"/>");
+                out.print("<INPUT type=\"text\" value=\"" + studentList.get(i).getMedium() + "\" name =\"medium\" required=\"true\"/>");
+            }
+        %>
         </TABLE>   
 
         <br><br>

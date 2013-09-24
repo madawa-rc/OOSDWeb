@@ -39,10 +39,10 @@ public class School {
     }
 
     
-    public School(String contactname, String email, String school, String password, String school_addr, String phone, String preferred_centre, String verification) {
+    public School(String contactname, String email, String name, String password, String school_addr, String phone, String preferred_centre, String verification) {
         this.contactname = contactname;
         this.email = email;
-        this.name = school;
+        this.name = name;
         this.password=password;
         this.school_addr = school_addr;
         this.phone = phone;

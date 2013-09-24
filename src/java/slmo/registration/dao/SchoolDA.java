@@ -86,9 +86,9 @@ public class SchoolDA  {
                     ResultSet rs = ps.executeQuery();
                     rs.next();
                     s = new School(
-                            rs.getString("contactname"),
-                            rs.getString("email"),
                             rs.getString("name"),
+                            rs.getString("email"),
+                            rs.getString("contactname"),
                             rs.getString("password"),
                             rs.getString("school_addr"),
                             rs.getString("phone"),
@@ -125,14 +125,14 @@ public class SchoolDA  {
         try{
             con = DatabaseConnectionHandler.getConnection();
             
-            String queryCheck = "SELECT * FROM student WHERE school = ? AND pvt_applicant = ?";
+            String queryCheck = "SELECT * FROM student WHERE school = ?";
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, school.getName());
-            ps.setString(2, "0");
+      //      ps.setString(2, "0");
             
             ResultSet rs = ps.executeQuery();
-            
+            System.out.println("Finding students "+school.getName());
             while(rs.next()){
                 //retrieving student from database
                 student = new Student(
@@ -152,6 +152,7 @@ public class SchoolDA  {
                             );
                 //adding student to the arrayList
                 studentList.add(student);
+                System.out.println("Student found!");
             }
             if(studentList.isEmpty())
                 System.out.println("Empty");
