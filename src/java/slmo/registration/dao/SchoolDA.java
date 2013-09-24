@@ -152,8 +152,10 @@ public class SchoolDA  {
                             rs.getString("verification")
                             );
                 //adding student to the arrayList
+                int id=Integer.parseInt(rs.getString("id"));
+                student.setId(id);
                 studentList.add(student);
-                System.out.println("Student found!");
+                System.out.println("Student found!  "+id+"  "+student.getName());
             }
             if(studentList.isEmpty())
                 System.out.println("Empty");
@@ -169,8 +171,8 @@ public class SchoolDA  {
         try{
             Connection con = DatabaseConnectionHandler.getConnection();
             
-            String queryCheck = "UPDATE students "
-                    + "SET name= ? ,SET date = ? ,SET month = ? ,SET year = ? ,SET medium = ?"
+            String queryCheck = "UPDATE student "
+                    + "SET name= ? , date = ? , month = ? , year = ? , medium = ?"
                     + "WHERE id = ?";
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
@@ -181,7 +183,7 @@ public class SchoolDA  {
             ps.setString(5, medium);
             ps.setString(6, id);
             
-            ps.executeQuery();
+            ps.executeUpdate();
             
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
