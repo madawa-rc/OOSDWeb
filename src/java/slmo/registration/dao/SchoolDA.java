@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import slmo.registration.School;
 import slmo.registration.Student;
 
@@ -79,40 +81,91 @@ public class SchoolDA  {
     public static School getSchool(String email){
         School s = null;
         try {
-            DatabaseConnectionHandler dbc=null;
-            Connection con=null;
+            DatabaseConnectionHandler dbc;
+            Connection con;
             try {
                     dbc = new DatabaseConnectionHandler();
                     con = dbc.getConnection();
-            String queryCheck = "SELECT * from school WHERE email = ?";
-            PreparedStatement ps = con.prepareStatement(queryCheck);
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-            rs.next();
-            s = new School(
-                    rs.getString("contactname"),
-                    rs.getString("email"),
-                    rs.getString("name"),
-                    rs.getString("password"),
-                    rs.getString("school_addr"),
-                    rs.getString("phone"),
-                    rs.getString("preferred_centre"),
-                    rs.getInt("id"),
-                    rs.getInt("payment"),
-                    rs.getString("verification"),                    
-                    rs.getInt("verified")
-                    );
+                    String queryCheck = "SELECT * from school WHERE email = ?";
+                    PreparedStatement ps = con.prepareStatement(queryCheck);
+                    ps.setString(1, email);
+                    ResultSet rs = ps.executeQuery();
+                    rs.next();
+                    s = new School(
+                            rs.getString("contactname"),
+                            rs.getString("email"),
+                            rs.getString("name"),
+                            rs.getString("password"),
+                            rs.getString("school_addr"),
+                            rs.getString("phone"),
+                            rs.getString("preferred_centre"),
+                            rs.getInt("id"),
+                            rs.getInt("payment"),
+                            rs.getString("verification"),                    
+                            rs.getInt("verified")
+                            );
             } catch (ClassNotFoundException ex) {
-               ex.printStackTrace();
+                System.out.println(ex.getMessage());
             }
             // SQL query to get school with the email
            
             
             System.out.println("School gotten from DB");
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         } 
         return s;
+    }
+    
+    public static void getStudents(String email){
+        //array to store the students
+        ArrayList<Student> studentList = new ArrayList<Student>();
+        //school
+        School school = SchoolDA.getSchool(email);
+        
+        Student student;
+        
+        DatabaseConnectionHandler dbc;
+        Connection con;
+        
+        try{
+            dbc = new DatabaseConnectionHandler();
+            con = dbc.getConnection();
+            
+            String queryCheck = "SELECT *FROM student WHERE school = ? AND pvt_applicant = ?";
+            
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, school.getName());
+            ps.setString(2, "0");
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                //retrieving student from database
+                student = new Student(
+                            rs.getString("name"),
+                            rs.getInt("date"),
+                            rs.getInt("month"),
+                            rs.getInt("year"),
+                            rs.getString("email"),
+                            rs.getString("school"),
+                            rs.getString("school_addr"),
+                            rs.getString("home_addr"),
+                            rs.getInt("pvt_applicant"),
+                            rs.getString("phone"),
+                            rs.getString("medium"),                    
+                            rs.getString("preferred_centre"),
+                            rs.getString("verification")
+                            );
+                //adding student to the arrayList
+                studentList.add(student);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
     }
 }
 
