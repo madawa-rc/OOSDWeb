@@ -75,9 +75,15 @@
                                                     out.print("You are logged in!");
                                                 } else {
                                                     out.print("Enter your Login details");
-                                                
+                                            %><br>
+                                            <font color="#ff0000" size="3px">
+                                            <%
+                                                String msg = request.getParameter("id");
+                                                if (msg != null) {
+                                                    out.print(msg);
+                                                }
                                             %>
-                                            
+                                            </font>  
                                             <br><br>
                                         </strong>
                                     </p>
