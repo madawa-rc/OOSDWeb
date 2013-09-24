@@ -62,7 +62,7 @@
                                             <font size="+2">Registration Form</font>
                                             <br><br>
                                         </strong></p>
-                                        <form action="StudentServlet" name="register" method="post" id="ContactForm">
+                                        <form action="StudentRegistrationServlet" name="register" method="post" id="ContactForm">
                                         <div>
                                             <div  class="wrapper">
                                                 <span>First name:</span>

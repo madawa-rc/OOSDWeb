@@ -125,10 +125,11 @@ public class SchoolDA  {
         try{
             con = DatabaseConnectionHandler.getConnection();
             
-            String queryCheck = "SELECT * FROM student WHERE school = ?";
+            String queryCheck = "SELECT * FROM student WHERE school = ? AND email =?";
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, school.getName());
+            ps.setString(2, school.getEmail());
       //      ps.setString(2, "0");
             
             ResultSet rs = ps.executeQuery();
