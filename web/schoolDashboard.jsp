@@ -252,6 +252,7 @@
                             <option value="TAMIL">TAMIL</option>;
                                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
                          
                         
                             
@@ -259,6 +260,9 @@
                         <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1');" />
                         
                         
+=======
+                            %>  
+>>>>>>> 469f288d7ebc62361adce4bbb2ed1dcc8fa7de45
 =======
                             %>  
 >>>>>>> 469f288d7ebc62361adce4bbb2ed1dcc8fa7de45
