@@ -23,6 +23,16 @@
         </noscript>
         <script src="css/5grid/jquery.js"></script>
         <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
+        <script type="text/javascript">
+            function check(form){                
+                if(form.password.value != form.cpass.value){
+                    alert("Passswords do not match!");
+                    form.cpass.focus();
+                    return false;
+                }
+                return true;
+            }
+        </script>
     </head><body>
         <div id="header-wrapper">
             <header id="header">
@@ -37,7 +47,7 @@
                                 <ul>
                                     <li><a href="./">Home</a></li>
                                     <li><a href="#">News</a></li>
-                                    <li><a href="#">Register</a></li>
+                                    <li><a href="register.jsp">Register</a></li>
                                     <li><a href="login.jsp">Login</a></li>
                                     <li><a href="#">Contact us</a></li>
                                 </ul>
@@ -62,7 +72,7 @@
                                             <font size="+2">Registration Form</font>
                                             <br><br>
                                         </strong></p>
-                                        <form action="SchoolRegistrationServlet" name="register" method="post" id="ContactForm">
+                                        <form action="#" name="register" method="post" id="Signup" onsubmit="return check(this)">
                                         <div>
                                             <div  class="wrapper">
                                                 <span>School name:</span>
