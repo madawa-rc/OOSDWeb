@@ -78,10 +78,5 @@ public class StudentDA {
         } catch (ClassNotFoundException ex) {
             
         }
-    }
-    
-    public static void update(){
-        
-    }
-   
+    }  
 }
