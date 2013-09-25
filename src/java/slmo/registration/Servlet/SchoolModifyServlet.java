@@ -5,6 +5,7 @@
 package slmo.registration.Servlet;
 
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,8 +44,8 @@ public class SchoolModifyServlet extends HttpServlet {
             System.out.println(newcount);
             int oldCount = school.getStudentList().size();
             
-            for(int i = 1; i <= newcount; i++){
-                if(i <= oldCount){
+            for(int i = 1; i <= oldCount; i++){
+                    System.out.println(request.getParameter("medium"+i));
                     String name = request.getParameter("student"+i);
                     System.out.println(name);
                     System.out.println("student id   "+request.getParameter("studentId"+i));
@@ -61,11 +62,12 @@ public class SchoolModifyServlet extends HttpServlet {
                                 request.getParameter("medium"+i)
                                 );
                     }
-                }
-                else{
+            }
+            for(int i = oldCount+1; i <= newcount; i++){ 
+                {
                     String name = request.getParameter("student"+i);
                     System.out.println(name);
-                    if(name!=null&&!name.equals("deleted")){
+                    if(name!=null){
                     Student s =     school.addStudent(
                                 request.getParameter("student"+i),
                                 Integer.parseInt(request.getParameter("date"+i)),
@@ -79,8 +81,10 @@ public class SchoolModifyServlet extends HttpServlet {
                     
                 }
             }
-        } finally {            
-            
+        } finally {
+            request.setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("email")));
+            RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
+            rd.forward(request, response);
         }
     }
 

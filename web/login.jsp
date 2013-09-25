@@ -117,7 +117,7 @@
             <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
                 <li><a href="#"><img src="images/social-link-1.jpg" alt=""></a></li>
-                <li><a href="#"><img src="images/social-link-2.jpg" alt=""></a></li>
+                <li><a href="https://www.facebook.com/photo.php?fbid=531306523587668&set=pb.285656058152717.-2207520000.1380090385.&type=3&theater"><img src="images/social-link-2.jpg" alt=""></a></li>
                 <li><a href="#"><img src="images/social-link-3.jpg" alt=""></a></li>
                 <li><a href="#"><img src="images/social-link-4.jpg" alt=""></a></li>
             </ul>
