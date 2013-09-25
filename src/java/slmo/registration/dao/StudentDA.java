@@ -4,8 +4,12 @@ import Database.DatabaseConnectionHandler;
 import Mail.sendMail;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import slmo.registration.Student;
 
 public class StudentDA {
@@ -57,9 +61,46 @@ public class StudentDA {
         
     }
     
-    public static Student getStudent(String schoolName, int pvt_applicant){
-        
-        return new Student();
+    public static ArrayList<Student> getAllStudents(){
+        ArrayList<Student> studentList= new ArrayList<Student>();
+        try{
+            Connection con = DatabaseConnectionHandler.getConnection();
+            Statement st = con.createStatement();
+            
+            String queryCheck = "SELECT * FROM student";
+            
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            Student student;
+            while(rs.next()){
+                //retrieving student from database
+                student = new Student(
+                            rs.getString("name"),
+                            rs.getInt("date"),
+                            rs.getInt("month"),
+                            rs.getInt("year"),
+                            rs.getString("email"),
+                            rs.getString("school"),
+                            rs.getString("school_addr"),
+                            rs.getString("home_addr"),
+                            rs.getInt("pvt_applicant"),
+                            rs.getString("phone"),
+                            rs.getString("medium"),                    
+                            rs.getString("preferred_centre"),
+                            rs.getString("verification")
+                            );
+                //adding student to the arrayList
+                studentList.add(student);
+            }
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return studentList;
     }
     
     public static void deleteStudent(String id){

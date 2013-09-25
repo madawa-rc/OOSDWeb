@@ -72,6 +72,13 @@ public class Student{
     public Student(){
         
     }
+    /*
+     * Created to check the write-excel example since my database is courupted
+     * remove when somone tested it with the database
+     */
+    public Student(String name){
+        this.name = name;
+    }
     public void validate(){
        // if(getName().length()==0)    
     }
