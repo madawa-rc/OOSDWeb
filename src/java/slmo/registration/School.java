@@ -90,9 +90,10 @@ public class School {
      * @param year birth year
      * @param medium preferred medium
      */
-    public void addStudent(String name, int date, int month, int year, String medium){
+    public Student addStudent(String name, int date, int month, int year, String medium){
         Student student = new Student(name, date, month, year,this.email,this.name,this.school_addr, "private", 0, this.phone, medium,this.preferred_centre,this.verification);
         StudentList.add(student);
+        return student;
     }
     /**
      * method sets the name of the contact person
