@@ -155,7 +155,7 @@ public class SchoolDA  {
                 int id=Integer.parseInt(rs.getString("id"));
                 student.setId(id);
                 studentList.add(student);
-                System.out.println("Student found!  "+id+"  "+student.getName());
+                System.out.println("Student found!  "+student.getId()+"  "+student.getName());
             }
             if(studentList.isEmpty())
                 System.out.println("Empty");
@@ -190,6 +190,10 @@ public class SchoolDA  {
         } catch (ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    public static void deleteStudent(School school, Student student){
+        school.getStudentList().remove(student);
+        StudentDA.deleteStudent(student.getId()+"");
     }
 }
 

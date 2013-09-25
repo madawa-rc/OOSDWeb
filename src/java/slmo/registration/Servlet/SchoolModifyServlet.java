@@ -43,16 +43,13 @@ public class SchoolModifyServlet extends HttpServlet {
             //previous student count
             System.out.println(newcount);
             int oldCount = school.getStudentList().size();
-            
+            String[] ids = new String[oldCount];
             for(int i = 1; i <= oldCount; i++){
-                    System.out.println(request.getParameter("medium"+i));
                     String name = request.getParameter("student"+i);
-                    System.out.println(name);
-                    System.out.println("student id   "+request.getParameter("studentId"+i));
-                    if(name!=null&&request.getParameter("medium"+i).equals("deleted")){
-                        String id = request.getParameter("studentId"+i);
-                        StudentDA.deleteStudent(id);
-                    }else if (name!=null){
+                    System.out.println("student id   "+school.getStudentList().get(i-1).getId()+"p "+
+                            school.getStudentList().get(i-1).getName());
+                    if (name!=null){
+                        ids[i-1]=request.getParameter("studentId"+i);
                         SchoolDA.update(
                                 request.getParameter("studentId"+i),
                                 request.getParameter("student"+i),
@@ -63,6 +60,27 @@ public class SchoolModifyServlet extends HttpServlet {
                                 );
                     }
             }
+            Student[] ss = new Student[oldCount];
+            for(int i=0;i<oldCount;i++){
+                boolean found=false;
+                String id=school.getStudentList().get(i).getId()+"";
+                System.out.println("student id = "+id+"p");
+                for(int j=0;j<oldCount;j++){
+                    if(ids[j]!=null&&ids[j].equals(id))
+                         found=true;
+                }
+                if(found==false){
+                    ss[i]=school.getStudentList().get(i);
+                }
+            }
+            for(int i=0;i<oldCount;i++){
+               
+                if(ss[i]!=null)
+                {    SchoolDA.deleteStudent(school, ss[i]);
+                 System.out.println("deleting "+ss[i].getName()+"p");
+                }
+            }
+            
             for(int i = oldCount+1; i <= newcount; i++){ 
                 {
                     String name = request.getParameter("student"+i);
@@ -85,6 +103,9 @@ public class SchoolModifyServlet extends HttpServlet {
             request.setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("email")));
             RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
             rd.forward(request, response);
+            
+        //    request.setAttribute("schoolObject", SchoolDA.getSchool(request.getParameter("email"))); // Login user.
+          //  response.sendRedirect("schoolDashboard.jsp");
         }
     }
 
