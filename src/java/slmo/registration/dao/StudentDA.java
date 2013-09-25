@@ -16,12 +16,8 @@ public class StudentDA {
     
     public static void addStudent(Student student) {
         try {
-            Connection con = null;
-            try{
-                 con = DatabaseConnectionHandler.getConnection();
-            }catch (ClassNotFoundException ex) {
-                System.out.println(ex.getMessage());
-            }
+            Connection con = DatabaseConnectionHandler.getConnection();
+            
             Statement st = con.createStatement();
             String queryCheck = "INSERT INTO student ("
                     + "name,date,month,year,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre,"
@@ -97,8 +93,6 @@ public class StudentDA {
             
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
         }
         return studentList;
     }
@@ -115,9 +109,7 @@ public class StudentDA {
             ps.setString(1, id);
             ps.execute();
         } catch (SQLException ex) {
-            
-        } catch (ClassNotFoundException ex) {
-            
+            System.out.println(ex.getMessage());
         }
     }  
 }

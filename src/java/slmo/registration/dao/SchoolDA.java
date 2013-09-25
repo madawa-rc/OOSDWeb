@@ -23,12 +23,8 @@ public class SchoolDA  {
     
     public static void addSchool(School school) {
         try {
-            Connection con=null;
-            try {
-                con = DatabaseConnectionHandler.getConnection();
-            } catch (ClassNotFoundException ex) {
-                System.out.println(ex.getMessage());
-            }
+            Connection con = DatabaseConnectionHandler.getConnection();
+            
             String queryCheck = "INSERT INTO school ("
                     + "contactname,email,name,password,school_addr,phone,preferred_centre,"
                     + "verification"
@@ -77,35 +73,30 @@ public class SchoolDA  {
     public static School getSchool(String email){
         School s = null;
         try {
-            Connection con;
-            try {
-                    con = DatabaseConnectionHandler.getConnection();
-                    String queryCheck = "SELECT * from school WHERE email = ?";
-                    PreparedStatement ps = con.prepareStatement(queryCheck);
-                    ps.setString(1, email);
-                    ResultSet rs = ps.executeQuery();
-                    rs.next();
-                    s = new School(
-                            rs.getString("contactname"),
-                            rs.getString("email"),
-                            rs.getString("name"),
-                            rs.getString("password"),
-                            rs.getString("school_addr"),
-                            rs.getString("phone"),
-                            rs.getString("preferred_centre"),
-                            rs.getInt("id"),
-                            rs.getInt("payment"),
-                            rs.getString("verification"),                    
-                            rs.getInt("verified")
-                            );
-                    System.out.print(rs.getString(("name")));
-                    s.setStudentList(getStudents(s));
-            } catch (ClassNotFoundException ex) {
-                System.out.println(ex.getMessage());
-            }
+            Connection con = DatabaseConnectionHandler.getConnection();
+            String queryCheck = "SELECT * from school WHERE email = ?";
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            s = new School(
+                    rs.getString("contactname"),
+                    rs.getString("email"),
+                    rs.getString("name"),
+                    rs.getString("password"),
+                    rs.getString("school_addr"),
+                    rs.getString("phone"),
+                    rs.getString("preferred_centre"),
+                    rs.getInt("id"),
+                    rs.getInt("payment"),
+                    rs.getString("verification"),                    
+                    rs.getInt("verified")
+                    );
+            System.out.print(rs.getString(("name")));
+            s.setStudentList(getStudents(s));
+            
             // SQL query to get school with the email
            
-            
             System.out.println("School gotten from DB");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -161,8 +152,6 @@ public class SchoolDA  {
                 System.out.println("Empty");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
         }
         return studentList;
     }
@@ -186,8 +175,6 @@ public class SchoolDA  {
             ps.executeUpdate();
             
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        } catch (ClassNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
     }

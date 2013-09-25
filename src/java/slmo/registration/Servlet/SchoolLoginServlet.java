@@ -87,8 +87,6 @@ public class SchoolLoginServlet extends HttpServlet {
                         
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        } catch (ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
         }
     }
 
