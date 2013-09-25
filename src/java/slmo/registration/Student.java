@@ -3,7 +3,6 @@
  */
 package slmo.registration;
 
-import slmo.registration.dao.StudentDA;
 import java.sql.Date;
 
 /**
@@ -357,41 +356,61 @@ public class Student{
         return id;
     }
     /**
-     * method gives the school i
-     * @return 
+     * method gives the school index number
+     * @return school index number
      */
     public int getSchoolId() {
         return schoolId;
     }
-
+    /**
+     * method sets the home address of the applicant 
+     * @param home_addr home address
+     */
     public void setHome_addr(String home_addr) {
         this.home_addr = home_addr;
     }
-
+    /**
+     * method sets the related database index number 
+     * @param id database index number
+     */
     public void setId(int id) {
         this.id = id;
     }
-
+    /**
+     * method sets the due amount of payment to the applicant 
+     * @param payment amount of payment
+     */
     public void setPayment(int payment) {
         this.payment = payment;
     }
-
+    /**
+     * method sets the school name of the student 
+     * @param school school name
+     */
     public void setSchool(String school) {
         this.school = school;
     }
-
+    /**
+     * method sets the school index number of the applicant 
+     * @param schoolId school index number
+     */
     public void setSchoolId(int schoolId) {
         this.schoolId = schoolId;
     }
-
+    /**
+     * method set the school address of the applicant
+     * @param school_addr school address
+     */
     public void setSchool_addr(String school_addr) {
         this.school_addr = school_addr;
     }
-
+    /**
+     * method gives the due amount of payment of the applicant
+     * @return amount of payment
+     */
     public int getPayment() {
         return payment;
-    }
-    
+    }   
 }
 
 /*

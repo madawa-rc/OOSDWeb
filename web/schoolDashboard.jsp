@@ -176,7 +176,7 @@
                 try {
                     var table = document.getElementById(tableID);
                     var rowCount = table.rows.length;
-                    for (var i = document.getElementById("num2").value+1; i < rowCount - 1; i++) {
+                    for (var i = document.getElementById("num2").value; i < rowCount - 1; i++) {
                         var row = table.rows[i].cells[2].childNodes[2].value;
                         if (null != row) {
                             table.rows[i].cells[2].childNodes[2].style.display = "none";
@@ -184,7 +184,7 @@
                     }
 
                 } catch (e) {
-                    alert(e);
+                    
                 }
             }
 
@@ -199,10 +199,10 @@
                         for (var i = 1; i <rowCount; i++) {
                             var row = table.rows[i].cells[0].childNodes[1].value;
                             if (null != row && row == Num) {
-                                document.getElementById("student"+Num).value= "deleted";
+                                document.getElementById("medium"+Num).value= "deleted";
                                 table.deleteRow(i);
                                 rowCount = table.rows.length;
-                                if (rowCount > 0)
+                                if (rowCount > 2)
                                     table.rows[rowCount - 1].cells[2].childNodes[2].style.display = "";
                                 break;
                             }
@@ -216,10 +216,11 @@
         </SCRIPT> 
     </HEAD> 
 
-    <form name="myform" action="myServlet" method="post">
+    <form name="myform" action="SchoolModifyServlet" method="post">
 
         <INPUT type="hidden" value=<%=studentList.size()%> id="num" name ="num" required="true"/>
         <INPUT type="hidden" value=<%=studentList.size()%> id="num2" name ="num2" required="true"/>
+        <INPUT type="hidden" value=<%=s.getEmail()%> id="email" name ="email" required="true"/>
         <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" /> 
         <br>    
 
@@ -244,8 +245,8 @@
 
                 <tr>
                     <td >
-                        <INPUT type="hidden" value=<%=String.valueOf(i + 1)%> id="hid"/>
-                        <INPUT type="text" value=<%=studentList.get(i).getName()%> id=<%="student" + String.valueOf(i + 1)%> name=<%="student" + String.valueOf(i + 1)%> required="true"/>                
+                        <INPUT type="hidden" value=<%=String.valueOf(i+1)%> />              
+                        <INPUT type="text" value="<%=studentList.get(i).getName()%>" id=<%="student" + String.valueOf(i + 1)%> name=<%="student" + String.valueOf(i + 1)%> required="true"/>                
                     </td>
                     <td>
                         <select name=<%="date" + String.valueOf(i + 1)%> required="true">
@@ -274,16 +275,15 @@
                         </select>
                     </td>
                     <td>
-                        <select name =<%="medium" + String.valueOf(i + 1)%>  required="true">
+                        <select name =<%="medium"+String.valueOf(i+1)%>  id = <%="medium"+String.valueOf(i+1)%>  required="true">
                             <option value="<%=studentList.get(i).getMedium()%>" style="display:none"><%=studentList.get(i).getMedium()%></option>
                             <option value="ENGLISH">ENGLISH</option>;
                             <option value="SINHALA">SINHALA</option>;
-                            <option value="TAMIL">TAMIL</option>;
-                            }
-                            %>  
-
-                            <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','1')" /> 
-
+                            <option value="TAMIL">TAMIL</option>;        
+                        </select>
+                            
+                        <INPUT type="hidden" value=<%=studentList.get(i).getId()%> name=<%="studentId"+String.valueOf(i+1)%> />
+                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','<%=String.valueOf(i+1)%>');" />
                     </td>
                 </tr>
                 <% }%>

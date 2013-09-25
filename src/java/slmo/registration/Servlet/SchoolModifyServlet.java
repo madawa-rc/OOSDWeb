@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import slmo.registration.School;
+import slmo.registration.Student;
 import slmo.registration.dao.SchoolDA;
 import slmo.registration.dao.StudentDA;
 
@@ -37,17 +38,19 @@ public class SchoolModifyServlet extends HttpServlet {
             //school
             School school = SchoolDA.getSchool(request.getParameter("email"));
             //added rows+previous student count
-            int newcount = Integer.parseInt(request.getParameter("count"));
+            int newcount = Integer.parseInt(request.getParameter("num"));
             //previous student count
             int oldCount = school.getStudentList().size();
             
             for(int i = 1; i <= newcount; i++){
                 if(i <= oldCount){
-                    String name = request.getParameter("studentname"+i);
-                    if(name!=null&&name.equals("deleted")){
+                    String name = request.getParameter("student"+i);
+                    System.out.println(name);
+                    System.out.println("student id   "+request.getParameter("studentId"+i));
+                    if(name!=null&&request.getParameter("medium"+i).equals("deleted")){
                         String id = request.getParameter("studentId"+i);
                         StudentDA.deleteStudent(id);
-                    }else{
+                    }else if (name!=null){
                         SchoolDA.update(
                                 request.getParameter("studentId"+i),
                                 request.getParameter("student"+i),
@@ -60,9 +63,17 @@ public class SchoolModifyServlet extends HttpServlet {
                 }
                 else{
                     String name = request.getParameter("studentname"+i);
-                    if(name!=null){
-                        
+                    if(name!=null&&!name.equals("deleted")){
+                    Student s =     school.addStudent(
+                                request.getParameter("student"+i),
+                                Integer.parseInt(request.getParameter("date"+i)),
+                                request.getIntHeader("month"+i),
+                                request.getIntHeader("year"+i),
+                                request.getParameter("medium"+i)
+                                );
+                    StudentDA.addStudent(s);
                     }
+                    
                 }
             }
         } finally {            

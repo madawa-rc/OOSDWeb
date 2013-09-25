@@ -9,6 +9,10 @@
         <servlet-class>slmo.registration.Servlet.EmailConfirmation</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SchoolModifyServlet</servlet-name>
+        <servlet-class>slmo.registration.Servlet.SchoolModifyServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SchoolRegistrationServlet</servlet-name>
         <servlet-class>slmo.registration.Servlet.SchoolRegistrationServlet</servlet-class>
     </servlet>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>EmailConfirmation</servlet-name>
         <url-pattern>/EmailConfirmation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SchoolModifyServlet</servlet-name>
+        <url-pattern>/SchoolModifyServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>StudentRegistrationServlet</servlet-name>

@@ -65,7 +65,7 @@ public class SchoolLoginServlet extends HttpServlet {
              * E-mail/password validation query
              */
             String queryCheck = "SELECT * from school WHERE password = ? AND email = ? ";
-            
+            System.out.println(password+"  "+email);
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, password);
             ps.setString(2, email);
