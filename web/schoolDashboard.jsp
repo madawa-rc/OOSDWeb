@@ -245,7 +245,7 @@
 
                 <tr>
                     <td >
-                        <INPUT type="hidden" value=<%=String.valueOf(i+1)%> />              
+                        <INPUT type="hidden" value=<%=String.valueOf(i + 1)%> />              
                         <INPUT type="text" value="<%=studentList.get(i).getName()%>" id=<%="student" + String.valueOf(i + 1)%> name=<%="student" + String.valueOf(i + 1)%> required="true"/>                
                     </td>
                     <td>
@@ -275,26 +275,42 @@
                         </select>
                     </td>
                     <td>
-                        <select name =<%="medium"+String.valueOf(i+1)%>  id = <%="medium"+String.valueOf(i+1)%>  required="true">
-                            <option value="<%=studentList.get(i).getMedium()%>" style="display:none"><%=studentList.get(i).getMedium()%></option>
+                        <select name =<%="medium" + String.valueOf(i + 1)%>  id = <%="medium" + String.valueOf(i + 1)%>  required="true">
+                                <option value="<%=studentList.get(i).getMedium()%>" style="display:none"><%=studentList.get(i).getMedium()%></option>
                             <option value="ENGLISH">ENGLISH</option>;
                             <option value="SINHALA">SINHALA</option>;
                             <option value="TAMIL">TAMIL</option>;        
                         </select>
-                            
-                        <INPUT type="hidden" value=<%=studentList.get(i).getId()%> name=<%="studentId"+String.valueOf(i+1)%> />
-                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','<%=String.valueOf(i+1)%>');" />
+
+                        <INPUT type="hidden" value=<%=studentList.get(i).getId()%> name=<%="studentId" + String.valueOf(i + 1)%> />
+                        <INPUT type="button" value="Delete" onclick="deleteRow('dataTable','<%=String.valueOf(i + 1)%>');" />
                     </td>
                 </tr>
                 <% }%>
             </table>
         </div>
+        <p class="para" align="right"><font size="5px">Follow Us:</font></p>
+        <ul class="social-list">
+            <li><a href="#"><img src="images/social-link-1.jpg" alt=""></a></li>
+            <li><a href="#"><img src="images/social-link-2.jpg" alt=""></a></li>
+            <li><a href="#"><img src="images/social-link-3.jpg" alt=""></a></li>
+            <li><a href="#"><img src="images/social-link-4.jpg" alt=""></a></li>
+        </ul>
+    </div>
+    <div>
+        <div class="5grid-layout" id="copyright">
+            <div class="row">
+                <div class="12u">
+                    <p>Sri Lanka Mathematics Olympiad Foundation | 2013.09.21 | Contact: +94 71 546 517 8</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <br><br>
 
-        <br><br>
+    <input type="submit" value="Go!"/>
 
-        <input type="submit" value="Go!"/>
-
-    </form>
+</form>
 </body>
 </html>

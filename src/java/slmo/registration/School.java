@@ -80,7 +80,7 @@ public class School {
      * @return name of contact
      */
     public String getName() {
-        return contactname;
+        return name;
     }
     /**
      * method that allows to add students in the school
@@ -93,6 +93,7 @@ public class School {
     public Student addStudent(String name, int date, int month, int year, String medium){
         Student student = new Student(name, date, month, year,this.email,this.name,this.school_addr, "private", 0, this.phone, medium,this.preferred_centre,this.verification);
         StudentList.add(student);
+        System.out.println(this.name);
         return student;
     }
     /**
@@ -100,7 +101,7 @@ public class School {
      * @param name name of contact
      */
     public void setName(String name) {
-        this.contactname = name;
+        this.name = name;
     }
     /**
      * method sets the name of the contact person for the school

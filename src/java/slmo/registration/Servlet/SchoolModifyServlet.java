@@ -40,6 +40,7 @@ public class SchoolModifyServlet extends HttpServlet {
             //added rows+previous student count
             int newcount = Integer.parseInt(request.getParameter("num"));
             //previous student count
+            System.out.println(newcount);
             int oldCount = school.getStudentList().size();
             
             for(int i = 1; i <= newcount; i++){
@@ -62,15 +63,17 @@ public class SchoolModifyServlet extends HttpServlet {
                     }
                 }
                 else{
-                    String name = request.getParameter("studentname"+i);
+                    String name = request.getParameter("student"+i);
+                    System.out.println(name);
                     if(name!=null&&!name.equals("deleted")){
                     Student s =     school.addStudent(
                                 request.getParameter("student"+i),
                                 Integer.parseInt(request.getParameter("date"+i)),
-                                request.getIntHeader("month"+i),
-                                request.getIntHeader("year"+i),
+                                Integer.parseInt(request.getParameter("month"+i)),
+                                Integer.parseInt(request.getParameter("year"+i)),
                                 request.getParameter("medium"+i)
                                 );
+                        System.out.println(request.getParameter("student"+i));
                     StudentDA.addStudent(s);
                     }
                     

@@ -72,7 +72,7 @@
                                             <font size="+2">Registration Form</font>
                                             <br><br>
                                         </strong></p>
-                                        <form action="#" name="register" method="post" id="Signup" onsubmit="return check(this)">
+                                        <form action="SchoolRegistrationServlet" name="register" method="post" id="Signup" onsubmit="return check(this)">
                                         <div>
                                             <div  class="wrapper">
                                                 <span>School name:</span>

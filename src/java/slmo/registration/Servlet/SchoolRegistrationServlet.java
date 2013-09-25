@@ -50,10 +50,11 @@ public class SchoolRegistrationServlet extends HttpServlet {
             out.println("<h1>Servlet SchoolServlet at " + request.getContextPath() + "</h1>");
             if(UniqueID.searchSchoolEmail(request.getParameter("email")))
             {
-                out.println("Email is already registered.");
+                System.out.println("Email is already registered.");
                 response.setHeader("Refresh", "10; URL=register.jsp");
                 return;
             }
+             System.out.println(request.getParameter("name"));
             out.println("</body>");
             out.println("</html>");
         } finally {            

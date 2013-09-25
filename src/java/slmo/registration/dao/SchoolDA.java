@@ -86,9 +86,9 @@ public class SchoolDA  {
                     ResultSet rs = ps.executeQuery();
                     rs.next();
                     s = new School(
-                            rs.getString("name"),
-                            rs.getString("email"),
                             rs.getString("contactname"),
+                            rs.getString("email"),
+                            rs.getString("name"),
                             rs.getString("password"),
                             rs.getString("school_addr"),
                             rs.getString("phone"),
