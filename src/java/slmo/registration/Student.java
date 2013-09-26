@@ -46,7 +46,7 @@ public class Student{
      * @param home_addr home address
      * @param pvt_applicant whether a private applicant or a school applicant
      * @param phone contact number
-     * @param medium preferred examination medium
+     * @param medium preferred medium
      * @param preferred_centre preferred exam centre
      * @param verification verification link 
      */
