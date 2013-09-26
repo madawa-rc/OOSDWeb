@@ -63,22 +63,22 @@
     	                               <font size="+2">Contact Form</font>
                                        <br><br>
                                    </strong></p>
-                                   <form id="ContactForm" method="post">
+                                   <form id="Signup" method="post">
                                         <div>
                                             <div  class="wrapper">
                                                 <span>Name:</span>
                                                 <div class="bg"><input type="text" class="input" ></div>
-                                            </div>
+                                            </div><br>
                                             <div  class="wrapper">
                                                 <span>Address:</span>
                                                 <div class="bg"><input type="text" class="input" ></div>								
-                                            </div>
+                                            </div><br>
                                             <div  class="wrapper">
                                                 <span>Email:</span>
                                                 <div class="bg"><input type="text" class="input" ></div>								
-                                            </div>
+                                            </div><br>
                                             <div  class="textarea_box">
-                                                <span>Message:</span>
+                                                <span>Message:</span><br><br>
                                                 <div class="bg"><textarea name="textarea" cols="1" rows="1"></textarea></div>								
                                             </div><br><br><br><br>
                                             <input type="submit" value="Send" class="button" align="right">
