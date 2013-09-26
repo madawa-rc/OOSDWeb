@@ -216,8 +216,7 @@
                         }
                     }
                 }
-            </SCRIPT> 
-        </HEAD> 
+            </SCRIPT>  
 
         <form name="myform" action="SchoolModifyServlet" method="post">
 
