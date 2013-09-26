@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import slmo.registration.School;
 import slmo.registration.Student;
@@ -178,6 +179,46 @@ public class SchoolDA  {
         school.getStudentList().remove(student);
         StudentDA.deleteStudent(student.getId()+"");
     }
+    public static ArrayList<School> getAllSchools(){
+        ArrayList<School> schoolList = new ArrayList<School>();
+        try{
+            Connection con = DatabaseConnectionHandler.getConnection();
+            Statement st = con.createStatement();
+            
+            String queryCheck = "SELECT * FROM student";
+            
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            School school;
+            while(rs.next()){
+                //retrieving student from database
+                school = new School(
+                        
+                        rs.getString("contactname"), 
+                        rs.getString("email"), 
+                        rs.getString("name"), 
+                        rs.getString("password"), 
+                        rs.getString("school_addr"), 
+                        rs.getString("phone"), 
+                        rs.getString("preferred_centre"), 
+                        rs.getInt("id"), 
+                        rs.getInt("payment"), 
+                        rs.getString("verification"), 
+                        rs.getInt("verified")
+                            );
+                //adding student to the arrayList
+                schoolList.add(school);
+            }
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return schoolList;
+    }
+
 }
+
 
 
