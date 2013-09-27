@@ -219,7 +219,47 @@ public class SchoolDA  {
         }
         return schoolList;
     }
-
+    
+    public static ArrayList<School> getAllSchools(String searchString){
+        ArrayList<School> schoolList = new ArrayList<School>();
+        try{
+            Connection con = DatabaseConnectionHandler.getConnection();
+            Statement st = con.createStatement();
+            
+            String queryCheck = "SELECT * FROM school WHERE name LIKE '%?%'";
+            
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, searchString);
+            ResultSet rs = ps.executeQuery();
+            
+            School school;
+            while(rs.next()){
+                //retrieving student from database
+                school = new School(
+                        
+                        rs.getString("contactname"), 
+                        rs.getString("email"), 
+                        rs.getString("name"), 
+                        rs.getString("password"), 
+                        rs.getString("school_addr"), 
+                        rs.getString("phone"), 
+                        rs.getString("preferred_centre"), 
+                        rs.getInt("id"), 
+                        rs.getInt("payment"), 
+                        rs.getString("verification"), 
+                        rs.getInt("verified")
+                            );
+                //adding student to the arrayList
+                school.setStudentList(SchoolDA.getStudents(school));
+                schoolList.add(school);
+                
+            }
+            
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return schoolList;
+    }
 }
 
 
