@@ -4,11 +4,14 @@
  */
 package centerallocation;
 
+import java.util.ArrayList;
+
 public class ExamCenter {
     private String centerName;
     private int numberOfStudents;
     private int maxNumberOfStudents;
-
+    ArrayList<Classroom> classroomList = new ArrayList<Classroom>();
+    
     public ExamCenter(String centerName,int maxNumberOfStudents) {
         this.centerName = centerName;
         this.maxNumberOfStudents = maxNumberOfStudents;
@@ -20,7 +23,7 @@ public class ExamCenter {
         return centerName;
     }
 
-    public void addClassroom(){
-    
+    public void addClassroom(Classroom classroom){
+        classroomList.add(classroom);
     }
 }

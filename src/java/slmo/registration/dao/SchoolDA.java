@@ -185,7 +185,7 @@ public class SchoolDA  {
             Connection con = DatabaseConnectionHandler.getConnection();
             Statement st = con.createStatement();
             
-            String queryCheck = "SELECT * FROM student";
+            String queryCheck = "SELECT * FROM school";
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
             
@@ -209,7 +209,9 @@ public class SchoolDA  {
                         rs.getInt("verified")
                             );
                 //adding student to the arrayList
+                school.setStudentList(SchoolDA.getStudents(school));
                 schoolList.add(school);
+                
             }
             
         }catch(SQLException ex){
