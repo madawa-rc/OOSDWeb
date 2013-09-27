@@ -2,6 +2,7 @@ package ReportGeneration;
 
 import ReportGeneration.model.Developer;
 import ReportGeneration.model.Project;
+import ReportGeneration.model.Role;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -52,14 +53,17 @@ public class ReportTable
 
             List<Developer> developers = new ArrayList<Developer>();
             for(int i=0;i<100;i++)
-                developers.add( new Developer( "ZERR"+i, "Angelo", "angelo.zerr@gmail.com" ) );
-            developers.add( new Developer( "Leclercq", "Pascal", "pascal.leclercq@gmail.com" ) );
+            {
+                Developer d= new Developer( "ZERR"+i, "Angelo", "angelo.zerr@gmail.com" );
+                d.addRole(new Role("asd"));
+                d.addRole(new Role("qwe"));
+                developers.add(d);
+            }
             context.put( "developers", developers );
 
             // 4) Generate report by merging Java model with the Docx
             OutputStream out = new FileOutputStream( new File( "DocxProjectWithVelocityList_Out.docx" ) );
             report.process( context, out );
-
         }
         catch ( IOException e )
         {
