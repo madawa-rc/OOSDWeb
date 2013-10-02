@@ -11,7 +11,7 @@ import javax.mail.internet.MimeMessage;
 
 public class sendMail {
 
-    private static Message setUp(String email, String title) {
+    private static Message setUp() {
         final String username = "slomfoundation@gmail.com";
 
         final String password = "mathcat@slomf";
@@ -32,9 +32,7 @@ public class sendMail {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("slomfoundation@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(email));
-            message.setSubject(title);
+            
             return message;
 
         } catch (MessagingException e) {
@@ -44,9 +42,25 @@ public class sendMail {
 
     
     public static void sendmail(String email, String title, String text) {
-        Message message = setUp(email, title);
+        Message message = setUp();        
         try {
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(email));
+            message.setSubject(title);
             message.setText(text);
+            Transport.send(message);
+        } catch (MessagingException ex) {   
+            ex.printStackTrace();
+        }
+    }
+    public static void sendmail(String emailTo, String emailReplyTo, String title, String text) {
+        Message message = setUp();
+        try {
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(emailTo));
+            message.setSubject(title);
+            message.setText(text);
+            message.setReplyTo(InternetAddress.parse(emailReplyTo));
             Transport.send(message);
         } catch (MessagingException ex) {   
             ex.printStackTrace();
@@ -56,5 +70,5 @@ public class sendMail {
         String eAddress="slomfoundation@gmail.com";
         message = "Name : "+name+"   "+"Home address : "+address+"   "+"Email : "+email+"    "+"Message : "+message;
         sendmail(eAddress,"Contact SLMO",message);
-    }
+    }    
 }
