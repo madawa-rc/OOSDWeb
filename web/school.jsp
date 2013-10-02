@@ -49,7 +49,7 @@
                                     <li><a href="#">News</a></li>
                                     <li><a href="register.jsp">Register</a></li>
                                     <li><a href="login.jsp">Login</a></li>
-                                    <li><a href="#">Contact us</a></li>
+                                    <li><a href="contactUs.jsp">Contact us</a></li>
                                 </ul>
                             </nav>
                         </div>

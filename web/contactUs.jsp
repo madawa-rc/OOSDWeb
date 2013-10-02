@@ -63,6 +63,7 @@
     	                               <font size="+2">Contact Form</font>
                                        <br><br>
                                    </strong></p>
+<<<<<<< HEAD
                                    <form id="Signup" method="post">
                                         <div>
                                             <div  class="wrapper">
@@ -80,6 +81,25 @@
                                             <div  class="textarea_box">
                                                 <span>Message:</span><br><br>
                                                 <div class="bg"><textarea name="textarea" cols="1" rows="1"></textarea></div>								
+=======
+                                   <form action="ContactFormServlet" name="contactUs" id="ContactForm" method="post" >
+                                        <div>
+                                            <div  class="wrapper">
+                                                <span>Name:</span>
+                                                <div class="bg"><input type="text" class="input" name="name" required="true"></div>
+                                            </div>
+                                            <div  class="wrapper">
+                                                <span>Address:</span>
+                                                <div class="bg"><input type="text" class="input" name="address" required="true"></div>								
+                                            </div>
+                                            <div  class="wrapper">
+                                                <span>Email:</span>
+                                                <div class="bg"><input type="text" class="input" name="email" required="true"></div>								
+                                            </div>
+                                            <div  class="textarea_box">
+                                                <span>Message:</span>
+                                                <div class="bg"><textarea name="message" cols="1" rows="1" required="true"></textarea></div>								
+>>>>>>> contact us
                                             </div><br><br><br><br>
                                             <input type="submit" value="Send" class="button" align="right">
                                             <input type="reset" value="Clear" class="button"/><br><br>
