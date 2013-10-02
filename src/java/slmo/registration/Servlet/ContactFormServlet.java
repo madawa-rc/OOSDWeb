@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import Mail.recieveMail;
 
 /**
  *
@@ -21,17 +22,13 @@ public class ContactFormServlet extends HttpServlet{
     private String message;
     private String address;
 
-    public ContactFormServlet() {
-    }
-
-    public ContactFormServlet(String name, String email, String message, String address) {
-        this.name = name;
-        this.email = email;
-        this.message = message;
-        this.address = address;
-    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NoSuchAlgorithmException{
-        response.setContentType("text/html;charset=UTF-8");
+        //response.setContentType("text/html;charset=UTF-8");
+        name = request.getParameter("name");
+        address = request.getParameter("address");
+        email = request.getParameter("email");
+        message = request.getParameter("message");
+        recieveMail.recieveMail(name, address, email, message);
     }
 }
