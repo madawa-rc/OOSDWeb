@@ -66,9 +66,5 @@ public class sendMail {
             ex.printStackTrace();
         }
     }
-    public static void sendUs(String name,String address,String email,String message){
-        String eAddress="slomfoundation@gmail.com";
-        message = "Name : "+name+"   "+"Home address : "+address+"   "+"Email : "+email+"    "+"Message : "+message;
-        sendmail(eAddress,"Contact SLMO",message);
-    }    
+      
 }

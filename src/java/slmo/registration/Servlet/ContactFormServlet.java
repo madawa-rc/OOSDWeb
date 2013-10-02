@@ -9,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Mail.sendMail;
+import static Mail.sendMail.sendmail;
 import java.io.PrintWriter;
 
 public class ContactFormServlet extends HttpServlet {
@@ -26,15 +26,19 @@ public class ContactFormServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String eAddress="slomfoundation@gmail.com";
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String name = request.getParameter("name");
         String address = request.getParameter("address");
         String email = request.getParameter("email");
         String message = request.getParameter("message");
-        sendMail.sendUs(name, address, email, message);
+        
+        message = "Name : "+name+"   "+"Home address : "+address+"   "+"Email : "+email+"    "+"Message : "+message;
+        sendmail(eAddress,"Contact SLMO",message);
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
