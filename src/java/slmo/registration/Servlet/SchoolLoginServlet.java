@@ -52,7 +52,7 @@ public class SchoolLoginServlet extends HttpServlet {
         
         String email = request.getParameter("email");
         String password = sb.toString();
-        if(email.equals("isuruf@gmail.com")){
+        if(email.equals("isuruf@gmail.com") && request.getParameter("password").equals("slomf")){
                  response.setHeader("Refresh","0; URL=admin.jsp");
                  return;
         }

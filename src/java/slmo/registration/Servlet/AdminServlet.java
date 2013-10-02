@@ -33,6 +33,13 @@ public class AdminServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        if(request.getParameter("schoolEmail")!=null)
+        {
+            request.setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("schoolEmail")));
+            RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
+            rd.forward(request, response);
+            
+        }
         try {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");

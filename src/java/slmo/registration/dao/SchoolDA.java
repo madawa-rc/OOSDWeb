@@ -221,15 +221,15 @@ public class SchoolDA  {
     }
     
     public static ArrayList<School> getAllSchools(String searchString){
+        System.out.println(searchString);
         ArrayList<School> schoolList = new ArrayList<School>();
         try{
             Connection con = DatabaseConnectionHandler.getConnection();
             Statement st = con.createStatement();
             
-            String queryCheck = "SELECT * FROM school WHERE name LIKE '%?%'";
+            String queryCheck = "SELECT * FROM school WHERE name LIKE '%"+searchString+"%'";
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
-            ps.setString(1, searchString);
             ResultSet rs = ps.executeQuery();
             
             School school;

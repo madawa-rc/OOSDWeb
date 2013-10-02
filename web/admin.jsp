@@ -24,11 +24,18 @@
         </noscript>
         <script src="css/5grid/jquery.js"></script>
         <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
+        <SCRIPT language="javascript">
+        
+            
+            function send(email) {
+                document.getElementById('schoolEmail').value=email;
+            }
+        </SCRIPT>  
+
     </head>
     <%
-        if(request.getAttribute("schoolList")!=null){
-            ArrayList<School> list = (ArrayList<School>)request.getAttribute("schoolList");
-        }
+        ArrayList<School> list;
+        list = (ArrayList<School>) request.getAttribute("schoolList");
     %>
     <body><div id="header-wrapper">
             <header id="header">
@@ -45,7 +52,7 @@
                                     <li><a href="#">News</a></li>
                                     <li><a href="register.jsp">Register</a></li>
                                     <li><a href="login.jsp">Login</a></li>
-                                    <li><a href="#">Contact us</a></li>
+                                    <li><a href="contactUs.jsp">Contact us</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -58,20 +65,34 @@
                 <p align="center"><font face="Arial" size="20px"><u>Administrator Dashboard</u></font></p>
             </div>
 
-            <form name="search" method="post" action="AdminServlet">
+            <form name="searchForm" method="post" action="AdminServlet">
                 <p class="para">Search:</font> &nbsp;&nbsp; 
                     <input class="input" type="text" value="Enter name of the school"
                            onBlur="if (this.value == '')
-                                       this.value = 'Enter name of the school'"
+                               this.value = 'Enter name of the school'"
                            onFocus="if (this.value == 'Enter name of the school')
-                                       this.value = ''" >
-                    <input name="search" type="submit" value="Search" class="button">
+                               this.value = ''" name="search">
+                    <input type="submit" value="Search" class="button">
                 </p>
             </form>
             <br><br>
-            <%
-                
-            %>
+            <form name="getSchool" method="post" action="AdminServlet">
+                <input type="hidden" name="schoolEmail" value="" id="schoolEmail">
+                <%
+                    if (list == null); else if (list.size() == 0)
+                        out.print("No match found!");
+                    else
+                        for (int i = 0; i < list.size(); ++i) {
+                %>
+                <p class="para">Search Results:</p>
+                <ul><li>
+                        <br>&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail="+list.get(i).getEmail() %>"><%out.print(list.get(0).getName());%></a>
+                        
+                        <input type="submit" value="Go" class="" onclick="send('<%=list.get(i).getEmail() %>')">
+                    </li>
+                </ul>
+                <%}%>
+            </form>
             <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
                 <li><a href="#"><img src="images/social-link-1.jpg" alt=""></a></li>
