@@ -25,4 +25,10 @@ public class CenterAllocation {
     }
     
     
+    
+    public void allocateCenters(){
+    
+    
+    }
+
 }
