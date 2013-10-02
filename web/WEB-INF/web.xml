@@ -13,6 +13,10 @@
         <servlet-class>slmo.registration.Servlet.SchoolModifyServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ContactFormServlet</servlet-name>
+        <servlet-class>slmo.registration.Servlet.ContactFormServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SchoolRegistrationServlet</servlet-name>
         <servlet-class>slmo.registration.Servlet.SchoolRegistrationServlet</servlet-class>
     </servlet>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>EmailConfirmation</servlet-name>
         <url-pattern>/EmailConfirmation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContactFormServlet</servlet-name>
+        <url-pattern>/ContactFormServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SchoolModifyServlet</servlet-name>
