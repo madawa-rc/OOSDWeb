@@ -70,18 +70,21 @@
             <br><br>
             <form name="getSchool" method="post" action="AdminServlet">
                 <input type="hidden" name="schoolEmail" value="" id="schoolEmail">
+
                 <%
                     if (list == null); else if (list.size() == 0)
                         out.print("No match found!");
-                    else
-                        for (int i = 0; i < list.size(); ++i) {
-                %>
+                    else {%>
                 <p class="para">Search Results:</p>
+                <%
+                    for (int i = 0; i < list.size(); ++i) {
+                %>
                 <ul><li>
-                        <br>&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail="+list.get(i).getEmail() %>"><%out.print(list.get(0).getName());%></a>
+                        <br>&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail=" + list.get(i).getEmail()%>"><%out.print(list.get(i).getName());%></a>
                     </li>
                 </ul>
-                <%}%>
+                <%}
+                    }%>
             </form>
             <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
