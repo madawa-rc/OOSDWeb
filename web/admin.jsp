@@ -80,7 +80,7 @@
                     for (int i = 0; i < list.size(); ++i) {
                 %>
                 <ul><li>
-                        <br>&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail=" + list.get(i).getEmail()%>"><%out.print(list.get(i).getName());%></a>
+                        <br>&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail=" + list.get(i).getEmail()%>" target="new"><%out.print(list.get(i).getName());%></a>
                     </li>
                 </ul>
                 <%}
