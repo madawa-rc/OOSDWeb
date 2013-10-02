@@ -24,14 +24,6 @@
         </noscript>
         <script src="css/5grid/jquery.js"></script>
         <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
-        <SCRIPT language="javascript">
-        
-            
-            function send(email) {
-                document.getElementById('schoolEmail').value=email;
-            }
-        </SCRIPT>  
-
     </head>
     <%
         ArrayList<School> list;
@@ -87,8 +79,6 @@
                 <p class="para">Search Results:</p>
                 <ul><li>
                         <br>&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail="+list.get(i).getEmail() %>"><%out.print(list.get(0).getName());%></a>
-                        
-                        <input type="submit" value="Go" class="" onclick="send('<%=list.get(i).getEmail() %>')">
                     </li>
                 </ul>
                 <%}%>
