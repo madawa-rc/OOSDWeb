@@ -37,7 +37,7 @@ public class ContactFormServlet extends HttpServlet {
         String message = request.getParameter("message");
         
         message = "Name : "+name+"\n"+"Address : "+address+"\n"+"Email : "+email+"\n"+"Message : "+message;
-        sendmail(eAddress,"ContactUs Form SLMO Website",message);
+        sendmail("isuruf@gmail.com",email,"ContactUs Form SLMO Website",message);
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

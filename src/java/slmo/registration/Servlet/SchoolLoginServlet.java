@@ -79,9 +79,8 @@ public class SchoolLoginServlet extends HttpServlet {
             if (resultSet.next()) 
             {    
                 System.out.println("loginsuccess");
-                request.setAttribute("schoolObject",SchoolDA.getSchool(email));
-                RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
-                rd.forward(request, response);
+                request.getSession().setAttribute("schoolObject",SchoolDA.getSchool(email));
+                response.sendRedirect("schoolDashboard.jsp");
             }
             else
                 response.setHeader("Refresh","0; URL=login.jsp?id=Invalid email address or password!");

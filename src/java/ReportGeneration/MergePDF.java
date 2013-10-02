@@ -1,4 +1,4 @@
-package cse.ReportGeneration;
+package ReportGeneration;
 
 import org.apache.pdfbox.util.PDFMergerUtility;
 

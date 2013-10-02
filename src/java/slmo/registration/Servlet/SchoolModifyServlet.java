@@ -100,10 +100,8 @@ public class SchoolModifyServlet extends HttpServlet {
                 }
             }
         } finally {
-            request.setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("email")));
-            RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
-            rd.forward(request, response);
-            
+                request.getSession().setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("email")));
+                response.sendRedirect("schoolDashboard.jsp");
         //    request.setAttribute("schoolObject", SchoolDA.getSchool(request.getParameter("email"))); // Login user.
           //  response.sendRedirect("schoolDashboard.jsp");
         }

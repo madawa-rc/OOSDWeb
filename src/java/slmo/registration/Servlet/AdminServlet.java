@@ -36,10 +36,13 @@ public class AdminServlet extends HttpServlet {
         if(request.getParameter("schoolEmail")!=null)
         {
             System.out.println(request.getParameter("schoolEmail"));
-            request.setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("schoolEmail")));
-            RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
-            rd.forward(request, response);
+           
+            request.getSession().setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("schoolEmail")));
+            response.sendRedirect("schoolDashboard.jsp");
             return;
+ //           RequestDispatcher rd = request.getRequestDispatcher("schoolDashboard.jsp");       
+   //         rd.forward(request, response);
+     //       return;
         }
         try {
             /* TODO output your page here. You may use following sample code. */

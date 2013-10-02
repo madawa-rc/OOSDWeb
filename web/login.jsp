@@ -6,7 +6,7 @@
 <%@page import="slmo.registration.School"%><font color="#ff0000">
 <%
     session.setMaxInactiveInterval(10);
-    School school = (School) session.getAttribute("sch");
+    School school = (School) session.getAttribute("schoolObject");
     boolean loggedIn = false;
     if (school != null) {
         loggedIn = true;

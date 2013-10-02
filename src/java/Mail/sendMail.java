@@ -1,13 +1,20 @@
 package Mail;
 
 import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class sendMail {
 
@@ -32,7 +39,7 @@ public class sendMail {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("slomfoundation@gmail.com"));
-            
+
             return message;
 
         } catch (MessagingException e) {
@@ -40,19 +47,19 @@ public class sendMail {
         }
     }
 
-    
     public static void sendmail(String email, String title, String text) {
-        Message message = setUp();        
+        Message message = setUp();
         try {
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(email));
             message.setSubject(title);
             message.setText(text);
             Transport.send(message);
-        } catch (MessagingException ex) {   
+        } catch (MessagingException ex) {
             ex.printStackTrace();
         }
     }
+
     public static void sendmail(String emailTo, String emailReplyTo, String title, String text) {
         Message message = setUp();
         try {
@@ -62,9 +69,38 @@ public class sendMail {
             message.setText(text);
             message.setReplyTo(InternetAddress.parse(emailReplyTo));
             Transport.send(message);
-        } catch (MessagingException ex) {   
+        } catch (MessagingException ex) {
             ex.printStackTrace();
         }
     }
-      
+
+    public static void sendMailWithAttachment(String email, String title, String text, String file) {
+        try {
+            Message message = setUp();
+            
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(email));
+            message.setSubject(title);
+            Multipart multipart = new MimeMultipart();
+            
+            BodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText(text);
+            multipart.addBodyPart(messageBodyPart);
+
+            // Part two is attachment
+            messageBodyPart = new MimeBodyPart();
+            DataSource source = new FileDataSource(file);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(file);
+            multipart.addBodyPart(messageBodyPart);
+
+            // Send the complete message parts
+            message.setContent(multipart);
+
+            // Send message
+            Transport.send(message);
+        } catch (MessagingException ex) {
+            ex.printStackTrace();
+        }
+    }
 }

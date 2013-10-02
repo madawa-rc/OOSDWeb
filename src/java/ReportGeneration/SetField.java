@@ -1,4 +1,4 @@
-package cse.ReportGeneration;
+package ReportGeneration;
 import java.io.IOException;
 
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;

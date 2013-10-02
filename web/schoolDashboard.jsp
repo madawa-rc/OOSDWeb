@@ -32,7 +32,7 @@
         School s = null;
         School s2 = null;
         try {
-            s = (School) request.getAttribute("schoolObject");
+            s = (School) session.getAttribute("schoolObject");
             //s2= (School) request.getAttribute("School");
             //s2.getName();
             studentList = s.getStudentList();
