@@ -421,6 +421,15 @@ ul.style6 .first {
 #ContactForm textarea  {overflow:auto;width:700px;height:100px;background:none;padding:4px 10px;color:#000;font:14px Arial, Helvetica, sans-serif;margin:0}
 #ContactForm  .bg {background:#fff; position:relative;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;float:left}
 
+#Signup {margin-top:-2px}
+#Signup .wrapper {overflow:inherit;min-height:40px;line-height:26px}
+#Signup .textarea_box {min-height:40px}
+#Signup  span {float:left;width:120px}
+#Signup a {margin-left:15px;float:right;width:124px;padding:0;text-align:center}
+#Signup .input  {margin:0;width:300px;height:28px;background:none;padding:4px 10px;color:#000;font:14px Arial, Helvetica, sans-serif}
+#Signup textarea  {overflow:auto;width:700px;height:100px;background:none;padding:4px 10px;color:#000;font:14px Arial, Helvetica, sans-serif;margin:0}
+#Signup  .bg {background:#fff; position:relative;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;float:left}
+
 /*===========================Student Data==========================*/
 .StudentData {
 	margin:0px;padding:0px;
