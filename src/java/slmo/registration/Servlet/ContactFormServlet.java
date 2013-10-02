@@ -9,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Mail.recieveMail;
+import Mail.sendMail;
 import java.io.PrintWriter;
 
 public class ContactFormServlet extends HttpServlet {
@@ -32,7 +32,7 @@ public class ContactFormServlet extends HttpServlet {
         String address = request.getParameter("address");
         String email = request.getParameter("email");
         String message = request.getParameter("message");
-        recieveMail.recieveMail(name, address, email, message);
+        sendMail.sendUs(name, address, email, message);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
