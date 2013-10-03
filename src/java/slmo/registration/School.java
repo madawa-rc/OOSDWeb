@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Fiontar
  */
 
-public class School {
+public class School extends User{
     private String contactname;
     private String email;
     private String name;
@@ -37,6 +37,7 @@ public class School {
      * @param verified link verification state
      */
     public School(String contactname, String email, String name, String password, String school_addr, String phone, String preferred_centre, int id, int payment, String verification, int verified) {
+        super("schoolDashboard.jsp", name);
         this.contactname = contactname;
         this.email = email;
         this.name = name;
@@ -53,17 +54,18 @@ public class School {
      * constructor to enter data of the school 
      * @param contactname name of contact
      * @param email email address
-     * @param school school name
+     * @param name school name
      * @param password password
      * @param school_addr school address
      * @param phone contact number
      * @param preferred_centre preferred exam centre
      * @param verification verification link
      */
-    public School(String contactname, String email, String school, String password, String school_addr, String phone, String preferred_centre, String verification) {
+    public School(String contactname, String email, String name, String password, String school_addr, String phone, String preferred_centre, String verification) {
+        super("schoolDashboard.jsp", name);
         this.contactname = contactname;
         this.email = email;
-        this.name = school;
+        this.name = name;
         this.password=password;
         this.school_addr = school_addr;
         this.phone = phone;
@@ -71,14 +73,10 @@ public class School {
         this.verification = verification;
     }
     /**
-     * default constructor
-     */
-    public School() {
-    }
-    /**
      * method gives the name of the contact person
      * @return name of contact
      */
+    @Override
     public String getName() {
         return name;
     }
