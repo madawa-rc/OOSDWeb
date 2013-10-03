@@ -10,14 +10,14 @@
 <%
     User user = (User) session.getAttribute("user");
     if(user!=null){
-        if(request.getParameter("logout")!=null&&request.getParameter("logout").equals("1")){
+        if(request.getParameter("logout")!=null&&request.getParameter("logout").equals("true")){
             session.removeAttribute("user");
             out.print("You are logged out");
         }
         else{
         out.print("You are logged in as "+user.getName());
         
-        out.print("    <a href=\"index.jsp?logout=1\">logout</a>");
+        out.print("    <a href=\"index.jsp?logout=true\">logout</a>");
         }
         
     }
