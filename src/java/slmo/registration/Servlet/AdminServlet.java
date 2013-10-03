@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.catalina.Session;
 import slmo.registration.dao.SchoolDA;
 
 /**
@@ -55,9 +56,8 @@ public class AdminServlet extends HttpServlet {
             out.println("<h1>Servlet AdminServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            request.setAttribute("schoolList",SchoolDA.getAllSchools(request.getParameter("search")));
-            RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");       
-            rd.forward(request, response);
+            request.getSession().setAttribute("schoolList",SchoolDA.getAllSchools(request.getParameter("search")));
+            response.sendRedirect("admin.jsp");
         } finally {            
             out.close();
         }
