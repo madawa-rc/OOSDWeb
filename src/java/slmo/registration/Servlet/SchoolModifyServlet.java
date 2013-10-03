@@ -34,76 +34,71 @@ public class SchoolModifyServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        School school =null;
         try {
             //school
-            School school = SchoolDA.getSchool(request.getParameter("email"));
+            school = SchoolDA.getSchool(request.getParameter("email"));
             //added rows+previous student count
             int newcount = Integer.parseInt(request.getParameter("num"));
             //previous student count
             System.out.println(newcount);
             int oldCount = school.getStudentList().size();
             String[] ids = new String[oldCount];
-            for(int i = 1; i <= oldCount; i++){
-                    String name = request.getParameter("student"+i);
-                    System.out.println("student id   "+school.getStudentList().get(i-1).getId()+"p "+
-                            school.getStudentList().get(i-1).getName());
-                    if (name!=null){
-                        ids[i-1]=request.getParameter("studentId"+i);
-                        SchoolDA.update(
-                                request.getParameter("studentId"+i),
-                                request.getParameter("student"+i),
-                                request.getParameter("date"+i),
-                                request.getParameter("month"+i),
-                                request.getParameter("year"+i),
-                                request.getParameter("medium"+i)
-                                );
-                    }
+            for (int i = 1; i <= oldCount; i++) {
+                String name = request.getParameter("student" + i);
+                if (name != null) {
+                    ids[i - 1] = request.getParameter("studentId" + i);
+                    StudentDA.update(school.getStudentList().get(i - 1),
+                            request.getParameter("student" + i),
+                            request.getParameter("date" + i),
+                            request.getParameter("month" + i),
+                            request.getParameter("year" + i),
+                            request.getParameter("medium" + i));
+                }
             }
             Student[] ss = new Student[oldCount];
-            for(int i=0;i<oldCount;i++){
-                boolean found=false;
-                String id=school.getStudentList().get(i).getId()+"";
-                System.out.println("student id = "+id+"p");
-                for(int j=0;j<oldCount;j++){
-                    if(ids[j]!=null&&ids[j].equals(id))
-                         found=true;
-                }
-                if(found==false){
-                    ss[i]=school.getStudentList().get(i);
-                }
-            }
-            for(int i=0;i<oldCount;i++){
-               
-                if(ss[i]!=null)
-                {    SchoolDA.deleteStudent(school, ss[i]);
-                 System.out.println("deleting "+ss[i].getName()+"p");
-                }
-            }
-            
-            for(int i = oldCount+1; i <= newcount; i++){ 
-                {
-                    String name = request.getParameter("student"+i);
-                    System.out.println(name);
-                    if(name!=null){
-                    Student s =     school.addStudent(
-                                request.getParameter("student"+i),
-                                Integer.parseInt(request.getParameter("date"+i)),
-                                Integer.parseInt(request.getParameter("month"+i)),
-                                Integer.parseInt(request.getParameter("year"+i)),
-                                request.getParameter("medium"+i)
-                                );
-                        System.out.println(request.getParameter("student"+i));
-                    StudentDA.addStudent(s);
+            for (int i = 0; i < oldCount; i++) {
+                boolean found = false;
+                String id = school.getStudentList().get(i).getId() + "";
+                System.out.println("student id = " + id + "p");
+                for (int j = 0; j < oldCount; j++) {
+                    if (ids[j] != null && ids[j].equals(id)) {
+                        found = true;
                     }
-                    
                 }
+                if (found == false) {
+                    ss[i] = school.getStudentList().get(i);
+                }
+            }
+            for (int i = 0; i < oldCount; i++) {
+
+                if (ss[i] != null) {
+                    SchoolDA.deleteStudent(school, ss[i]);
+                    System.out.println("deleting " + ss[i].getName() + "p");
+                }
+            }
+
+            for (int i = oldCount + 1; i <= newcount; i++) {
+                String name = request.getParameter("student" + i);
+                System.out.println(name);
+                if (name != null) {
+                    Student s = school.addStudent(
+                            request.getParameter("student" + i),
+                            Integer.parseInt(request.getParameter("date" + i)),
+                            Integer.parseInt(request.getParameter("month" + i)),
+                            Integer.parseInt(request.getParameter("year" + i)),
+                            request.getParameter("medium" + i));
+                    System.out.println(request.getParameter("student" + i));
+                    StudentDA.addStudent(s);
+                }
+
             }
         } finally {
-                request.getSession().setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("email")));
-                response.sendRedirect("schoolDashboard.jsp");
-        //    request.setAttribute("schoolObject", SchoolDA.getSchool(request.getParameter("email"))); // Login user.
-          //  response.sendRedirect("schoolDashboard.jsp");
+            request.getSession().setAttribute("schoolObject", school);
+            request.getSession().setAttribute("user", school);
+            response.sendRedirect("schoolDashboard.jsp");
+            //    request.setAttribute("schoolObject", SchoolDA.getSchool(request.getParameter("email"))); // Login user.
+            //  response.sendRedirect("schoolDashboard.jsp");
         }
     }
 

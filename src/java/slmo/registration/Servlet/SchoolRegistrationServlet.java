@@ -84,7 +84,8 @@ public class SchoolRegistrationServlet extends HttpServlet {
             SchoolDA.addSchool(s);
             System.out.println("done adding school ");
 
-            request.getSession().setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("email")));
+            request.getSession().setAttribute("schoolObject",s);
+            request.getSession().setAttribute("user", s);
             response.sendRedirect("schoolDashboard.jsp");
 
          

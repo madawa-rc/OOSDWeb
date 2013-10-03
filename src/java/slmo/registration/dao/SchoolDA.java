@@ -152,29 +152,7 @@ public class SchoolDA  {
         }
         return studentList;
     }
-    
-    public static void update(String id, String name, String date, String month, String year, String medium){
-        try{
-            Connection con = DatabaseConnectionHandler.getConnection();
-            
-            String queryCheck = "UPDATE student "
-                    + "SET name= ? , date = ? , month = ? , year = ? , medium = ?"
-                    + "WHERE id = ?";
-            
-            PreparedStatement ps = con.prepareStatement(queryCheck);
-            ps.setString(1, name);
-            ps.setString(2, date);
-            ps.setString(3, month);
-            ps.setString(4, year);
-            ps.setString(5, medium);
-            ps.setString(6, id);
-            
-            ps.executeUpdate();
-            
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+   
     public static void deleteStudent(School school, Student student){
         school.getStudentList().remove(student);
         StudentDA.deleteStudent(student.getId()+"");

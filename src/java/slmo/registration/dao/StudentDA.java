@@ -110,5 +110,33 @@ public class StudentDA {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }  
+    }
+    public static void update(Student s, String name, String date, String month, String year, String medium){
+        try{
+            s.setName(name);
+            s.setDate(Integer.parseInt(date));
+            s.setMonth(Integer.parseInt(month));
+            s.setYear(Integer.parseInt(year));
+            s.setMedium(medium);
+                    
+            Connection con = DatabaseConnectionHandler.getConnection();
+            
+            String queryCheck = "UPDATE student "
+                    + "SET name= ? , date = ? , month = ? , year = ? , medium = ?"
+                    + "WHERE id = ?";
+            
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, name);
+            ps.setString(2, date);
+            ps.setString(3, month);
+            ps.setString(4, year);
+            ps.setString(5, medium);
+            ps.setString(6, s.getId()+"");
+            
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

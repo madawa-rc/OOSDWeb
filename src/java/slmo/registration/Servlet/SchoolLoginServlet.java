@@ -15,6 +15,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import slmo.registration.School;
+import slmo.registration.User;
 import slmo.registration.dao.SchoolDA;
 
 /**
@@ -54,6 +56,7 @@ public class SchoolLoginServlet extends HttpServlet {
         String password = sb.toString();
         if(email.equals("isuruf@gmail.com") && request.getParameter("password").equals("slomf")){
                  response.setHeader("Refresh","0; URL=admin.jsp");
+                 request.getSession().setAttribute("user", new User("adminDashboard.jsp","admin"));
                  return;
         }
         
@@ -79,7 +82,9 @@ public class SchoolLoginServlet extends HttpServlet {
             if (resultSet.next()) 
             {    
                 System.out.println("loginsuccess");
-                request.getSession().setAttribute("schoolObject",SchoolDA.getSchool(email));
+                School s=SchoolDA.getSchool(email);
+                request.getSession().setAttribute("schoolObject",s);
+                request.getSession().setAttribute("user", s);
                 response.sendRedirect("schoolDashboard.jsp");
             }
             else
