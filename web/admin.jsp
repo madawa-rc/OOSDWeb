@@ -27,7 +27,7 @@
     </head>
     <%
         ArrayList<School> list;
-        list = (ArrayList<School>) request.getAttribute("schoolList");
+        list = (ArrayList<School>) session.getAttribute("schoolList");
     %>
     <body><div id="header-wrapper">
             <header id="header">
