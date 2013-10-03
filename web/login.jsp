@@ -3,13 +3,18 @@
     Created on : Sep 22, 2013, 5:16:45 PM
     Author     : Kasun
 --%>
+<%@page import="slmo.registration.User"%>
 <%@page import="slmo.registration.School"%><font color="#ff0000">
 <%
-    School school = (School) session.getAttribute("schoolObject");
-    boolean loggedIn = false;
-    if (school != null) {
-        loggedIn = true;
+    User user = (User) session.getAttribute("user");
+    boolean loggedIn=false;
+    if(user!=null){
+        loggedIn=true;
+        response.setHeader("Refresh", "3; URL="+user.getLink());
+        
     }
+    School school = (School) session.getAttribute("schoolObject");
+    
 %>
 </font>
 
@@ -71,7 +76,8 @@
                                         <strong>
                                             <%
                                                 if (loggedIn) {
-                                                    out.print("You are logged in!");
+                                                    out.print("You are logged in!<br>");
+                                                    out.print("Redirecting you now.....");
                                                 } else {
                                                     out.print("Enter your Login details");
                                             %><br>

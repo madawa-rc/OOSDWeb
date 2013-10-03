@@ -4,8 +4,15 @@
     Author     : Kasun
 --%>
 
+<%@page import="slmo.registration.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    User user = (User) session.getAttribute("user");
+    if(user!=null){
+        response.sendRedirect("login.jsp");
+    }
+%>
 <html>
     <head>
         <title>Signup</title>

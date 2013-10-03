@@ -9,7 +9,7 @@ package slmo.registration;
  * @author Kasun
  */
 public class Admin extends User{
-    public Admin(String link, String name){
-        super("adminDashboard.jsp", name);
+    public Admin(String name){
+        super("admin.jsp", name);
     }
 }

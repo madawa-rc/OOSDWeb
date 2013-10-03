@@ -4,8 +4,24 @@
     Author     : New
 --%>
 
+<%@page import="slmo.registration.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    User user = (User) session.getAttribute("user");
+    if(user!=null){
+        if(request.getParameter("logout")!=null&&request.getParameter("logout").equals("1")){
+            session.removeAttribute("user");
+            out.print("You are logged out");
+        }
+        else{
+        out.print("You are logged in as "+user.getName());
+        
+        out.print("    <a href=\"index.jsp?logout=1\">logout</a>");
+        }
+        
+    }
+%>
 <html>
     <head>
         <title>Home- SLOMF</title>
