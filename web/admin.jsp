@@ -58,7 +58,7 @@
             </div>
 
             <form name="searchForm" method="post" action="AdminServlet">
-                <p class="para">Search:</font> &nbsp;&nbsp; 
+                <p class="para">&nbsp;Search:</font> &nbsp;&nbsp; 
                     <input class="input" type="text" value="Enter name of the school"
                            onBlur="if (this.value == '')
                                this.value = 'Enter name of the school'"
@@ -75,12 +75,12 @@
                     if (list == null); else if (list.size() == 0)
                         out.print("No match found!");
                     else {%>
-                <p class="para">Search Results:</p>
+                    <p class="para">&nbsp;Search Results:</p>
                 <%
                     for (int i = 0; i < list.size(); ++i) {
                 %>
-                <ul><li>
-                        <br>&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail=" + list.get(i).getEmail()%>" target="new"><%out.print(list.get(i).getName());%></a>
+                <ul ><li>
+                        <br>&nbsp;&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail=" + list.get(i).getEmail()%>" target="new"><%out.print(list.get(i).getName());%></a>
                     </li>
                 </ul>
                 <%}

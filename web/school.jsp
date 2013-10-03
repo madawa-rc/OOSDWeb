@@ -72,7 +72,7 @@
                                             <font size="+2">Registration Form</font>
                                             <br><br>
                                         </strong></p>
-                                        <form action="SchoolRegistrationServlet" name="register" method="post" id="Signup" onsubmit="return check(this)">
+                                    <form action="SchoolRegistrationServlet" name="register" method="post" id="Signup" onsubmit="return check(this)">
                                         <div>
                                             <div  class="wrapper">
                                                 <span>School name:</span>
@@ -103,10 +103,21 @@
                                                 <div class="bg"><input type="text" class="input" name="phone" required="true"></div>								
                                             </div><br>
                                             <div  class="wrapper">
-                                                <span>Preferred centre:</span>
-                                                <div class="bg"><input type="text" class="input" name="preferred_centre" required="true"></div>								
-                                            </div><br>
-                                            <br><br>
+                                                <span>Exam center:</span>
+                                                <div class="bg">
+                                                    <select name="preferred_centre" id="preferred_centre" required="true">
+                                                        <option value="" style="display:none;">Select centre...</option>
+                                                        <option value="Colombo">Colombo</option>
+                                                        <option value="Galle">Galle</option>
+                                                        <option value="Matara">Matara</option>
+                                                        <option value="Kurunegala">Kurunegala</option>
+                                                        <option value="Trincomalee">Trincomalee</option>
+                                                        <option value="Jaffna">Jaffna</option>
+                                                        <option value="Anuradhapura">Anuradhapura</option>
+                                                        <option value="Kandy">Kandy</option>
+                                                    </select>
+                                                </div>
+                                            </div><br><br><br>
                                             <input type="submit" value="submit" class="button" align="right">
                                             <input type="reset" value="Clear" class="button"/><br><br>
                                         </div>
