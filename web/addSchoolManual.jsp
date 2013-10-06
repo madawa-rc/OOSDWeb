@@ -4,22 +4,26 @@
     Author     : Madawa
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="slmo.registration.Student"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="slmo.registration.School"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add School</title>
+        <title>Add School Manually</title>
         <link rel="shortcut icon" href="images/logo.png">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <noscript>
         <link rel="stylesheet" href="css/5grid/core.css" />
         <link rel="stylesheet" href="css/5grid/core-desktop.css" />
         <link rel="stylesheet" href="css/5grid/core-1200px.css" />
         <link rel="stylesheet" href="css/5grid/core-noscript.css" />
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-desktop.css" />
+        </noscript>
+        <script src="css/5grid/jquery.js"></script>
+        <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
     </head>
     <body><div id="header-wrapper">
             <header id="header">
@@ -46,7 +50,7 @@
         </div>
         <div id="wrapper">
             <div class="1u" id="logo">
-                <p align="center"><font face="Arial" size="20px"><u>Add school Manually</u></font></p>
+                <p align="left"><font face="Helvitica" size="12px"><u>Add School Manually</u></font></p>
             </div>
 
 
@@ -55,92 +59,150 @@
                     var table = document.getElementById(tableID);
                     var rowCount = table.rows.length;
                     var row = table.insertRow(rowCount);
-                    var cell = new Array();
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    var cell4 = row.insertCell(3);
                     var element = new Array();
                     
+                    //column 1 - name
                     element[0] = document.createElement("input");
                     element[0].type = "text";
+                    element[0].id = "name";
                     element[0].name = "name";
                     element[0].required = "true";
+                    cell1.appendChild(element[0]);
                     
-                    element[1] = document.createElement("input");
-                    element[1].type = "email";
-                    element[1].name = "email";
+                    //column 2 - DOB
+                    var date = document.createElement("select");
+                    date.id = "name";
+                    date.name = "date";
+                    date.required = "true";
+                    opt = document.createElement("option"); opt.value =""; opt.text = "Select"; opt.style.display = "none";
+                    date.appendChild(opt);
+                    for(var i = 1; i < 32; i++){
+                        opt = document.createElement("option");
+                        opt.value = i;
+                        opt.text = i;
+                        date.appendChild(opt);
+                    }
+                    cell2.appendChild(date);
+                    
+                    var month = document.createElement("select");
+                    month.id = "month";
+                    month.name = "month";
+                    month.required = "true";
+                    opt = document.createElement("option"); opt.value =""; opt.text = "Select"; opt.style.display = "none";
+                    month.appendChild(opt);
+                    for(var i = 1; i < 13; i++){
+                        opt = document.createElement("option");
+                        opt.value = i;
+                        switch(i){
+                            case 1 : str = "January";
+                                break;
+                            case 2 : str = "February";
+                                break;
+                            case 3 : str = "March";
+                                break;
+                            case 4 : str = "April";
+                                break;
+                            case 5 : str = "May";
+                                break;
+                            case 6 : str = "June";
+                                break;
+                            case 7 : str = "July";
+                                break;
+                            case 8 : str = "August";
+                                break;
+                            case 9 : str = "September";
+                                break;
+                            case 10 : str = "October";
+                                break;
+                            case 11 : str = "November";
+                                break;
+                            case 12 : str = "December";
+                                break;
+                        }
+                        opt.text = str;
+                        month.appendChild(opt);
+                    }
+                    cell2.appendChild(month);
+                    
+                    var year = document.createElement("select");
+                    year.id = "year";
+                    year.name = "year";
+                    year.required = "true";
+                    opt = document.createElement("option"); opt.value =""; opt.text = "Select"; opt.style.display = "none";
+                    year.appendChild(opt);
+                    for(var i = 1994; i < 2011; i++){
+                        opt = document.createElement("option");
+                        opt.value = i;
+                        opt.text = i;
+                        year.appendChild(opt);
+                    }
+                    cell2.appendChild(year);
+                    
+                    //column 3 - gender
+                    element[1] = document.createElement("select");
+                    element[1].id = "gender";
+                    element[1].name = "gender";
                     element[1].required = "true";
+                    opt = document.createElement("option"); opt.value="";opt.text="Select";opt.style.display="none";
+                    element[1].appendChild(opt);
+                    opt = document.createElement("option"); opt.value = 0; opt.text = "Male";
+                    element[1].appendChild(opt);
+                    opt = document.createElement("option"); opt.value = 1; opt.text = "Female";
+                    element[1].appendChild(opt);
+                    cell3.appendChild(element[1]);
                     
-                    element[2] = document.createElement("input");//dob
-                    element[2].type = "text";
-                    
+                    //column 4 - medium
                     element[3] = document.createElement("select");
-                    //element[3].type = "select";
+                    element[3].id = "medium";
+                    element[3].name = "medium";
+                    element[3].required = "true";
                     opt = document.createElement("option"); opt.value="";opt.text="Select";opt.style.display="none";
                     element[3].appendChild(opt);
-                    opt = document.createElement("option"); opt.value = 0; opt.text = "Male";
+                    opt = document.createElement("option"); opt.value = 0; opt.text = "Sinhala";
                     element[3].appendChild(opt);
-                    opt = document.createElement("option"); opt.value = 1; opt.text = "Female";
+                    opt = document.createElement("option"); opt.value = 1; opt.text = "English";
                     element[3].appendChild(opt);
-                    
-                    element[4] = document.createElement("input");
-                    element[4].type = "text";
-                    element[5] = document.createElement("input");
-                    element[5].type = "text";
-                    element[6] = document.createElement("input");
-                    element[6].type = "text";
-                    element[7] = document.createElement("input");
-                    element[7].type = "text";
-                    
-                    for(var i = 0; i < 8; i++){
-                        cell[i] = row.insertCell(i);
-                        cell[i].appendChild(element[i]);
-                    }
+                    opt = document.createElement("option"); opt.value = 1; opt.text = "Tamil";
+                    element[3].appendChild(opt);
+                    cell4.appendChild(element[3]);
+
                 }
-                
-                /*function addRows(tableID){
-                    var n = document.getElementsByName("num");
-                    n = parseInt(n);
-                    for(var i = 0; i < num; i++){
-                        addRow(tableID);
-                    }
-                }*/
             </script>  
 
-            <form name="school" action="" method="post">
-                School Name<input type="text" name="school_name"><br>
-                School Address<input type="text" name="school_address"><br>
-                Number of Students<input type="text" name="num" placeholder="number of students">
-                <input type="button" class="button" value="Add Students" onclick="addRows('dataTable')"><br><br>
-                <div class="StudentData">
-                    <table id="dataTable" border="0">
+            <form name="add_student" action="" method="post">
+                <div class="8u">
+                    School Name <input type="text" required="true"><br>
+                    E mail <input type="email" required="true"><br>
+                    Contact Person<input type="text" required="true"><br>
+                    Telephone Number<input type="text" required="true">
+                </div>
+                <br><br>  
+                <div class="StudentData" >
+                    <table id="dataTable" width="350px" border="0">
                         <tr>
                             <td>
-                                Full Name
+                                Name
                             </td>
                             <td>
-                                Email
-                            </td>
-                            <td>
-                                Date of Birth
+                                Date of birth
                             </td>
                             <td>
                                 Gender
                             </td>
                             <td>
-                                Home Address
-                            </td>
-                            <td>
-                                Telephone
-                            </td>
-                            <td>
                                 Medium
                             </td>
-                            <td>
-                                Exam centre
-                            </td>
                         </tr>
+                        
                     </table>
-                </div>
-                <br><br>
-                <input type="button" class="button" value="Add Student" onclick="addRow('dataTable')">
+
+                </div><br><br>
+                <input type="button" value="Add Student" onclick="addRow('dataTable');" class="button">
+                <input type="submit" value="Submit" class="button">
             </form>
 
             <p class="para" align="right"><font size="5px">Follow Us:</font></p>
