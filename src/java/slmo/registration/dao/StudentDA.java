@@ -55,13 +55,15 @@ public class StudentDA {
         
     }
     
-    public static ArrayList<Student> getAllStudents(){
+    public static ArrayList<Student> getAllStudents(String pvt){
         ArrayList<Student> studentList= new ArrayList<Student>();
         try{
             Connection con = DatabaseConnectionHandler.getConnection();
             Statement st = con.createStatement();
             
             String queryCheck = "SELECT * FROM student";
+            if(pvt!=null)
+                queryCheck = "SELECT * FROM student where pvt_applicant=1";
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
             

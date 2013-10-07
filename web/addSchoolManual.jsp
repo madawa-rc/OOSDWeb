@@ -54,7 +54,7 @@
             </div>
 
 
-            <SCRIPT language="javascript">
+              <SCRIPT language="javascript">
         
                 function addRow(tableID) {
                     var n = document.getElementById("num").value;
@@ -168,12 +168,12 @@
 
 
                 }
-                
+
                 function hideAll(tableID) {
                     try {
                         var table = document.getElementById(tableID);
                         var rowCount = table.rows.length;
-                        for (var i = document.getElementById("num2").value; i < rowCount - 1; i++) {
+                        for (var i = 1; i < rowCount - 1; i++) {
                             var row = table.rows[i].cells[2].childNodes[2].value;
                             if (null != row) {
                                 table.rows[i].cells[2].childNodes[2].style.display = "none";
@@ -196,8 +196,11 @@
                             for (var i = 1; i <rowCount; i++) {
                                 var row = table.rows[i].cells[0].childNodes[1].value;
                                 if (null != row && row == Num) {
+                                    document.getElementById("medium"+Num).value= "deleted";
                                     table.deleteRow(i);
                                     rowCount = table.rows.length;
+                                    //  if (rowCount > 2)
+                                    //      table.rows[rowCount - 1].cells[2].childNodes[2].style.display = "";
                                     break;
                                 }
                             }
@@ -207,8 +210,7 @@
                         }
                     }
                 }
-                
-            </script>  
+            </SCRIPT>  
 
             <form name="add_student" action="" method="post">
                  <INPUT type="hidden" value="0" id="num" name ="num" required="true"/>
@@ -217,8 +219,6 @@
                     E mail <input type="email" required="true"><br>
                     Contact Person<input type="text" required="true"><br>
                     Telephone Number<input type="text" required="true"><br>
-                    Number of Students<input type="text" id="num_of_students">
-                    <input type="button" class="button" value="Add Students" onclick="addMultipleRows('dataTable')">
                 </div>
                 <br><br>  
                 <div class="StudentData" >

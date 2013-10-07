@@ -94,6 +94,7 @@ public class SchoolModifyServlet extends HttpServlet {
 
             }
         } finally {
+            school=SchoolDA.getSchool(school.getEmail());
             request.getSession().setAttribute("schoolObject", school);
             request.getSession().setAttribute("user", school);
             response.sendRedirect("schoolDashboard.jsp");
