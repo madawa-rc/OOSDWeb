@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import slmo.registration.School;
 import slmo.registration.Student;
 import slmo.registration.UniqueID;
+import slmo.registration.dao.SchoolDA;
 import slmo.registration.dao.StudentDA;
 
 /**
@@ -46,8 +47,9 @@ public class AddSchoolManualServlet extends HttpServlet {
                 request.getParameter("school_addr"),
                 request.getParameter("phone"),
                 request.getParameter("preferred_centre"),
-                "1"
+                null
                 );
+        SchoolDA.addSchool(school);
         
         for (int i = 1; i <= studentCount; i++) {
                 String name = request.getParameter("student" + i);

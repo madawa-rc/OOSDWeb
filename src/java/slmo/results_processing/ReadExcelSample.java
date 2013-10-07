@@ -4,10 +4,16 @@
  */
 package slmo.results_processing;
 
+import Database.DatabaseConnectionHandler;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -31,7 +37,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * 
  */
 public class ReadExcelSample {
+    
     public static void main(String[] args){
+        new ReadExcelSample().readResults();
+    }
+    
+    public void readResults(){
         try {
             FileInputStream fis = new FileInputStream("sample.xlsx");
             //getting the workbook
@@ -45,20 +56,29 @@ public class ReadExcelSample {
                 Row row = rowIter.next();
                 //iterate through cells for each row
                 Iterator<Cell> cellIter = row.cellIterator();
-                
-                while(cellIter.hasNext()){
-                    Cell cell = cellIter.next();
-                    //get cell value
-                    switch(cell.getCellType()){
+                Cell cell = cellIter.next();
+                int index = 000000;
+                String[] answers = new String[30];
+                switch(cell.getCellType()){
                         case Cell.CELL_TYPE_NUMERIC:
-                            System.out.print(cell.getNumericCellValue() + "\t");
+                            index=(int)cell.getNumericCellValue();
                             break;
                         case Cell.CELL_TYPE_STRING:
-                            System.out.print(cell.getStringCellValue() + "\t");
+                            index = Integer.parseInt(cell.getStringCellValue());
                             break;
-                    }
                 }
-                System.out.println("");
+                int i = 0;
+                while(cellIter.hasNext()){
+                    cell = cellIter.next();
+                    //get cell value
+                    answers[i] = cell.getStringCellValue();
+                    i++;
+                }
+                try {
+                    writeToDatabase(index, answers);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ReadExcelSample.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             fis.close();
         } catch (FileNotFoundException ex) {
@@ -66,5 +86,27 @@ public class ReadExcelSample {
         } catch (IOException ex) {
             System.out.println("IOE");
         }
+    }
+    
+    private void writeToDatabase(int index,String[] answers) throws SQLException{
+        Connection con = DatabaseConnectionHandler.getConnection();
+        System.out.println(con);
+        String queryCheck = "DELETE FROM marks WHERE index = ? ";
+        PreparedStatement ps = con.prepareStatement(queryCheck);
+        ps.setString(1, ""+index);
+        ps.execute();
+        
+        queryCheck = "INSERT INTO marks (index";
+        for(int i = 1; i <= 30; i++)
+            queryCheck+=",q"+i;
+        queryCheck+=") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        ps = con.prepareStatement(queryCheck);
+        ps.setString(1, ""+index);
+        for(int i = 2; i <= 31; i++){
+            ps.setString(i, answers[i-2]);
+        }
+        
+        ps.executeUpdate();
+        
     }
 }
