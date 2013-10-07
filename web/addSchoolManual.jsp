@@ -54,7 +54,7 @@
             </div>
 
 
-              <SCRIPT language="javascript">
+              <script language="javascript">
         
                 function addRow(tableID) {
                     var n = document.getElementById("num").value;
@@ -212,13 +212,26 @@
                 }
             </SCRIPT>  
 
-            <form name="add_student" action="" method="post">
+            <form name="add_student" action="AddSchoolManualServlet" method="post">
                  <INPUT type="hidden" value="0" id="num" name ="num" required="true"/>
                 <div class="8u">
-                    School Name <input type="text" required="true"><br>
-                    E mail <input type="email" required="true"><br>
-                    Contact Person<input type="text" required="true"><br>
-                    Telephone Number<input type="text" required="true"><br>
+                    <span>School</span> Name <input class="input" type="text" name="name" required="true"><br>
+                    <span>Teacher In Charge</span><input type="text" name="contactname" required="true"><br>
+                    <span>E mail</span> <input type="email" name="email" required="true"><br>
+                    <span>School Address</span><input type="text" name="school_addr" required="true"><br>
+                    <span>Telephone Number</span><input type="text" name="phone" required="true"><br>
+                    <span>Preferred Centre</span>
+                    <select name="preferred_centre" name="preferred_centre" required="true">
+                        <option value="" style="display:none;">Select centre...</option>
+                        <option value="Colombo">Colombo</option>
+                        <option value="Galle">Galle</option>
+                        <option value="Matara">Matara</option>
+                        <option value="Kurunegala">Kurunegala</option>
+                        <option value="Trincomalee">Trincomalee</option>
+                        <option value="Jaffna">Jaffna</option>
+                        <option value="Anuradhapura">Anuradhapura</option>
+                        <option value="Kandy">Kandy</option>
+                    </select>
                 </div>
                 <br><br>  
                 <div class="StudentData" >
