@@ -32,6 +32,14 @@
         <servlet-name>AddSchoolManualServlet</servlet-name>
         <servlet-class>slmo.registration.Servlet.AddSchoolManualServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetAnswerScript</servlet-name>
+        <servlet-class>ReportGeneration.GetAnswerScript</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResultSheetDA</servlet-name>
+        <servlet-class>slmo.registration.dao.ResultSheetDA</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SchoolRegistrationServlet</servlet-name>
         <url-pattern>/SchoolRegistrationServlet</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>AddSchoolManualServlet</servlet-name>
         <url-pattern>/AddSchoolManualServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetAnswerScript</servlet-name>
+        <url-pattern>/GetAnswerScript</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResultSheetDA</servlet-name>
+        <url-pattern>/ResultSheetDA</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
