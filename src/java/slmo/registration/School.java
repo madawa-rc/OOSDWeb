@@ -23,6 +23,7 @@ public class School extends User implements Comparator{
     private String verification;
     private int verified;
     ArrayList<Student> StudentList = new ArrayList<Student>();
+    private String assignedCenter;
     /**
      * constructor to enter data of the school
      * @param contactname name of contact
@@ -277,4 +278,9 @@ public class School extends User implements Comparator{
         School s2 = (School) o2;
         return s1.StudentList.size()-s2.StudentList.size();
     }
+
+    public void setAssignedCenter(String center) {
+        this.assignedCenter = center;
+    }
+    
 }
