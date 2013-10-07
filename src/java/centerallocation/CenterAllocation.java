@@ -58,9 +58,14 @@ public class CenterAllocation {
             }
 
         };
+        School temp1;
         Collections.sort(schools,comparator);
-        for(int i=0;i<schoolList.size();i++){
-         //   if(schools)
+        for(int i=0;i<schools.size();i++){
+              temp1 = schools.get(i);
+              if(temp1.getStudentList().size()<=cmb1max-count){
+                  temp1.setAssignedCenter("cmb1");
+                  count += temp1.getStudentList().size();
+              }
         }
     }
 
