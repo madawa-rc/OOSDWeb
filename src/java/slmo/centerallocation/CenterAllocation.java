@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package centerallocation;
+package slmo.centerallocation;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,9 +21,9 @@ public class CenterAllocation {
     ArrayList<Student> studentList;
     ArrayList<School> schoolList;
     public CenterAllocation() {
-    centerList = new ArrayList<ExamCenter>();
-    studentList = StudentDA.getAllStudents("pvt");
-    schoolList = SchoolDA.getAllSchools();
+        centerList = new ArrayList<ExamCenter>();
+        studentList = StudentDA.getAllStudents("pvt");
+        schoolList = SchoolDA.getAllSchools();
     }
     
     

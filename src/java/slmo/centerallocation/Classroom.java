@@ -1,5 +1,5 @@
 
-package centerallocation;
+package slmo.centerallocation;
 
 import java.util.ArrayList;
 import slmo.registration.Student;
