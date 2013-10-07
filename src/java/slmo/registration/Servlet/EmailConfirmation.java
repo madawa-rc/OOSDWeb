@@ -1,5 +1,6 @@
 package slmo.registration.Servlet;
 import Database.DatabaseConnectionHandler;
+import admin.sendAdmissionCards;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -27,6 +28,7 @@ public class EmailConfirmation extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            new sendAdmissionCards().sendtoPrivate();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");

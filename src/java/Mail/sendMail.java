@@ -74,7 +74,7 @@ public class sendMail {
         }
     }
 
-    public static void sendMailWithAttachment(String email, String title, String text, String file) {
+    public static void sendMailWithAttachment(String email, String title, String text, String fileSource, String fileName) {
         try {
             Message message = setUp();
             
@@ -89,9 +89,9 @@ public class sendMail {
 
             // Part two is attachment
             messageBodyPart = new MimeBodyPart();
-            DataSource source = new FileDataSource(file);
+            DataSource source = new FileDataSource(fileSource);
             messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(file);
+            messageBodyPart.setFileName(fileName);
             multipart.addBodyPart(messageBodyPart);
 
             // Send the complete message parts
