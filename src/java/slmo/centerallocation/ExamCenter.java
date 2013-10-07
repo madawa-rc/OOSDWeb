@@ -24,5 +24,33 @@ public class ExamCenter {
         this.supervisor = supervisor;
         this.phone = phone;
     }
+
+    public String getCenterName() {
+        return centerName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public int getClassrooms() {
+        return classrooms;
+    }
+
+    public String getSupervisor() {
+        return supervisor;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public ArrayList<Classroom> getClassroomList() {
+        return classroomList;
+    }
     
 }
