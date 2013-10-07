@@ -4,6 +4,7 @@
  */
 package slmo.centerallocation.dao;
 
+import Database.DatabaseConnectionHandler;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,5 +48,28 @@ public class CenterDA {
             System.out.println(ex.getMessage());
         }
         return examCenterList;
+    }
+    
+    public static void updateCenter(String name, String location, int capacity, int classrooms, String supervisor, String phone){
+        try{        
+            Connection con = DatabaseConnectionHandler.getConnection();
+            
+            String queryCheck = "UPDATE centers "
+                    + "SET location= ? , capacity = ? , classrooms = ? , supervisor = ? , phone = ?"
+                    + "WHERE name = ?";
+            
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, location);
+            ps.setInt(2, capacity);
+            ps.setInt(3, classrooms);
+            ps.setString(4, supervisor);
+            ps.setString(5, phone);
+            ps.setString(6, name);
+            
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
