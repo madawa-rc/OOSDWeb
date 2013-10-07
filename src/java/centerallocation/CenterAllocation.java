@@ -6,6 +6,7 @@ package centerallocation;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import slmo.registration.School;
 import slmo.registration.Student;
 import slmo.registration.dao.SchoolDA;
@@ -33,7 +34,7 @@ public class CenterAllocation {
         for(int i=0;i<studentList.size();i++)
             if(studentList.get(i).getMedium().equals("TAMIL"))
                 count++;
-        ArrayList<Integer> schools = new ArrayList<Integer>();
+        ArrayList<School> schools = new ArrayList<School>();
         ArrayList<Student> temp;
         for(int i=0;i<schoolList.size();i++){
             boolean found=false;
@@ -47,11 +48,17 @@ public class CenterAllocation {
                 }
             }
             if(found=true)
-                schools.add(temp.size());
-            else
-                schools.add(0);
+                schools.add(schoolList.get(i));
         }
-        Collections.sort(schools);
+        Comparator<School> comparator = new Comparator<School>(){
+        @Override
+        public int compare(School s1, School s2) {
+            return s1.getStudentList().size()-s2.getStudentList().size();
+    
+            }
+
+        };
+        Collections.sort(schools,comparator);
         for(int i=0;i<schoolList.size();i++){
          //   if(schools)
         }
