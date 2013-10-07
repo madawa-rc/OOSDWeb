@@ -4,12 +4,13 @@
 package slmo.registration;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * @author Fiontar
  */
 
-public class School extends User{
+public class School extends User implements Comparator{
     private String contactname;
     private String email;
     private String name;
@@ -269,4 +270,11 @@ public class School extends User{
     public ArrayList<Student> getStudentList() {
         return StudentList;
     }   
+
+    @Override
+    public int compare(Object o1, Object o2) {
+        School s1 = (School) o1;
+        School s2 = (School) o2;
+        return s1.StudentList.size()-s2.StudentList.size();
+    }
 }
