@@ -5,6 +5,7 @@
 package slmo.results_processing;
 
 import Database.DatabaseConnectionHandler;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -39,12 +40,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ReadExcelSample {
     
     public static void main(String[] args){
-        new ReadExcelSample().readResults();
+        ReadExcelSample.readResults();
     }
     
-    public void readResults(){
+    public static void readResults(){
         try {
-            FileInputStream fis = new FileInputStream("sample.xlsx");
+            FileInputStream fis = new FileInputStream("D:\\OOSD\\sample.xlsx");
             //getting the workbook
             XSSFWorkbook workbook = new XSSFWorkbook(fis);
             //getting the sheet
@@ -88,20 +89,20 @@ public class ReadExcelSample {
         }
     }
     
-    private void writeToDatabase(int index,String[] answers) throws SQLException{
+    private static void writeToDatabase(int index,String[] answers) throws SQLException{
         Connection con = DatabaseConnectionHandler.getConnection();
         System.out.println(con);
-        String queryCheck = "DELETE FROM marks WHERE index = ? ";
+        String queryCheck = "DELETE FROM marks WHERE indexNum = ?";;
         PreparedStatement ps = con.prepareStatement(queryCheck);
         ps.setString(1, ""+index);
         ps.execute();
         
-        queryCheck = "INSERT INTO marks (index";
+        queryCheck = "INSERT INTO marks (indexNum";
         for(int i = 1; i <= 30; i++)
             queryCheck+=",q"+i;
         queryCheck+=") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         ps = con.prepareStatement(queryCheck);
-        ps.setString(1, ""+index);
+        ps.setInt(1, index);
         for(int i = 2; i <= 31; i++){
             ps.setString(i, answers[i-2]);
         }
