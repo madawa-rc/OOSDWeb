@@ -83,9 +83,10 @@
                                     Phone
                                 </td>
                             </tr>
-                            <%
-                                for(int i = 0; i < centerList.size(); i++){
-                            %>
+                <%
+                    if(centerList != null){
+                        for(int i = 0; i < centerList.size(); i++){
+                %>
                             <tr>
                                 <td>
                                     <input type="text" value="<%=centerList.get(i).getCenterName()%>" id="<%="center" + String.valueOf(i+1)%>" name="<%="center" + String.valueOf(i+1)%>" required="true"/>
@@ -106,7 +107,9 @@
                                     <input type="text" value="<%=centerList.get(i).getPhone()%>" id="<%="phone" + String.valueOf(i+1)%>" name="<%="phone" + String.valueOf(i+1)%>" required="true"/>
                                 </td>
                             </tr>
-                            <%}%>
+                <%      }//end of for
+                    }//end of if
+                %>
                 </table>
             </div>
         </form>
