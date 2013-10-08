@@ -1,6 +1,7 @@
 package slmo.registration.Servlet;
 import Database.DatabaseConnectionHandler;
 import admin.sendAdmissionCards;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -28,38 +29,16 @@ public class EmailConfirmation extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            new sendAdmissionCards().sendtoPrivate();
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EmailConfirmation</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println(request.getParameter("id"));
-            DatabaseConnectionHandler dbc=null;
-            Connection con=null;
-            try {
-                dbc = new DatabaseConnectionHandler();
-                con = dbc.getConnection();
-                String link = request.getParameter("id");
-            Statement st = con.createStatement();
-         //   st.executeUpdate("INSERT INTO student VALUES ('"+student.getName()+"','2013-01-01','1','1','1','1','1','1','1','1','1','1','1','443','1','1','12','1','1');");
-            String queryCheck = "UPDATE student SET verified=1 WHERE verification =?";
+            new sendAdmissionCards().sendtoSchool();
+            Connection con = DatabaseConnectionHandler.getConnection();
+            String link = request.getParameter("id");
+             String queryCheck = "UPDATE student SET verified=1 WHERE verification =?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, link);
             ps.executeUpdate();
-            } catch (Exception ex) {
-               
-            }
-            
-            
-           
-            
-            out.println("<h1>Servlet EmailConfirmation at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
+            out.println("Email is verified");
+        } catch (Exception ex) {
+        } finally {
             out.close();
         }
     }

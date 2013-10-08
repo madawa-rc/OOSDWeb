@@ -33,6 +33,7 @@ public class PdfFill extends AbstractExample {
                     field.setValue(value);
                     field.setReadonly(true);
             }*/
+            @SuppressWarnings("unchecked")
             PDField field = acroForm.getField(fieldName);
             if (field != null) {
                 field.setValue(value);
