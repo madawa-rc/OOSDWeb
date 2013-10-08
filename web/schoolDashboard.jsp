@@ -33,12 +33,9 @@
         School s2 = null;
         try {
             s = (School) session.getAttribute("schoolObject");
-            //s2= (School) request.getAttribute("School");
-            //s2.getName();
             studentList = s.getStudentList();
         } catch (Exception ex) {
-            RequestDispatcher rd = request.getRequestDispatcher("login.jsp?id=You are not logged in!");
-            rd.forward(request, response);
+            response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in!");
         }
     %><body><div id="header-wrapper">
             <header id="header">

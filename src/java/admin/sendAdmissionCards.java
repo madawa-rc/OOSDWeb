@@ -19,13 +19,13 @@ import slmo.registration.dao.StudentDA;
  */
 public class sendAdmissionCards {
 
-    final String admissionCardNames = "C:\\Users\\New\\Documents\\NetBeansProjects\\OOSDWeb\\AdmissionCard";
+    static final String admissionCardNames = "C:\\Users\\New\\Documents\\NetBeansProjects\\OOSDWeb\\AdmissionCard";
 
     public static void main(String[] args) {
         new sendAdmissionCards().sendtoPrivate();
     }
 
-    public void sendtoPrivate() {
+    public static void sendtoPrivate() {
         ArrayList<Student> list = StudentDA.getAllStudents("pvt");
         Student s;
         for (int i = 0; i < list.size(); i++) {
@@ -43,7 +43,7 @@ public class sendAdmissionCards {
         }
     }
 
-    public void sendtoSchool() {
+    public static void sendtoSchool() {
         ArrayList<School> schoolList = SchoolDA.getAllSchools();
         ArrayList<Student> list;
         for (int j = 0; j < schoolList.size(); j++) {

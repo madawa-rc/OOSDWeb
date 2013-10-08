@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="slmo.registration.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,14 @@
         <script src="css/5grid/jquery.js"></script>
         <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
     </head>
+    <%
+        User user = (User) session.getAttribute("user");
+        if(user==null||!user.getName().equals("admin"))
+        {
+            request.getSession().removeAttribute("user");
+            response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an admin!");
+        }
+    %>
     <body><div id="header-wrapper">
             <header id="header">
                 <div class="5grid-layout">

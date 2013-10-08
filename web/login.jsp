@@ -11,7 +11,6 @@
     if(user!=null){
         loggedIn=true;
         response.setHeader("Refresh", "3; URL="+user.getLink());
-        
     }
     School school = (School) session.getAttribute("schoolObject");
     

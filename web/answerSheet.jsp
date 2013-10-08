@@ -4,6 +4,7 @@
     Author     : Fiontar
 --%>
 
+<%@page import="slmo.registration.User"%>
 <%@page import="slmo.registration.ResultSheet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +14,12 @@
         <title>JSP Page</title>
     </head>    
     <%
+        User user = (User) session.getAttribute("user");
+        if(user==null||!user.getName().equals("admin"))
+        {
+            request.getSession().removeAttribute("user");
+            response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
+        }
         ResultSheet resultSheet = null;
         resultSheet = (ResultSheet) session.getAttribute("resultSheet");
     %>

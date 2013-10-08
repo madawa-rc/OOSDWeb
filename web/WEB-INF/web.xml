@@ -44,6 +44,10 @@
         <servlet-name>CenterUpdateServlet</servlet-name>
         <servlet-class>slmo.centerallocation.Servlet.CenterUpdateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>sendAdmissionCards</servlet-name>
+        <servlet-class>slmo.centerallocation.Servlet.SendAdmissionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SchoolRegistrationServlet</servlet-name>
         <url-pattern>/SchoolRegistrationServlet</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>CenterUpdateServlet</servlet-name>
         <url-pattern>/CenterUpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sendAdmissionCards</servlet-name>
+        <url-pattern>/sendAdmissionCards</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

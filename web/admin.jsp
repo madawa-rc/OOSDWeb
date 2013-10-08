@@ -3,6 +3,7 @@
     Created on : 23-Sep-2013, 21:36:04
     Author     : Madawa
 --%>
+<%@page import="slmo.registration.User"%>
 <%@page import="slmo.registration.Student"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="slmo.registration.School"%>
@@ -26,6 +27,12 @@
         <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
     </head>
     <%
+        User user = (User) session.getAttribute("user");
+        if(user==null||!user.getName().equals("admin"))
+        {
+            request.getSession().removeAttribute("user");
+            response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
+        }
         ArrayList<School> list;
         list = (ArrayList<School>) session.getAttribute("schoolList");
     %>
@@ -56,7 +63,12 @@
             <div class="1u" id="logo">
                 <p align="center"><font face="Arial" size="20px"><u>Administrator Dashboard</u></font></p>
             </div>
-
+            <a href="centreInformation.jsp" > Centre Information</a>
+            <br>
+            <br>
+            <a href="SendAdmissionServlet" > Send Admission Cards to the applicants</a>
+            <br>
+            <br>
             <form name="searchForm" method="post" action="AdminServlet">
                 <p class="para">&nbsp;Search:</font> &nbsp;&nbsp; 
                     <input class="input" type="text" value="Enter name of the school"
