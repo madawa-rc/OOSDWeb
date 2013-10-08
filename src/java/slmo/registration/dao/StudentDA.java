@@ -141,4 +141,24 @@ public class StudentDA {
             System.out.println(ex.getMessage());
         }
     }
+
+    public static void update(Student s,String center) {
+          try{
+                    
+            Connection con = DatabaseConnectionHandler.getConnection();
+            
+            String queryCheck = "UPDATE student "
+                    + "SET assigned_centre= ?"
+                    + "WHERE id = ?";
+            
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1,center);
+            ps.setString(2, s.getId()+"");
+            
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }  
+    }
 }
