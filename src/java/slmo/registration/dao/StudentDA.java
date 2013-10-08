@@ -55,14 +55,14 @@ public class StudentDA {
         
     }
     
-    public static ArrayList<Student> getAllStudents(String pvt){
+    private static ArrayList<Student> getStudents(boolean pvt){
         ArrayList<Student> studentList= new ArrayList<Student>();
         try{
             Connection con = DatabaseConnectionHandler.getConnection();
             Statement st = con.createStatement();
             
             String queryCheck = "SELECT * FROM student";
-            if(pvt!=null)
+            if(pvt==true)
                 queryCheck = "SELECT * FROM student where pvt_applicant=1";
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
@@ -97,6 +97,13 @@ public class StudentDA {
         return studentList;
     }
     
+    public static ArrayList<Student> getAllStudents(){
+        return getStudents(false);
+    }
+    
+    public static ArrayList<Student> getAllPrivateStudents(){
+        return getStudents(true);
+    }
     
     public static void deleteStudent(String id){
         Connection con;

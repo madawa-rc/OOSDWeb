@@ -26,7 +26,7 @@ public class sendAdmissionCards {
     }
 
     public static void sendtoPrivate() {
-        ArrayList<Student> list = StudentDA.getAllStudents("pvt");
+        ArrayList<Student> list = StudentDA.getAllPrivateStudents();
         Student s;
         for (int i = 0; i < list.size(); i++) {
             s = list.get(i);

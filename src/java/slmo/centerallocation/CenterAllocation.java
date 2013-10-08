@@ -22,7 +22,7 @@ public class CenterAllocation {
     ArrayList<School> schoolList;
     public CenterAllocation() {
         centerList = new ArrayList<ExamCenter>();
-        studentList = StudentDA.getAllStudents("pvt");
+        studentList = StudentDA.getAllPrivateStudents();
         schoolList = SchoolDA.getAllSchools();
     }
     
