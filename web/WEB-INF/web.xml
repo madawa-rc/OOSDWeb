@@ -40,6 +40,10 @@
         <servlet-name>ResultSheetDA</servlet-name>
         <servlet-class>slmo.registration.dao.ResultSheetDA</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CenterUpdateServlet</servlet-name>
+        <servlet-class>slmo.centerallocation.Servlet.CenterUpdateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SchoolRegistrationServlet</servlet-name>
         <url-pattern>/SchoolRegistrationServlet</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>ResultSheetDA</servlet-name>
         <url-pattern>/ResultSheetDA</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CenterUpdateServlet</servlet-name>
+        <url-pattern>/CenterUpdateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

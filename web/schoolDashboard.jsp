@@ -300,7 +300,7 @@
 
                 </div><br><br>
                 <INPUT type="button" value="Add Row" onclick="addRow('dataTable')" class="button"/> 
-                <input type="submit" value="Go!" class="button"/>
+                <input type="submit" value="Submit" class="button"/>
             </form>
 
             <p class="para" align="right"><font size="5px">Follow Us:</font></p>

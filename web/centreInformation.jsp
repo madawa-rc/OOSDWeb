@@ -54,13 +54,14 @@
                     </div>
                 </div>
             </header>
-        </div>
+        <div>
         <div id="wrapper">
             <div class="1u" id="logo">
                 <p align="left"><font face="Helvitica" size="7px"><u>Centre Information</u></font></p>
             </div>
         
-        <form name="centreInfo" action="" mthod="post">
+        <form name="centreInfo" action="CenterUpdateServlet" mthod="post">
+            <input type="hidden" value="<%=centerList.size()%>" id="size" name="size">
             <div class="StudentData">
                 <table id="dataTable" width="350px" border="0">
                             <tr>
@@ -89,7 +90,8 @@
                 %>
                             <tr>
                                 <td>
-                                    <input type="text" value="<%=centerList.get(i).getCenterName()%>" id="<%="center" + String.valueOf(i+1)%>" name="<%="center" + String.valueOf(i+1)%>" required="true"/>
+                                    <input type="hidden" id="<%="name" + String.valueOf(i+1)%>" value="<%=centerList.get(i).getCenterName()%>" name="<%="name" + String.valueOf(i+1)%>" required="true"/>
+                                    <label><%=centerList.get(i).getCenterName()%></label>
                                 </td>
                                 <td>
                                     <input type="text" value="<%=centerList.get(i).getLocation()%>" id="<%="location" + String.valueOf(i+1)%>" name="<%="location" + String.valueOf(i+1)%>" required="true"/>
@@ -111,7 +113,8 @@
                     }//end of if
                 %>
                 </table>
-            </div>
+            </div><br><br>
+                <input type="submit" value="Update All" class="button">
         </form>
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
