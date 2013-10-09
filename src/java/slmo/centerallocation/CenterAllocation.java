@@ -4,6 +4,10 @@
  */
 package slmo.centerallocation;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,6 +32,43 @@ public class CenterAllocation {
         schoolList = SchoolDA.getAllSchools();
     }
 
+    public int[][] getPreferredCenterStats(){
+            String[] preferredCenters = {"COLOMBO","GALLE","JAFFNA","KANDY","KURUNEGALA","MATARA","TRINCOMALEE"};
+             String queryCheck = "SELECT COUNT(*) FROM student WHERE preferred_centre=? AND medium = ?";
+             return getCenterStatistics(preferredCenters, queryCheck);
+    }
+    public int[][] getAssignedCenterStats(){
+            String[] assignedCenters = {"COLOMBO1","COLOMBO2","GALLE","JAFFNA","KANDY","KURUNEGALA","MATARA","TRINCOMALEE"};
+             String queryCheck = "SELECT COUNT(*) FROM student WHERE assigned_centre=? AND medium = ?";
+             return getCenterStatistics(assignedCenters, queryCheck);
+    }
+    
+    private int[][] getCenterStatistics(String[] centers,String queryCheck){
+        String[] medium = {"SINHALA","ENGLISH","TAMIL"};
+        int[][] output = new int[centers.length][3];
+        try{
+            Connection con = Database.DatabaseConnectionHandler.getConnection();
+            
+           
+                   
+            PreparedStatement ps = con.prepareStatement(queryCheck);    
+            
+            for(int i = 0;i<centers.length;i++){    
+            for(int j=0;j<3;j++){
+                ps.setString(1,centers[i]);
+                ps.setString(2,medium[j]);
+                ResultSet rs = ps.executeQuery();
+               
+                output[i][j] = rs.getInt(1);
+                
+        }
+        }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        return output;
+    }
+    
     public void allocateCenters() {
         int countCMB1 = 0;
         int countCMB2 = 0;

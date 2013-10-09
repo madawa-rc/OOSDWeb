@@ -45,7 +45,7 @@ public class Marks {
             System.out.println(ex.getMessage());
         }
     }
-
+    
     public void updatemarks(String[] list, String[] check) {
         int score = 0;
         for (int i = 1; i <= 30; i++) {
