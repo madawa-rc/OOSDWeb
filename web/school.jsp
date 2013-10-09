@@ -116,12 +116,11 @@
                                                         <option value="" style="display:none;">Select centre...</option>
                                                         <option value="Colombo">Colombo</option>
                                                         <option value="Galle">Galle</option>
-                                                        <option value="Matara">Matara</option>
-                                                        <option value="Kurunegala">Kurunegala</option>
-                                                        <option value="Trincomalee">Trincomalee</option>
                                                         <option value="Jaffna">Jaffna</option>
-                                                        <option value="Anuradhapura">Anuradhapura</option>
                                                         <option value="Kandy">Kandy</option>
+                                                        <option value="Kurunegala">Kurunegala</option>
+                                                        <option value="Matara">Matara</option>
+                                                        <option value="Trincomalee">Trincomalee</option>
                                                     </select>
                                                 </div>
                                             </div><br><br><br>
