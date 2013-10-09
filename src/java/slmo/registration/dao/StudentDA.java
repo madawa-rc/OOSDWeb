@@ -149,17 +149,17 @@ public class StudentDA {
         }
     }
 
-    public static void update(Student s,String field, String value) {
+    public static void update(Student s, String centre) {
           try{
                     
             Connection con = DatabaseConnectionHandler.getConnection();
             
             String queryCheck = "UPDATE student "
-                    + "SET "+field+" = ?"
+                    + "SET assigned_centre = ?"
                     + "WHERE id = ?";
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
-            ps.setString(1,value);
+            ps.setString(1, centre);
             ps.setString(2, s.getId()+"");
             
             ps.executeUpdate();
@@ -168,4 +168,25 @@ public class StudentDA {
             System.out.println(ex.getMessage());
         }  
     }
+    
+    public static void update(Student s, String index, String classroom) {
+          try{
+                    
+            Connection con = DatabaseConnectionHandler.getConnection();
+            
+            String queryCheck = "UPDATE student "
+                    + "SET assigned_classroom = ?"
+                    + "WHERE id = ?";
+            
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, classroom);
+            ps.setString(2, s.getId()+"");
+            
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }  
+    }
+    
 }

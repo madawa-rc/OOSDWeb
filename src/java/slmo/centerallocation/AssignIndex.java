@@ -6,7 +6,6 @@ package slmo.centerallocation;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import slmo.centerallocation.dao.CenterDA;
 import slmo.registration.Student;
 import slmo.registration.dao.StudentDA;
 
@@ -16,9 +15,11 @@ import slmo.registration.dao.StudentDA;
 
 public class AssignIndex {
     
+    /**
+     * method sorts and assign a unique index to the applicant according to the allocated center
+     */
     public void assignIndex(){
         ArrayList<Student> studentList = StudentDA.getAllStudents();
-        ArrayList<ExamCenter> centerList = CenterDA.getAllCenters();
         
         Comparator<Student> comparator = new Comparator<Student>() {
             @Override
