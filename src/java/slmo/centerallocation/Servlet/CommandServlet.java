@@ -11,13 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import slmo.centerallocation.CenterAllocation;
 import slmo.registration.User;
 
 /**
  *
  * @author New
  */
-public class SendAdmissionServlet extends HttpServlet {
+public class CommandServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -40,9 +41,19 @@ public class SendAdmissionServlet extends HttpServlet {
             response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
             return;
         }
-        sendAdmissionCards.sendtoPrivate();
-        sendAdmissionCards.sendtoSchool();
-        
+        if(request.getParameter("id")==null){
+            response.setHeader("Refresh", "0; URL=admin.jsp");
+            return;
+        }
+         
+        if(request.getParameter("id").equals("sendAdmission")){
+            sendAdmissionCards.sendtoPrivate();
+            sendAdmissionCards.sendtoSchool();
+        }
+        else if(request.getParameter("id").equals("assignCentres")){
+            CenterAllocation.allocateCenters();
+            CenterAllocation.assignIndex();
+        }
         out.close();
     }
 

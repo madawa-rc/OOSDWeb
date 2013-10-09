@@ -23,54 +23,48 @@ import slmo.registration.dao.StudentDA;
  */
 public class CenterAllocation {
 
-    ArrayList<ExamCenter> centerList;
-    ArrayList<Student> studentList;
-    ArrayList<School> schoolList;
-
-    public CenterAllocation() {
-        centerList = new ArrayList<ExamCenter>();
-        studentList = StudentDA.getAllPrivateStudents();
-        schoolList = SchoolDA.getAllSchools();
+    public static int[][] getPreferredCenterStats() {
+        String[] preferredCenters = {"COLOMBO", "GALLE", "JAFFNA", "KANDY", "KURUNEGALA", "MATARA", "TRINCOMALEE"};
+        String queryCheck = "SELECT COUNT(*) FROM student WHERE preferred_centre=? AND medium = ?";
+        return getCenterStatistics(preferredCenters, queryCheck);
     }
 
-    public int[][] getPreferredCenterStats(){
-            String[] preferredCenters = {"COLOMBO","GALLE","JAFFNA","KANDY","KURUNEGALA","MATARA","TRINCOMALEE"};
-             String queryCheck = "SELECT COUNT(*) FROM student WHERE preferred_centre=? AND medium = ?";
-             return getCenterStatistics(preferredCenters, queryCheck);
+    public static int[][] getAssignedCenterStats() {
+        String[] assignedCenters = {"COLOMBO1", "COLOMBO2", "GALLE", "JAFFNA", "KANDY", "KURUNEGALA", "MATARA", "TRINCOMALEE"};
+        String queryCheck = "SELECT COUNT(*) FROM student WHERE assigned_centre=? AND medium = ?";
+        return getCenterStatistics(assignedCenters, queryCheck);
     }
-    public int[][] getAssignedCenterStats(){
-            String[] assignedCenters = {"COLOMBO1","COLOMBO2","GALLE","JAFFNA","KANDY","KURUNEGALA","MATARA","TRINCOMALEE"};
-             String queryCheck = "SELECT COUNT(*) FROM student WHERE assigned_centre=? AND medium = ?";
-             return getCenterStatistics(assignedCenters, queryCheck);
-    }
-    
-    private int[][] getCenterStatistics(String[] centers,String queryCheck){
-        String[] medium = {"SINHALA","ENGLISH","TAMIL"};
+
+    private static int[][] getCenterStatistics(String[] centers, String queryCheck) {
+        String[] medium = {"SINHALA", "ENGLISH", "TAMIL"};
         int[][] output = new int[centers.length][3];
-        try{
+        try {
             Connection con = Database.DatabaseConnectionHandler.getConnection();
-            
-           
-                   
-            PreparedStatement ps = con.prepareStatement(queryCheck);    
-            
-            for(int i = 0;i<centers.length;i++){    
-            for(int j=0;j<3;j++){
-                ps.setString(1,centers[i]);
-                ps.setString(2,medium[j]);
-                ResultSet rs = ps.executeQuery();
-               
-                output[i][j] = rs.getInt(1);
-                
-        }
-        }
-        }catch(SQLException ex){
+
+
+
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+
+            for (int i = 0; i < centers.length; i++) {
+                for (int j = 0; j < 3; j++) {
+                    ps.setString(1, centers[i]);
+                    ps.setString(2, medium[j]);
+                    ResultSet rs = ps.executeQuery();
+
+                    output[i][j] = rs.getInt(1);
+
+                }
+            }
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return output;
     }
-    
-    public void allocateCenters() {
+
+    public static void allocateCenters() {
+        ArrayList<Student> studentList = StudentDA.getAllPrivateStudents();
+        ArrayList<School> schoolList = SchoolDA.getAllSchools();
+
         int countCMB1 = 0;
         int countCMB2 = 0;
         int cmb1max = 1000;
@@ -164,10 +158,11 @@ public class CenterAllocation {
             }
         }
     }
-    public void assignIndex(){
+
+    public static void assignIndex() {
         ArrayList<Student> studentList = StudentDA.getAllStudents();
         ArrayList<ExamCenter> centerList = CenterDA.getAllCenters();
-        
+
         Comparator<Student> comparator = new Comparator<Student>() {
             @Override
             public int compare(Student student1, Student student2) {
@@ -184,44 +179,43 @@ public class CenterAllocation {
                 }
             }
         };
-        
+
         Collections.sort(studentList, comparator);
-        
+
         Student student = studentList.get(0);
         int index = 500;
         ExamCenter center;
         String prevCenter = "new";
-        int classRoomNum=0;
-        int count=0;
-        int capacity=0;
-        
-        for(int i=0;i<studentList.size();i++){
+        int classRoomNum = 0;
+        int count = 0;
+        int capacity = 0;
+
+        for (int i = 0; i < studentList.size(); i++) {
             student = studentList.get(i);
-            if(student.getAssigned_centre().equals(prevCenter)){
+            if (student.getAssigned_centre().equals(prevCenter)) {
                 count++;
-                if(count==capacity){
+                if (count == capacity) {
                     classRoomNum++;
-                    count=1;
+                    count = 1;
                 }
-                StudentDA.update(student, "index", ++index+"");
-            }
-            else{
-                index= ((index/500)+1)*500; 
-                StudentDA.update(student, "index", ++index+"");
-                center = get(centerList,student.getAssigned_centre());
-                classRoomNum=1;
-                count=1;
-                capacity=center.getCapacity()/center.getClassrooms();
+                StudentDA.update(student, "index", ++index + "");
+            } else {
+                index = ((index / 500) + 1) * 500;
+                StudentDA.update(student, "index", ++index + "");
+                center = get(centerList, student.getAssigned_centre());
+                classRoomNum = 1;
+                count = 1;
+                capacity = center.getCapacity() / center.getClassrooms();
             }
         }
     }
-    private ExamCenter get(ArrayList<ExamCenter> list,String center){
-        for(int i=0;i<list.size();i++)
-        {
-            if(list.get(i).getCenterName().equals(center))
+
+    private static ExamCenter get(ArrayList<ExamCenter> list, String center) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getCenterName().equals(center)) {
                 return list.get(i);
+            }
         }
         return null;
     }
-    
 }

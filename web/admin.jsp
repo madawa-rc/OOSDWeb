@@ -67,7 +67,16 @@
             <a href="centreInformation.jsp" > Centre Information</a>
             <br>
             <br>
-            <a href="SendAdmissionServlet" > Send Admission Cards to the applicants</a>
+            <a href="centerStatistics.jsp" > Centre Statistics</a>
+            <br>
+            <br>
+            <a href="CommandServlet?id=sendAdmission" > Send Admission Cards to the applicants</a>
+            <br>
+            <br>
+            <a href="CommandServlet?id=assignCentres" > Assign Centres</a>
+            <br>
+            <br>
+            <a href="answerSheet.jsp" > Review Answer Sheets</a>
             <br>
             <br>
             <form name="searchForm" method="post" action="AdminServlet">

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ReportGeneration;
+package slmo.centerallocation.Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,40 +36,21 @@ public class GetAnswerScript extends HttpServlet {
         if (request.getParameter("next") != null) {
             out.print(request.getParameter("next"));
             int index = ((ResultSheet) request.getSession().getAttribute("resultSheet")).getIndexNum();
-            System.out.println(index);
             for (int j = index + 1; j < index + 100; j++) {
-                System.out.println(j);
                 if (ResultSheetDA.getResultSheet(j) != null) {
                     request.getSession().setAttribute("resultSheet", ResultSheetDA.getResultSheet(j));
                     response.sendRedirect("answerSheet.jsp");
                     return;
                 }
             }
-            System.out.println(index);
-            return;
         } else if (request.getParameter("indexNum") != null) {
-            System.out.println(request.getParameter("indexNum"));
             int index = Integer.parseInt(request.getParameter("indexNum"));
             request.getSession().setAttribute("resultSheet", ResultSheetDA.getResultSheet(index));
             response.sendRedirect("answerSheet.jsp");
             return;
         }
-
-        try {
-            /*
-             * TODO output your page here. You may use following sample code.
-             */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet GetAnswerScript</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet GetAnswerScript at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
+        request.getSession().removeAttribute("resultSheet");
+        response.sendRedirect("answerSheet.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
