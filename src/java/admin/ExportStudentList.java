@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -21,8 +20,7 @@ import slmo.registration.dao.StudentDA;
  */
 public class ExportStudentList {
     
-    public static void exportStudentsToExcel(){
-        System.out.println("hello");
+    public static void exportStudentsToExcel(){       
         ArrayList<Student> studentList = StudentDA.getAllStudents();
         
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -30,8 +28,36 @@ public class ExportStudentList {
         XSSFSheet sheet = workbook.createSheet();
         Student s;
         Cell[] cells = new Cell[18];
+        
+        Row row = sheet.createRow(0);
+        
+        for(int colNum = 0; colNum < cells.length; colNum++){
+                cells[colNum] = row.createCell(colNum); 
+        }
+        cells[0].setCellValue("INDEX");
+        cells[1].setCellValue("NAME");
+        cells[2].setCellValue("DATE OF BIRTH");
+        cells[3].setCellValue("EMAIL");
+        cells[4].setCellValue("PRIVATE APLLICANT");
+        cells[5].setCellValue("VERIFIED");
+        cells[6].setCellValue("PAYMENT VERIFIED");
+        cells[7].setCellValue("SCHOOL");
+        cells[8].setCellValue("SCHOOL ADDRESS");
+        cells[9].setCellValue("HOME ADDRESS");
+
+        cells[10].setCellValue("PHONE");
+        cells[11].setCellValue("MEDIUM");
+        cells[12].setCellValue("PREFFERED CENTRE");
+        cells[13].setCellValue("ASSIGNED CENTRE");
+        cells[14].setCellValue("ASSIGNED CLASSROOM");
+
+
+        cells[15].setCellValue("MARKS");
+        cells[16].setCellValue("AWARD");
+        cells[17].setCellValue("WITHIN 16");
+        
         for(int rowNum = 0; rowNum < studentList.size(); rowNum++){
-            Row row = sheet.createRow(rowNum+1);
+            row = sheet.createRow(rowNum+1);
             for(int colNum = 0; colNum < cells.length; colNum++){
                 cells[colNum] = row.createCell(colNum); 
             }
@@ -64,7 +90,6 @@ public class ExportStudentList {
         try {
             FileOutputStream fos = new FileOutputStream("C:\\Users\\Madawa\\Documents\\GitHub\\OOSDWeb\\sample2.xlsx");
             workbook.write(fos);
-            System.out.println("successfully written");
             fos.close();
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
