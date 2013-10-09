@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import slmo.centerallocation.dao.CenterDA;
 import slmo.registration.School;
 import slmo.registration.Student;
 import slmo.registration.dao.SchoolDA;
@@ -162,7 +163,65 @@ public class CenterAllocation {
                 }
             }
         }
-
-
     }
+    public void assignIndex(){
+        ArrayList<Student> studentList = StudentDA.getAllStudents();
+        ArrayList<ExamCenter> centerList = CenterDA.getAllCenters();
+        
+        Comparator<Student> comparator = new Comparator<Student>() {
+            @Override
+            public int compare(Student student1, Student student2) {
+                int center = student1.getAssigned_centre().compareTo(student2.getAssigned_centre());
+                if (center != 0) {
+                    return center;
+                } else {//if the assigned centers are same
+                    int CompMed = student1.getMedium().compareTo(student2.getMedium());
+                    if (center != 0) {
+                        return CompMed;
+                    } else {
+                        return student1.getName().compareTo(student2.getName());
+                    }
+                }
+            }
+        };
+        
+        Collections.sort(studentList, comparator);
+        
+        Student student = studentList.get(0);
+        int index = 500;
+        ExamCenter center;
+        String prevCenter = "new";
+        int classRoomNum=0;
+        int count=0;
+        int capacity=0;
+        
+        for(int i=0;i<studentList.size();i++){
+            student = studentList.get(i);
+            if(student.getAssigned_centre().equals(prevCenter)){
+                count++;
+                if(count==capacity){
+                    classRoomNum++;
+                    count=1;
+                }
+                StudentDA.update(student, "index", ++index+"");
+            }
+            else{
+                index= ((index/500)+1)*500; 
+                StudentDA.update(student, "index", ++index+"");
+                center = get(centerList,student.getAssigned_centre());
+                classRoomNum=1;
+                count=1;
+                capacity=center.getCapacity()/center.getClassrooms();
+            }
+        }
+    }
+    private ExamCenter get(ArrayList<ExamCenter> list,String center){
+        for(int i=0;i<list.size();i++)
+        {
+            if(list.get(i).getCenterName().equals(center))
+                return list.get(i);
+        }
+        return null;
+    }
+    
 }

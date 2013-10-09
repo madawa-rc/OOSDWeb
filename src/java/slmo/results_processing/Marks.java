@@ -128,9 +128,6 @@ public class Marks {
          * [8] = Correct Perecentage (correctStudents*100/allStudents)
          * [9] = Correct Perecentage from attempted (correctStudents*100/attemptedStudents)
          */
-        for(int i = 0; i < statistics.length; i++){
-            System.out.println(statistics[i]);
-        }
         return statistics;
     }
 }
