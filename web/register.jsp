@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="4u" id="logo">
                             <h1><a href="./" class="mobileUI-site-name">Sri Lanka Mathematics Olympiad</a></h1>
-                            <p>by ID & Saami</p>
+                            <p>by Fiontar</p>
                         </div>
                         <div class="8u" id="menu">
                             <nav class="mobileUI-site-nav">

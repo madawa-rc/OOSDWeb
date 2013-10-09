@@ -11,16 +11,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <%
+    <%
             User user = (User) session.getAttribute("user");
             if(user==null||!user.getName().equals("admin"))
             {
                 request.getSession().removeAttribute("user");
                 response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
             }
-            ArrayList<ExamCenter> centerList = CenterDA.getAllCenters();
+            else{
+                ArrayList<ExamCenter> centerList = CenterDA.getAllCenters();
         %>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Centre Information</title>
         <link rel="shortcut icon" href="images/logo.png">
@@ -141,4 +142,7 @@
             </div>
         </div>
     </body>
+    <%
+        }
+    %>
 </html>

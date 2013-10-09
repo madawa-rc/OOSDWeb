@@ -33,8 +33,9 @@
             request.getSession().removeAttribute("user");
             response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
         }
-        ArrayList<School> list;
-        list = (ArrayList<School>) session.getAttribute("schoolList");
+        else{
+            ArrayList<School> list;
+            list = (ArrayList<School>) session.getAttribute("schoolList");
     %>
     <body><div id="header-wrapper">
             <header id="header">
@@ -116,4 +117,7 @@
             </div>
         </div>
     </body>
+    <%
+        }
+     %>
 </html>

@@ -4,7 +4,7 @@
     Author     : Kasun
 --%>
 <%@page import="slmo.registration.User"%>
-<%@page import="slmo.registration.School"%><font color="#ff0000">
+<%@page import="slmo.registration.School"%><font color="#ff0000"></font>
 <%
     User user = (User) session.getAttribute("user");
     boolean loggedIn=false;
@@ -15,7 +15,7 @@
     School school = (School) session.getAttribute("schoolObject");
     
 %>
-</font>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

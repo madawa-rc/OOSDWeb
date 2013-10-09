@@ -20,8 +20,9 @@
             request.getSession().removeAttribute("user");
             response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
         }
-        ResultSheet resultSheet = null;
-        resultSheet = (ResultSheet) session.getAttribute("resultSheet");
+        else{
+            ResultSheet resultSheet = null;
+            resultSheet = (ResultSheet) session.getAttribute("resultSheet");
     %>
     <body>
         <form name="searchForm" method="post" action="GetAnswerScript">
@@ -50,4 +51,7 @@
             }
         %>
     </body>
+    <%
+        }
+    %>
 </html>

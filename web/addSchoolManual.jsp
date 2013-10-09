@@ -33,6 +33,7 @@
             request.getSession().removeAttribute("user");
             response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an admin!");
         }
+        else{
     %>
     <body><div id="header-wrapper">
             <header id="header">
@@ -285,4 +286,7 @@
 
 
     </body>
+    <%
+        }
+    %>
 </html>
