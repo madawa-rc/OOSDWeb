@@ -45,7 +45,7 @@
         <servlet-class>slmo.centerallocation.Servlet.CenterUpdateServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>sendAdmissionCards</servlet-name>
+        <servlet-name>SendAdmissionServlet</servlet-name>
         <servlet-class>slmo.centerallocation.Servlet.SendAdmissionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -98,7 +98,7 @@
     </servlet-mapping>
     <session-config>
         <session-timeout>
-            10
+            3600
         </session-timeout>
     </session-config>
 </web-app>
