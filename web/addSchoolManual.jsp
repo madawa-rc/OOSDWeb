@@ -242,29 +242,29 @@
                                         }
                                     </SCRIPT>  
 
-                                    <form name="add_student" action="AddSchoolManualServlet" method="post">
+                                    <form name="add_student" action="AddSchoolManualServlet" method="post" id="ContactForm">
                                         <INPUT type="hidden" value="0" id="num" name ="num" required="true"/>
                                         <div>
                                             <div  class="wrapper">
                                                 <span>School Name </span>
-                                                <div class="bg"><input class="input" type="text" name="name" required="true"><br>
-                                                </div><br>
+                                                <div class="bg"><input class="input" type="text" name="name" required="true">
+                                                </div><br><br>
                                             </div>
                                             <div  class="wrapper">
                                                 <span>Teacher In Charge</span>
-                                                <div class="bg"><input type="text" name="contactname" required="true"></div>
+                                                <div class="bg"><input class="input" type="text" name="contactname" required="true"></div>
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Email: </span> 
-                                                <div class="bg"><input type="email" name="email" required="true"></div>
+                                                <div class="bg"><input class="input" type="email" name="email" required="true"></div>
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>School Address</span>
-                                                <div class="bg"><input type="text" name="school_addr" required="true"></div>
+                                                <div class="bg"><input class="input" type="text" name="school_addr" required="true"></div>
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Telephone Number</span>
-                                                <div class="bg"><input type="text" name="phone" required="true"></div>
+                                                <div class="bg"><input class="input" type="text" name="phone" required="true"></div>
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Preferred Centre</span>
