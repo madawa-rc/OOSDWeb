@@ -149,17 +149,17 @@ public class StudentDA {
         }
     }
 
-    public static void update(Student s,String center) {
+    public static void update(Student s,String field, String value) {
           try{
                     
             Connection con = DatabaseConnectionHandler.getConnection();
             
             String queryCheck = "UPDATE student "
-                    + "SET assigned_centre= ?"
+                    + "SET "+field+" = ?"
                     + "WHERE id = ?";
             
             PreparedStatement ps = con.prepareStatement(queryCheck);
-            ps.setString(1,center);
+            ps.setString(1,value);
             ps.setString(2, s.getId()+"");
             
             ps.executeUpdate();
