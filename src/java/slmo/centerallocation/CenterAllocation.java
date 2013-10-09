@@ -33,29 +33,42 @@ public class CenterAllocation {
         int countCMB2 = 0;
         int cmb1max = 1000;
         int cmb2max = 1000;
+        Student tempStudent;
         for (int i = 0; i < studentList.size(); i++) {
-            if (studentList.get(i).getMedium().equals("TAMIL")) {
-                StudentDA.update(studentList.get(i), "COLOMBO1");       //assign all tamil pvt candidates to colombo1
-                countCMB1++;
+            tempStudent = studentList.get(i);
+            if (tempStudent.getPreferred_centre().equals("COLOMBO")) {
+                if (tempStudent.getMedium().equals("TAMIL")) {
+                    StudentDA.update(tempStudent, "COLOMBO1");       //assign all tamil pvt candidates to colombo1
+                    countCMB1++;
+                } else {
+                    StudentDA.update(tempStudent, tempStudent.getPreferred_centre());
+                }
             }
         }
         ArrayList<School> schoolsT = new ArrayList<School>();        //array of schools with tamil students
         ArrayList<School> schoolsES = new ArrayList<School>();       //array of schools with only sinhala and english
         ArrayList<Student> students;
         for (int i = 0; i < schoolList.size(); i++) {
-            boolean found = false;                                  //boolean whether there are tamil students
-            students = schoolList.get(i).getStudentList();
-            countCMB1 += students.size();
-            for (int j = 0; j < students.size(); j++) {
-                if (students.get(j).getMedium().equals("TAMIL")) {
-                    found = true;
-                    break;
+            if (schoolList.get(i).getPreferred_centre().equals("COLOMBO")) {
+                boolean found = false;                                 //boolean whether there are tamil students
+                students = schoolList.get(i).getStudentList();
+                countCMB1 += students.size();
+                for (int j = 0; j < students.size(); j++) {
+                    if (students.get(j).getMedium().equals("TAMIL")) {
+                        found = true;
+                        break;
+                    }
                 }
-            }
-            if (found = true) {
-                schoolsT.add(schoolList.get(i));                     //filter out schools with tamil students
+                if (found = true) {
+                    schoolsT.add(schoolList.get(i));                     //filter out schools with tamil students
+                } else {
+                    schoolsES.add(schoolList.get(i));
+                }
             } else {
-                schoolsES.add(schoolList.get(i));
+                students = schoolList.get(i).getStudentList();
+                for (int j = 0; j < students.size(); j++) {
+                    StudentDA.update(students.get(j), students.get(j).getPreferred_centre());
+                }
             }
         }
         //schools is a list of schools with Tamil students
