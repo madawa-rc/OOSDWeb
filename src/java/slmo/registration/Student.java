@@ -66,6 +66,30 @@ public class Student{
         this.preferred_centre = preferred_centre;
         this.verification=verification;
     }
+
+    public Student(String name, int date, int month, int year, String email, String school, String school_addr, String home_addr, int pvt_applicant, String phone, String medium, String preferred_centre, String assigned_classrm, int index, int id, String assigned_centre, int payment, int marks, String verification, int verified) {
+        this.name = name;
+        this.date = date;
+        this.month = month;
+        this.year = year;
+        this.email = email;
+        this.school = school;
+        this.school_addr = school_addr;
+        this.home_addr = home_addr;
+        this.pvt_applicant = pvt_applicant;
+        this.phone = phone;
+        this.medium = medium;
+        this.preferred_centre = preferred_centre;
+        this.assigned_classrm = assigned_classrm;
+        this.index = index;
+        this.id = id;
+        this.assigned_centre = assigned_centre;
+        this.payment = payment;
+        this.marks = marks;
+        this.verification = verification;
+        this.verified = verified;
+    }
+    
     /**
      * Default constructor 
      */

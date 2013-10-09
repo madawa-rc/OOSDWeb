@@ -28,7 +28,7 @@
     </head>
     <%
         User user = (User) session.getAttribute("user");
-        if(user==null||!user.getName().equals("admin"))
+        if(user==null||!user.getName().equals("Admin"))
         {
             request.getSession().removeAttribute("user");
             response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
@@ -64,6 +64,9 @@
             <div class="1u" id="logo">
                 <p align="center"><font face="Arial" size="20px"><u>Administrator Dashboard</u></font></p>
             </div>
+            <a href="addSchoolManual.jsp" > Add School by Admin</a>
+            <br>
+            <br>
             <a href="centreInformation.jsp" > Centre Information</a>
             <br>
             <br>

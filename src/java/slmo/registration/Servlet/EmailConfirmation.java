@@ -29,7 +29,6 @@ public class EmailConfirmation extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            new sendAdmissionCards().sendtoSchool();
             Connection con = DatabaseConnectionHandler.getConnection();
             String link = request.getParameter("id");
              String queryCheck = "UPDATE student SET verified=1 WHERE verification =?";

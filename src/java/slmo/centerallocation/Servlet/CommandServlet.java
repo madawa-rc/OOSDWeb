@@ -35,7 +35,7 @@ public class CommandServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         User user = (User) request.getSession().getAttribute("user");
-        if(user==null||!user.getName().equals("admin"))
+        if(user==null||!user.getName().equals("Admin"))
         {
             request.getSession().removeAttribute("user");
             response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
@@ -49,10 +49,13 @@ public class CommandServlet extends HttpServlet {
         if(request.getParameter("id").equals("sendAdmission")){
             sendAdmissionCards.sendtoPrivate();
             sendAdmissionCards.sendtoSchool();
+            out.println("AdmissionCards Sent");
+            out.print("<a href=\"admin.jsp\" > Go Back</a>");
         }
         else if(request.getParameter("id").equals("assignCentres")){
             CenterAllocation.allocateCenters();
             CenterAllocation.assignIndex();
+            response.sendRedirect("admin.jsp");
         }
         out.close();
     }

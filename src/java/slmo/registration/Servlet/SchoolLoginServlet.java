@@ -57,7 +57,7 @@ public class SchoolLoginServlet extends HttpServlet {
         String password = sb.toString();
         if(email.equals("isuruf@gmail.com") && request.getParameter("password").equals("slomf")){
                  response.setHeader("Refresh","0; URL=admin.jsp");
-                 request.getSession().setAttribute("user", new Admin("admin"));
+                 request.getSession().setAttribute("user", new Admin("Admin"));
                  return;
         }
         

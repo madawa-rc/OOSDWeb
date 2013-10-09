@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import slmo.centerallocation.ExamCenter;
@@ -48,6 +50,13 @@ public class CenterDA {
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
+        Comparator<ExamCenter> comparator = new Comparator<ExamCenter>() {
+            @Override
+            public int compare(ExamCenter e1, ExamCenter e2) {
+                return e1.getCenterName().compareTo(e2.getCenterName());
+            }
+        };
+        Collections.sort(examCenterList, comparator);
         return examCenterList;
     }
     

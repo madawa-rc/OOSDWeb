@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import slmo.registration.Student;
 
 public class StudentDA {
-    
+
     public static void addStudent(Student student) {
         try {
             Connection con = DatabaseConnectionHandler.getConnection();
-            
+
             Statement st = con.createStatement();
             String queryCheck = "INSERT INTO student ("
                     + "name,date,month,year,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre,"
                     + "verification"
-                    +") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, student.getName());
             ps.setInt(2, student.getDate());
@@ -32,81 +32,89 @@ public class StudentDA {
             ps.setString(12, student.getPreferred_centre());
             ps.setString(13, student.getVerification());
             ps.executeUpdate();
-            
+
             System.out.println("Database updated");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        } 
+        }
     }
-    public static void sendVerification(Student student){
-         sendMail.sendmail(student.getEmail(),"Email Verification for SLMC 2014", 
-                 "Thank you for registering for Sri Lanka Mathematics Competition 2013.\n\n"
-                 + "If you did not register, please ignore this email.\n\n"
-                 + "Please click the following to verify your email address \n\n\n"+
-                 "http://localhost:8080/OOSDWeb/EmailConfirmation?id="
-                 + student.getVerification()
-                 +"\n\nSri Lanka Mathematics Olympiad Foundation,\n"
-                 + "Department of Mathematics,\n"
-                 + "University of Colombo.");
-        
+
+    public static void sendVerification(Student student) {
+        sendMail.sendmail(student.getEmail(), "Email Verification for SLMC 2014",
+                "Thank you for registering for Sri Lanka Mathematics Competition 2013.\n\n"
+                + "If you did not register, please ignore this email.\n\n"
+                + "Please click the following to verify your email address \n\n\n"
+                + "http://localhost:8080/OOSDWeb/EmailConfirmation?id="
+                + student.getVerification()
+                + "\n\nSri Lanka Mathematics Olympiad Foundation,\n"
+                + "Department of Mathematics,\n"
+                + "University of Colombo.");
+
     }
-    
-    private static ArrayList<Student> getStudents(boolean pvt){
-        ArrayList<Student> studentList= new ArrayList<Student>();
-        try{
+
+    private static ArrayList<Student> getStudents(boolean pvt) {
+        ArrayList<Student> studentList = new ArrayList<Student>();
+        try {
             Connection con = DatabaseConnectionHandler.getConnection();
             Statement st = con.createStatement();
-            
+
             String queryCheck = "SELECT * FROM student";
-            if(pvt==true)
+            if (pvt == true) {
                 queryCheck = "SELECT * FROM student where pvt_applicant=1";
-            
+            }
+
             PreparedStatement ps = con.prepareStatement(queryCheck);
-            
+
             ResultSet rs = ps.executeQuery();
-            
+
             Student student;
-            while(rs.next()){
+            while (rs.next()) {
                 //retrieving student from database
                 student = new Student(
-                            rs.getString("name"),
-                            rs.getInt("date"),
-                            rs.getInt("month"),
-                            rs.getInt("year"),
-                            rs.getString("email"),
-                            rs.getString("school"),
-                            rs.getString("school_addr"),
-                            rs.getString("home_addr"),
-                            rs.getInt("pvt_applicant"),
-                            rs.getString("phone"),
-                            rs.getString("medium"),                    
-                            rs.getString("preferred_centre"),
-                            rs.getString("verification")
-                            );
+                        rs.getString("name"),
+                        rs.getInt("date"),
+                        rs.getInt("month"),
+                        rs.getInt("year"),
+                        rs.getString("email"),
+                        rs.getString("school"),
+                        rs.getString("school_addr"),
+                        rs.getString("home_addr"),
+                        rs.getInt("pvt_applicant"),
+                        rs.getString("phone"),
+                        rs.getString("medium"),
+                        rs.getString("preferred_centre"),
+                        rs.getString("assigned_classrm"),
+                        rs.getInt("indexNum"),
+                        rs.getInt("id"),
+                        rs.getString("assigned_centre"),
+                        rs.getInt("payment"),
+                        rs.getInt("marks"),
+                        rs.getString("verification"),
+                        rs.getInt("verified"));
                 //adding student to the arrayList
                 studentList.add(student);
             }
-            
-        }catch(SQLException ex){
+
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return studentList;
     }
-    
-    public static ArrayList<Student> getAllStudents(){
+
+    public static ArrayList<Student> getAllStudents() {
         return getStudents(false);
     }
-    
-    public static ArrayList<Student> getAllPrivateStudents(){
+
+    public static ArrayList<Student> getAllPrivateStudents() {
         return getStudents(true);
     }
-    
-    public static void deleteStudent(String id){
+
+    public static void deleteStudent(String id) {
         Connection con;
-        
-        try{
+
+        try {
             con = DatabaseConnectionHandler.getConnection();
-            
+
             Statement st = con.createStatement();
             String queryCheck = "DELETE FROM student WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
@@ -116,73 +124,74 @@ public class StudentDA {
             System.out.println(ex.getMessage());
         }
     }
-    public static void update(Student s, String name, String date, String month, String year, String medium){
-        try{
+
+    public static void update(Student s, String name, String date, String month, String year, String medium) {
+        try {
             s.setName(name);
             s.setDate(Integer.parseInt(date));
             s.setMonth(Integer.parseInt(month));
             s.setYear(Integer.parseInt(year));
             s.setMedium(medium);
-                    
+
             Connection con = DatabaseConnectionHandler.getConnection();
-            
+
             String queryCheck = "UPDATE student "
                     + "SET name= ? , date = ? , month = ? , year = ? , medium = ?"
                     + "WHERE id = ?";
-            
+
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, name);
             ps.setString(2, date);
             ps.setString(3, month);
             ps.setString(4, year);
             ps.setString(5, medium);
-            ps.setString(6, s.getId()+"");
-            
+            ps.setString(6, s.getId() + "");
+
             ps.executeUpdate();
-            
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     public static void update(Student s, String centre) {
-          try{
-                    
+        try {
+
             Connection con = DatabaseConnectionHandler.getConnection();
-            
+
             String queryCheck = "UPDATE student "
                     + "SET assigned_centre = ?"
                     + "WHERE id = ?";
-            
+
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, centre);
-            ps.setString(2, s.getId()+"");
-            
+            ps.setString(2, s.getId() + "");
+
             ps.executeUpdate();
-            
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }  
+        }
     }
-    
-    public static void update(Student s, String index, String classroom) {
-          try{
-                    
+
+    public static void update(Student s, int index, int classroom) {
+        try {
+
             Connection con = DatabaseConnectionHandler.getConnection();
-            
+
             String queryCheck = "UPDATE student "
-                    + "SET assigned_classroom = ?"
+                    + "SET assigned_classrm = ? , indexNum = ? "
                     + "WHERE id = ?";
-            
+
             PreparedStatement ps = con.prepareStatement(queryCheck);
-            ps.setString(1, classroom);
-            ps.setString(2, s.getId()+"");
-            
+            ps.setInt(1, classroom);
+            ps.setInt(2, index);
+            ps.setString(3, s.getId() + "");
+
             ps.executeUpdate();
-            
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }  
+        }
     }
-    
 }

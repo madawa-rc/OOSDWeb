@@ -23,7 +23,7 @@
     </script>
     <%
         User user = (User) session.getAttribute("user");
-        if (user == null || !user.getName().equals("admin")) {
+        if (user == null || !user.getName().equals("Admin")) {
             request.getSession().removeAttribute("user");
             response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
         } else {

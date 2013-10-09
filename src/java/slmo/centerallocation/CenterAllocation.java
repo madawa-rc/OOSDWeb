@@ -76,10 +76,11 @@ public class CenterAllocation {
                 if (tempStudent.getMedium().equals("TAMIL")) {
                     StudentDA.update(tempStudent, "COLOMBO1");       //assign all tamil pvt candidates to colombo1
                     countCMB1++;
-                } else {
-                    StudentDA.update(tempStudent, tempStudent.getPreferred_centre());
                 }
+            } else {
+                StudentDA.update(tempStudent, tempStudent.getPreferred_centre());
             }
+
         }
         ArrayList<School> schoolsT = new ArrayList<School>();        //array of schools with tamil students
         ArrayList<School> schoolsES = new ArrayList<School>();       //array of schools with only sinhala and english
@@ -134,7 +135,7 @@ public class CenterAllocation {
                 }
             }
         }
-        //Assign all the private sinhala and english students
+        //Assign all the schools with no tamil students.
         Collections.sort(schoolsES, comparator);
         for (int i = schoolsES.size() - 1; i >= 0; i--) {
             students = schoolsES.get(i).getStudentList();
@@ -148,8 +149,9 @@ public class CenterAllocation {
                 }
             }
         }
+        //Assign all the private sinhala and english students
         for (int i = 0; i < studentList.size(); i++) {
-            if (!studentList.get(i).getMedium().equals("TAMIL")) {
+            if (!studentList.get(i).getMedium().equals("TAMIL") && studentList.get(i).getPreferred_centre().equals("COLOMBO")) {
                 if (countCMB2 + 1 < cmb2max) {
                     StudentDA.update(studentList.get(i), "COLOMBO2");
                 } else {
@@ -182,7 +184,7 @@ public class CenterAllocation {
 
         Collections.sort(studentList, comparator);
 
-        Student student = studentList.get(0);
+        Student student;
         int index = 500;
         ExamCenter center;
         String prevCenter = "new";
@@ -192,20 +194,23 @@ public class CenterAllocation {
 
         for (int i = 0; i < studentList.size(); i++) {
             student = studentList.get(i);
+            System.out.println("list "+student.getName()+"  "+student.getAssigned_centre());
             if (student.getAssigned_centre().equals(prevCenter)) {
                 count++;
-                if (count == capacity) {
+                if (count > capacity) {
                     classRoomNum++;
                     count = 1;
                 }
-                StudentDA.update(student, "index", ++index + "");
+                StudentDA.update(student, ++index, classRoomNum);
             } else {
                 index = ((index / 500) + 1) * 500;
-                StudentDA.update(student, "index", ++index + "");
-                center = get(centerList, student.getAssigned_centre());
                 classRoomNum = 1;
                 count = 1;
+                center = get(centerList, student.getAssigned_centre());
+                prevCenter = center.getCenterName();
                 capacity = center.getCapacity() / center.getClassrooms();
+                //System.out.println(student.getAssigned_centre());
+                StudentDA.update(student, index, classRoomNum);
             }
         }
     }
