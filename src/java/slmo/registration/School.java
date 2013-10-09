@@ -10,7 +10,7 @@ import java.util.Comparator;
  * @author Fiontar
  */
 
-public class School extends User implements Comparator{
+public class School extends User{
     private String contactname;
     private String email;
     private String name;
@@ -272,12 +272,6 @@ public class School extends User implements Comparator{
         return StudentList;
     }   
 
-    @Override
-    public int compare(Object o1, Object o2) {
-        School s1 = (School) o1;
-        School s2 = (School) o2;
-        return s1.StudentList.size()-s2.StudentList.size();
-    }
 
     public void setAssignedCenter(String center) {
         this.assignedCenter = center;
