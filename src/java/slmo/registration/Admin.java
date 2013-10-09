@@ -1,14 +1,17 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * A class to implement the login of a user
  */
 package slmo.registration;
 
 /**
- *
- * @author Kasun
+ * @author Fiontar
  */
+
 public class Admin extends User{
+    /**
+     * constructor of Admin class
+     * @param name user name
+     */
     public Admin(String name){
         super("admin.jsp", name);
     }

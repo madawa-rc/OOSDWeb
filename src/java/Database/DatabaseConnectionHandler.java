@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * A class to get a connection to the database  
  */
 package Database;
 
@@ -11,12 +10,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author New
+ * @author Fiontar
  */
+
 public class DatabaseConnectionHandler {
     private static Connection con = null;
-    
+    /**
+     * method returns a connection to the database if exists
+     * @return database connection
+     */
     private static Connection createConnection(){
             try {
                 Class.forName(Constants.DRIVER_NAME);
@@ -30,7 +32,10 @@ public class DatabaseConnectionHandler {
             return null;
         
     }
-    
+    /**
+     * method gives the connection to the database if exists else get a connection
+     * @return database connection 
+     */
     public static Connection getConnection(){
         if(con == null)
             con = createConnection();
