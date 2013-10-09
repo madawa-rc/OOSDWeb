@@ -10,10 +10,10 @@ package slmo.registration;
  */
 public class ResultSheet {
 
-    private String indexNum;
+    private int indexNum;
     private String[] result;
 
-    public ResultSheet(String indexNum) {
+    public ResultSheet(int indexNum) {
         this.indexNum = indexNum;
         result = new String[30];
     }
@@ -25,4 +25,10 @@ public class ResultSheet {
     public String[] getRecords() {
         return result;
     }
+
+    public int getIndexNum() {
+        return indexNum;
+    }
+    
+    
 }

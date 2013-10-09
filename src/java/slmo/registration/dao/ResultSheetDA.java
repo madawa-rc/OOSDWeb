@@ -17,18 +17,19 @@ import slmo.registration.ResultSheet;
  */
 public class ResultSheetDA {
 
-    public static ResultSheet getResultSheet(String indexNum) {
+    public static ResultSheet getResultSheet(int indexNum) {
         ResultSheet resultSheet = null;
         try {
             Connection con = DatabaseConnectionHandler.getConnection();
             String queryCheck = "SELECT * from marks WHERE indexNum = ?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
-            ps.setString(1, indexNum);
+            ps.setInt(1, indexNum);
             ResultSet rs = ps.executeQuery();
-            rs.next();
-            resultSheet = new ResultSheet(indexNum);
-            for (int i = 0; i < 30; ++i) {
-                resultSheet.insertRecords(i, rs.getString(i + 2));
+            if (rs.next()) {
+                resultSheet = new ResultSheet(indexNum);
+                for (int i = 0; i < 30; ++i) {
+                    resultSheet.insertRecords(i, rs.getString(i + 2));
+                }
             }
 
             // SQL query to get result set with the index

@@ -44,10 +44,10 @@
         <img src="<% out.print("images/score/" + rs[i] + ".jpg");%>">
         <%
                     if (i == 14) {
-                        out.print("<br>");
+                        out.print("<br><br>");
                     }
                 }
-                out.print("<br><br><a href=\"\" align=\"center\">Next</a>");
+                out.print("<br><br><a href=\"GetAnswerScript?next=true\" align=\"center\">Next</a>");
             }
         %>
     </body>

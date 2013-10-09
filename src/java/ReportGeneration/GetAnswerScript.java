@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import slmo.registration.ResultSheet;
 import slmo.registration.dao.ResultSheetDA;
 
 /**
@@ -32,13 +33,27 @@ public class GetAnswerScript extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        if (request.getParameter("indexNum") != null) {
+        if (request.getParameter("next")!=null) {
+            out.print(request.getParameter("next"));
+            int index = ((ResultSheet) request.getSession().getAttribute("resultSheet")).getIndexNum();
+            System.out.println(index);
+            for(int j=index+1;j<index+100;j++){
+                if(ResultSheetDA.getResultSheet(j)!=null){
+                    request.getSession().setAttribute("resultSheet", ResultSheetDA.getResultSheet(index));
+                    response.sendRedirect("answerSheet.jsp");
+                    return;
+                }
+            }
+            System.out.println(index);
+            return;
+        } else if (request.getParameter("indexNum") != null) {
             System.out.println(request.getParameter("indexNum"));
-
-            request.getSession().setAttribute("resultSheet", ResultSheetDA.getResultSheet(request.getParameter("indexNum")));
+            int index = Integer.parseInt(request.getParameter("indexNum"));
+            request.getSession().setAttribute("resultSheet", ResultSheetDA.getResultSheet(index));
             response.sendRedirect("answerSheet.jsp");
             return;
         }
+
         try {
             /*
              * TODO output your page here. You may use following sample code.
