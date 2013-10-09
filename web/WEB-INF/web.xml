@@ -93,8 +93,8 @@
         <url-pattern>/CenterUpdateServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>sendAdmissionCards</servlet-name>
-        <url-pattern>/sendAdmissionCards</url-pattern>
+        <servlet-name>SendAdmissionServlet</servlet-name>
+        <url-pattern>/SendAdmissionServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
