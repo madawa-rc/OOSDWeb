@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <%
     User user = (User) session.getAttribute("user");
-    if(user!=null){
+    if (user != null) {
         response.sendRedirect("login.jsp");
     }
 %>
@@ -37,6 +37,13 @@
                     form.cpass.focus();
                     return false;
                 }
+                return true;
+            }
+            
+            function isNumberKey(evt){
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
                 return true;
             }
         </script>
@@ -107,7 +114,7 @@
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Telephone:</span>
-                                                <div class="bg"><input type="text" class="input" name="phone" required="true"></div>								
+                                                <div class="bg"><input type="text" class="input" name="phone" required="true" onkeypress="return isNumberKey(event)"></div>								
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Exam center:</span>

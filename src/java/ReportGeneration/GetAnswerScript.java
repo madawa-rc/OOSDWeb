@@ -33,13 +33,14 @@ public class GetAnswerScript extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        if (request.getParameter("next")!=null) {
+        if (request.getParameter("next") != null) {
             out.print(request.getParameter("next"));
             int index = ((ResultSheet) request.getSession().getAttribute("resultSheet")).getIndexNum();
             System.out.println(index);
-            for(int j=index+1;j<index+100;j++){
-                if(ResultSheetDA.getResultSheet(j)!=null){
-                    request.getSession().setAttribute("resultSheet", ResultSheetDA.getResultSheet(index));
+            for (int j = index + 1; j < index + 100; j++) {
+                System.out.println(j);
+                if (ResultSheetDA.getResultSheet(j) != null) {
+                    request.getSession().setAttribute("resultSheet", ResultSheetDA.getResultSheet(j));
                     response.sendRedirect("answerSheet.jsp");
                     return;
                 }

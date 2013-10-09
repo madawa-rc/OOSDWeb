@@ -24,11 +24,16 @@ public class ResultSheetDA {
             String queryCheck = "SELECT * from marks WHERE indexNum = ?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setInt(1, indexNum);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                resultSheet = new ResultSheet(indexNum);
+            ResultSet rs1 = ps.executeQuery();
+            
+            queryCheck = "SELECT * from student WHERE indexNum = ?";
+            ps = con.prepareStatement(queryCheck);
+            ps.setInt(1, indexNum);
+            ResultSet rs2 = ps.executeQuery();
+            if (rs1.next() && rs2.next()) {
+                resultSheet = new ResultSheet(indexNum, rs2.getString("name"), rs2.getString("school"), rs2.getString("assigned_centre"));
                 for (int i = 0; i < 30; ++i) {
-                    resultSheet.insertRecords(i, rs.getString(i + 2));
+                    resultSheet.insertRecords(i, rs1.getString(i + 2));
                 }
             }
 

@@ -30,7 +30,16 @@
         </noscript>
         <script src="css/5grid/jquery.js"></script>
         <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
-    </head><body>
+    </head>
+    <script language="javascript">
+        function isNumberKey(evt){
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+    <body>
         <div id="header-wrapper">
             <header id="header">
                 <div class="5grid-layout">
@@ -128,7 +137,7 @@
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Telephone:</span>
-                                                <div class="bg"><input type="text" class="input" name="phone" required="true"></div>
+                                                <div class="bg"><input type="text" class="input" name="phone" required="true" onkeypress="return isNumberKey(event)"></div>
                                             </div><br>
                                             <div  class="wrapper">
                                                 <span>Medium:</span>
