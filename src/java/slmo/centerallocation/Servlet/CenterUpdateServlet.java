@@ -34,7 +34,7 @@ public class CenterUpdateServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         int size = Integer.parseInt(request.getParameter("size"));
         System.out.println(size);
-        
+
         for(int i = 1; i <= size; i++){
             CenterDA.updateCenter(
                     request.getParameter("name"+i),
