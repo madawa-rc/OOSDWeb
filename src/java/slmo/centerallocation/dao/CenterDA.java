@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import slmo.centerallocation.ExamCenter;
 
 /**
@@ -23,7 +25,6 @@ public class CenterDA {
         ArrayList<ExamCenter> examCenterList = new ArrayList<ExamCenter>();
         try{
             Connection con = Database.DatabaseConnectionHandler.getConnection();
-            Statement st = con.createStatement();
             
             String queryCheck = "SELECT * FROM centers";
             
@@ -71,5 +72,36 @@ public class CenterDA {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    
+    public static ExamCenter getCenter(String name){
+        try{
+            Connection con = Database.DatabaseConnectionHandler.getConnection();
+            
+            String queryCheck = "SELECT * FROM centers WHERE name=?";
+            
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            
+            ExamCenter center = null;
+            
+            while(rs.next()){
+                //retrieving center from database
+                center = new ExamCenter(
+                        rs.getString("name"),
+                        rs.getString("location"),
+                        rs.getInt("capacity"),
+                        rs.getInt("classrooms"),
+                        rs.getString("supervisor"),
+                        rs.getString("phone"));
+                //adding center to the arrayList
+                
+            }     
+            return center;
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
 }
