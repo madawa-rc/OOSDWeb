@@ -71,7 +71,7 @@
         <form name="centreInfo" action="CenterUpdateServlet" mthod="post">
             <input type="hidden" value="<%=centerList.size()%>" id="size" name="size">
             <div class="StudentData">
-                <table id="dataTable" width="350px" border="0">
+                <table id="dataTable" width="350px">
                             <tr>
                                 <td>
                                     Center
@@ -84,6 +84,12 @@
                                 </td>
                                 <td>
                                     Tamil
+                                </td>
+                                <td>
+                                    Coordinators
+                                </td>
+                                <td>
+                                    Contact number
                                 </td>
                             </tr>
                 <%
@@ -116,7 +122,9 @@
                 %>
                 </table>
             </div><br><br>
+                <div class="ButtonAlign">
                 <input type="submit" value="Update All" class="button">
+                </div>
         </form>
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">

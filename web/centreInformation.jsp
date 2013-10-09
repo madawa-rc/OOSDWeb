@@ -122,7 +122,9 @@
                 %>
                 </table>
             </div><br><br>
+                <div class="ButtonAlign">
                 <input type="submit" value="Update All" class="button">
+                </div>
         </form>
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
