@@ -59,7 +59,7 @@
         <div id="main_container">
 
             <div class="header">
-                <div class="logo"><a href="#"><img src="css/images/logo.gif" alt="" title="" border="0" /></a></div>
+                <div class="logo"><a href="#"><img src="css/images/logo.png" alt="" title="" border="0" /></a></div>
                 <%
                     if (user != null) {
                 %>
@@ -206,7 +206,7 @@
             <div class="footer">
 
                 <div class="left_footer">SLOMF ADMIN PANEL | Powered by <a href="http://indeziner.com">INDEZINER</a></div>
-                <div class="right_footer"><a href="http://indeziner.com"><img src="css/images/indeziner_logo.gif" alt="" title="" border="0" /></a></div>
+                <div class="right_footer"><a href="http://indeziner.com"><img src="css/images/fiontar.png" alt="" title="" border="0" /></a></div>
 
             </div>
 

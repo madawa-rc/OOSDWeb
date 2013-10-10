@@ -134,7 +134,7 @@
             <div class="footer_login">
 
                 <div class="left_footer_login">SLOMF ADMIN PANEL | Powered by Fiontar</div>
-                <div class="right_footer_login"><img src="css/images/indeziner_logo.gif" alt="" title="" border="0" /></div>
+                <div class="right_footer_login"><img src="css/images/fiontar.png" alt="" title="" border="0" /></div>
 
             </div>
 
