@@ -283,7 +283,7 @@ padding-left: 10px;
 background: #e2f0ff;
 color: #0e4354;
 }
-
+.submit {clear:both; width:500px; text-align:center; padding:0 0 0 90px;}
 .sidebar_search{
 background:url(images/sidebar_menu_top.gif) no-repeat center;
 width:195px;
