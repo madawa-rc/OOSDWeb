@@ -88,6 +88,13 @@
                                     <a href="CommandServlet?id=assignCentres" > Assign Centres</a>
                                     <br>
                                     <br>
+                                    <br>
+                                    Marks
+                                    <br>
+                                    <br>
+                                    <a href="upload.jsp" > Upload Answer Sheets</a>
+                                    <br>
+                                    <br>
                                     <a href="answerSheet.jsp" > Review Answer Sheets</a>
                                     <br>
                                     <br>

@@ -52,6 +52,10 @@
         <servlet-name>CenterStatistics</servlet-name>
         <servlet-class>slmo.centerallocation.Servlet.CenterStatistics</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>slmo.centerallocation.Servlet.UploadServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SchoolRegistrationServlet</servlet-name>
         <url-pattern>/SchoolRegistrationServlet</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>CenterStatistics</servlet-name>
         <url-pattern>/CenterStatistics</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadServlet</servlet-name>
+        <url-pattern>/UploadServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
