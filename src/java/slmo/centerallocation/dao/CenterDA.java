@@ -164,4 +164,21 @@ public class CenterDA {
         }
         return null;
     }
+    public static void sort(ExamCenter center){
+        Comparator<Student> comparator = new Comparator<Student>() {
+            @Override
+            public int compare(Student s1, Student s2) {
+                if( s1.getIndex()>s2.getIndex()){
+                    return 1;
+                }
+                else
+                    return -1;
+            }
+        };
+        ArrayList<Classroom> classroomList = center.getClassroomList();
+        for(int i=0;i<classroomList.size();i++)
+        {
+            Collections.sort(classroomList.get(i).getStudentList(), comparator);
+        }
+    }
 }
