@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Marks {
 
-    public void calculate() {
+    public static void calculate() {
         try {
             Connection con = DatabaseConnectionHandler.getConnection();
             String queryCheck = "SELECT * FROM marks";
@@ -32,7 +32,12 @@ public class Marks {
                     for (int i = 1; i <= 30; i++) {
                         check[i] = rs.getString("q" + i);
                     }
-                } else {
+                } 
+            }
+            
+            rs = ps.executeQuery();
+            while (rs.next()) {
+            if(!rs.getString("indexNum").startsWith("0")){
                     list[0] = rs.getString("indexNum");
                     for (int i = 1; i <= 30; i++) {
                         list[i] = rs.getString("q" + i);
@@ -40,13 +45,12 @@ public class Marks {
                     updatemarks(list, check);
                 }
             }
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
     
-    public void updatemarks(String[] list, String[] check) {
+    private static void updatemarks(String[] list, String[] check) {
         int score = 0;
         for (int i = 1; i <= 30; i++) {
             if (list[i].equals("")) {

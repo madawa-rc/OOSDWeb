@@ -38,13 +38,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ReadExcelSample {
     
-    public static void main(String[] args){
-        ReadExcelSample.readResults();
-    }
-    
-    public static void readResults(){
+    public static void readResults(String filePath){
         try {
-            FileInputStream fis = new FileInputStream("D:\\OOSD\\sample.xlsx");
+            FileInputStream fis = new FileInputStream(filePath);
             //getting the workbook
             XSSFWorkbook workbook = new XSSFWorkbook(fis);
             //getting the sheet
@@ -90,7 +86,6 @@ public class ReadExcelSample {
     
     private static void writeToDatabase(int index,String[] answers) throws SQLException{
         Connection con = DatabaseConnectionHandler.getConnection();
-        System.out.println(con);
         String queryCheck = "DELETE FROM marks WHERE indexNum = ?";;
         PreparedStatement ps = con.prepareStatement(queryCheck);
         ps.setString(1, ""+index);
