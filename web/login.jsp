@@ -68,12 +68,11 @@ ddaccordion.init({
 <div id="main_container">
 
 	<div class="header_login">
-    <div class="logo"><a href="#"><img src="css/images/logo.gif" alt="" title="" border="0" /></a></div>
     
     </div>
 
      
-         <div class="login_form">
+         <div class="box-2">
          
          <a href="#" class="forgot_pass">Forgot password</a>
          <strong>
