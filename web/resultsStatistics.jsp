@@ -10,7 +10,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Statistics</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Centre Information</title>
         <link rel="shortcut icon" href="images/logo.png">
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
@@ -20,13 +21,25 @@
         <link rel="stylesheet" href="css/5grid/core-desktop.css" />
         <link rel="stylesheet" href="css/5grid/core-1200px.css" />
         <link rel="stylesheet" href="css/5grid/core-noscript.css" />
-        <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/style-desktop.css" />
         </noscript>
         <script src="css/5grid/jquery.js"></script>
         <script src="css/5grid/init.js?use=mobile,desktop,1000px&amp;mobileUI=1&amp;mobileUI.theme=none"></script>
+        <title>Statistics</title>
+        <link rel="shortcut icon" href="images/logo.png">
+        <script type="text/javascript" src="//www.google.com/jsapi"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="js/attc.googleCharts.js"></script>
+        <!--optional css-->
+        <link rel="stylesheet" type="text/css" href="js/attc.css">
+
     </head>
     <body>
+        <script>
+        $(document).ready(function(){
+        $('#stats').attc();
+});</script>
+        
         <div id="header-wrapper">
             <header id="header">
                 <div class="5grid-layout">
@@ -56,52 +69,71 @@
             </div>
         
             <div class="StudentData">
-                <table id="stats" width="350px" border="0">
-                            <tr>
-                                <td>
-                                    Question
-                                </td>
-                                <td >
-                                    Answer A
-                                </td>
-                                <td>
-                                    Answer B
-                                </td>
-                                <td>
-                                    Answer C
-                                </td>
-                                <td>
-                                    Answer D
-                                </td>
-                                <td>
-                                    Answer E
-                                </td>
-                                <td>
-                                    Unanswerd
-                                </td>
-                                <td>
-                                    Multiple Answers
-                                </td>
-                                <td>
-                                    Correct Answers
-                                </td>
-                                <td>
-                                    Correct Percentage from All Students
-                                </td>
-                                <td>
-                                    Correct Percentage from Attempted Students
-                                </td>
+                <table title="Statistics of Questions" 
+                    id="stats" 
+                    summary="Description of table" 
+                    data-attc-createChart="true"
+                    data-attc-colDescription="colDescription" 
+                    data-attc-colValues="attPercentage,allPercentage" 
+                    data-attc-location="statsG" 
+                    data-attc-hideTable="false" 
+                    data-attc-type="column"
+                    data-attc-controls='{"showHide":false,"create":false,"chartType":false}'
+                >
+                    <thead>
+                        <tr style="display:none">
+                                
+                                <th id="colDescription">Questions</th>
+                                
+                                <th id="A">Answer A</th>
+                                
+                                <th id="B">Answer B</th>
+                                
+                                <th id="C">Answer C</th>
+                                
+                                <th id="D">Answer D</th>
+                                
+                                <th id="E">Answer E</th>
+                                
+                                <th id="unanswered">Unanswered</th>
+                                
+                                <th id="multiple">Multiple</th>
+                                
+                                <th id="correct">Correct Answers</th>
+                                
+                                <th id="allPercentage">Correct Percentage from All Students</th>
+                                
+                                <th id="attPercentage">Correct Percentage from Attempted Students</th>
+                                
                             </tr>
+                            
+                    </thead>
+                    <tr>
+                        <td>Questions</td>
+                        <td >Answer A</td>
+                        <td>Answer B</td>
+                        <td>Answer C</td>
+                        <td>Answer D</td>
+                        <td>Answer E</td>
+                        <td>Unanswered</td>
+                        <td> Multiple Answers</td>
+                        <td> Correct Answers</td>
+                        <td>Correct Percentage from All Students</td>
+                        <td>Correct Percentage from Attempted Students</td>
+                    </tr>
+                    <tbody>
+                        <tr style="display:none"</tr>
                             <%
                                 double[] stats;
                                 
                                 for(int i = 1; i < 31; i++){
                                     stats = Marks.getStatistcs(i);
-                                
+                                //stats = Marks.getStatistcs(1);
                             %>
+                            
                             <tr>
                                 <td>
-                                   <%="Question "+i%>
+                                   <%="Q"+i%>
                                 </td>
                                 <td >
                                     <%=(int)stats[0]%>
@@ -134,11 +166,16 @@
                                     <%=stats[9]%>
                                 </td>
                             </tr>
+                            
+                            
                             <%
                                 }//end of for
                             %>
+                            </tbody>
+                    
                 </table>
-            </div><br><br>
+            </div>
+            <div id="statsG"></div><br><br><br>
             
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
@@ -148,6 +185,7 @@
                 <li><a href="#"><img src="images/social-link-4.jpg" alt=""></a></li>
             </ul>
         </div>
+                
         <div>
             <div class="5grid-layout" id="copyright">
                 <div class="row">
