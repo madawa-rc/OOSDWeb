@@ -68,12 +68,11 @@ ddaccordion.init({
 <div id="main_container">
 
 	<div class="header_login">
-    <div class="logo"><a href="#"><img src="css/images/logo.gif" alt="" title="" border="0" /></a></div>
     
     </div>
 
      
-         <div class="login_form">
+         <div class="box-2">
          
          <a href="#" class="forgot_pass">Forgot password</a>
          <strong>
@@ -82,17 +81,18 @@ ddaccordion.init({
                      out.print("<h2 align=\"center\">You are logged in!</h2><br>");
                      out.print("<p align=\"center\">Redirecting you now.....</p>");
                  } else {
-                     out.print("<h3>Enter your Login details</h3>");
+                     
              %><br>
                  <font color="#ff0000" size="2px">
                      <%
                          String msg = request.getParameter("id");
                          if (msg != null) {
-                             out.print(msg);
+                             out.print("<p align=\"center\">"+msg+"</p>");
                          }
                      %>
-                 </font>  
-                 <br></br>
+                 </font><%
+                 out.print("<h3>Enter your Login details</h3>");  
+                 %><br></br>
          </strong>
          
          <form name="login" method="post" action="SchoolLoginServlet" id="ContactForm">
