@@ -96,7 +96,7 @@
                             
                             <tr>
                                 <td>
-                                   <%="Q"+i%>
+                                    <a href="questionStats.jsp?qNum=<%=i%>"><%="Q"+i%></a>
                                 </td>
                                 <td >
                                     <%=(int)stats[0]%>
