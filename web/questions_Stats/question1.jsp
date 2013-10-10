@@ -35,6 +35,8 @@
 <script>
         $(document).ready(function(){
         $('#stats').attc();
+        $('#correctp1').attc();
+        $('#correctp2').attc();
 });</script>
         <div id="header-wrapper">
             <header id="header">
@@ -61,10 +63,10 @@
         <div>
         <div id="wrapper">
             <div class="1u" id="logo">
-                <p align="left"><font face="Helvitica" size="7px"><u>Statistics</u></font></p>
+                <p align="left"><font face="Helvitica" size="7px"><u>Statistics of Q1</u></font></p>
             </div>
         <div class="StudentData">
-            <table style="display:none">
+            <table>
                 <tr>
                     <td>Questions</td>
                     <td >Answer A</td>
@@ -98,17 +100,16 @@
                             </tr>
                 </table>
         </div>
-            <table  title="Statistics of Question 1" 
+            <table  title="Answer Distribution" 
                     id="stats" 
                     summary="Description of table" 
                     data-attc-createChart="true"
                     data-attc-colDescription="colDescription" 
-                    data-attc-colValues="correct,incorrectAll" 
+                    data-attc-colValues="A,B,C,D,E,unanswered,multiple" 
                     data-attc-location="statsG" 
                     data-attc-hideTable="true" 
-                    data-attc-type="pie"
-                    data-attc-googleOptions='{"is3D":true}'
-                    data-attc-controls='{"showHide":true,"create":true,"chartType":true}'  
+                    data-attc-type="column"
+                    data-attc-controls='{"showHide":false,"create":false,"chartType":false}'  
                 >
                     <thead>
                         <tr>
@@ -140,13 +141,88 @@
                             <td><%=(int)stats[7]%></td>
                             <td><%=stats[8]%></td>
                             <td><%=stats[9]%></td>
-                            <td><%=stats[10]-stats[7]%></td>
-                            <td><%=stats[11]-stats[7]%></td>
                         </tr>
                     </tbody>
                 </table>
+                        
+                <table  title="Correct Percentage from All Students" 
+                    id="correctp1" 
+                    summary="Description of table" 
+                    data-attc-createChart="true"
+                    data-attc-colDescription="colDescription" 
+                    data-attc-colValues="percentages" 
+                    data-attc-location="statscp1" 
+                    data-attc-hideTable="true" 
+                    data-attc-type="pie"
+                    data-attc-controls='{"showHide":false,"create":false,"chartType":false}'  
+                >
+                    <thead>
+                        <tr>
+                            <th id="names"></th>
+                            <th id="percentages"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Correct
+                            </td>
+                            <td>
+                                <%=stats[8]%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Wrong
+                            </td>
+                            <td>
+                                <%=100-stats[8]%>
+                            </td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+                            
+                <table  title="Correct Percentage from Attempted Students" 
+                    id="correctp2" 
+                    summary="Description of table" 
+                    data-attc-createChart="true"
+                    data-attc-colDescription="colDescription" 
+                    data-attc-colValues="percentages" 
+                    data-attc-location="statscp2" 
+                    data-attc-hideTable="true" 
+                    data-attc-type="pie"
+                    data-attc-controls='{"showHide":false,"create":false,"chartType":false}'  
+                >
+                    <thead>
+                        <tr>
+                            <th id="names"></th>
+                            <th id="percentages"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Correct
+                            </td>
+                            <td>
+                                <%=stats[9]%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Wrong
+                            </td>
+                            <td>
+                                <%=100-stats[9]%>
+                            </td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
                 <div id="statsG"></div><br><br>
-                
+                <div id="statscp1"></div><br><br>
+                <div id="statscp2"></div><br><br>
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
                 <li><a href="#"><img src="images/social-link-1.jpg" alt=""></a></li>

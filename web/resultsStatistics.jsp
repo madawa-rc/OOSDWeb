@@ -69,45 +69,7 @@
             </div>
         
             <div class="StudentData">
-                <table title="Statistics of Questions" 
-                    id="stats" 
-                    summary="Description of table" 
-                    data-attc-createChart="true"
-                    data-attc-colDescription="colDescription" 
-                    data-attc-colValues="attPercentage,allPercentage" 
-                    data-attc-location="statsG" 
-                    data-attc-hideTable="false" 
-                    data-attc-type="line"
-                    data-attc-controls='{"showHide":false,"create":false,"chartType":false}'
-                >
-                    <thead>
-                        <tr style="display:none">
-                                
-                                <th id="colDescription">Questions</th>
-                                
-                                <th id="A">Answer A</th>
-                                
-                                <th id="B">Answer B</th>
-                                
-                                <th id="C">Answer C</th>
-                                
-                                <th id="D">Answer D</th>
-                                
-                                <th id="E">Answer E</th>
-                                
-                                <th id="unanswered">Unanswered</th>
-                                
-                                <th id="multiple">Multiple</th>
-                                
-                                <th id="correct">Correct Answers</th>
-                                
-                                <th id="allPercentage">Correct Percentage from All Students</th>
-                                
-                                <th id="attPercentage">Correct Percentage from Attempted Students</th>
-                                
-                            </tr>
-                            
-                    </thead>
+                <table>
                     <tr>
                         <td>Questions</td>
                         <td >Answer A</td>
@@ -121,7 +83,8 @@
                         <td>Correct Percentage from All Students</td>
                         <td>Correct Percentage from Attempted Students</td>
                     </tr>
-                    <tbody>
+                    
+                    
                         <tr style="display:none"</tr>
                             <%
                                 double[] stats;
@@ -171,10 +134,98 @@
                             <%
                                 }//end of for
                             %>
-                            </tbody>
-                    
+                            
                 </table>
             </div>
+            <table title="Statistics of Questions" 
+                    id="stats" 
+                    summary="Description of table" 
+                    data-attc-createChart="true"
+                    data-attc-colDescription="colDescription" 
+                    data-attc-colValues="attPercentage,allPercentage" 
+                    data-attc-location="statsG" 
+                    data-attc-hideTable="true" 
+                    data-attc-type="line"
+                    data-attc-controls='{"showHide":false,"create":false,"chartType":false}'
+                >
+                    <thead>
+                        <tr style="display:none">
+                                
+                                <th id="colDescription">Questions</th>
+                                
+                                <th id="A">Answer A</th>
+                                
+                                <th id="B">Answer B</th>
+                                
+                                <th id="C">Answer C</th>
+                                
+                                <th id="D">Answer D</th>
+                                
+                                <th id="E">Answer E</th>
+                                
+                                <th id="unanswered">Unanswered</th>
+                                
+                                <th id="multiple">Multiple</th>
+                                
+                                <th id="correct">Correct Answers</th>
+                                
+                                <th id="allPercentage">Correct Percentage from All Students</th>
+                                
+                                <th id="attPercentage">Correct Percentage from Attempted Students</th>
+                                
+                            </tr>
+                            
+                    </thead>
+                    <tbody>
+                        <tr style="display:none"</tr>
+                            <%         
+                                for(int i = 1; i < 31; i++){
+                                    stats = Marks.getStatistcs(i);
+                                //stats = Marks.getStatistcs(8);
+                            %>
+                            
+                            <tr>
+                                <td>
+                                   <%="Q"+i%>
+                                </td>
+                                <td >
+                                    <%=(int)stats[0]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[1]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[2]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[3]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[4]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[5]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[6]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[7]%>
+                                </td>
+                                <td>
+                                    <%=stats[8]%>
+                                </td>
+                                <td>
+                                    <%=stats[9]%>
+                                </td>
+                            </tr>
+                            
+                            
+                            <%
+                                }//end of for
+                            %>
+                            </tbody>
+                </table>
             <div id="statsG"></div><br><br><br>
             
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>

@@ -82,7 +82,7 @@ public class Marks {
         Connection con = DatabaseConnectionHandler.getConnection();
         int A = 0, B = 0, C = 0, D = 0, E = 0, unanswered = 0, multiple = 0;
         int allStudents,attemptedStudents = 0,correctStudents = 0;
-        double[] statistics = new double[12];
+        double[] statistics = new double[10];
         String question = "q"+qNumber;
         
         ArrayList<String> answers = new ArrayList<String>();
@@ -126,8 +126,6 @@ public class Marks {
         statistics[4] = E; statistics[5] = unanswered; statistics[6] = multiple;
         statistics[7] = correctStudents; statistics[8] = correctStudents*100/allStudents;
         statistics[9] = correctStudents*100/attemptedStudents;
-        statistics[10] = allStudents;
-        statistics[11] = attemptedStudents;
         /*
          * double statistic;
          * 
