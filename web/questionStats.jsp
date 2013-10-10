@@ -32,6 +32,9 @@
         <script src="js/attc.googleCharts.js"></script>
     </head>
     <body>
+        <%
+            int qNumber = Integer.parseInt(request.getParameter("qNum"));
+        %>
 <script>
         $(document).ready(function(){
         $('#stats').attc();
@@ -63,7 +66,7 @@
         <div>
         <div id="wrapper">
             <div class="1u" id="logo">
-                <p align="left"><font face="Helvitica" size="7px"><u>Statistics of Q1</u></font></p>
+                <p align="left"><font face="Helvitica" size="7px"><u>Statistics of <%="Question "+ qNumber%></u></font></p>
             </div>
         <div class="StudentData">
             <table>
@@ -82,7 +85,7 @@
                 </tr>
                             <%
                                 double[] stats;
-                                stats = Marks.getStatistcs(1);
+                                stats = Marks.getStatistcs(qNumber);
                             %>
                             
                             <tr>
