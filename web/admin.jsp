@@ -28,12 +28,10 @@
     </head>
     <%
         User user = (User) session.getAttribute("user");
-        if(user==null||!user.getName().equals("Admin"))
-        {
+        if (user == null || !user.getName().equals("Admin")) {
             request.getSession().removeAttribute("user");
             response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
-        }
-        else{
+        } else {
             ArrayList<School> list;
             list = (ArrayList<School>) session.getAttribute("schoolList");
     %>
@@ -61,56 +59,74 @@
             </header>
         </div>
         <div id="wrapper">
-            <div class="1u" id="logo">
-                <p align="center"><font face="Arial" size="20px"><u>Administrator Dashboard</u></font></p>
-            </div>
-            <a href="addSchoolManual.jsp" > Add School by Admin</a>
-            <br>
-            <br>
-            <a href="centreInformation.jsp" > Centre Information</a>
-            <br>
-            <br>
-            <a href="centerStatistics.jsp" > Centre Statistics</a>
-            <br>
-            <br>
-            <a href="CommandServlet?id=sendAdmission" > Send Admission Cards to the applicants</a>
-            <br>
-            <br>
-            <a href="CommandServlet?id=assignCentres" > Assign Centres</a>
-            <br>
-            <br>
-            <a href="answerSheet.jsp" > Review Answer Sheets</a>
-            <br>
-            <br>
-            <form name="searchForm" method="post" action="AdminServlet">
-                <p class="para">&nbsp;Search:</font> &nbsp;&nbsp; 
-                    <input class="input" type="text" value="Enter name of the school"
-                           onBlur="if (this.value == '')
-                               this.value = 'Enter name of the school'"
-                           onFocus="if (this.value == 'Enter name of the school')
-                               this.value = ''" name="search">
-                    <input type="submit" value="Search" class="button">
-                </p>
-            </form>
-            <br><br>
-            <form name="getSchool" method="post" action="AdminServlet">
-                <input type="hidden" name="schoolEmail" value="" id="schoolEmail">
+            <div id="page">
+                <div class="">
+                    <div class="">
+                        <div class="" id="">
+                            <section>
+                                <div class="post">
+                                </div>
+                            </section>
+                            <div style= "width:600px; margin:auto;">
+                                <div class="box-2">
+                                    <p><strong>
+                                            <font size="+2">Administrator Dashboard</font>
+                                            <br><br>
+                                        </strong></p>
+                                    <a href="addSchoolManual.jsp" > Add School by Admin</a>
+                                    <br>
+                                    <br>
+                                    <a href="centreInformation.jsp" > Centre Information</a>
+                                    <br>
+                                    <br>
+                                    <a href="centerStatistics.jsp" > Centre Statistics</a>
+                                    <br>
+                                    <br>
+                                    <a href="CommandServlet?id=sendAdmission" > Send Admission Cards to the applicants</a>
+                                    <br>
+                                    <br>
+                                    <a href="CommandServlet?id=assignCentres" > Assign Centres</a>
+                                    <br>
+                                    <br>
+                                    <a href="answerSheet.jsp" > Review Answer Sheets</a>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <form name="searchForm" action="AdminServlet" method="post" id="ContactForm">
+                                        <p class="para">&nbsp;Search:</font> &nbsp;&nbsp; 
+                                            <input class="input" type="text" value="Enter name of the school"
+                                                   onBlur="if (this.value == '')
+                                                               this.value = 'Enter name of the school'"
+                                                   onFocus="if (this.value == 'Enter name of the school')
+                                                               this.value = ''" name="search">
+                                            <input type="submit" value="Search" class="button">
+                                        </p>
+                                    </form>
+                                    <br><br>
+                                    <form name="getSchool" method="post" action="AdminServlet" >
+                                        <input type="hidden" name="schoolEmail" value="" id="schoolEmail">
 
-                <%
-                    if (list == null); else if (list.size() == 0)
-                        out.print("No match found!");
-                    else {%>
-                    <p class="para">&nbsp;Search Results:</p>
-                <%
-                    for (int i = 0; i < list.size(); ++i) {
-                %>
-                <ul ><li>
-                        <br>&nbsp;&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail=" + list.get(i).getEmail()%>" target="new"><%out.print(list.get(i).getName());%></a>
-                    </li>
-                </ul>
-                <%}
-                    }%>
-            </form>
+                                        <%
+                                            if (list == null); else if (list.size() == 0)
+                                                out.print("No match found!");
+                                            else {%>
+                                        <p class="para">&nbsp;Search Results:</p>
+                                        <%
+                                            for (int i = 0; i < list.size(); ++i) {
+                                        %>
+                                        <ul ><li>
+                                                <br>&nbsp;&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail=" + list.get(i).getEmail()%>" target="new"><%out.print(list.get(i).getName());%></a>
+                                            </li>
+                                        </ul>
+                                        <%}
+                                            }%>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>	            
+                    </div>
+                </div>
+            </div>
             <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
                 <li><a href="#"><img src="images/social-link-1.jpg" alt=""></a></li>
@@ -131,5 +147,5 @@
     </body>
     <%
         }
-     %>
+    %>
 </html>
