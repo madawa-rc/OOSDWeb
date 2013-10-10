@@ -87,14 +87,27 @@
                                 <td>
                                     Tamil
                                 </td>
+                                <td>
+                                    Total
+                                </td>
                             </tr>
                 <%
                     if(preferredCenters != null){
-                        for(int i = 0; i < CenterAllocation.preferredCenters.length; i++){
+                        for(int i = 0; i < CenterAllocation.preferredCenters.length+1; i++){
                 %>
                             <tr>
                                 <td>
+                                    <% 
+                                    if(i==CenterAllocation.preferredCenters.length){                                    
+                                    %>
+                                    Total
+                                    <% 
+                                        }else{ 
+                                    %>
                                     <label><%=CenterAllocation.preferredCenters[i]%></label>
+                                    <% 
+                                        } 
+                                    %>
                                 </td>
                                 <td>
                                     <label><%=preferredCenters[i][0]%></label>                                
@@ -105,8 +118,11 @@
                                 <td>
                                     <label><%=preferredCenters[i][2]%></label>
                                 </td>
-                            </tr>
-                <%      }//end of for
+                                <td>
+                                    <label><%=preferredCenters[i][3]%></label>
+                                </td></tr>
+                <%     
+                    }//end of for    
                     }//end of if
                 %>
                 </table>
@@ -126,14 +142,28 @@
                                 <td>
                                     Tamil
                                 </td>
+                                <td>
+                                    Total
+                                </td>
                             </tr>
                 <%
                     if(assignedCenters != null){
-                        for(int i = 0; i < CenterAllocation.assignedCenters.length; i++){
+                        for(int i = 0; i < CenterAllocation.assignedCenters.length+1; i++){
                 %>
                             <tr>
                                 <td>
+                                    <% 
+                                    if(i==CenterAllocation.assignedCenters.length){                                    
+                                    %>
+                                    Total
+                                    <% 
+                                        }else{ 
+                                    %>
                                     <label><%=CenterAllocation.assignedCenters[i]%></label>
+                                    <% 
+                                        } 
+                                    %>
+                                    
                                 </td>
                                 <td>
                                     <label><%=assignedCenters[i][0]%></label>                                
@@ -143,6 +173,9 @@
                                 </td>
                                 <td>
                                     <label><%=assignedCenters[i][2]%></label>
+                                </td>
+                                 <td>
+                                    <label><%=assignedCenters[i][3]%></label>
                                 </td>
                             </tr>
                 <%      }//end of for

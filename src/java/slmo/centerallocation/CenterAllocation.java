@@ -38,14 +38,13 @@ public class CenterAllocation {
 
     private static int[][] getCenterStatistics(String[] centers, String queryCheck) {
         String[] medium = {"SINHALA", "ENGLISH", "TAMIL"};
-        int[][] output = new int[centers.length][3];
+        int[][] output = new int[centers.length+1][4];
         try {
             Connection con = Database.DatabaseConnectionHandler.getConnection();
 
 
 
             PreparedStatement ps = con.prepareStatement(queryCheck);
-
             for (int i = 0; i < centers.length; i++) {
                 for (int j = 0; j < 3; j++) {
                     ps.setString(1, centers[i]);
@@ -55,6 +54,9 @@ public class CenterAllocation {
                     output[i][j] = rs.getInt(1);
                     
                 }
+                output[i][3] = output[i][0]+output[i][1]+output[i][2];
+               // output[centers.length][0]+= output[i][0];
+                for (int j = 0; j < 4; j++) output[centers.length][j]+= output[i][j];
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
