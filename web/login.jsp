@@ -81,17 +81,18 @@ ddaccordion.init({
                      out.print("<h2 align=\"center\">You are logged in!</h2><br>");
                      out.print("<p align=\"center\">Redirecting you now.....</p>");
                  } else {
-                     out.print("<h3>Enter your Login details</h3>");
+                     
              %><br>
                  <font color="#ff0000" size="2px">
                      <%
                          String msg = request.getParameter("id");
                          if (msg != null) {
-                             out.print(msg);
+                             out.print("<p align=\"center\">"+msg+"</p>");
                          }
                      %>
-                 </font>  
-                 <br></br>
+                 </font><%
+                 out.print("<h3>Enter your Login details</h3>");  
+                 %><br></br>
          </strong>
          
          <form name="login" method="post" action="SchoolLoginServlet" id="ContactForm">
