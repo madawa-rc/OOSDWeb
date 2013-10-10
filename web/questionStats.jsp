@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Question1 Statistics</title>
+        <title>Question Statistics</title>
         <base href="http://localhost:8080/OOSDWeb/web"/>
         <link rel="shortcut icon" href="images/logo.png">
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
