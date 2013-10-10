@@ -71,11 +71,10 @@
         <div id="main_container">
 
             <div class="header">
-                <div class="logo"><a href="#"><img src="css/images/logo.gif" alt="" title="" border="0" /></a></div>
+                
 
-                <div class="right_header">Welcome to Mathematics Olympiad Foundation!<br>
-                </div>
-                <div id="clock_a"></div>
+                
+                
             </div>
 
             <div class="main_content">
