@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package slmo.centerallocation;
 
 import java.util.ArrayList;
@@ -40,6 +36,8 @@ public class ExamCenter {
 
     public void addStudent(Student student) {
         int classroom = Integer.parseInt(student.getAssigned_classrm());
+        System.out.println(student.getAssigned_classrm());
+        System.out.println(student.getName()+"  "+student.getAssigned_centre()+"  ");
         classroomList.get(classroom-1).addStudent(student);
     }
 

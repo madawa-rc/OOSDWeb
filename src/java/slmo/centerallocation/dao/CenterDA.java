@@ -148,9 +148,18 @@ public class CenterDA {
         }
         for (int k = 0; k < studentList.size(); k++) {
             Student student = studentList.get(k);
-            center = getCenter(student.getAssigned_centre());
-            if (student.getAssigned_classrm() != null) {
+            center = get(centerList,student.getAssigned_centre());
+            System.out.println(center.getClassrooms()+"asd"+center.getCenterName()+"  "+center.getClassroomList().size());
+            if (student.getAssigned_classrm() != null&&!student.getAssigned_classrm().startsWith("0")) {
                 center.addStudent(student);
+            }
+        }
+        for(int i=0;i<centerList.size();i++){
+            
+            ArrayList<Classroom> classroomList = centerList.get(i).getClassroomList();
+            for(int j=0;j<classroomList.size();j++)
+            {
+                classroomList.get(j).sort();
             }
         }
         return centerList;
@@ -163,22 +172,5 @@ public class CenterDA {
             }
         }
         return null;
-    }
-    public static void sort(ExamCenter center){
-        Comparator<Student> comparator = new Comparator<Student>() {
-            @Override
-            public int compare(Student s1, Student s2) {
-                if( s1.getIndex()>s2.getIndex()){
-                    return 1;
-                }
-                else
-                    return -1;
-            }
-        };
-        ArrayList<Classroom> classroomList = center.getClassroomList();
-        for(int i=0;i<classroomList.size();i++)
-        {
-            Collections.sort(classroomList.get(i).getStudentList(), comparator);
-        }
     }
 }

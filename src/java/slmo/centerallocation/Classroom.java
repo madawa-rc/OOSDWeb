@@ -2,12 +2,16 @@
 package slmo.centerallocation;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import slmo.registration.Student;
 
 
 public class Classroom {
     private int classroomNumber;
     private int numberOfStudents;
+    private int maxIndex=0;
+    private int minIndex=0;
     ArrayList<Student> studentList;
 
     public Classroom(int classroomNumber, int numberOfStudents) {
@@ -26,6 +30,32 @@ public class Classroom {
 
     public ArrayList<Student> getStudentList() {
         return studentList;
+    }
+    public void sort(){
+        Comparator<Student> comparator = new Comparator<Student>() {
+            @Override
+            public int compare(Student s1, Student s2) {
+                if( s1.getIndex()>s2.getIndex()){
+                    return 1;
+                }
+                else
+                    return -1;
+            }
+        };
+        Collections.sort(studentList,comparator);
+        if(studentList.size()>=1){
+            minIndex=studentList.get(0).getIndex();
+            maxIndex=studentList.get(studentList.size()-1).getIndex();
+        }
+        
+    }
+
+    public int getMaxIndex() {
+        return maxIndex;
+    }
+
+    public int getMinIndex() {
+        return minIndex;
     }
     
 }

@@ -1,18 +1,21 @@
 package slmo.centerallocation.Servlet;
- 
+
+import ReportGeneration.Report;
 import admin.ExportStudentList;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
- 
+import java.util.ArrayList;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
+import slmo.centerallocation.ExamCenter;
+import slmo.centerallocation.dao.CenterDA;
 
 public class DownloadServlet extends HttpServlet {
 
@@ -28,44 +31,52 @@ public class DownloadServlet extends HttpServlet {
      */
     static final long serialVersionUID = 1L;
     private static final int BUFSIZE = 4096;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String filePath = getServletContext().getRealPath("") + File.separator + "Downloads\\Database.xlsx";
-        ExportStudentList.exportStudentsToExcel(filePath);
-        
+        String filePath = null;
+        if (request.getParameter("name").equals("Database")) {
+            //filePath = getServletContext().getRealPath("") + File.separator + "Downloads\\Database.xlsx";
+            filePath="Reports\\Database.xlsx";
+            ExportStudentList.exportStudentsToExcel(filePath);
+        } else if (request.getParameter("name").equals("AttendanceSheets")) {
+            filePath = "AttendanceSheet.docx";
+            ArrayList<ExamCenter> centers = CenterDA.getAllPopulatedCenters();
+            ReportGeneration.Report.generate(filePath, "centers", centers);
+        }
+        else
+            return;
+
         response.setContentType("text/html;charset=UTF-8");
-        
+
         File file = new File(filePath);
-        int length   = 0;
+        int length = 0;
         ServletOutputStream outStream = response.getOutputStream();
-        ServletContext context  = getServletConfig().getServletContext();
+        ServletContext context = getServletConfig().getServletContext();
         String mimetype = context.getMimeType(filePath);
-        
+
         // sets response content type
         if (mimetype == null) {
             mimetype = "application/octet-stream";
         }
         response.setContentType(mimetype);
-        response.setContentLength((int)file.length());
+        response.setContentLength((int) file.length());
         String fileName = (new File(filePath)).getName();
-        
+
         // sets HTTP header
         response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
-        
+
         byte[] byteBuffer = new byte[BUFSIZE];
         DataInputStream in = new DataInputStream(new FileInputStream(file));
-        
+
         // reads the file's bytes and writes them to the response stream
-        while ((in != null) && ((length = in.read(byteBuffer)) != -1))
-        {
-            outStream.write(byteBuffer,0,length);
+        while ((in != null) && ((length = in.read(byteBuffer)) != -1)) {
+            outStream.write(byteBuffer, 0, length);
         }
-        
+
         in.close();
         outStream.close();
     }
-        
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
