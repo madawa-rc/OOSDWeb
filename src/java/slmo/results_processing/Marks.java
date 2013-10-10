@@ -66,7 +66,7 @@ public class Marks {
         }
     }
     
-    public double[] getStatistcs(int qNumber) throws SQLException{
+    public static double[] getStatistcs(int qNumber) throws SQLException{
         Connection con = DatabaseConnectionHandler.getConnection();
         int A = 0, B = 0, C = 0, D = 0, E = 0, unanswered = 0, multiple = 0;
         int allStudents,attemptedStudents = 0,correctStudents = 0;

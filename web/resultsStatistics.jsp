@@ -4,6 +4,7 @@
     Author     : Madawa
 --%>
 
+<%@page import="slmo.results_processing.Marks"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -54,33 +55,91 @@
                 <p align="left"><font face="Helvitica" size="7px"><u>Statistics</u></font></p>
             </div>
         
-        <form name="centreInfo" action="CenterUpdateServlet" mthod="post">
             <div class="StudentData">
-                <table id="ttt" width="350px" border="0">
+                <table id="stats" width="350px" border="0">
                             <tr>
                                 <td>
-                                    Name
+                                    Question
                                 </td>
                                 <td >
-                                    Location
+                                    Answer A
                                 </td>
                                 <td>
-                                    Capacity
+                                    Answer B
                                 </td>
                                 <td>
-                                    Classrooms
+                                    Answer C
                                 </td>
                                 <td>
-                                    Supervisor
+                                    Answer D
                                 </td>
                                 <td>
-                                    Phone
+                                    Answer E
+                                </td>
+                                <td>
+                                    Unanswerd
+                                </td>
+                                <td>
+                                    Multiple Answers
+                                </td>
+                                <td>
+                                    Correct Answers
+                                </td>
+                                <td>
+                                    Correct Percentage from All Students
+                                </td>
+                                <td>
+                                    Correct Percentage from Attempted Students
                                 </td>
                             </tr>
+                            <%
+                                double[] stats;
+                                
+                                for(int i = 1; i < 31; i++){
+                                    stats = Marks.getStatistcs(i);
+                                
+                            %>
+                            <tr>
+                                <td>
+                                   <%="Question "+i%>
+                                </td>
+                                <td >
+                                    <%=(int)stats[0]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[1]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[2]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[3]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[4]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[5]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[6]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[7]%>
+                                </td>
+                                <td>
+                                    <%=stats[8]%>
+                                </td>
+                                <td>
+                                    <%=stats[9]%>
+                                </td>
+                            </tr>
+                            <%
+                                }//end of for
+                            %>
                 </table>
             </div><br><br>
-                <input type="submit" value="Update All" class="button">
-        </form>
+            
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
                 <li><a href="#"><img src="images/social-link-1.jpg" alt=""></a></li>
