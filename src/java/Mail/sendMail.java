@@ -1,3 +1,6 @@
+/*
+ * A class to implement the process of sending an email
+ */
 package Mail;
 
 import java.util.Properties;
@@ -16,8 +19,15 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class sendMail {
+/**
+ * @author Fiontar
+ */
 
+public class sendMail {
+/**
+ * method sets up the message contents
+ * @return message format
+ */
     private static Message setUp() {
         final String username = "slomfoundation@gmail.com";
 
@@ -46,7 +56,12 @@ public class sendMail {
             throw new RuntimeException(e);
         }
     }
-
+/**
+ * methods used for contact page. This allows applicant to send email to SLMO 
+ * @param email email address
+ * @param title message title
+ * @param text message content
+ */
     public static void sendmail(String email, String title, String text) {
         Message message = setUp();
         try {
@@ -59,7 +74,13 @@ public class sendMail {
             ex.printStackTrace();
         }
     }
-
+/**
+ * method implements email sending process
+ * @param emailTo receiver email address 
+ * @param emailReplyTo replying email address
+ * @param title message title
+ * @param text message content
+ */
     public static void sendmail(String emailTo, String emailReplyTo, String title, String text) {
         Message message = setUp();
         try {
@@ -73,7 +94,14 @@ public class sendMail {
             ex.printStackTrace();
         }
     }
-
+/**
+ * method implements the process of sending email including attachments
+ * @param email receiver email
+ * @param title message title
+ * @param text message content
+ * @param fileSource source
+ * @param fileName file name
+ */
     public static void sendMailWithAttachment(String email, String title, String text, String fileSource, String fileName) {
         try {
             Message message = setUp();

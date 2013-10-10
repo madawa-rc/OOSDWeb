@@ -56,6 +56,10 @@
         <servlet-name>UploadServlet</servlet-name>
         <servlet-class>slmo.centerallocation.Servlet.UploadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>slmo.centerallocation.Servlet.DownloadServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SchoolRegistrationServlet</servlet-name>
         <url-pattern>/SchoolRegistrationServlet</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>UploadServlet</servlet-name>
         <url-pattern>/UploadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/DownloadServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

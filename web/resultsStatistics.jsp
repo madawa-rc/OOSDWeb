@@ -77,7 +77,7 @@
                     data-attc-colValues="attPercentage,allPercentage" 
                     data-attc-location="statsG" 
                     data-attc-hideTable="false" 
-                    data-attc-type="column"
+                    data-attc-type="line"
                     data-attc-controls='{"showHide":false,"create":false,"chartType":false}'
                 >
                     <thead>
@@ -128,7 +128,7 @@
                                 
                                 for(int i = 1; i < 31; i++){
                                     stats = Marks.getStatistcs(i);
-                                //stats = Marks.getStatistcs(1);
+                                //stats = Marks.getStatistcs(8);
                             %>
                             
                             <tr>

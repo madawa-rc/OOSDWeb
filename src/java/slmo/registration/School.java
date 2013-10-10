@@ -271,8 +271,10 @@ public class School extends User{
     public ArrayList<Student> getStudentList() {
         return StudentList;
     }   
-
-
+/**
+ * method assigns a center for the applicant
+ * @param center center name
+ */
     public void setAssignedCenter(String center) {
         this.assignedCenter = center;
     }
