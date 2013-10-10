@@ -19,5 +19,13 @@ public class Classroom {
     public void addStudent(Student student){
         studentList.add(student);
     }
+
+    public int getClassroomNumber() {
+        return classroomNumber;
+    }
+
+    public ArrayList<Student> getStudentList() {
+        return studentList;
+    }
     
 }

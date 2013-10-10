@@ -145,15 +145,17 @@ public class CenterDA {
 
                 ArrayList<Classroom> ClassList = new ArrayList<Classroom>();
                 for (int j = 0; j < center.getClassrooms(); j++) {
-                    ClassList.add(new Classroom(i + 1, capacity));
+                    ClassList.add(new Classroom(j + 1, capacity));
                 }
                 center.setClassroomList(ClassList);
             }
         }
         for (int k = 0; k < studentList.size(); k++) {
             Student student = studentList.get(k);
-            center = getCenter(student.getAssigned_centre());
-            if (student.getAssigned_classrm() != null) {
+            System.out.println(student.getName());
+            center = get(centerList,student.getAssigned_centre());
+          //  System.out.println("center  "+center.getCenterName()+"    "+center.getCapacity()/center.getClassrooms()+"     "+center.getClassroomList().size()+"    "+student.getAssigned_classrm());
+            if (student.getAssigned_classrm()!=null&&!student.getAssigned_classrm().startsWith("0")) {
                 center.addStudent(student);
             }
         }
