@@ -51,9 +51,9 @@ public class CenterAllocation {
                     ps.setString(1, centers[i]);
                     ps.setString(2, medium[j]);
                     ResultSet rs = ps.executeQuery();
-
+                    rs.next();
                     output[i][j] = rs.getInt(1);
-
+                    
                 }
             }
         } catch (SQLException ex) {
