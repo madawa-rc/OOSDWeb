@@ -69,15 +69,83 @@
             </div>
         
             <div class="StudentData">
-                <table title="Statistics of Questions" 
+                <table>
+                    <tr>
+                        <td>Questions</td>
+                        <td >Answer A</td>
+                        <td>Answer B</td>
+                        <td>Answer C</td>
+                        <td>Answer D</td>
+                        <td>Answer E</td>
+                        <td>Unanswered</td>
+                        <td> Multiple Answers</td>
+                        <td> Correct Answers</td>
+                        <td>Correct Percentage from All Students</td>
+                        <td>Correct Percentage from Attempted Students</td>
+                    </tr>
+                    
+                    
+                        <tr style="display:none"</tr>
+                            <%
+                                double[] stats;
+                                
+                                for(int i = 1; i < 31; i++){
+                                    stats = Marks.getStatistcs(i);
+                                //stats = Marks.getStatistcs(8);
+                            %>
+                            
+                            <tr>
+                                <td>
+                                    <a href="questionStats.jsp?qNum=<%=i%>"><%="Q"+i%></a>
+                                </td>
+                                <td >
+                                    <%=(int)stats[0]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[1]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[2]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[3]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[4]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[5]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[6]%>
+                                </td>
+                                <td>
+                                    <%=(int)stats[7]%>
+                                </td>
+                                <td>
+                                    <%=stats[8]%>
+                                </td>
+                                <td>
+                                    <%=stats[9]%>
+                                </td>
+                            </tr>
+                            
+                            
+                            <%
+                                }//end of for
+                            %>
+                            
+                </table>
+            </div>
+            <table title="Statistics of Questions" 
                     id="stats" 
                     summary="Description of table" 
                     data-attc-createChart="true"
                     data-attc-colDescription="colDescription" 
                     data-attc-colValues="attPercentage,allPercentage" 
                     data-attc-location="statsG" 
-                    data-attc-hideTable="false" 
-                    data-attc-type="column"
+                    data-attc-hideTable="true" 
+                    data-attc-type="line"
                     data-attc-controls='{"showHide":false,"create":false,"chartType":false}'
                 >
                     <thead>
@@ -108,27 +176,12 @@
                             </tr>
                             
                     </thead>
-                    <tr>
-                        <td>Questions</td>
-                        <td >Answer A</td>
-                        <td>Answer B</td>
-                        <td>Answer C</td>
-                        <td>Answer D</td>
-                        <td>Answer E</td>
-                        <td>Unanswered</td>
-                        <td> Multiple Answers</td>
-                        <td> Correct Answers</td>
-                        <td>Correct Percentage from All Students</td>
-                        <td>Correct Percentage from Attempted Students</td>
-                    </tr>
                     <tbody>
                         <tr style="display:none"</tr>
-                            <%
-                                double[] stats;
-                                
+                            <%         
                                 for(int i = 1; i < 31; i++){
                                     stats = Marks.getStatistcs(i);
-                                //stats = Marks.getStatistcs(1);
+                                //stats = Marks.getStatistcs(8);
                             %>
                             
                             <tr>
@@ -172,9 +225,7 @@
                                 }//end of for
                             %>
                             </tbody>
-                    
                 </table>
-            </div>
             <div id="statsG"></div><br><br><br>
             
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>

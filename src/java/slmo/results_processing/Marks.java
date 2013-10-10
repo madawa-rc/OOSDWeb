@@ -115,7 +115,7 @@ public class Marks {
             }else if(ans.equals("Multiple")){
                 ++multiple;
             }
-            if(!(ans.equals("Unanswered")&&ans.equals("Multiple"))){
+            if(!ans.equals("Unanswered")){
                 ++attemptedStudents;
                 if(ans.equals(correctAnswer)){
                     ++correctStudents;
