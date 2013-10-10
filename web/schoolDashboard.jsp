@@ -240,10 +240,10 @@
                         <li><a href="login.jsp">Login</a></li>
                         <% if (user != null) {
                         %>
-                        <li><a href="<%=user.getLink()%>">Dashboard</a>
+                        <li><a class="current" href="<%=user.getLink()%>">Dashboard</a>
                         </li>
                         <%}%>
-                        <li><a class="current" href="contactUs.jsp">Contact us</a></li>
+                        <li><a href="contactUs.jsp">Contact us</a></li>
                     </ul>
                 </div>
                 <div class="center_content">
