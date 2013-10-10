@@ -91,6 +91,9 @@
                                     <a href="answerSheet.jsp" > Review Answer Sheets</a>
                                     <br>
                                     <br>
+                                    <a href="resultsStatistics.jsp" > Answer Statistics</a>
+                                    <br>
+                                    <br>
                                     <br>
                                     <form name="searchForm" action="AdminServlet" method="post" id="ContactForm">
                                         <p class="para">&nbsp;Search:</font> &nbsp;&nbsp; 
