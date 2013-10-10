@@ -1,6 +1,5 @@
 package slmo.centerallocation.Servlet;
 
-import ReportGeneration.Report;
 import admin.ExportStudentList;
 import java.io.DataInputStream;
 import java.io.File;
@@ -40,7 +39,7 @@ public class DownloadServlet extends HttpServlet {
             filePath="Reports\\Database.xlsx";
             ExportStudentList.exportStudentsToExcel(filePath);
         } else if (request.getParameter("name").equals("AttendanceSheets")) {
-            filePath = "AttendanceSheet.docx";
+            filePath = "Reports\\AttendanceSheet.docx";
             ArrayList<ExamCenter> centers = CenterDA.getAllPopulatedCenters();
             ReportGeneration.Report.generate(filePath, "centers", centers);
         }
