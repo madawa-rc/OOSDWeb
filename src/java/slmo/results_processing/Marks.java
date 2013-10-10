@@ -56,11 +56,19 @@ public class Marks {
             }
         }
         String queryCheck = "UPDATE student SET marks = ? WHERE indexNum = ?";
+        String queryCheck2 = "UPDATE marks SET score = ? WHERE indexNum = ?";
         Connection con = DatabaseConnectionHandler.getConnection();
         try {
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setInt(1, score);
             ps.setString(2, list[0]);
+            ps.executeUpdate();
+            
+            ps = con.prepareStatement(queryCheck2);
+            ps.setInt(1, score);
+            ps.setString(2, list[0]);
+            ps.executeUpdate();
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
