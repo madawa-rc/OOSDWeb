@@ -187,7 +187,7 @@
                                             <div class="footer">
 
                                                 <div class="left_footer"><p>Sri Lanka Mathematics Olympiad Foundation | 2013.09.21 | Contact: +94 71 546 517 8</p></div>
-                                                <div class="right_footer"><a href="http://indeziner.com"><img src="css/images/indeziner_logo.gif" alt="" title="" border="0" /></a></div>
+                                                
 
                                             </div>
 
