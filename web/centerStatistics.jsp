@@ -4,6 +4,7 @@
     Author     : Danula
 --%>
 
+<%@page import="slmo.centerallocation.CenterAllocation"%>
 <%@page import="slmo.registration.User"%>
 <%@page import="slmo.centerallocation.dao.CenterDA"%>
 <%@page import="slmo.centerallocation.ExamCenter"%>
@@ -19,7 +20,8 @@
                 response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
             }
             else{
-                ArrayList<ExamCenter> centerList = CenterDA.getAllCenters();
+                int[][] preferredCenters = CenterAllocation.getPreferredCenterStats();
+                int[][] assignedCenters = CenterAllocation.getAssignedCenterStats();
         %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -68,13 +70,13 @@
                 <p align="left"><font face="Helvitica" size="7px"><u>Center Statistics</u></font></p>
             </div>
         
-        <form name="centreInfo" action="CenterUpdateServlet" mthod="post">
-            <input type="hidden" value="<%=centerList.size()%>" id="size" name="size">
+        
+            
             <div class="StudentData">
-                <table id="dataTable" width="350px">
+                <table id="dataTable" width="100px" border="0">
                             <tr>
                                 <td>
-                                    Center
+                                    Preferred Center
                                 </td>
                                 <td >
                                     Sinhala
@@ -85,47 +87,70 @@
                                 <td>
                                     Tamil
                                 </td>
-                                <td>
-                                    Coordinators
-                                </td>
-                                <td>
-                                    Contact number
-                                </td>
                             </tr>
                 <%
-                    if(centerList != null){
-                        for(int i = 0; i < centerList.size(); i++){
+                    if(preferredCenters != null){
+                        for(int i = 0; i < CenterAllocation.preferredCenters.length; i++){
                 %>
                             <tr>
                                 <td>
-                                    <input type="hidden" id="<%="name" + String.valueOf(i+1)%>" value="<%=centerList.get(i).getCenterName()%>" name="<%="name" + String.valueOf(i+1)%>" required="true"/>
-                                    <label><%=centerList.get(i).getCenterName()%></label>
+                                    <label><%=CenterAllocation.preferredCenters[i]%></label>
                                 </td>
                                 <td>
-                                    <input type="text" value="<%=centerList.get(i).getLocation()%>" id="<%="location" + String.valueOf(i+1)%>" name="<%="location" + String.valueOf(i+1)%>" required="true"/>
+                                    <label><%=preferredCenters[i][0]%></label>                                
                                 </td>
                                 <td>
-                                    <input type="text" value="<%=centerList.get(i).getCapacity()%>" id="<%="capacity" + String.valueOf(i+1)%>" name="<%="capacity" + String.valueOf(i+1)%>" required="true"/>
+                                    <label><%=preferredCenters[i][1]%></label>
                                 </td>
                                 <td>
-                                    <input type="text" value="<%=centerList.get(i).getClassrooms()%>" id="<%="classrooms" + String.valueOf(i+1)%>" name="<%="classrooms" + String.valueOf(i+1)%>" required="true"/>
-                                </td>
-                                <td>
-                                    <input type="text" value="<%=centerList.get(i).getSupervisor()%>" id="<%="supervisor" + String.valueOf(i+1)%>" name="<%="supervisor" + String.valueOf(i+1)%>" required="true"/>
-                                </td>
-                                <td>
-                                    <input type="text" value="<%=centerList.get(i).getPhone()%>" id="<%="phone" + String.valueOf(i+1)%>" name="<%="phone" + String.valueOf(i+1)%>" required="true"/>
+                                    <label><%=preferredCenters[i][2]%></label>
                                 </td>
                             </tr>
                 <%      }//end of for
                     }//end of if
                 %>
                 </table>
-            </div><br><br>
-                <div class="ButtonAlign">
-                <input type="submit" value="Update All" class="button">
-                </div>
-        </form>
+                <br>
+                <br>
+                            <table id="dataTable2" width="100px" border="0">
+                            <tr>
+                                <td>
+                                    Assigned Center
+                                </td>
+                                <td >
+                                    Sinhala
+                                </td>
+                                <td>
+                                    English
+                                </td>
+                                <td>
+                                    Tamil
+                                </td>
+                            </tr>
+                <%
+                    if(assignedCenters != null){
+                        for(int i = 0; i < CenterAllocation.assignedCenters.length; i++){
+                %>
+                            <tr>
+                                <td>
+                                    <label><%=CenterAllocation.assignedCenters[i]%></label>
+                                </td>
+                                <td>
+                                    <label><%=assignedCenters[i][0]%></label>                                
+                                </td>
+                                <td>
+                                    <label><%=assignedCenters[i][1]%></label>
+                                </td>
+                                <td>
+                                    <label><%=assignedCenters[i][2]%></label>
+                                </td>
+                            </tr>
+                <%      }//end of for
+                    }//end of if
+                %>
+                </table>
+            
+            </div>
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
                 <li><a href="#"><img src="images/social-link-1.jpg" alt=""></a></li>

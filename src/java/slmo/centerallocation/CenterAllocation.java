@@ -22,15 +22,16 @@ import slmo.registration.dao.StudentDA;
  * @author Danula
  */
 public class CenterAllocation {
-
+    public static String[] preferredCenters = {"COLOMBO", "GALLE", "JAFFNA", "KANDY", "KURUNEGALA", "MATARA", "TRINCOMALEE"};
+    public static String[] assignedCenters = {"COLOMBO1", "COLOMBO2", "GALLE", "JAFFNA", "KANDY", "KURUNEGALA", "MATARA", "TRINCOMALEE"};
+        
     public static int[][] getPreferredCenterStats() {
-        String[] preferredCenters = {"COLOMBO", "GALLE", "JAFFNA", "KANDY", "KURUNEGALA", "MATARA", "TRINCOMALEE"};
+        
         String queryCheck = "SELECT COUNT(*) FROM student WHERE preferred_centre=? AND medium = ?";
         return getCenterStatistics(preferredCenters, queryCheck);
     }
 
     public static int[][] getAssignedCenterStats() {
-        String[] assignedCenters = {"COLOMBO1", "COLOMBO2", "GALLE", "JAFFNA", "KANDY", "KURUNEGALA", "MATARA", "TRINCOMALEE"};
         String queryCheck = "SELECT COUNT(*) FROM student WHERE assigned_centre=? AND medium = ?";
         return getCenterStatistics(assignedCenters, queryCheck);
     }
