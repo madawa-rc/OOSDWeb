@@ -66,8 +66,8 @@ public class StudentDA {
     }
 /**
  * method gives the list of students
- * @param pvt
- * @return 
+ * @param pvt is "true" for private applicant "false" for school applicant
+ * @return the list of applicants
  */
     private static ArrayList<Student> getStudents(boolean pvt) {
         ArrayList<Student> studentList = new ArrayList<Student>();
@@ -117,15 +117,24 @@ public class StudentDA {
         }
         return studentList;
     }
-
+/**
+ * method gives the list of all school applicants
+ * @return list of students
+ */
     public static ArrayList<Student> getAllStudents() {
         return getStudents(false);
     }
-
+/**
+ * method gives the list of all private applicants 
+ * @return list of private applicants
+ */
     public static ArrayList<Student> getAllPrivateStudents() {
         return getStudents(true);
     }
-
+/**
+ * method allows to delete students from database 
+ * @param id index of the student to be removed
+ */
     public static void deleteStudent(String id) {
         Connection con;
 
@@ -141,7 +150,15 @@ public class StudentDA {
             System.out.println(ex.getMessage());
         }
     }
-
+/**
+ * method allows to updates student information in the database
+ * @param s student
+ * @param name student name
+ * @param date date of birth
+ * @param month month of birth
+ * @param year year of birth
+ * @param medium medium
+ */
     public static void update(Student s, String name, String date, String month, String year, String medium) {
         try {
             s.setName(name);
@@ -170,7 +187,11 @@ public class StudentDA {
             System.out.println(ex.getMessage());
         }
     }
-
+/**
+ * method updates details of the student to assign centers 
+ * @param s student
+ * @param centre exam center name
+ */
     public static void update(Student s, String centre) {
         try {
 
@@ -190,7 +211,12 @@ public class StudentDA {
             System.out.println(ex.getMessage());
         }
     }
-
+/**
+ * updates details of the student to assign unique index numbers depending on the allocated classroom
+ * @param s student 
+ * @param index index number
+ * @param classroom class room number
+ */
     public static void update(Student s, int index, int classroom) {
         try {
 

@@ -24,10 +24,10 @@ import slmo.registration.dao.StudentDA;
  */
 
 public class CenterDA {
-/**
- * method gives an array of exam centers
- * @return list of exam centers
- */
+    /**
+     * method gives an array of exam centers
+     * @return list of exam centers
+     */
     public static ArrayList<ExamCenter> getAllCenters() {
         ArrayList<ExamCenter> examCenterList = new ArrayList<ExamCenter>();
         try {
@@ -64,15 +64,15 @@ public class CenterDA {
         Collections.sort(examCenterList, comparator);
         return examCenterList;
     }
-/**
- * method update details of exam centers
- * @param name exam center name
- * @param location location
- * @param capacity capacity
- * @param classrooms number of classrooms
- * @param supervisor supervisor name
- * @param phone contact number
- */
+    /**
+     * method update details of exam centers
+     * @param name exam center name
+     * @param location location
+     * @param capacity capacity
+     * @param classrooms number of classrooms
+     * @param supervisor supervisor name
+     * @param phone contact number
+     */
     public static void updateCenter(String name, String location, int capacity, int classrooms, String supervisor, String phone) {
         try {
             Connection con = DatabaseConnectionHandler.getConnection();
@@ -95,11 +95,11 @@ public class CenterDA {
             System.out.println(ex.getMessage());
         }
     }
-/**
- * method searches a center by name and return its details
- * @param name center name
- * @return exam center
- */
+    /**
+     * method searches a center by name and return its details
+     * @param name center name
+     * @return exam center
+     */
     public static ExamCenter getCenter(String name) {
         try {
             Connection con = Database.DatabaseConnectionHandler.getConnection();
@@ -130,10 +130,6 @@ public class CenterDA {
         }
         return null;
     }
-/**
- * method gives an 
- * @return 
- */
     public static ArrayList<ExamCenter> getAllPopulatedCenters() {
         ArrayList<ExamCenter> centerList = getAllCenters();
         ArrayList<Student> studentList = StudentDA.getAllStudents();
@@ -145,23 +141,21 @@ public class CenterDA {
 
                 ArrayList<Classroom> ClassList = new ArrayList<Classroom>();
                 for (int j = 0; j < center.getClassrooms(); j++) {
-                    ClassList.add(new Classroom(j + 1, capacity));
+                    ClassList.add(new Classroom(i + 1, capacity));
                 }
                 center.setClassroomList(ClassList);
             }
         }
         for (int k = 0; k < studentList.size(); k++) {
             Student student = studentList.get(k);
-            System.out.println(student.getName());
-            center = get(centerList,student.getAssigned_centre());
-          //  System.out.println("center  "+center.getCenterName()+"    "+center.getCapacity()/center.getClassrooms()+"     "+center.getClassroomList().size()+"    "+student.getAssigned_classrm());
-            if (student.getAssigned_classrm()!=null&&!student.getAssigned_classrm().startsWith("0")) {
+            center = getCenter(student.getAssigned_centre());
+            if (student.getAssigned_classrm() != null) {
                 center.addStudent(student);
             }
         }
         return centerList;
     }
-
+   
     private static ExamCenter get(ArrayList<ExamCenter> list, String center) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getCenterName().equals(center)) {

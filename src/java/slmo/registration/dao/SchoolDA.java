@@ -1,5 +1,7 @@
+/*
+ * A class that allows to access database with school information
+ */
 package slmo.registration.dao;
-
 
 import Database.DatabaseConnectionHandler;
 import Mail.sendMail;
@@ -13,11 +15,14 @@ import slmo.registration.School;
 import slmo.registration.Student;
 
 /**
- *
  * @author Fiontar
  */
+
 public class SchoolDA  {
-    
+ /**
+  * method allows to add schools to the database
+  * @param school school
+  */
     public static void addSchool(School school) {
         try {
             Connection con = DatabaseConnectionHandler.getConnection();
@@ -45,6 +50,10 @@ public class SchoolDA  {
             System.out.println(ex.getMessage());
         } 
     }
+    /**
+     * method sends an email to verify the email using student's data in the database
+     * @param school school
+     */
     public static void sendVerification(School school){
          sendMail.sendmail(school.getEmail(),"Email Verification for SLMC 2014", 
                  "Thank you for registering for Sri Lanka Mathematics Competition 2013.\n\n"
@@ -57,6 +66,10 @@ public class SchoolDA  {
                  + "University of Colombo.");
         
     }
+    /**
+     * method allows to add schools to the database
+     * @param school school
+     */
     public static void addStudents(School school){
         ArrayList<Student> studentList = school.getStudentList();
         
@@ -67,6 +80,11 @@ public class SchoolDA  {
 //            StudentDA.addStudent(school.StudentList.get(i));
 //        }
     }
+    /**
+     * method searches school from its email address
+     * @param email school email
+     * @return school
+     */
     public static School getSchool(String email){
         School s = null;
         try {
@@ -100,7 +118,11 @@ public class SchoolDA  {
         } 
         return s;
     }
-    
+    /**
+     * method gives the list students in a particular school 
+     * @param school school
+     * @return list of students in the school 
+     */
     public static ArrayList<Student> getStudents(School school){
         //array to store the students
         ArrayList<Student> studentList = new ArrayList<Student>();
@@ -152,11 +174,19 @@ public class SchoolDA  {
         }
         return studentList;
     }
-   
+   /**
+    * method allows to delete students from the school
+    * @param school school
+    * @param student student
+    */
     public static void deleteStudent(School school, Student student){
         school.getStudentList().remove(student);
         StudentDA.deleteStudent(student.getId()+"");
     }
+    /**
+     * method gives a list of all schools
+     * @return list of schools
+     */
     public static ArrayList<School> getAllSchools(){
         ArrayList<School> schoolList = new ArrayList<School>();
         try{
@@ -197,7 +227,11 @@ public class SchoolDA  {
         }
         return schoolList;
     }
-    
+    /**
+     * method gives the search results for a particular string
+     * @param searchString searching string
+     * @return list of schools
+     */
     public static ArrayList<School> getAllSchools(String searchString){
         System.out.println(searchString);
         ArrayList<School> schoolList = new ArrayList<School>();

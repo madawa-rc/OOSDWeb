@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * A class that allows to access database with results of applicants
  */
 package slmo.registration.dao;
 
@@ -12,11 +11,16 @@ import java.sql.SQLException;
 import slmo.registration.ResultSheet;
 
 /**
- *
- * @author Kasun
+ * @author Fiontar
  */
 public class ResultSheetDA {
 
+    /**
+     * method gives the results sheet of an applicant
+     *
+     * @param indexNum applicant index
+     * @return results sheet
+     */
     public static ResultSheet getResultSheet(int indexNum) {
         ResultSheet resultSheet = null;
         try {
@@ -25,7 +29,7 @@ public class ResultSheetDA {
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setInt(1, indexNum);
             ResultSet rs1 = ps.executeQuery();
-            
+
             queryCheck = "SELECT * from student WHERE indexNum = ?";
             ps = con.prepareStatement(queryCheck);
             ps.setInt(1, indexNum);
