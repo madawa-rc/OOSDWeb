@@ -1,3 +1,6 @@
+/*
+ * A class that allows to access database with student information
+ */
 package slmo.registration.dao;
 
 import Database.DatabaseConnectionHandler;
@@ -6,8 +9,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import slmo.registration.Student;
 
-public class StudentDA {
+/**
+ * @author Fiontar
+ */
 
+public class StudentDA {
+/**
+ * method allows to add new students into database
+ * @param student student
+ */
     public static void addStudent(Student student) {
         try {
             Connection con = DatabaseConnectionHandler.getConnection();
@@ -38,7 +48,10 @@ public class StudentDA {
             System.out.println(ex.getMessage());
         }
     }
-
+/**
+ * method sends an email to verify the email using student's data in the database
+ * @param student student 
+ */
     public static void sendVerification(Student student) {
         sendMail.sendmail(student.getEmail(), "Email Verification for SLMC 2014",
                 "Thank you for registering for Sri Lanka Mathematics Competition 2013.\n\n"
@@ -51,7 +64,11 @@ public class StudentDA {
                 + "University of Colombo.");
 
     }
-
+/**
+ * method gives the list of students
+ * @param pvt
+ * @return 
+ */
     private static ArrayList<Student> getStudents(boolean pvt) {
         ArrayList<Student> studentList = new ArrayList<Student>();
         try {
