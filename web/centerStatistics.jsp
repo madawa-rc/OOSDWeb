@@ -13,16 +13,14 @@
 <!DOCTYPE html>
 <html>
     <%
-            User user = (User) session.getAttribute("user");
-            if(user==null||!user.getName().equals("Admin"))
-            {
-                request.getSession().removeAttribute("user");
-                response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
-            }
-            else{
-                int[][] preferredCenters = CenterAllocation.getPreferredCenterStats();
-                int[][] assignedCenters = CenterAllocation.getAssignedCenterStats();
-        %>
+        User user = (User) session.getAttribute("user");
+        if (user == null || !user.getName().equals("Admin")) {
+            request.getSession().removeAttribute("user");
+            response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Admin!");
+        } else {
+            int[][] preferredCenters = CenterAllocation.getPreferredCenterStats();
+            int[][] assignedCenters = CenterAllocation.getAssignedCenterStats();
+    %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Center Statistics</title>
@@ -64,145 +62,166 @@
                     </div>
                 </div>
             </header>
-        <div>
-        <div id="wrapper">
-            <div class="1u" id="logo">
-                <p align="left"><font face="Helvitica" size="7px"><u>Center Statistics</u></font></p>
-            </div>
-        
-        
-            
-            <div class="StudentData">
-                <table id="dataTable" width="100px" border="0">
-                            <tr>
-                                <td>
-                                    Preferred Center
-                                </td>
-                                <td >
-                                    Sinhala
-                                </td>
-                                <td>
-                                    English
-                                </td>
-                                <td>
-                                    Tamil
-                                </td>
-                                <td>
-                                    Total
-                                </td>
-                            </tr>
-                <%
-                    if(preferredCenters != null){
-                        for(int i = 0; i < CenterAllocation.preferredCenters.length+1; i++){
-                %>
-                            <tr>
-                                <td>
-                                    <% 
-                                    if(i==CenterAllocation.preferredCenters.length){                                    
-                                    %>
-                                    Total
-                                    <% 
-                                        }else{ 
-                                    %>
-                                    <label><%=CenterAllocation.preferredCenters[i]%></label>
-                                    <% 
-                                        } 
-                                    %>
-                                </td>
-                                <td>
-                                    <label><%=preferredCenters[i][0]%></label>                                
-                                </td>
-                                <td>
-                                    <label><%=preferredCenters[i][1]%></label>
-                                </td>
-                                <td>
-                                    <label><%=preferredCenters[i][2]%></label>
-                                </td>
-                                <td>
-                                    <label><%=preferredCenters[i][3]%></label>
-                                </td></tr>
-                <%     
-                    }//end of for    
+            <div>
+                <div id="wrapper">
+                    <div id="page">
+                        <div class="">
+                            <div class="">
+                                <div class="" id="">
+                                    <section>
+                                        <div class="post">
+                                        </div>
+                                    </section>
+                                    <div style= "width:800px; margin:auto;">
+                                        <div class="box-2">
+                                            <p><center><strong>
+                                                    <font size="+2">Center Statistics</font>
+                                                    <br><br>
+                                                </strong></center></p>
+
+
+
+                                            <div class="StudentData">
+                                                <table id="dataTable" width="100px" border="0">
+                                                    <tr>
+                                                        <td>
+                                                            Preferred Center
+                                                        </td>
+                                                        <td >
+                                                            Sinhala
+                                                        </td>
+                                                        <td>
+                                                            English
+                                                        </td>
+                                                        <td>
+                                                            Tamil
+                                                        </td>
+                                                        <td>
+                                                            Total
+                                                        </td>
+                                                    </tr>
+                                                    <%
+                                                        if (preferredCenters != null) {
+                                                            for (int i = 0; i < CenterAllocation.preferredCenters.length + 1; i++) {
+                                                    %>
+                                                    <tr>
+                                                        <td>
+                                                            <%
+                                                                if (i == CenterAllocation.preferredCenters.length) {
+                                                            %>
+                                                            <b>TOTAL</b>
+                                                            <%                                    } else {
+                                                            %>
+                                                            <label><%=CenterAllocation.preferredCenters[i]%></label>
+                                                            <%
+                                                                }
+                                                            %>
+                                                        </td>
+                                                        <td>
+                                                            <label><%=preferredCenters[i][0]%></label>                                
+                                                        </td>
+                                                        <td>
+                                                            <label><%=preferredCenters[i][1]%></label>
+                                                        </td>
+                                                        <td>
+                                                            <label><%=preferredCenters[i][2]%></label>
+                                                        </td>
+                                                        <td>
+                                                            <label><%=preferredCenters[i][3]%></label>
+                                                        </td></tr>
+                                                        <%
+                                                                }//end of for    
+                                                            }//end of if
+%>
+                                                </table>
+                                                <br>
+                                                <br>
+                                                <table id="dataTable2" width="100px" border="0">
+                                                    <tr>
+                                                        <td>
+                                                            Assigned Center
+                                                        </td>
+                                                        <td >
+                                                            Sinhala
+                                                        </td>
+                                                        <td>
+                                                            English
+                                                        </td>
+                                                        <td>
+                                                            Tamil
+                                                        </td>
+                                                        <td>
+                                                            Total
+                                                        </td>
+                                                    </tr>
+                                                    <%
+                                                        if (assignedCenters != null) {
+                                                            for (int i = 0; i < CenterAllocation.assignedCenters.length + 1; i++) {
+                                                    %>
+                                                    <tr>
+                                                        <td>
+                                                            <%
+                                                                if (i == CenterAllocation.assignedCenters.length) {
+                                                            %>
+                                                            <b>TOTAL</b>
+                                                            <%                                    } else {
+                                                            %>
+                                                            <label><%=CenterAllocation.assignedCenters[i]%></label>
+                                                            <%
+                                                                }
+                                                            %>
+
+                                                        </td>
+                                                        <td>
+                                                            <label><%=assignedCenters[i][0]%></label>                                
+                                                        </td>
+                                                        <td>
+                                                            <label><%=assignedCenters[i][1]%></label>
+                                                        </td>
+                                                        <td>
+                                                            <label><%=assignedCenters[i][2]%></label>
+                                                        </td>
+                                                        <td>
+                                                            <label><%=assignedCenters[i][3]%></label>
+                                                        </td>
+                                                    </tr>
+                                                    <%      }//end of for
                     }//end of if
-                %>
-                </table>
-                <br>
-                <br>
-                            <table id="dataTable2" width="100px" border="0">
-                            <tr>
-                                <td>
-                                    Assigned Center
-                                </td>
-                                <td >
-                                    Sinhala
-                                </td>
-                                <td>
-                                    English
-                                </td>
-                                <td>
-                                    Tamil
-                                </td>
-                                <td>
-                                    Total
-                                </td>
-                            </tr>
-                <%
-                    if(assignedCenters != null){
-                        for(int i = 0; i < CenterAllocation.assignedCenters.length+1; i++){
-                %>
-                            <tr>
-                                <td>
-                                    <% 
-                                    if(i==CenterAllocation.assignedCenters.length){                                    
-                                    %>
-                                    Total
-                                    <% 
-                                        }else{ 
-                                    %>
-                                    <label><%=CenterAllocation.assignedCenters[i]%></label>
-                                    <% 
-                                        } 
-                                    %>
-                                    
-                                </td>
-                                <td>
-                                    <label><%=assignedCenters[i][0]%></label>                                
-                                </td>
-                                <td>
-                                    <label><%=assignedCenters[i][1]%></label>
-                                </td>
-                                <td>
-                                    <label><%=assignedCenters[i][2]%></label>
-                                </td>
-                                 <td>
-                                    <label><%=assignedCenters[i][3]%></label>
-                                </td>
-                            </tr>
-                <%      }//end of for
-                    }//end of if
-                %>
-                </table>
-            
-            </div>
-                <p class="para" align="right"><font size="5px">Follow Us:</font></p>
-            <ul class="social-list">
-                <li><a href="#"><img src="images/social-link-1.jpg" alt=""></a></li>
-                <li><a href="https://www.facebook.com/photo.php?fbid=531306523587668&set=pb.285656058152717.-2207520000.1380090385.&type=3&theater" target="new"><img src="images/social-link-2.jpg" alt=""></a></li>
-                <li><a href="#"><img src="images/social-link-3.jpg" alt=""></a></li>
-                <li><a href="#"><img src="images/social-link-4.jpg" alt=""></a></li>
-            </ul>
-        </div>
-        <div>
-            <div class="5grid-layout" id="copyright">
-                <div class="row">
-                    <div class="12u">
-                        <p>Sri Lanka Mathematics Olympiad Foundation | 2013.09.21 | Contact: +94 71 546 517 8</p>
+%>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="3u" id="sidebar2">
+                                        <section>
+                                            <div class="sbox1"></div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="para" align="right"><font size="5px">Follow Us:</font></p>
+                    <ul class="social-list">
+                        <li><a href="#"><img src="images/social-link-1.jpg" alt=""></a></li>
+                        <li><a href="https://www.facebook.com/photo.php?fbid=531306523587668&set=pb.285656058152717.-2207520000.1380090385.&type=3&theater" target="new"><img src="images/social-link-2.jpg" alt=""></a></li>
+                        <li><a href="#"><img src="images/social-link-3.jpg" alt=""></a></li>
+                        <li><a href="#"><img src="images/social-link-4.jpg" alt=""></a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="5grid-layout" id="copyright">
+                        <div class="row">
+                            <div class="12u">
+                                <p>Sri Lanka Mathematics Olympiad Foundation | 2013.09.21 | Contact: +94 71 546 517 8</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </body>
-    <%
-        }
-    %>
-</html>
+                </body>
+                <%
+                    }
+                %>
+                </html>
