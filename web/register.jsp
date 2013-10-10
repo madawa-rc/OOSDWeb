@@ -80,7 +80,7 @@
 
                 <div class="menu">
                     <ul>
-                        <li><a class="current" href="./">Home</a></li>
+                        <li><a href="./">Home</a></li>
                         <li><a href="#">News</a></li>
                         <li><a href="#">Register</a>
                             <ul>
@@ -89,91 +89,86 @@
                             </ul>
                         </li>
                         <li><a href="login.jsp">Login</a></li>
-                        <li><a href="contactUs.jsp">Contact us</a></li>
+                        <li><a href="#">Dashboard</a>
+                            <ul>
+                                <li><a href="schoolDashboard.jsp" title="">School</a></li>
+                                <li><a href="admin.jsp" title="">Administrator</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="current" href="contactUs.jsp">Contact us</a></li>
                     </ul>
-                </div> 
+                </div>
                 <div class="center_content">
                     <div class="left_content">
-
-                        <div class="sidebar_search">
-                            <form>
-                                <input type="text" name="" class="search_input" value="search keyword" onclick="this.value=''" />
-                                <input type="image" class="search_submit" src="css/images/search.png" />
-                            </form>            
-                        </div>
-
+                        <div>
+                            <p>
+                                <img src ="images/logo2.png"alt="" align="left">
+                                    <font color="white">You got it!</font>                          
+                            </p>
+                        </div> 
                         <div class="sidebarmenu">            
-                            <a class="menuitem submenuheader" href="">Add</a>
+                            <a class="menuitem submenuheader" href="">IMO</a>
                             <div class="submenu">
                                 <ul>
-                                    <li><a href="">Student</a></li>
-                                    <li><a href="">School</a></li>
+                                    <li><a href="">IMO 2013</a></li>
+                                    <li><a href="">IMO 2012</a></li>
+                                    <li><a href="">IMO 2011</a></li>
                                 </ul>
                             </div>
-                            <a class="menuitem" href="" >Centre Information</a>
-                            <a class="menuitem" href="">Centre Statistics</a>
-                            <a class="menuitem" href="">Assign Centres</a>
-                            <a class="menuitem_green" href="">Send Admission Cards</a>
-                            <a class="menuitem_red" href="login.html" onclick="return message();">Review Answer Scripts</a>
-                        </div>
-
-
-                        <div class="sidebar_box">
-                            <div class="sidebar_box_top"></div>
-                            <div class="sidebar_box_content">
-                                <h3>User help desk</h3>
-                                <img src="css/images/info.png" alt="" title="" class="sidebar_icon_right" />
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </p>                
-                            </div>
-                            <div class="sidebar_box_bottom"></div>
-                        </div>
-
-                        <div class="sidebar_box">
-                            <div class="sidebar_box_top"></div>
-                            <div class="sidebar_box_content">
-                                <h4>Important notice</h4>
-                                <img src="css/images/notice.png" alt="" title="" class="sidebar_icon_right" />
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </p>                
-                            </div>
-                            <div class="sidebar_box_bottom"></div>
-                        </div>
-
-                        <div class="sidebar_box">
-                            <div class="sidebar_box_top"></div>
-                            <div class="sidebar_box_content">
-                                <h5>Download photos</h5>
-                                <img src="css/images/photo.png" alt="" title="" class="sidebar_icon_right" />
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </p>                
-                            </div>
-                            <div class="sidebar_box_bottom"></div>
-                        </div>  
-
-                        <div class="sidebar_box">
-                            <div class="sidebar_box_top"></div>
-                            <div class="sidebar_box_content">
-                                <h3>To do List</h3>
-                                <img src="css/images/info.png" alt="" title="" class="sidebar_icon_right" />
+                            <a class="menuitem submenuheader" href="">SLMO</a>
+                            <div class="submenu">
                                 <ul>
-                                    <li>Check registered schools and students</li>
-                                    <li>Insert school details manually</li>
-                                    <li>Assign examination centres to the applicants</li>
-                                    <li>Send admission cards</li>
-                                    <li>Finalize coding this shit</li>
-                                    <li>Upload the source code</li>
-                                    <li>Explain about this software to CG <strong>(CRITICAL)</strong></li>
-                                </ul>                
+                                    <li><a href="">SLMO 2013</a></li>
+                                    <li><a href="">SLMO 2012</a></li>
+                                    <li><a href="">SLMO 2011</a></li>
+                                </ul>
                             </div>
-                            <div class="sidebar_box_bottom"></div>
+                            <a class="menuitem" href="" >Our Vision</a>
+                            <a class="menuitem" href="">Our Mission</a>
                         </div>
+                        <div class="sidebar_box">
+                            <div class="sidebar_box_top"></div>
+                            <div class="sidebar_box_content">
+                                <h3>Latest News</h3>
+
+                                <p>
+                                    News 1 <br>
+                                        News 2 <br>
+                                            </p>                
+                                            </div>
+                                            <div class="sidebar_box_bottom"></div>
+                                            </div>
+
+                                            <div class="sidebar_box">
+                                                <div class="sidebar_box_top"></div>
+                                                <div class="sidebar_box_content">
+                                                    <h3>User help desk</h3>
+                                                    <img src="css/images/info.png" alt="" title="" class="sidebar_icon_right" />
+                                                    <p>
+                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                    </p>                
+                                                </div>
+                                                <div class="sidebar_box_bottom"></div>
+                                            </div>
 
 
-                    </div>  
+
+                                            <div class="sidebar_box">
+                                                <div class="sidebar_box_top"></div>
+                                                <div class="sidebar_box_content">
+                                                    <h3>Follow us</h3>
+                                                    <p>
+                                                        <a href="#"><img src="images/social-link-1.jpg" style="margin:0 5px"alt="" align="left"/></a>
+                                                        <a href="https://www.facebook.com/photo.php?fbid=531306523587668&set=pb.285656058152717.-2207520000.1380090385.&type=3&theater" target="new">
+                                                            <img src="images/social-link-2.jpg" style="margin:0 5px"alt="" align="left"/></a>
+                                                        <a href="#"><img src="images/social-link-3.jpg"style="margin:0 5px" alt="" align="left"/></a>
+                                                        <a href="#"><img src="images/social-link-4.jpg"style="margin:0 5px" alt="" align="left"/></a>
+                                                        <br>
+                                                    </p>
+                                                </div>
+                                                <div class="sidebar_box_bottom"></div>
+                                            </div>
+                                            </div> <!-- end of left content--> 
 
                     <div class="right_content">
 
@@ -279,23 +274,12 @@
                 </div>   <!--end of center content -->
 
                 <div class="clear"></div>
-
-
-                <p class="para" align="right"><font size="5px">Follow Us:</font></p>
-
-
-                <a href="#"><img src="images/social-link-1.jpg" alt="" align="right"/></a>
-                <a href="https://www.facebook.com/photo.php?fbid=531306523587668&set=pb.285656058152717.-2207520000.1380090385.&type=3&theater" target="new"><img src="images/social-link-2.jpg" alt="" align="right"/></a></li>
-                <a href="#"><img src="images/social-link-3.jpg" alt="" align="right"/></a>
-                <a href="#"><img src="images/social-link-4.jpg" alt="" align="right"/></a>
-
-
             </div> <!--end of main content-->
 
 
             <div class="footer">
 
-                <div class="left_footer">SLOMF ADMIN PANEL | Powered by <a href="http://indeziner.com">INDEZINER</a></div>
+                <div class="left_footer">SLOMF ADMIN PANEL | Powered by Fiontar</div>
                 <div class="right_footer"><a href="http://indeziner.com"><img src="css/images/indeziner_logo.gif" alt="" title="" border="0" /></a></div>
 
             </div>

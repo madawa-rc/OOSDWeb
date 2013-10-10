@@ -10,17 +10,6 @@
 <!DOCTYPE html>
 <%
     User user = (User) session.getAttribute("user");
-    if (user != null) {
-        if (request.getParameter("logout") != null && request.getParameter("logout").equals("true")) {
-            session.removeAttribute("user");
-            out.print("You are logged out");
-        } else {
-            out.print("You are logged in as " + user.getName());
-
-            out.print("    <a href=\"index.jsp?logout=true\">logout</a>");
-        }
-
-    }
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -71,17 +60,26 @@
         <div id="main_container">
 
             <div class="header">
-                
+                <div class="logo"><a href="#"><img src="css/images/logo.gif" alt="" title="" border="0" /></a></div>
 
-                
-                
+                <%
+                    if (user != null) {
+                %>
+                <div class="right_header">Welcome Back! <a href="#">My Account</a> | <a href="#">Settings</a> | 
+                    <a href = "logout.jsp" class ="logout">Logout</a>
+                </div>
+                <%                    
+                    }else
+                        out.print("<div class=\"right_header\"></div>");
+                %>
+                <div id="clock_a"></div>
             </div>
 
             <div class="main_content">
 
                 <div class="menu">
                     <ul>
-                        <li><a class="current" href="./">Home</a></li>
+                        <li><a href="./">Home</a></li>
                         <li><a href="#">News</a></li>
                         <li><a href="#">Register</a>
                             <ul>
@@ -90,16 +88,21 @@
                             </ul>
                         </li>
                         <li><a href="login.jsp">Login</a></li>
-                        <li><a href="contactUs.jsp">Contact us</a></li>
+                        <% if (user != null) {
+                        %>
+                        <li><a href="<%=user.getLink()%>">Dashboard</a>
+                        </li>
+                        <%}%>
+                        <li><a class="current" href="contactUs.jsp">Contact us</a></li>
                     </ul>
-                </div> 
+                </div>
                 <div class="center_content">
 
                     <div class="left_content">
                         <div>
                             <p>
                                 <img src ="images/logo2.png"alt="" align="left">
-                                    <font color="white">aaaaaaaaaaaaaaa</font>                          
+                                    <font color="white">You got it!</font>                          
                             </p>
                         </div> 
                         <div class="sidebarmenu">            
@@ -186,9 +189,8 @@
 
                                             <div class="footer">
 
-                                                <div class="left_footer"><p>Sri Lanka Mathematics Olympiad Foundation | 2013.09.21 | Contact: +94 71 546 517 8</p></div>
-                                                
-
+                                                <div class="left_footer">SLOMF ADMIN PANEL | Powered by Fiontar</div>
+                                                <div class="right_footer"><a href="http://indeziner.com"><img src="css/images/indeziner_logo.gif" alt="" title="" border="0" /></a></div>
                                             </div>
 
                                             </div>		

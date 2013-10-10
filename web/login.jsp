@@ -73,8 +73,6 @@
 
 
             <div class="box-2">
-
-                <a href="#" class="forgot_pass">Forgot password</a>
                 <strong>
                     <%
                         if (loggedIn) {
@@ -83,6 +81,9 @@
                         } else {
 
                     %><br>
+                </strong>
+                <a href="#" class="forgot_pass">Forgot password</a>
+                <strong>
                         <font color="#ff0000" size="2px">
                             <%
                                 String msg = request.getParameter("id");
@@ -101,11 +102,11 @@
                     <fieldset>
                         <dl>
                             <dt><label for="email">Email:</label></dt>
-                            <dd><input type="text" name="email" id="" size="54" /></dd>
+                            <dd><input type="text" name="email" id="" size="25" /></dd>
                         </dl>
                         <dl>
                             <dt><label for="password">Password:</label></dt>
-                            <dd><input type="password" name="password" id="" size="54" /></dd>
+                            <dd><input type="password" name="password" id="" size="25" /></dd>
                         </dl>
 
                         <dl>
@@ -132,8 +133,8 @@
 
             <div class="footer_login">
 
-                <div class="left_footer_login">SLOMF ADMIN PANEL | Powered by <a href="http://indeziner.com">INDEZINER</a></div>
-                <div class="right_footer_login"><a href="http://indeziner.com"><img src="css/images/indeziner_logo.gif" alt="" title="" border="0" /></a></div>
+                <div class="left_footer_login">SLOMF ADMIN PANEL | Powered by Fiontar</div>
+                <div class="right_footer_login"><img src="css/images/indeziner_logo.gif" alt="" title="" border="0" /></div>
 
             </div>
 
