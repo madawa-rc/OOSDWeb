@@ -184,11 +184,11 @@
                                             <div  class="wrapper">
                                                 <span>Email:</span>
                                                 <div class="bg"><input type="text" class="input" name="email" required="true"></div>								
-                                            </div><br>
+                                            </div><br><br>
                                             <div  class="textarea_box">
-                                                <span>Message:</span><br><br>
+                                                <span>Message:</span><br>
                                                 <div class="bg"><textarea name="message" cols="1" rows="1" required="true"></textarea></div>	
-                                            </div><br><br><br><br><br><br><br><br><br>
+                                            </div><br><br><br><br><br><br><br>
                                             <input type="submit" value="Send" class="button" align="right">
                                             <input type="reset" value="Clear" class="button"/><br><br>
                                         </div>

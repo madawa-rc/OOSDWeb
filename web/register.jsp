@@ -82,20 +82,14 @@
                     <ul>
                         <li><a href="./">Home</a></li>
                         <li><a href="#">News</a></li>
-                        <li><a href="#">Register</a>
+                        <li><a class="current" href="#">Register</a>
                             <ul>
                                 <li><a href="register.jsp" title="">As a Private Applicant</a></li>
                                 <li><a href="school.jsp" title="">As a School</a></li>
                             </ul>
                         </li>
                         <li><a href="login.jsp">Login</a></li>
-                        <li><a href="#">Dashboard</a>
-                            <ul>
-                                <li><a href="schoolDashboard.jsp" title="">School</a></li>
-                                <li><a href="admin.jsp" title="">Administrator</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="current" href="contactUs.jsp">Contact us</a></li>
+                        <li><a href="contactUs.jsp">Contact us</a></li>
                     </ul>
                 </div>
                 <div class="center_content">
@@ -188,21 +182,21 @@
                                             <div  class="wrapper">
                                                 <span>Date of Birth:</span>
                                                 <div class="bg">
-                                                    <select name="date" required="true">
+                                                    <select name="date" required="true" class="select">
                                                         <option value="" style="display:none;">Date</option>
                                                         <%
                                                             for (int i = 1; i < 32; ++i)
                                                                 out.print("<option value=\""+i+"\">" + i + "</option>");
                                                         %>
                                                     </select>
-                                                    <select name="month" required="true">
+                                                    <select name="month" required="true" class="select">
                                                         <option value="" style="display:none;">Month</option>
                                                         <%
                                                             for (int i = 1; i < 13; ++i)
                                                                 out.print("<option value=\""+i+"\">" + i + "</option>");
                                                         %>
                                                     </select>
-                                                    <select name="year" required="true">
+                                                    <select name="year" required="true" class="select">
                                                         <option value="" style="display:none;">Year</option>
                                                         <%
                                                             for (int i = 1994; i < 2011; ++i)
@@ -250,7 +244,7 @@
                                             <div  class="wrapper">
                                                 <span>Exam center:</span>
                                                 <div class="bg">
-                                                    <select name="preferred_centre" id="preferred_centre" required="true">
+                                                    <select name="preferred_centre" id="preferred_centre" required="true" class="select">
                                                         <option value="" style="display:none;">Select centre...</option>
                                                         <option value="Colombo">Colombo</option>
                                                         <option value="Galle">Galle</option>
