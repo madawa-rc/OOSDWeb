@@ -94,6 +94,7 @@ public class UploadServlet extends HttpServlet {
                         Marks.calculate();
                         System.out.println("success");
                         out.print("Upload has been done successfully!");
+                        response.setHeader("Refresh", "3; URL=resultsStatistics.jsp");
                     }
                 }
             }
