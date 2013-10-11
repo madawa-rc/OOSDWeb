@@ -14,7 +14,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
-        <title>Register</title>
+        <title>Contact Us</title>
         <link rel="shortcut icon" href="images/logo.png"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" src="css/clockp.js"></script>
