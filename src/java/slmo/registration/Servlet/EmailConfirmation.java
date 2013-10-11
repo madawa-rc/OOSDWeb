@@ -34,11 +34,16 @@ public class EmailConfirmation extends HttpServlet {
         try {
             Connection con = DatabaseConnectionHandler.getConnection();
             String link = request.getParameter("id");
-             String queryCheck = "UPDATE student SET verified=1 WHERE verification =?";
+            String queryCheck = "UPDATE student SET verified=1 WHERE verification =?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, link);
             ps.executeUpdate();
-            out.println("Email is verified");
+            queryCheck = "UPDATE school SET verified=1 WHERE verification =?";
+            ps = con.prepareStatement(queryCheck);
+            ps.setString(1, link);
+            ps.executeUpdate();
+            request.getSession().setAttribute("message","Email is verified successfully!");
+            response.sendRedirect("message.jsp");
         } catch (Exception ex) {
         } finally {
             out.close();

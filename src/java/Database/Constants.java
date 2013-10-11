@@ -22,5 +22,9 @@ public class Constants {
      *  Database schema password
      */
     public static final String PASSWORD = "123456";
+    /**
+     *  Default location of files
+     */
+    public static final String LOCATION ="D:\\OOSD\\";
     
 }

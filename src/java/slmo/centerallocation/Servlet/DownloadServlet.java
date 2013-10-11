@@ -1,5 +1,6 @@
 package slmo.centerallocation.Servlet;
 
+import Database.Constants;
 import admin.ExportStudentList;
 import java.io.DataInputStream;
 import java.io.File;
@@ -35,24 +36,28 @@ public class DownloadServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String filePath = null;
+        String filePath = Constants.LOCATION;
+        String fileSource = Constants.LOCATION;
         if (request.getParameter("name").equals("Database")) {
             //filePath = getServletContext().getRealPath("") + File.separator + "Downloads\\Database.xlsx";
-            filePath="Reports\\Database.xlsx";
+            filePath+="Reports\\Database.xlsx";
             ExportStudentList.exportStudentsToExcel(filePath);
         } else if (request.getParameter("name").equals("AttendanceSheets")) {
-            filePath = "Reports\\AttendanceSheet.docx";
+            filePath+= "Reports\\AttendanceSheet.docx";
+            fileSource+="ReportTemplates\\AttendanceSheet.docx";
             ArrayList<ExamCenter> centers = CenterDA.getAllPopulatedCenters();
-            ReportGeneration.Report.generate(filePath, "centers", centers);
+            ReportGeneration.Report.generate(filePath,fileSource, "centers", centers);
         }
          else if (request.getParameter("name").equals("Classrooms")) {
-            filePath = "Reports\\Classroom.docx";
+            filePath+= "Reports\\Classroom.docx";
+            fileSource+="ReportTemplates\\Classroom.docx";
             ArrayList<ExamCenter> centers = CenterDA.getAllPopulatedCenters();
-            ReportGeneration.Report.generate(filePath, "centers", centers);
+            ReportGeneration.Report.generate(filePath, fileSource, "centers", centers);
         }else if(request.getParameter("name").equals("ResultSheet")){
-            filePath = "Reports\\ResultsSchool.docx";
+            filePath+= "Reports\\ResultsSchool.docx";
+            fileSource+="ReportTemplates\\ResultsSchool.docx";
             ArrayList<School> allSchools = SchoolDA.getAllSchools();            
-            ReportGeneration.Report.generate(filePath,"schools",allSchools);
+            ReportGeneration.Report.generate(filePath,fileSource, "schools",allSchools);
         }
         else
             return;

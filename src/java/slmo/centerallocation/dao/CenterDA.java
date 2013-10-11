@@ -149,7 +149,7 @@ public class CenterDA {
         for (int k = 0; k < studentList.size(); k++) {
             Student student = studentList.get(k);
             center = get(centerList,student.getAssigned_centre());
-            System.out.println(center.getClassrooms()+"asd"+center.getCenterName()+"  "+center.getClassroomList().size());
+       //     System.out.println(center.getClassrooms()+"asd"+center.getCenterName()+"  "+center.getClassroomList().size());
             if (student.getAssigned_classrm() != null&&!student.getAssigned_classrm().startsWith("0")) {
                 center.addStudent(student);
             }

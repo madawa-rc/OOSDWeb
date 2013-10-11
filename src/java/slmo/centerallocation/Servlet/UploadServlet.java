@@ -1,5 +1,6 @@
 package slmo.centerallocation.Servlet;
 
+import Database.Constants;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -76,7 +77,7 @@ public class UploadServlet extends HttpServlet {
 
         try {
             // parses the request's content to extract file data
-            @SuppressWarnings("unchecked")
+            
             List<FileItem> formItems = upload.parseRequest(request);
 
             if (formItems != null && formItems.size() > 0) {
@@ -85,16 +86,15 @@ public class UploadServlet extends HttpServlet {
                     // processes only fields that are not form fields
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
-                        String filePath = uploadPath + File.separator + fileName;
+                      //  String filePath = uploadPath + File.separator + fileName;
+                        String filePath = Constants.LOCATION +fileName;
                         File storeFile = new File(filePath);
-
                         // saves the file on disk
                         item.write(storeFile);
                         ReadExcelSample.readResults(filePath);
                         Marks.calculate();
-                        System.out.println("success");
-                        out.print("Upload has been done successfully!");
-                        response.setHeader("Refresh", "3; URL=resultsStatistics.jsp");
+                        request.getSession().setAttribute("message","Results have been uploaded Successfully!");
+                        response.sendRedirect("message.jsp");
                     }
                 }
             }

@@ -81,6 +81,7 @@ public class CenterAllocation {
                     countCMB1++;
                 }
             } else {
+                System.out.println("Centre "+tempStudent.getPreferred_centre());
                 StudentDA.update(tempStudent, tempStudent.getPreferred_centre());
             }
 
@@ -210,6 +211,7 @@ public class CenterAllocation {
                 classRoomNum = 1;
                 count = 1;
                 center = get(centerList, student.getAssigned_centre());
+                System.out.println("asdasdasdasd"+student.getAssigned_centre());
                 prevCenter = center.getCenterName();
                 capacity = center.getCapacity() / center.getClassrooms();
                 //System.out.println(student.getAssigned_centre());

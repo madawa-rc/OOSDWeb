@@ -8,18 +8,18 @@ import fr.opensagres.xdocreport.document.IXDocReport;
 import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
 import fr.opensagres.xdocreport.template.IContext;
 import fr.opensagres.xdocreport.template.TemplateEngineKind;
+import java.io.FileInputStream;
 
 public class Report
 {
 
-    public static void generate(String filepath, String objectName, Object object)
+    public static void generate(String filepath, String fileSource, String objectName, Object object)
     {
         try
         {
             // 1) Load Docx file by filling Velocity template engine and cache
             // it to the registry
-            InputStream in =
-                Report.class.getResourceAsStream(filepath);
+            InputStream in = new FileInputStream( fileSource);
             IXDocReport report = XDocReportRegistry.getRegistry().loadReport( in, TemplateEngineKind.Velocity );
 
             // 2) Create context Java model
