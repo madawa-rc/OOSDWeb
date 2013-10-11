@@ -215,8 +215,7 @@
                                         }
                                     }
                                     out.print("<br><br><a href=\"GetAnswerScript?next=true\" align=\"center\">Next</a>");
-                                }else if(((String)request.getParameter("search"))!=null)
-                                    out.print("No Match Found!!");
+                                }else out.print("No Match Found!!");
                             %>
                                 
                     </div><!-- end of right content-->
