@@ -237,4 +237,25 @@ public class StudentDA {
             System.out.println(ex.getMessage());
         }
     }
+    public static void update(Student s,int rank){
+        try {
+            int id= s.getId();
+            Connection con = DatabaseConnectionHandler.getConnection();
+
+            String queryCheck = "UPDATE student "
+                    + "SET assigned_classrm = ? "
+                    + "WHERE id = ?";
+
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setInt(1, rank);
+            ps.setInt(2, id);
+
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    
+    
+    }
 }
