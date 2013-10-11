@@ -227,7 +227,7 @@
                     </tbody>
                     
                 </table>
-                <div id="statsG"></div><br><br>
+                <div id="statsG" style="height: 500px"></div><br><br>
                 <table border="0" align="center">
                     <tr>
                         <td>
