@@ -132,11 +132,11 @@
                                                         <%
                                                                 }//end of for    
                                                             }//end of if
-%>
+                                                        %>
                                                 </table>
                                                 <br>
                                                 <br>
-                                                <table id="dataTable2" width="100px" border="0">
+                                                <tforable id="dataTable2" width="100px" border="0">
                                                     <tr>
                                                         <td>
                                                             Assigned Center
@@ -186,8 +186,8 @@
                                                         </td>
                                                     </tr>
                                                     <%      }//end of for
-                    }//end of if
-%>
+                                                        }//end of if
+                                                    %>
                                                 </table>
 
                                             </div>
