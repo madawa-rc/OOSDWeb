@@ -134,13 +134,31 @@
                                     <li><a href="addSchoolManual.jsp">School</a></li>
                                 </ul>
                             </div>
-                            <a class="menuitem" href="centreInformation.jsp" >Centre Information</a>
-                            <a class="menuitem" href="centerStatistics.jsp">Centre Statistics</a>
-                            <a class="menuitem" href="CommandServlet?id=assignCentres">Assign Centres</a>
-                            <a class="menuitem" href="CommandServlet?id=sendAdmission">Send Admission Cards</a>
-                            <a class="menuitem" href="upload.jsp">Upload Answer Sheets</a>
-                            <a class="menuitem" href="resultsStatistics.jsp">Answer Statistics</a>
-                            <a class="menuitem_red" href="answerSheet.jsp" onclick="return message();">Review Answer Scripts</a>
+                            <a class="menuitem submenuheader" href="">Centres </a>
+                            <div class="submenu">
+                                <ul>
+                                    <li><a href="centreInformation.jsp">Centre Information</a></li>
+                                    <li><a href="centerStatistics.jsp">Centre Statistics</a></li>
+                                    <li><a href="CommandServlet?id=assignCentres">Assign Centres</a></li>
+                                </ul>
+                            </div>
+                            <a class="menuitem submenuheader" href="">Generate Reports</a>
+                            <div class="submenu">
+                                <ul>
+                                    <li><a href="DownloadServlet?name=AttendanceSheets">Attendance Sheets</a></li>
+                                    <li><a href="DownloadServlet?name=Database">Database</a></li>
+                                    <li><a href="DownloadServlet?name=Classroom">Classroom Banner</a></li>
+                                </ul>
+                            </div>
+                            <a class="menuitem" href="CommandServlet?id=sendAdmission" onclick="return message();">Send Admission Cards</a>
+                            <a class="menuitem submenuheader" href="">Answer Sheets</a>
+                            <div class="submenu">
+                                <ul>
+                                    <li><a href="upload.jsp">Upload Answer Sheets</a></li>
+                                    <li><a href="resultsStatistics.jsp">Answer Statistics</a></li>
+                                    <li><a href="answerSheet.jsp" onclick="return message();">Review Answer Scripts</a></li>
+                                </ul>
+                            </div>
                         </div>
 
                         <div class="sidebar_box">
