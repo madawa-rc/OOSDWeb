@@ -146,7 +146,7 @@
                     data-attc-location="statsG" 
                     data-attc-hideTable="true" 
                     data-attc-type="line"
-                    data-attc-controls='{"showHide":false,"create":false,"chartType":false}'
+                    data-attc-controls='{"showHide":false,"create":false,"chartType":true}'
                 >
                     <thead>
                         <tr style="display:none">
@@ -226,7 +226,7 @@
                             %>
                             </tbody>
                 </table>
-            <div id="statsG"></div><br><br><br>
+            <div id="statsG" style="height: 500px"></div><br><br><br>
             
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
