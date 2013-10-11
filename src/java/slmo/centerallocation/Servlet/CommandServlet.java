@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import slmo.centerallocation.CenterAllocation;
 import slmo.registration.User;
+import slmo.results_processing.Marks;
 
 /**
  *
@@ -49,13 +50,18 @@ public class CommandServlet extends HttpServlet {
         if(request.getParameter("id").equals("sendAdmission")){
             sendAdmissionCards.sendtoPrivate();
             sendAdmissionCards.sendtoSchool();
-            out.println("AdmissionCards Sent");
-            out.print("<a href=\"admin.jsp\" > Go Back</a>");
+            request.getSession().setAttribute("message","Admission Cards have been sent successfully!");
+            response.sendRedirect("message.jsp");
+        }else if(request.getParameter("id").equals("calculateMarks")){
+            Marks.calculate();
+            request.getSession().setAttribute("message","Marks and Ranks have been calculated successfully!");
+            response.sendRedirect("message.jsp");
         }
         else if(request.getParameter("id").equals("assignCentres")){
             CenterAllocation.allocateCenters();
             CenterAllocation.assignIndex();
-            response.sendRedirect("admin.jsp");
+            request.getSession().setAttribute("message","Centers have been assigned successfully!");
+            response.sendRedirect("message.jsp");
         }
         out.close();
     }
