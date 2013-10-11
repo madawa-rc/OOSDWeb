@@ -228,7 +228,7 @@
                     
                 </table>
                 <div id="statsG"></div><br><br>
-                <table border="0">
+                <table border="0" align="center">
                     <tr>
                         <td>
                             <div id="statscp1"></div><br><br>
