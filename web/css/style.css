@@ -325,10 +325,6 @@ border:none;
 margin:7px 0 0 8px;
 }
 
-
-
-
-
 #rounded-corner
 {
 margin:0px;
@@ -369,6 +365,52 @@ background: #ecf8fd url('images/botleft.jpg') left bottom no-repeat;
 background: #ecf8fd url('images/botright.jpg') right bottom no-repeat;
 }
 #rounded-corner tbody tr:hover td
+{
+background: #d2e7f0;
+}
+
+
+#rounded-corner2
+{
+margin:0px;
+width: 100px;
+text-align: left;
+border-collapse: collapse;
+}
+#rounded-corner2 thead th.rounded-company
+{
+width: fit-content;
+background: #60c8f2 url('images/left.jpg') left top no-repeat;
+}
+#rounded-corner2 thead th.rounded-q4
+{
+background: #60c8f2 url('images/right.jpg') right top no-repeat;
+}
+#rounded-corner2 th
+{
+padding: 6px;
+font-weight: normal;
+font-size: 12px;
+color: #039;
+background: #60c8f2;
+align: center; 
+}
+#rounded-corner2 td
+{
+padding: 6px;
+background: #ecf8fd;
+border-top: 1px solid #fff;
+color: #669;
+}
+#rounded-corner2 tfoot td.rounded-foot-left
+{
+background: #ecf8fd url('images/botleft.jpg') left bottom no-repeat;
+}
+#rounded-corner2 tfoot td.rounded-foot-right
+{
+background: #ecf8fd url('images/botright.jpg') right bottom no-repeat;
+}
+#rounded-corner2 tbody tr:hover td
 {
 background: #d2e7f0;
 }

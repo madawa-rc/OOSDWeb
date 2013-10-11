@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * A class to process marks of an applicant
  */
 package slmo.results_processing;
 
@@ -12,11 +11,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- *
- * @author New
+ * @author Fiontar
  */
 public class Marks {
-
+/**
+ * method calculate marks of an applicant
+ */
     public static void calculate() {
         try {
             Connection con = DatabaseConnectionHandler.getConnection();
@@ -49,7 +49,11 @@ public class Marks {
             System.out.println(ex.getMessage());
         }
     }
-    
+    /**
+     * method update the marks of the applicant
+     * @param list applicant's answers
+     * @param check answer sheet
+     */
     private static void updatemarks(String[] list, String[] check) {
         int score = 0;
         for (int i = 1; i <= 30; i++) {
@@ -77,7 +81,12 @@ public class Marks {
             System.out.println(ex.getMessage());
         }
     }
-    
+    /**
+     * method gives statistics about the performance of applicants for each question
+     * @param qNumber question number
+     * @return performances list as percentages
+     * @throws SQLException database exceptions
+     */
     public static double[] getStatistcs(int qNumber) throws SQLException{
         Connection con = DatabaseConnectionHandler.getConnection();
         int A = 0, B = 0, C = 0, D = 0, E = 0, unanswered = 0, multiple = 0;

@@ -144,7 +144,8 @@
                                                     <h3>User help desk</h3>
                                                     <img src="css/images/info.png" alt="" title="" class="sidebar_icon_right" />
                                                     <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                        Thousands of students love to participate in Mathematics Olympiad every year to improve their knowledge.
+                                                        Register today and get an awesome cookie free!
                                                     </p>                
                                                 </div>
                                                 <div class="sidebar_box_bottom"></div>
@@ -171,7 +172,7 @@
 
                                             <div class="right_content">            
 
-                                                <h1>Welcome to Sri Lanka Olympiad Mathematics Foundation </h1> 
+                                                <h1>Welcome to Sri Lanka Mathematical Olympiad Foundation </h1> 
                                                 <div>
                                                     <img src="images/front.jpg" alt="" align="left"/>
                                                 </div>
