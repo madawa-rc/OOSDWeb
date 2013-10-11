@@ -267,6 +267,7 @@
                 <div class="center_content">
                     <div class="left_content">
 
+                        
                         <div class="sidebar_search">
                             <form name="searchForm" action="AdminServlet" method="post">
                                 <input type="text" name="search" class="search_input" value="Search school" onclick="this.value=''" />
@@ -284,20 +285,22 @@
                                     <li><a href="addSchoolManual.jsp">School</a></li>
                                 </ul>
                             </div>
-                            <a class="menuitem submenuheader" href="">Centres </a>
+                            <a class="menuitem submenuheader" href="">Centers </a>
                             <div class="submenu">
                                 <ul>
-                                    <li><a href="centreInformation.jsp">Centre Information</a></li>
-                                    <li><a href="centerStatistics.jsp">Centre Statistics</a></li>
-                                    <li><a href="CommandServlet?id=assignCentres">Assign Centres</a></li>
+                                    <li><a href="centreInformation.jsp">Center Information</a></li>
+                                    <li><a href="centerStatistics.jsp">Center Statistics</a></li>
+                                    <li><a href="CommandServlet?id=assignCentres">Assign Centers</a></li>
                                 </ul>
                             </div>
                             <a class="menuitem submenuheader" href="">Generate Reports</a>
                             <div class="submenu">
                                 <ul>
                                     <li><a href="DownloadServlet?name=AttendanceSheets">Attendance Sheets</a></li>
+                                    <li><a href="DownloadServlet?name=Classrooms">Classroom Labels</a></li>
+                                    <li><a href="DownloadServlet?name=ResultSheet">Result Sheets of Schools</a></li>
                                     <li><a href="DownloadServlet?name=Database">Database</a></li>
-                                    <li><a href="DownloadServlet?name=Classroom">Classroom Banner</a></li>
+                                    
                                 </ul>
                             </div>
                             <a class="menuitem" href="CommandServlet?id=sendAdmission" onclick="return message();">Send Admission Cards</a>
@@ -305,6 +308,7 @@
                             <div class="submenu">
                                 <ul>
                                     <li><a href="upload.jsp">Upload Answer Sheets</a></li>
+                                    <li><a href="CommandServlet?id=calculateMarks">Calculate Marks</a></li>
                                     <li><a href="resultsStatistics.jsp">Answer Statistics</a></li>
                                     <li><a href="answerSheet.jsp" onclick="return message();">Review Answer Scripts</a></li>
                                 </ul>
@@ -333,6 +337,9 @@
                                     <li>Insert school details manually</li>
                                     <li>Assign examination centres to the applicants</li>
                                     <li>Send admission cards</li>
+                                    <li>Finalize coding this shit</li>
+                                    <li>Upload the source code</li>
+                                    <li>Explain about this software to CG <strong>(CRITICAL)</strong></li>
                                 </ul>                
                             </div>
                             <div class="sidebar_box_bottom"></div>

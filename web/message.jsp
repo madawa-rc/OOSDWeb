@@ -105,6 +105,7 @@
                 <div class="center_content">
                     <div class="left_content">
 
+                        
                         <div class="sidebar_search">
                             <form name="searchForm" action="AdminServlet" method="post">
                                 <input type="text" name="search" class="search_input" value="Search school" onclick="this.value=''" />
@@ -122,12 +123,12 @@
                                     <li><a href="addSchoolManual.jsp">School</a></li>
                                 </ul>
                             </div>
-                            <a class="menuitem submenuheader" href="">Centres </a>
+                            <a class="menuitem submenuheader" href="">Centers </a>
                             <div class="submenu">
                                 <ul>
-                                    <li><a href="centreInformation.jsp">Centre Information</a></li>
-                                    <li><a href="centerStatistics.jsp">Centre Statistics</a></li>
-                                    <li><a href="CommandServlet?id=assignCentres">Assign Centres</a></li>
+                                    <li><a href="centreInformation.jsp">Center Information</a></li>
+                                    <li><a href="centerStatistics.jsp">Center Statistics</a></li>
+                                    <li><a href="CommandServlet?id=assignCentres">Assign Centers</a></li>
                                 </ul>
                             </div>
                             <a class="menuitem submenuheader" href="">Generate Reports</a>
@@ -145,6 +146,7 @@
                             <div class="submenu">
                                 <ul>
                                     <li><a href="upload.jsp">Upload Answer Sheets</a></li>
+                                    <li><a href="CommandServlet?id=calculateMarks">Calculate Marks</a></li>
                                     <li><a href="resultsStatistics.jsp">Answer Statistics</a></li>
                                     <li><a href="answerSheet.jsp" onclick="return message();">Review Answer Scripts</a></li>
                                 </ul>
