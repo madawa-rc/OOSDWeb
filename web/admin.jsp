@@ -62,7 +62,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="css/niceforms-default.css" />
         <script type="text/javascript">
             function message(){
-                var result = confirm("You are violating the honour code pledge!\nAre you really want to do this?");
+                var result = confirm("Are you really want to do this?");
                 return result;
             }
         </script>
@@ -123,8 +123,10 @@
                             </div>
                             <a class="menuitem" href="centreInformation.jsp" >Centre Information</a>
                             <a class="menuitem" href="centerStatistics.jsp">Centre Statistics</a>
-                            <a class="menuitem" href="CommandServlet?id=assignCentres">Assign Centres</a>
-                            <a class="menuitem" href="CommandServlet?id=sendAdmission">Send Admission Cards</a>
+                            <a class="menuitem" href="CommandServlet?id=assignCentres" onclick="return message();">Assign Centres</a>
+                            <a class="menuitem" href="CommandServlet?id=sendAdmission" onclick="return message();">Send Admission Cards</a>
+                            <a class="menuitem" href="DownloadServlet?name=AttendanceSheets">Generate Attendance Sheets</a>
+                            <a class="menuitem" href="DownloadServlet?name=AttendanceSheets">Get Database</a>
                             <a class="menuitem" href="upload.jsp">Upload Answer Sheets</a>
                             <a class="menuitem" href="resultsStatistics.jsp">Answer Statistics</a>
                             <a class="menuitem_red" href="answerSheet.jsp" onclick="return message();">Review Answer Scripts</a>

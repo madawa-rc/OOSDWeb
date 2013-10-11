@@ -43,6 +43,11 @@ public class DownloadServlet extends HttpServlet {
             ArrayList<ExamCenter> centers = CenterDA.getAllPopulatedCenters();
             ReportGeneration.Report.generate(filePath, "centers", centers);
         }
+         else if (request.getParameter("name").equals("Classrooms")) {
+            filePath = "Reports\\Classroom.docx";
+            ArrayList<ExamCenter> centers = CenterDA.getAllPopulatedCenters();
+            ReportGeneration.Report.generate(filePath, "centers", centers);
+        }
         else
             return;
 

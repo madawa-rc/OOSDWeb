@@ -141,7 +141,7 @@ public class CenterDA {
 
                 ArrayList<Classroom> ClassList = new ArrayList<Classroom>();
                 for (int j = 0; j < center.getClassrooms(); j++) {
-                    ClassList.add(new Classroom(i + 1, capacity));
+                    ClassList.add(new Classroom(j + 1, capacity));
                 }
                 center.setClassroomList(ClassList);
             }
