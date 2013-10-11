@@ -141,8 +141,9 @@
                                                     <h3>User help desk</h3>
                                                     <img src="css/images/info.png" alt="" title="" class="sidebar_icon_right" />
                                                     <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                    </p>                
+                                                        Thousands of students love to participate in Mathematics Olympiad every year to improve their knowledge.
+                                                        Register today and get an awesome cookie free!
+                                                    </p>           
                                                 </div>
                                                 <div class="sidebar_box_bottom"></div>
                                             </div>
