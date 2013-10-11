@@ -19,7 +19,7 @@ import slmo.registration.dao.StudentDA;
  */
 public class sendAdmissionCards {
 
-    static final String admissionCardNames = "C:\\Users\\New\\Documents\\NetBeansProjects\\OOSDWeb\\AdmissionCard";
+    static final String admissionCardNames = "C:\\Users\\Danula\\Documents\\GitHub\\OOSDWeb\\AdmissionCard";
 
     public static void main(String[] args) {
         new sendAdmissionCards().sendtoPrivate();

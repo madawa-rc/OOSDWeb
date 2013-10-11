@@ -65,7 +65,8 @@ public class AddSchoolManualServlet extends HttpServlet {
                 }
 
             }
-        
+        request.getSession().setAttribute("message","Registration successfull!");
+            response.sendRedirect("message.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
