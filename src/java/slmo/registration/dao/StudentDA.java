@@ -244,7 +244,7 @@ public class StudentDA {
             Connection con = DatabaseConnectionHandler.getConnection();
 
             String queryCheck = "UPDATE student "
-                    + "SET assigned_classrm = ? "
+                    + "SET rank = ? "
                     + "WHERE id = ?";
 
             PreparedStatement ps = con.prepareStatement(queryCheck);
