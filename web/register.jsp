@@ -173,7 +173,7 @@
                             <form action="StudentRegistrationServlet" name="register" method="post" id="Signup">
                                         <div>
                                             <div  class="wrapper">
-                                                <span>First name:</span>
+                                                <span>Full name:</span>
                                                 <div class="bg"><input type="text" class="input" name="name" required="true"></div>
                                             </div><br>
                                             <div  class="wrapper">
