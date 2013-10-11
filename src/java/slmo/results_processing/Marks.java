@@ -45,6 +45,7 @@ public class Marks {
                     updatemarks(list, check);
                 }
             }
+            Rank.generateRank();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

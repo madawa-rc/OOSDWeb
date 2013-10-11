@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import slmo.centerallocation.ExamCenter;
 import slmo.centerallocation.dao.CenterDA;
+import slmo.registration.School;
+import slmo.registration.dao.SchoolDA;
 
 public class DownloadServlet extends HttpServlet {
 
@@ -47,6 +49,10 @@ public class DownloadServlet extends HttpServlet {
             filePath = "Reports\\Classroom.docx";
             ArrayList<ExamCenter> centers = CenterDA.getAllPopulatedCenters();
             ReportGeneration.Report.generate(filePath, "centers", centers);
+        }else if(request.getParameter("name").equals("ResultSheet")){
+            filePath = "Reports\\ResultsSchool.docx";
+            ArrayList<School> allSchools = SchoolDA.getAllSchools();            
+            ReportGeneration.Report.generate(filePath,"schools",allSchools);
         }
         else
             return;

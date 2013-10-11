@@ -107,7 +107,8 @@ public class StudentDA {
                         rs.getInt("payment"),
                         rs.getInt("marks"),
                         rs.getString("verification"),
-                        rs.getInt("verified"));
+                        rs.getInt("verified"),
+                        rs.getInt("rank"));
                 //adding student to the arrayList
                 studentList.add(student);
             }

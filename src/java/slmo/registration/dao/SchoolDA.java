@@ -147,20 +147,28 @@ public class SchoolDA  {
             while(rs.next()){
                 //retrieving student from database
                 student = new Student(
-                            rs.getString("name"),
-                            rs.getInt("date"),
-                            rs.getInt("month"),
-                            rs.getInt("year"),
-                            rs.getString("email"),
-                            rs.getString("school"),
-                            rs.getString("school_addr"),
-                            rs.getString("home_addr"),
-                            rs.getInt("pvt_applicant"),
-                            rs.getString("phone"),
-                            rs.getString("medium"),                    
-                            rs.getString("preferred_centre"),
-                            rs.getString("verification")
-                            );
+                        rs.getString("name"),
+                        rs.getInt("date"),
+                        rs.getInt("month"),
+                        rs.getInt("year"),
+                        rs.getString("email"),
+                        rs.getString("school"),
+                        rs.getString("school_addr"),
+                        rs.getString("home_addr"),
+                        rs.getInt("pvt_applicant"),
+                        rs.getString("phone"),
+                        rs.getString("medium"),
+                        rs.getString("preferred_centre"),
+                        rs.getString("assigned_classrm"),
+                        rs.getInt("indexNum"),
+                        rs.getInt("id"),
+                        rs.getString("assigned_centre"),
+                        rs.getInt("payment"),
+                        rs.getInt("marks"),
+                        rs.getString("verification"),
+                        rs.getInt("verified"),
+                        rs.getInt("rank")
+                        );
                 //adding student to the arrayList
                 int id=Integer.parseInt(rs.getString("id"));
                 student.setId(id);
