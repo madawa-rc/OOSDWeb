@@ -34,6 +34,7 @@ public class Student{
     private String verification;
     private int schoolId;
     private int verified;
+    private int rank;
     /**
      * constructor to enter data of the student
      * @param name name of the student
@@ -67,7 +68,7 @@ public class Student{
         this.verification=verification;
     }
 
-    public Student(String name, int date, int month, int year, String email, String school, String school_addr, String home_addr, int pvt_applicant, String phone, String medium, String preferred_centre, String assigned_classrm, int index, int id, String assigned_centre, int payment, int marks, String verification, int verified) {
+    public Student(String name, int date, int month, int year, String email, String school, String school_addr, String home_addr, int pvt_applicant, String phone, String medium, String preferred_centre, String assigned_classrm, int index, int id, String assigned_centre, int payment, int marks, String verification, int verified,int rank) {
         this.name = name;
         this.date = date;
         this.month = month;
@@ -88,6 +89,7 @@ public class Student{
         this.marks = marks;
         this.verification = verification;
         this.verified = verified;
+        this.rank = rank;
     }
     
     /**
@@ -441,7 +443,12 @@ public class Student{
      */
     public int getPayment() {
         return payment;
-    }   
+    }
+
+    public int getRank() {
+        return rank;
+    }
+    
 }
 
 /*
