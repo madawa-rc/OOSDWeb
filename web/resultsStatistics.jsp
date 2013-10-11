@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Centre Information</title>
+        <title>Results Statistics</title>
         <link rel="shortcut icon" href="images/logo.png">
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="description" content="" />
