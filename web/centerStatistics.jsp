@@ -63,7 +63,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="css/niceforms-default.css" />
         <script type="text/javascript">
             function message() {
-                var result = confirm("You are violating the honour code pledge!\nAre you really want to do this?");
+                var result = confirm("Are you really want to do this?");
                 return result;
             }
         </script>
@@ -174,9 +174,6 @@
                                     <li>Insert school details manually</li>
                                     <li>Assign examination centres to the applicants</li>
                                     <li>Send admission cards</li>
-                                    <li>Finalize coding this shit</li>
-                                    <li>Upload the source code</li>
-                                    <li>Explain about this software to CG <strong>(CRITICAL)</strong></li>
                                 </ul>                
                             </div>
                             <div class="sidebar_box_bottom"></div>

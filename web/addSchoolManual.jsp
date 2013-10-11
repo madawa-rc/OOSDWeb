@@ -55,6 +55,11 @@
                 return true;
             }
             
+            function message(){
+                var result = confirm("Are you really want to do this?");
+                return result;
+            }
+            
             function addRow(tableID) {
                 var n = document.getElementById("num").value;
                 n = parseInt(n);
@@ -337,9 +342,6 @@
                                     <li>Insert school details manually</li>
                                     <li>Assign examination centres to the applicants</li>
                                     <li>Send admission cards</li>
-                                    <li>Finalize coding this shit</li>
-                                    <li>Upload the source code</li>
-                                    <li>Explain about this software to CG <strong>(CRITICAL)</strong></li>
                                 </ul>                
                             </div>
                             <div class="sidebar_box_bottom"></div>
