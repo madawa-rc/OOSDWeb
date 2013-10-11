@@ -379,13 +379,13 @@
                                                 <span>Preferred Centre</span>
                                                 <div class="bg"><select name="preferred_centre" name="preferred_centre" required="true">
                                                         <option value="" style="display:none;">Select centre...</option>
-                                                        <option value="Colombo">Colombo</option>
-                                                        <option value="Galle">Galle</option>
-                                                        <option value="Jaffna">Jaffna</option>
-                                                        <option value="Kandy">Kandy</option>
-                                                        <option value="Kurunegala">Kurunegala</option>
-                                                        <option value="Matara">Matara</option>
-                                                        <option value="Trincomalee">Trincomalee</option>
+                                                        <option value="COLOMBO">COLOMBO</option>
+                                                        <option value="GALLE">GALLE</option>
+                                                        <option value="JAFFNA">JAFFNA</option>
+                                                        <option value="KANDY">KANDY</option>
+                                                        <option value="KURUNEGALA">KURUNEGALA</option>
+                                                        <option value="MATARA">MATARA</option>
+                                                        <option value="TRINCOMALEE">TRINCOMALEE</option>
                                                     </select>
                                                 </div>
                                             </div>
