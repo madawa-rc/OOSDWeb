@@ -46,6 +46,7 @@ public class GetAnswerScript extends HttpServlet {
         } else if (request.getParameter("indexNum") != null) {
             int index = Integer.parseInt(request.getParameter("indexNum"));
             request.getSession().setAttribute("resultSheet", ResultSheetDA.getResultSheet(index));
+            request.getSession().setAttribute("search", "search");
             response.sendRedirect("answerSheet.jsp");
             return;
         }
