@@ -70,7 +70,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="css/niceforms-default.css" />
         <script type="text/javascript">
             function message(){
-                var result = confirm("You are violating the honour code pledge!\nAre you really want to do this?");
+                var result = confirm("Are you really want to do this?");
                 return result;
             }
         </script>
