@@ -8,13 +8,14 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="slmo.registration.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    
 <%
     User user = (User) session.getAttribute("user");
     if (user == null || !user.getName().equals("Admin")) {
         request.getSession().removeAttribute("user");
-        response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an admin!");
+        response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Administrator!");
     } else {
+        ArrayList<School> list;
+        list = (ArrayList<School>) session.getAttribute("schoolList");
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -87,7 +88,7 @@
                 <div id="clock_a"></div>
             </div>
 
-            <div class="main_content">
+            <div class="stat_content">
 
                 <div class="menu">
                     <ul>
@@ -103,7 +104,16 @@
                 </div> 
                 <div class="center_content">
                     <div class="left_content">
-                        
+
+                        <div class="sidebar_search">
+                            <form name="searchForm" action="AdminServlet" method="post">
+                                <input type="text" name="search" class="search_input" value="Search school" onclick="this.value=''" />
+                                <input type="image" class="search_submit" src="css/images/search.png" />
+                            </form>
+                            <form name="getSchool" method="post" action="AdminServlet" >
+                                <input type="hidden" name="schoolEmail" value="" id="schoolEmail"/>
+                            </form>            
+                        </div>
                         <div class="sidebarmenu">            
                             <a class="menuitem submenuheader" href="">Add</a>
                             <div class="submenu">
@@ -171,14 +181,24 @@
                     </div>
 
                     <div class="right_content">
-                        <div class="box-2">
-                            <form name="addFile" action="UploadServlet" method="post" id="ContactForm" enctype="multipart/form-data">
-                                <h2>Upload Excel File:</h2><br>
-                                <input type="file" name="uploadFile" class=""/> 
-                                <br/><br/> 
-                                <input type="submit" value="Upload" class="button"/>
-                            </form>
-                        </div>                  
+                        <%
+                            
+                            if (list == null); else if (list.size() == 0) {
+                                out.print("<h3>Search Results:</h3><br><br><br>");
+                                out.print("<ul type=\"none\"><li>&nbsp;&nbsp;&nbsp;No match found!</li></ul>");
+                            } else {
+                                out.print("<h3>Search Results:</h3><br><br><br>");
+                        %>
+                        <%
+                            for (int i = 0; i < list.size(); ++i) {
+                        %>
+                        <ul type="square"><li>
+                                &nbsp;&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail=" + list.get(i).getEmail()%>" target="new"><%out.print(list.get(i).getName());%></a>
+                            </li>
+                        </ul>
+                        <%}
+                                        }%>
+                                            
                     </div><!-- end of right content-->
                 </div>   <!--end of center content -->        
                 <div class="clear"></div>
@@ -189,5 +209,5 @@
             </div>
         </div>		
     </body>
-    <% }%>
+                            <% }%>
 </html>

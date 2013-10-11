@@ -95,6 +95,14 @@ height:auto;
 padding:0px 0 50px 0;
 background:url(images/menu_bg.jpg) no-repeat center top #fff;
 }
+
+.stat_content{
+margin:0 auto;
+width:auto;
+height:auto;
+padding:0px 0 50px 0;
+background:url(images/menu_bg.jpg) no-repeat center top #fff;
+}
 .footer{width:900px;height:87px; center top;}
 .footer_login{width:600px;margin:auto;}
 
