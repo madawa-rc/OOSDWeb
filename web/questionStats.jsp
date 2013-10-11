@@ -67,6 +67,10 @@
         <div id="wrapper">
             <div class="1u" id="logo">
                 <p align="left"><font face="Helvitica" size="7px"><u>Statistics of <%="Question "+ qNumber%></u></font></p>
+            <% if(qNumber<30){  
+                %>
+                <a href=<%="questionStats.jsp?qNum="+(qNumber+1) %>>Next Question</a>
+                <%}%>
             </div>
         <div class="StudentData">
             <table>
@@ -224,8 +228,20 @@
                     
                 </table>
                 <div id="statsG"></div><br><br>
-                <div id="statscp1"></div><br><br>
-                <div id="statscp2"></div><br><br>
+                <table border="0">
+                    <tr>
+                        <td>
+                            <div id="statscp1"></div><br><br>
+                        </td>
+                        <td>
+                            <div id="statscp2"></div><br><br>
+                        </td>
+                    </tr>
+                </table>
+                <% if(qNumber<30){  
+                %>
+                <a href=<%="questionStats.jsp?qNum="+(qNumber+1) %>>Next Question</a>
+                <%}%>
                 <p class="para" align="right"><font size="5px">Follow Us:</font></p>
             <ul class="social-list">
                 <li><a href="#"><img src="images/social-link-1.jpg" alt=""></a></li>
