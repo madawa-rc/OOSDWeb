@@ -45,7 +45,7 @@ public class NewsServlet extends HttpServlet {
 
 
 
-        ArrayList<NewsItem> list = News.NewsMain.getNews();
+        ArrayList<NewsItem> list = News.NewsDA.getNews();
         if (list != null&&!list.isEmpty()) {
             for (int i = 0; i < list.size(); i++) {
                 int id = list.get(i).getId();

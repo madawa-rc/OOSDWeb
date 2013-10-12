@@ -1,4 +1,5 @@
 <%@page import="News.NewsItem"%>
+<%@page import="News.NewsDA"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
     Document   : schoolDashboard
@@ -92,7 +93,7 @@
                     <ul>
                         <li><a href="index.jsp">User Home<!--[if IE 7]><!--></a><!--<![endif]-->
                         </li>
-                        <li><a href="#">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
+                        <li><a href="newsDashboard.jsp">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
                             <% if (user != null) {
                             %>
                             <li><a class="current" href="<%=user.getLink()%>">Dashboard</a>
@@ -180,8 +181,8 @@
                     </div>
                     
                     <%
-                        if (News.NewsMain.getNews() != null) {
-                            ArrayList<NewsItem> newsList = News.NewsMain.getNews();
+                        if (News.NewsDA.getNews() != null) {
+                            ArrayList<NewsItem> newsList = News.NewsDA.getNews();
                     %>
                     <div class="right_content">
                         Add New News Item
@@ -191,8 +192,8 @@
                         </form>
                         <br><br><br>
                         <%
-                            if(News.NewsMain.getMainNews()!=null){
-                                String news = News.NewsMain.getMainNews().getNews();
+                            if(News.NewsDA.getMainNews()!=null){
+                                String news = News.NewsDA.getMainNews().getNews();
                                 if(news!=null){
                                     out.print(news);
                                 }
@@ -217,7 +218,7 @@
                                             <input type="radio" name="main" value=<%=n.getId()%> />
                                         </td>
                                         <td>
-                                            <input type="radio" name=<%="delete" + n.getId() %> value="yes" />
+                                            <input type="checkbox" name=<%="delete" + n.getId() %> value="yes" />
                                         </td>
                                         <td>            
                                             <input type="text" value="<%=n.getNews()%>" name=<%="news" + n.getId()%> /> 

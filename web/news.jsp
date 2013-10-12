@@ -1,3 +1,5 @@
+<%@page import="News.NewsItem"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="News.NewsDA"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
@@ -80,7 +82,7 @@
                 <div class="menu">
                     <ul>
                         <li><a class="current" href="./">Home</a></li>
-                        <li><a href="news.jsp">News</a></li>
+                        <li><a href="#">News</a></li>
                         <li><a href="#">Register</a>
                             <ul>
                                 <li><a href="register.jsp" title="">As a Private Applicant</a></li>
@@ -163,7 +165,7 @@
                                         <img src="images/social-link-2.jpg" style="margin:0 5px"alt="" align="left"/></a>
                                     <a href="#"><img src="images/social-link-3.jpg"style="margin:0 5px" alt="" align="left"/></a>
                                     <a href="#"><img src="images/social-link-4.jpg"style="margin:0 5px" alt="" align="left"/></a>
-                                    <br>
+                                    <br></br>
                                 </p>
                             </div>
                             <div class="sidebar_box_bottom"></div>
@@ -172,16 +174,18 @@
 
                     <div class="right_content">            
 
-                        <h1>Welcome to Sri Lanka Mathematical Olympiad Foundation </h1>
+                        <h1>News from SLOMF</h1>
+                        <hr></hr>
                         <%
-                            if (NewsDA.getMainNews() != null && NewsDA.getMainNews().getNews() != null) {
-                                out.print(NewsDA.getMainNews().getNews());
-                                out.print("<br><br>");
+                            if(NewsDA.getNews()!=null){
+                                ArrayList<NewsItem> newsList = NewsDA.getNews();
+                                for(int i=0;i<newsList.size()-1;i++){
+                                        out.println(newsList.get(i).getNews());
+                                        System.out.println(newsList.get(i).getNews());
+                                        out.println("<hr>");
+                                }
                             }
                         %>
-                        <div>
-                            <img src="images/front.jpg" alt="" align="left"/>
-                        </div>
                     </div><!-- end of right content-->
                 </div>   <!--end of center content -->
 

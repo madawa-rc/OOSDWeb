@@ -96,7 +96,7 @@
                     <ul>
                         <li><a href="index.jsp">User Home<!--[if IE 7]><!--></a><!--<![endif]-->
                         </li>
-                        <li><a href="#">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
+                        <li><a href="newsDashboard.jsp">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
                         <% if (user != null) {
                         %>
                         <li><a class="current" href="<%=user.getLink()%>">Dashboard</a>

@@ -10,8 +10,21 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class NewsDA {
-    
-    
+    private static NewsItem mainNews=null;
+    private static ArrayList<NewsItem> news =null;
+
+    public static NewsItem getMainNews() {
+        return mainNews;
+    }
+    public static ArrayList<NewsItem> getNews() {
+        return news;
+    }
+    public static void setMainNews(NewsItem mainNews) {
+        NewsDA.mainNews = mainNews;
+    }
+    public static void setNews(ArrayList<NewsItem> news) {
+        NewsDA.news = news;
+    }
     public static void addNews(String news) {
         try {
             Connection con = DatabaseConnectionHandler.getConnection();
@@ -75,14 +88,14 @@ public class NewsDA {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        NewsMain.setNews(newsList);
+        NewsDA.setNews(newsList);
     }
     public static void setMainNews(int id){
-        NewsMain.mainNews=null;
-        ArrayList<NewsItem> list = NewsMain.getNews();
+        NewsDA.mainNews=null;
+        ArrayList<NewsItem> list = NewsDA.getNews();
         for(int i=0;i<list.size();i++){
             if(list.get(i).getId()==id)
-                NewsMain.mainNews=list.get(i);
+                NewsDA.mainNews=list.get(i);
         }
     }
 }
