@@ -2,17 +2,23 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package slmo.registration.Servlet;
+package News;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static Mail.sendMail.sendmail;
-import java.io.PrintWriter;
+import slmo.registration.User;
 
-public class ContactFormServlet extends HttpServlet {
+/**
+ *
+ * @author New
+ */
+public class NewsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -26,22 +32,47 @@ public class ContactFormServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String eAddress="slomfoundation@gmail.com";
-        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String name = request.getParameter("name");
-        String address = request.getParameter("address");
-        String email = request.getParameter("email");
-        String message = request.getParameter("message");
-        
-        message = "Name : "+name+"\n"+"Address : "+address+"\n"+"Email : "+email+"\n"+"Message : "+message;
-        sendmail("isuruf@gmail.com",email,"ContactUs Form SLMO Website",message);
-       // request.getSession().setAttribute("message","Your message was successfully sent. We will reply to your message"
-         //       + " as soon as possible");
-     //   response.sendRedirect("message.jsp");
+        User user = (User) request.getSession().getAttribute("user");
+        if (user == null || !user.getName().equals("Admin")) {
+            return;
+        }
+        if (request.getParameter("new") != null) {
+            NewsDA.addNews(request.getParameter("new"));
+            System.out.println(request.getParameter("new"));
+        }
+
+
+
+        ArrayList<NewsItem> list = News.NewsMain.getNews();
+        if (list != null&&!list.isEmpty()) {
+            for (int i = 0; i < list.size(); i++) {
+                int id = list.get(i).getId();
+                String msg = request.getParameter("news" + id);
+                if (msg != null) {
+                    System.out.println(msg);
+                    String s = request.getParameter("delete" + id);
+                    if (s != null && s.equals("yes")) {
+                        NewsDA.deleteNews(id);
+                    } else {
+                        NewsDA.modifyNews(msg, id);
+                    }
+                }
+            }
+            NewsDA.processNews();
+            if (request.getParameter("main") != null) {
+                try {
+                    System.out.println(request.getParameter("main"));
+                    NewsDA.setMainNews(Integer.parseInt(request.getParameter("main")));
+                } catch (Exception e) {
+                }
+            }
+        }
+                NewsDA.processNews();
+                response.sendRedirect("newsDashboard.jsp");
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP

@@ -9,11 +9,6 @@ import org.apache.pdfbox.pdmodel.interactive.form.PDField;
 
 public class PdfFill extends AbstractExample {
 
-    public static void main(String[] args) {
-        PdfFill a = new PdfFill("AdmissionCard.pdf");
-        a.setField("Medium", "isuru");
-        a.save("AdmissionCard2.pdf");
-    }
     PDDocument pdf = null;
 
     public PdfFill(String name) {

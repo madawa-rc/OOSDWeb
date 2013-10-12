@@ -1,29 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package admin;
 
+import Database.Constants;
 import Mail.sendMail;
 import ReportGeneration.MergePDF;
 import ReportGeneration.PdfFill;
+import java.io.File;
 import java.util.ArrayList;
 import slmo.registration.School;
 import slmo.registration.Student;
 import slmo.registration.dao.SchoolDA;
 import slmo.registration.dao.StudentDA;
 
-/**
- *
- * @author New
- */
 public class sendAdmissionCards {
 
-    static final String admissionCardNames = "C:\\Users\\Danula\\Documents\\GitHub\\OOSDWeb\\AdmissionCard";
-
-    public static void main(String[] args) {
-        new sendAdmissionCards().sendtoPrivate();
-    }
+    static final String admissionCardNames = Constants.LOCATION + "Reports\\AdmissionCard";
 
     public static void sendtoPrivate() {
         ArrayList<Student> list = StudentDA.getAllPrivateStudents();
@@ -36,10 +26,17 @@ public class sendAdmissionCards {
             a.setField("Name", s.getName());
             a.setField("Index", s.getIndex() + "");
             a.save(admissionCardNames + s.getIndex() + ".pdf");
-            sendMail.sendMailWithAttachment(s.getEmail(), "Admission Card for SLMC 2014", "Dear Applicant,\n"
+            String message = "Dear " + s.getName() + ",\n"
                     + "Please find attached the admission card for SLMC 2014.\n\n"
                     + "Sri Lanka Olympiad Mathematics Foundation\n"
-                    + "University of Colombo", admissionCardNames + s.getIndex() + ".pdf", "AdmissionCard.pdf");
+                    + "University of Colombo";
+            String filepath = admissionCardNames + s.getIndex() + ".pdf";
+            String filename = "AdmissionCard.pdf";
+            
+            sendMail.sendMailWithAttachment(s.getEmail(), "Admission Card for SLMC 2014", message,
+                    filepath, filename);
+            File file = new File(filepath);
+            file.delete();
         }
     }
 
@@ -59,11 +56,21 @@ public class sendAdmissionCards {
                 files.add(admissionCardNames + s.getIndex() + ".pdf");
             }
             new MergePDF().merge(files, admissionCardNames + schoolList.get(j).getName() + ".pdf");
-            sendMail.sendMailWithAttachment(schoolList.get(j).getEmail(), "Admission Card for SLMC 2014", "Dear Applicant,\n"
+            for (Student s : list) {
+                File file = new File(admissionCardNames + s.getIndex() + ".pdf");
+                file.delete();
+            }
+            
+            String message = "Dear " + schoolList.get(j).getContactname() + ",\n"
                     + "Please find attached the admission card for SLMC 2014.\n\n"
                     + "Sri Lanka Olympiad Mathematics Foundation\n"
-                    + "University of Colombo", admissionCardNames + schoolList.get(j).getName() + ".pdf", "AdmissionCard.pdf");
-
+                    + "University of Colombo";
+            String filepath = admissionCardNames + schoolList.get(j).getName() + ".pdf";
+            String filename = "AdmissionCard.pdf";
+            sendMail.sendMailWithAttachment(schoolList.get(j).getEmail(), "Admission Card for SLMC 2014", message,
+                    filepath, filename);
+            File file = new File(filepath);
+            file.delete();
 
 
         }

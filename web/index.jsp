@@ -1,3 +1,4 @@
+<%@page import="News.NewsMain"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
     Document   : index
@@ -172,7 +173,12 @@
 
                                             <div class="right_content">            
 
-                                                <h1>Welcome to Sri Lanka Mathematical Olympiad Foundation </h1> 
+                                                <h1>Welcome to Sri Lanka Mathematical Olympiad Foundation </h1>
+                                                <%
+                                                    if(NewsMain.getMainNews()!=null&&NewsMain.getMainNews().getNews()!=null){
+                                                        out.print(NewsMain.getMainNews().getNews());
+                                                    }
+                                                        %>
                                                 <div>
                                                     <img src="images/front.jpg" alt="" align="left"/>
                                                 </div>

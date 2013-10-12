@@ -1,3 +1,4 @@
+<%@page import="News.NewsDA"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
     Document   : schoolDashboard
@@ -14,6 +15,7 @@
         request.getSession().removeAttribute("user");
         response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Administrator!");
     } else {
+        NewsDA.processNews();
         ArrayList<School> list;
         list = (ArrayList<School>) session.getAttribute("schoolList");
 %>
