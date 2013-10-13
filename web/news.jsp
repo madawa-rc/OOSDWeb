@@ -177,12 +177,13 @@
                         <h1>News from SLOMF</h1>
                         <hr></hr>
                         <%
-                            if(NewsDA.getNews()!=null){
+                            if (NewsDA.getNews() != null) {
                                 ArrayList<NewsItem> newsList = NewsDA.getNews();
-                                for(int i=0;i<newsList.size()-1;i++){
+                                for (int i = 0; i < newsList.size(); i++) {
+                                    if (newsList.get(i).isShow()) {
                                         out.println(newsList.get(i).getNews());
-                                        System.out.println(newsList.get(i).getNews());
                                         out.println("<hr>");
+                                    }
                                 }
                             }
                         %>

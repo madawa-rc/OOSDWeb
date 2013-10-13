@@ -185,7 +185,7 @@
                         <div class="box-2">
                             <form name="addFile" action="UploadServlet" method="post" id="ContactForm" enctype="multipart/form-data">
                                 <h2>Upload Excel File:</h2><br>
-                                <input type="file" name="uploadFile" class=""/> 
+                                <input type="file" name="uploadFile" class=""/>
                                 <br/><br/> 
                                 <input type="submit" value="Upload" class="button"/>
                             </form>

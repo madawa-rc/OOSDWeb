@@ -15,7 +15,6 @@
         request.getSession().removeAttribute("user");
         response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Administrator!");
     } else {
-        NewsDA.processNews();
         ArrayList<School> list;
         list = (ArrayList<School>) session.getAttribute("schoolList");
 %>

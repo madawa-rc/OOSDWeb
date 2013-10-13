@@ -16,6 +16,7 @@
         request.getSession().removeAttribute("user");
         response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Administrator!");
     } else {
+        NewsDA.processNews();
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -185,26 +186,29 @@
                             ArrayList<NewsItem> newsList = News.NewsDA.getNews();
                     %>
                     <div class="right_content">
-                        Add New News Item
+                        <%
+                            if(News.NewsDA.getMainNews()!=null){ 
+                                String news = News.NewsDA.getMainNews().getNews();
+                                if(news!=null&&!news.equals(" ")){
+                                    out.print("<h1>Main News Item</h1>");
+                                    out.print(news);
+                                }
+                            }
+                            %>
+                            <h1>Add New News Item</h1>
                         <form action="NewsServlet" method="post">
                                 <textarea name="new" rows =10 cols =75></textarea><br><br>
                                 <input type="submit" value="Submit" class="button"/>
                         </form>
                         <br><br><br>
-                        <%
-                            if(News.NewsDA.getMainNews()!=null){
-                                String news = News.NewsDA.getMainNews().getNews();
-                                if(news!=null){
-                                    out.print(news);
-                                }
-                            }
-                            %>
+                        <h1>Show/Delete News Items</h1>
                         <form name="myform" action="NewsServlet" method="post">
                             <table id="rounded-corner">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="rounded">SetMain</th>
                                         <th scope="col" class="rounded">Delete</th>
+                                        <th scope="col" class="rounded">Show</th>
                                         <th scope="col" class="rounded">NewsItem</th>
                                     </tr>
                                 </thead>
@@ -218,10 +222,15 @@
                                             <input type="radio" name="main" value=<%=n.getId()%> />
                                         </td>
                                         <td>
-                                            <input type="checkbox" name=<%="delete" + n.getId() %> value="yes" />
+                                            <input type="checkbox" name=<%="delete" + n.getId() %> <% if(i==newsList.size()-1) out.print("disabled=\"true\""); %>/>
                                         </td>
-                                        <td>            
-                                            <input type="text" value="<%=n.getNews()%>" name=<%="news" + n.getId()%> /> 
+                                        <td>      
+                                            <input type="checkbox" name=<%="show" + n.getId() %> <%if(n.isShow()) out.print("checked=\"true\""); if(i==newsList.size()-1) out.print("disabled=\"true\""); %> />
+                                        </td>
+                                        <td>      
+                                            <%
+                                            out.print(n.getNews());
+                                            %>
                                         </td>
                                     </tr>     
                                     <%

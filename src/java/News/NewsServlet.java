@@ -46,17 +46,17 @@ public class NewsServlet extends HttpServlet {
 
 
         ArrayList<NewsItem> list = News.NewsDA.getNews();
-        if (list != null&&!list.isEmpty()) {
+        if (list != null && !list.isEmpty()) {
             for (int i = 0; i < list.size(); i++) {
                 int id = list.get(i).getId();
-                String msg = request.getParameter("news" + id);
-                if (msg != null) {
-                    System.out.println(msg);
-                    String s = request.getParameter("delete" + id);
-                    if (s != null && s.equals("yes")) {
-                        NewsDA.deleteNews(id);
+                if (request.getParameter("delete" + id) != null) {
+                    NewsDA.deleteNews(id);
+                } else {
+                    if (request.getParameter("show" + id) != null) {
+                        System.out.println("show " + id);
+                        NewsDA.show(id, 1);
                     } else {
-                        NewsDA.modifyNews(msg, id);
+                        NewsDA.show(id, 0);
                     }
                 }
             }
@@ -69,8 +69,8 @@ public class NewsServlet extends HttpServlet {
                 }
             }
         }
-                NewsDA.processNews();
-                response.sendRedirect("newsDashboard.jsp");
+        NewsDA.processNews();
+        response.sendRedirect("newsDashboard.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import slmo.registration.User;
 import slmo.results_processing.Marks;
 import slmo.results_processing.ReadExcelSample;
 
@@ -40,12 +41,17 @@ public class UploadServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // checks if the request actually contains upload file
-         PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
+        User user = (User) request.getSession().getAttribute("user");
+        if(user==null||!user.getName().equals("Admin")){
+            request.getSession().invalidate();
+            response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Administrator!");
+            return;
+        }
         if (!ServletFileUpload.isMultipartContent(request)) {
             // if not, we stop here
-           
-            out.println("Error: Form must has enctype=multipart/form-data.");
-            out.flush();
+            request.getSession().setAttribute("message", "Error: Form must has enctype=multipart/form-data.");
+            response.sendRedirect("message.jsp");
             return;
         }
 
@@ -77,7 +83,7 @@ public class UploadServlet extends HttpServlet {
 
         try {
             // parses the request's content to extract file data
-            
+
             List<FileItem> formItems = upload.parseRequest(request);
 
             if (formItems != null && formItems.size() > 0) {
@@ -86,14 +92,22 @@ public class UploadServlet extends HttpServlet {
                     // processes only fields that are not form fields
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
-                      //  String filePath = uploadPath + File.separator + fileName;
-                        String filePath = Constants.LOCATION +fileName;
-                        File storeFile = new File(filePath);
-                        // saves the file on disk
-                        item.write(storeFile);
-                        ReadExcelSample.readResults(filePath);
-                        Marks.calculate();
-                        request.getSession().setAttribute("message","Results have been uploaded Successfully!");
+                        //  String filePath = uploadPath + File.separator + fileName;
+                        if (fileName.endsWith(".xlsx")) {
+                            String filePath = Constants.LOCATION + "Uploads\\" + fileName;
+                            File storeFile = new File(filePath);
+                            // saves the file on disk
+                            item.write(storeFile);
+                            ReadExcelSample.readResults(filePath);
+                            Marks.calculate();
+                        }
+                        else{
+                             String filePath = uploadPath + File.separator + fileName;
+                             File storeFile = new File(filePath);
+                            // saves the file on disk
+                            item.write(storeFile);
+                        }
+                        request.getSession().setAttribute("message", "Results have been uploaded Successfully!");
                         response.sendRedirect("message.jsp");
                     }
                 }
@@ -101,7 +115,7 @@ public class UploadServlet extends HttpServlet {
         } catch (Exception ex) {
             out.print("There was an error: " + ex.getMessage());
         }
-        
+
 
     }
 
