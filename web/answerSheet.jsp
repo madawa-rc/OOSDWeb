@@ -8,7 +8,7 @@
     Author     : Madawa
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    
+
 <%
     User user = (User) session.getAttribute("user");
     if (user == null || !user.getName().equals("Admin")) {
@@ -47,10 +47,10 @@
                 toggleclass: ["", ""], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
                 togglehtml: ["suffix", "<img src='css/images/plus.gif' class='statusicon' />", "<img src='css/images/minus.gif' class='statusicon' />"], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
                 animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
-                oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
+                oninit: function(headers, expandedindices) { //custom code to run when headers have initalized
                     //do nothing
                 },
-                onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
+                onopenclose: function(header, index, state, isuseractivated) { //custom code to run whenever a header is opened or closed
                     //do nothing
                 }
             })
@@ -58,25 +58,25 @@
 
         <script type="text/javascript" src="css/jconfirmaction.jquery.js"></script>
         <script type="text/javascript">
-	
+
             $(document).ready(function() {
                 $('.ask').jConfirmAction();
             });
-	
+
         </script>
 
         <script language="javascript" type="text/javascript" src="css/niceforms.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/niceforms-default.css" />
         <script type="text/javascript">
-            function message(){
-                var result = confirm("Are you really want to do this?");
+            function message() {
+                var result = confirm("You are violating the honour code pledge!\nAre you really want to do this?");
                 return result;
             }
             function isNumberKey(evt) {
-            var charCode = (evt.which) ? evt.which : event.keyCode
-            if (charCode > 31 && (charCode < 48 || charCode > 57))
-                return false;
-            return true;
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+                return true;
             }
         </script>
 
@@ -93,8 +93,7 @@
                 <div class="right_header">Welcome Back! <a href="#">My Account</a> | <a href="#">Settings</a> | 
                     <a href = "logout.jsp" class ="logout">Logout</a>
                 </div>
-                <%                    
-                    }else
+                <%                    } else
                         out.print("<div class=\"right_header\"></div>");
                 %>
                 <div id="clock_a"></div>
@@ -106,12 +105,12 @@
                     <ul>
                         <li><a href="index.jsp">User Home<!--[if IE 7]><!--></a><!--<![endif]-->
                         </li>
-                        <li><a href="#">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
-                        <% if (user != null) {
-                        %>
-                        <li><a class="current" href="<%=user.getLink()%>">Dashboard</a>
-                        </li>
-                        <%}%>
+                        <li><a href="newsDashboard.jsp">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
+                            <% if (user != null) {
+                            %>
+                            <li><a class="current" href="<%=user.getLink()%>">Dashboard</a>
+                            </li>
+                            <%}%>
                     </ul>
                 </div> 
                 <div class="center_content">
@@ -120,9 +119,9 @@
                             <form name="searchForm" method="post" action="GetAnswerScript">
                                 <input class="search_input" type="text" value="Index number"
                                        onBlur="if (this.value == '')
-                                                    this.value = 'Index number'"
+                                            this.value = 'Index number'"
                                        onFocus="if (this.value == 'Index number')
-                                                    this.value = ''" name="indexNum" onkeypress="return isNumberKey(event)"/>
+                                            this.value = ''" name="indexNum" onkeypress="return isNumberKey(event)"/>
                                 <input type="image" class="search_submit" src="css/images/search.png"/>
                             </form>
                         </div>
@@ -134,27 +133,30 @@
                                     <li><a href="addSchoolManual.jsp">School</a></li>
                                 </ul>
                             </div>
-                            <a class="menuitem submenuheader" href="">Centres </a>
+                            <a class="menuitem submenuheader" href="">Centers </a>
                             <div class="submenu">
                                 <ul>
-                                    <li><a href="centreInformation.jsp">Centre Information</a></li>
-                                    <li><a href="centerStatistics.jsp">Centre Statistics</a></li>
-                                    <li><a href="CommandServlet?id=assignCentres">Assign Centres</a></li>
+                                    <li><a href="centreInformation.jsp">Center Information</a></li>
+                                    <li><a href="centerStatistics.jsp">Center Statistics</a></li>
+                                    <li><a href="CommandServlet?id=assignCentres">Assign Centers</a></li>
                                 </ul>
                             </div>
                             <a class="menuitem submenuheader" href="">Generate Reports</a>
                             <div class="submenu">
                                 <ul>
                                     <li><a href="DownloadServlet?name=AttendanceSheets">Attendance Sheets</a></li>
+                                    <li><a href="DownloadServlet?name=Classrooms">Classroom Labels</a></li>
+                                    <li><a href="DownloadServlet?name=ResultSheet">Result Sheets of Schools</a></li>
                                     <li><a href="DownloadServlet?name=Database">Database</a></li>
-                                    <li><a href="DownloadServlet?name=Classroom">Classroom Banner</a></li>
+
                                 </ul>
                             </div>
                             <a class="menuitem" href="CommandServlet?id=sendAdmission" onclick="return message();">Send Admission Cards</a>
                             <a class="menuitem submenuheader" href="">Answer Sheets</a>
                             <div class="submenu">
                                 <ul>
-                                    <li><a href="upload.jsp">Upload Answer Sheets</a></li>
+                                    <li><a href="upload.jsp?file=Excel File">Upload Answer Sheets</a></li>
+                                    <li><a href="CommandServlet?id=calculateMarks">Calculate Marks</a></li>
                                     <li><a href="resultsStatistics.jsp">Answer Statistics</a></li>
                                     <li><a href="answerSheet.jsp" onclick="return message();">Review Answer Scripts</a></li>
                                 </ul>
@@ -164,8 +166,13 @@
                         <div class="sidebar_box">
                             <div class="sidebar_box_top"></div>
                             <div class="sidebar_box_content">
-                                <h5>Upload photos</h5>
-                                <img src="css/images/photo.png" alt="" title="" class="sidebar_icon_right" />
+                                <div>
+                                    <h5>Upload photos</h5>
+                                </div>
+
+                                <a href="upload.jsp?file=Photographs">
+                                    <img src="css/images/photo.png" border="0" class="sidebar_icon_right" />
+                                </a>
                                 <p>
                                     Upload photographs of SLOMF special sessions.
                                 </p>                
@@ -187,8 +194,9 @@
                             </div>
                             <div class="sidebar_box_bottom"></div>
                         </div>
+
                     </div>
-                        
+
                     <div class="right_content">
                         <%
                             if (resultSheet != null) {
@@ -208,9 +216,10 @@
                                         }
                                     }
                                     out.print("<br><br><a href=\"GetAnswerScript?next=true\" align=\"center\">Next</a>");
-                                }else out.print("No Match Found!!");
+                                } else
+                                    out.print("No Match Found!!");
                             %>
-                                
+
                     </div><!-- end of right content-->
                 </div>   <!--end of center content -->        
                 <div class="clear"></div>
@@ -221,7 +230,7 @@
             </div>
         </div>		
     </body>
-        
+
     <%
         }
     %>

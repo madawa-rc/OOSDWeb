@@ -93,27 +93,33 @@ public class UploadServlet extends HttpServlet {
                     if (!item.isFormField()) {
                         String fileName = new File(item.getName()).getName();
                         //  String filePath = uploadPath + File.separator + fileName;
-                        if (fileName.endsWith(".xlsx")) {
+                     //   String fileType = request.getParameter("fileType");
+                       // System.out.println(fileType);
+                        String message=null;
+                        if (!fileName.endsWith(".xlsx")) {
+                            String filePath = uploadPath + File.separator + fileName;
+                             File storeFile = new File(filePath);
+                            // saves the file on disk
+                            item.write(storeFile);
+                            message = "The photograph has been uploaded successfully!";
+                        }
+                        else{
                             String filePath = Constants.LOCATION + "Uploads\\" + fileName;
                             File storeFile = new File(filePath);
                             // saves the file on disk
                             item.write(storeFile);
                             ReadExcelSample.readResults(filePath);
                             Marks.calculate();
+                            message = "Results have been uploaded and updated successfully!";
                         }
-                        else{
-                             String filePath = uploadPath + File.separator + fileName;
-                             File storeFile = new File(filePath);
-                            // saves the file on disk
-                            item.write(storeFile);
-                        }
-                        request.getSession().setAttribute("message", "Results have been uploaded Successfully!");
+                        request.getSession().setAttribute("message",message);
                         response.sendRedirect("message.jsp");
                     }
                 }
             }
         } catch (Exception ex) {
             out.print("There was an error: " + ex.getMessage());
+            ex.printStackTrace();
         }
 
 

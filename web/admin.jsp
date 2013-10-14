@@ -1,10 +1,10 @@
-<%@page import="News.NewsDA"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
     Document   : schoolDashboard
     Created on : 23-Sep-2013, 21:36:04
     Author     : Madawa
 --%>
+<%@page import="News.NewsDA"%>
 <%@page import="slmo.registration.School"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="slmo.registration.User"%>
@@ -96,11 +96,9 @@
                         <li><a href="index.jsp">User Home<!--[if IE 7]><!--></a><!--<![endif]-->
                         </li>
                         <li><a href="newsDashboard.jsp">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
-                        <% if (user != null) {
-                        %>
-                        <li><a class="current" href="<%=user.getLink()%>">Dashboard</a>
                         </li>
-                        <%}%>
+                        <li><a class="current" href="admin.jsp">Dashboard</a>
+                        </li>
                     </ul>
                 </div> 
                 <div class="center_content">
@@ -145,7 +143,7 @@
                             <a class="menuitem submenuheader" href="">Answer Sheets</a>
                             <div class="submenu">
                                 <ul>
-                                    <li><a href="upload.jsp">Upload Answer Sheets</a></li>
+                                    <li><a href="upload.jsp?file=Excel File">Upload Answer Sheets</a></li>
                                     <li><a href="CommandServlet?id=calculateMarks">Calculate Marks</a></li>
                                     <li><a href="resultsStatistics.jsp">Answer Statistics</a></li>
                                     <li><a href="answerSheet.jsp" onclick="return message();">Review Answer Scripts</a></li>
@@ -156,8 +154,13 @@
                         <div class="sidebar_box">
                             <div class="sidebar_box_top"></div>
                             <div class="sidebar_box_content">
+                                <div>
                                 <h5>Upload photos</h5>
-                                <img src="css/images/photo.png" alt="" title="" class="sidebar_icon_right" />
+                                </div>
+                                
+                                    <a href="upload.jsp?file=Photographs">
+                                    <img src="css/images/photo.png" border="0" class="sidebar_icon_right" />
+                                    </a>
                                 <p>
                                     Upload photographs of SLOMF special sessions.
                                 </p>                

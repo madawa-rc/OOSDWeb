@@ -97,15 +97,17 @@ public class Marks {
         
         ArrayList<String> answers = new ArrayList<String>();
         
-        String queryCheck = "SELECT "+question+" FROM marks";
+        String queryCheck = "SELECT "+question+",indexNum FROM marks";
         PreparedStatement ps = con.prepareStatement(queryCheck);
         ResultSet rs = ps.executeQuery();
-        
+        String correctAnswer=null;
         while(rs.next()){
             answers.add(rs.getString(question));
+            if(rs.getString("indexNum").startsWith("0")){
+                correctAnswer=rs.getString(question);
+            }
         }
-        
-        String correctAnswer = answers.get(0);
+
         allStudents = answers.size()-1;
         
         for(int i = 1; i < answers.size(); i++){

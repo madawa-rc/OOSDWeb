@@ -100,90 +100,16 @@
                     <ul>
                         <li><a href="index.jsp">User Home<!--[if IE 7]><!--></a><!--<![endif]-->
                         </li>
-                        <li><a href="#">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
-                            <% if (user != null) {
-                            %>
+                        <li><a href="newsDashboard.jsp">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
                         </li>
                             <li>
                                 <a class="current" href="<%=user.getLink()%>">Dashboard</a>
                             </li>
-                            <%}%>
+                           
                     </ul>
                 </div> 
                 <div class="center_content">
-                    <div class="left_content">
-
-                        <div class="sidebar_search">
-                            <form name="searchForm" action="AdminServlet" method="post">
-                                <input type="text" name="search" class="search_input" value="Search school" onclick="this.value=''" />
-                                <input type="image" class="search_submit" src="css/images/search.png" />
-                            </form>
-                            <form name="getSchool" method="post" action="AdminServlet" >
-                                <input type="hidden" name="schoolEmail" value="" id="schoolEmail"/>
-                            </form>            
-                        </div>
-                        <div class="sidebarmenu">            
-                            <a class="menuitem submenuheader" href="">Add</a>
-                            <div class="submenu">
-                                <ul>
-                                    <li><a href="">Student</a></li>
-                                    <li><a href="addSchoolManual.jsp">School</a></li>
-                                </ul>
-                            </div>
-                            <a class="menuitem submenuheader" href="">Centres </a>
-                            <div class="submenu">
-                                <ul>
-                                    <li><a href="centreInformation.jsp">Centre Information</a></li>
-                                    <li><a href="centerStatistics.jsp">Centre Statistics</a></li>
-                                    <li><a href="CommandServlet?id=assignCentres">Assign Centres</a></li>
-                                </ul>
-                            </div>
-                            <a class="menuitem submenuheader" href="">Generate Reports</a>
-                            <div class="submenu">
-                                <ul>
-                                    <li><a href="DownloadServlet?name=AttendanceSheets">Attendance Sheets</a></li>
-                                    <li><a href="DownloadServlet?name=Database">Database</a></li>
-                                    <li><a href="DownloadServlet?name=Classroom">Classroom Banner</a></li>
-                                </ul>
-                            </div>
-                            <a class="menuitem" href="CommandServlet?id=sendAdmission" onclick="return message();">Send Admission Cards</a>
-                            <a class="menuitem submenuheader" href="">Answer Sheets</a>
-                            <div class="submenu">
-                                <ul>
-                                    <li><a href="upload.jsp">Upload Answer Sheets</a></li>
-                                    <li><a href="resultsStatistics.jsp">Answer Statistics</a></li>
-                                    <li><a href="answerSheet.jsp" onclick="return message();">Review Answer Scripts</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="sidebar_box">
-                            <div class="sidebar_box_top"></div>
-                            <div class="sidebar_box_content">
-                                <h5>Upload photos</h5>
-                                <img src="css/images/photo.png" alt="" title="" class="sidebar_icon_right" />
-                                <p>
-                                    Upload photographs of SLOMF special sessions.
-                                </p>                
-                            </div>
-                            <div class="sidebar_box_bottom"></div>
-                        </div>  
-
-                        <div class="sidebar_box">
-                            <div class="sidebar_box_top"></div>
-                            <div class="sidebar_box_content">
-                                <h3>To do List</h3>
-                                <img src="css/images/info.png" alt="" title="" class="sidebar_icon_right" />
-                                <ul>
-                                    <li>Check registered schools and students</li>
-                                    <li>Insert school details manually</li>
-                                    <li>Assign examination centres to the applicants</li>
-                                    <li>Send admission cards</li>
-                                </ul>                
-                            </div>
-                            <div class="sidebar_box_bottom"></div>
-                        </div>
-                    </div>
+                    <%@ include file="adminLeftBar.html" %>
 
                     <div class="right_content">            
                         <h2>Question Statistics</h2> 

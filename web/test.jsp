@@ -4,6 +4,7 @@
     Created on : 23-Sep-2013, 21:36:04
     Author     : Madawa
 --%>
+<%@page import="News.NewsDA"%>
 <%@page import="slmo.registration.School"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="slmo.registration.User"%>
@@ -96,24 +97,14 @@
                         </li>
                         <li><a href="newsDashboard.jsp">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
                         </li>
-                        <li><a class="current" href="<%=user.getLink()%>">Dashboard</a>
+                        <li><a class="current" href="admin.jsp">Dashboard</a>
                         </li>
-                       
                     </ul>
                 </div> 
                 <div class="center_content">
                     <%@ include file="adminLeftBar.html" %>
+
                     <div class="right_content">
-                        <div>
-                            <% 
-                            String message = (String) session.getAttribute("message");
-                            out.print("<h3>"+message+"</h3>");
-                            session.removeAttribute("message");
-                            %>
-                        </div>
-                        
-                        
-                        
                         <%
                             
                             if (list == null); else if (list.size() == 0) {
@@ -144,3 +135,6 @@
     </body>
                             <% }%>
 </html>
+                            
+                            
+                            

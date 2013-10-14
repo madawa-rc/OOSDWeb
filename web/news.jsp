@@ -82,7 +82,7 @@
                 <div class="menu">
                     <ul>
                         <li><a class="current" href="./">Home</a></li>
-                        <li><a href="#">News</a></li>
+                        <li><a href="news.jsp">News</a></li>
                         <li><a href="#">Register</a>
                             <ul>
                                 <li><a href="register.jsp" title="">As a Private Applicant</a></li>
