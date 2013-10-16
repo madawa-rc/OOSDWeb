@@ -4,8 +4,8 @@
     Created on : Sep 22, 2013, 5:16:45 PM
     Author     : Kasun
 --%>
-<%@page import="slmo.registration.User"%>
-<%@page import="slmo.registration.School"%><font color="#ff0000"></font>
+<%@page import="slomf.registration.User"%>
+<%@page import="slomf.registration.School"%><font color="#ff0000"></font>
 <%
     User user = (User) session.getAttribute("user");
     boolean loggedIn = false;
@@ -97,7 +97,7 @@
                         %><br></br>
                 </strong>
 
-                <form name="login" method="post" action="SchoolLoginServlet" id="ContactForm">
+                <form name="login" method="post" action="LoginServlet" id="ContactForm">
 
                     <fieldset>
                         <dl>

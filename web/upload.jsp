@@ -4,9 +4,9 @@
     Created on : 23-Sep-2013, 21:36:04
     Author     : Madawa
 --%>
-<%@page import="slmo.registration.School"%>
+<%@page import="slomf.registration.School"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="slmo.registration.User"%>
+<%@page import="slomf.registration.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     
 <%

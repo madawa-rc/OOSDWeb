@@ -1,4 +1,4 @@
-<%@page import="News.NewsDA"%>
+<%@page import="slomf.admin.News.NewsDA"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
     Document   : index
@@ -6,7 +6,7 @@
     Author     : New
 --%>
 
-<%@page import="slmo.registration.User"%>
+<%@page import="slomf.registration.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -22,6 +22,9 @@
         <script type="text/javascript" src="css/clockh.js"></script> 
         <script type="text/javascript" src="css/jquery.min.js"></script>
         <script type="text/javascript" src="css/ddaccordion.js"></script>
+        <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
         <script type="text/javascript">
             ddaccordion.init({
                 headerclass: "submenuheader", //Shared CSS class name of headers group
@@ -84,7 +87,7 @@
                         <li><a href="#">Register</a>
                             <ul>
                                 <li><a href="register.jsp" title="">As a Private Applicant</a></li>
-                                <li><a href="school.jsp" title="">As a School</a></li>
+                                <li><a href="schoolRegistration.jsp" title="">As a School</a></li>
                             </ul>
                         </li>
                         <li><a href="login.jsp">Login</a></li>

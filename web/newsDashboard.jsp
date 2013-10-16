@@ -1,14 +1,14 @@
-<%@page import="News.NewsItem"%>
-<%@page import="News.NewsDA"%>
+<%@page import="slomf.admin.News.NewsItem"%>
+<%@page import="slomf.admin.News.NewsDA"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
     Document   : schoolDashboard
     Created on : 23-Sep-2013, 21:36:04
     Author     : Madawa
 --%>
-<%@page import="slmo.registration.School"%>
+<%@page import="slomf.registration.School"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="slmo.registration.User"%>
+<%@page import="slomf.registration.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     User user = (User) session.getAttribute("user");
@@ -28,6 +28,9 @@
         <script type="text/javascript" src="css/clockh.js"></script> 
         <script type="text/javascript" src="css/jquery.min.js"></script>
         <script type="text/javascript" src="css/ddaccordion.js"></script>
+        <script type="text/javascript"
+            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
         <script type="text/javascript">
             ddaccordion.init({
                 headerclass: "submenuheader", //Shared CSS class name of headers group
@@ -105,13 +108,13 @@
                     <%@ include file="adminLeftBar.html" %>
                     
                     <%
-                        if (News.NewsDA.getNews() != null) {
-                            ArrayList<NewsItem> newsList = News.NewsDA.getNews();
+                        if (NewsDA.getNews() != null) {
+                            ArrayList<NewsItem> newsList = NewsDA.getNews();
                     %>
                     <div class="right_content">
                         <%
-                            if(News.NewsDA.getMainNews()!=null){ 
-                                String news = News.NewsDA.getMainNews().getNews();
+                            if(NewsDA.getMainNews()!=null){ 
+                                String news = NewsDA.getMainNews().getNews();
                                 if(news!=null&&!news.equals(" ")){
                                     out.print("<h1>Main News Item</h1>");
                                     out.print(news);
@@ -123,7 +126,27 @@
                                 <textarea name="new" rows =10 cols =75></textarea><br><br>
                                 <input type="submit" value="Submit" class="button"/>
                         </form>
-                        <br><br><br>
+                        <br></br>
+                        <h2>
+                            HTML
+                        </h2>
+                        <p>
+                            &lt h1&gt text &lt/h1&gt for Heading 1 <br></br>
+                            &lt p&gt text &lt/p&gt for Paragraph <br></br>
+                            &lt br&gt &lt/br&gt  for New Line <br></br>
+                            &lt img src="Uploads/imageName"&gt &lt/img&gt for images <br></br> 
+                            &lt a href="link"&gt text&lt /a&gt for links <br></br>
+                        </p>
+                        <h2>
+                            \( \LaTeX \)
+                        </h2>
+                            &#36 &#36 formula &#36 &#36 and &#92 &#91 formula &#92 &#93 for displayed mathematics <br></br>
+                            &#92 &#91 formula &#92 &#93 for inline mathematics <br></br>
+                            
+                            <%
+                            if(newsList.isEmpty())
+                                out.print("asdasdsdasdasd");
+                            %>
                         <h1>Show/Delete News Items</h1>
                         <form name="myform" action="NewsServlet" method="post">
                             <table id="rounded-corner">

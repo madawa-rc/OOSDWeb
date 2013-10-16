@@ -1,9 +1,7 @@
-<%@page import="slmo.results_processing.Marks"%>
-<%@page import="slmo.centerallocation.dao.CenterDA"%>
-<%@page import="slmo.centerallocation.ExamCenter"%>
-<%@page import="slmo.registration.School"%>
+
+<%@page import="slomf.admin.result.Marks"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="slmo.registration.User"%>
+<%@page import="slomf.registration.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
     Document   : schoolDashboard

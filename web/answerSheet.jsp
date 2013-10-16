@@ -1,6 +1,7 @@
+
+<%@page import="slomf.admin.result.ResultSheet"%>
+<%@page import="slomf.registration.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<%@page import="slmo.registration.User"%>
-<%@page import="slmo.registration.ResultSheet"%>
 
 <%-- 
     Document   : schoolDashboard
@@ -116,7 +117,7 @@
                 <div class="center_content">
                     <div class="left_content">
                         <div class="sidebar_search">
-                            <form name="searchForm" method="post" action="GetAnswerScript">
+                            <form name="searchForm" method="post" action="GetAnswerScriptServlet">
                                 <input class="search_input" type="text" value="Index number"
                                        onBlur="if (this.value == '')
                                             this.value = 'Index number'"
@@ -215,7 +216,7 @@
                                             out.print("<br><br>");
                                         }
                                     }
-                                    out.print("<br><br><a href=\"GetAnswerScript?next=true\" align=\"center\">Next</a>");
+                                    out.print("<br><br><a href=\"GetAnswerScriptServlet?next=true\" align=\"center\">Next</a>");
                                 } else
                                     out.print("No Match Found!!");
                             %>

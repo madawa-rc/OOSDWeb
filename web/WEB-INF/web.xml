@@ -2,67 +2,67 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
         <servlet-name>StudentRegistrationServlet</servlet-name>
-        <servlet-class>slmo.registration.Servlet.StudentRegistrationServlet</servlet-class>
+        <servlet-class>slomf.registration.Servlet.StudentRegistrationServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EmailConfirmation</servlet-name>
-        <servlet-class>slmo.registration.Servlet.EmailConfirmation</servlet-class>
+        <servlet-class>slomf.registration.Servlet.EmailConfirmation</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SchoolModifyServlet</servlet-name>
-        <servlet-class>slmo.registration.Servlet.SchoolModifyServlet</servlet-class>
+        <servlet-class>slomf.registration.Servlet.SchoolModifyServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ContactFormServlet</servlet-name>
-        <servlet-class>slmo.registration.Servlet.ContactFormServlet</servlet-class>
+        <servlet-class>slomf.registration.Servlet.ContactFormServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SchoolRegistrationServlet</servlet-name>
-        <servlet-class>slmo.registration.Servlet.SchoolRegistrationServlet</servlet-class>
+        <servlet-class>slomf.registration.Servlet.SchoolRegistrationServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SchoolLoginServlet</servlet-name>
-        <servlet-class>slmo.registration.Servlet.SchoolLoginServlet</servlet-class>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>slomf.registration.Servlet.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>slmo.registration.Servlet.AdminServlet</servlet-class>
+        <servlet-class>slomf.admin.servlet.AdminServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddSchoolManualServlet</servlet-name>
-        <servlet-class>slmo.registration.Servlet.AddSchoolManualServlet</servlet-class>
+        <servlet-class>slomf.registration.Servlet.AddSchoolManualServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GetAnswerScript</servlet-name>
-        <servlet-class>slmo.centerallocation.Servlet.GetAnswerScript</servlet-class>
+        <servlet-name>GetAnswerScriptServlet</servlet-name>
+        <servlet-class>slomf.admin.result.GetAnswerScriptServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ResultSheetDA</servlet-name>
-        <servlet-class>slmo.registration.dao.ResultSheetDA</servlet-class>
+        <servlet-class>slomf.admin.result.ResultSheetDA</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CenterUpdateServlet</servlet-name>
-        <servlet-class>slmo.centerallocation.Servlet.CenterUpdateServlet</servlet-class>
+        <servlet-class>slomf.admin.center.CenterUpdateServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CommandServlet</servlet-name>
-        <servlet-class>slmo.centerallocation.Servlet.CommandServlet</servlet-class>
+        <servlet-class>slomf.admin.servlet.CommandServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CenterStatistics</servlet-name>
-        <servlet-class>slmo.centerallocation.Servlet.CenterStatistics</servlet-class>
+        <servlet-class>slomf.admin.servlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>slmo.centerallocation.Servlet.UploadServlet</servlet-class>
+        <servlet-class>slomf.admin.servlet.UploadServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DownloadServlet</servlet-name>
-        <servlet-class>slmo.centerallocation.Servlet.DownloadServlet</servlet-class>
+        <servlet-class>slomf.admin.servlet.DownloadServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>NewsServlet</servlet-name>
-        <servlet-class>News.NewsServlet</servlet-class>
+        <servlet-class>slomf.admin.News.NewsServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SchoolRegistrationServlet</servlet-name>
@@ -85,8 +85,8 @@
         <url-pattern>/StudentRegistrationServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SchoolLoginServlet</servlet-name>
-        <url-pattern>/SchoolLoginServlet</url-pattern>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
@@ -97,8 +97,8 @@
         <url-pattern>/AddSchoolManualServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GetAnswerScript</servlet-name>
-        <url-pattern>/GetAnswerScript</url-pattern>
+        <servlet-name>GetAnswerScriptServlet</servlet-name>
+        <url-pattern>/GetAnswerScriptServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ResultSheetDA</servlet-name>

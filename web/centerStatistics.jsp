@@ -1,5 +1,5 @@
-<%@page import="slmo.registration.User"%>
-<%@page import="slmo.centerallocation.CenterAllocation"%>
+<%@page import="slomf.admin.center.CenterAllocation"%>
+<%@page import="slomf.registration.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
     Document   : schoolDashboard

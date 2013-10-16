@@ -4,6 +4,7 @@
  */
 package Mail;
 
+import slomf.api.Mail.sendMail;
 import org.junit.Test;
 
 /**

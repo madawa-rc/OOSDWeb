@@ -1,4 +1,4 @@
-<%@page import="slmo.registration.User"%>
+<%@page import="slomf.registration.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
     Document   : contactUs
@@ -82,7 +82,7 @@
                         <li><a href="#">Register</a>
                             <ul>
                                 <li><a href="register.jsp" title="">As a Private Applicant</a></li>
-                                <li><a href="school.jsp" title="">As a School</a></li>
+                                <li><a href="schoolRegistration.jsp" title="">As a School</a></li>
                             </ul>
                         </li>
                         <li><a href="login.jsp">Login</a></li>

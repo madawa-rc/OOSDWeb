@@ -1,13 +1,13 @@
+<%@page import="slomf.registration.User"%>
+<%@page import="slomf.registration.School"%>
+<%@page import="java.util.ArrayList"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
     Document   : schoolDashboard
     Created on : 23-Sep-2013, 21:36:04
     Author     : Madawa
 --%>
-<%@page import="News.NewsDA"%>
-<%@page import="slmo.registration.School"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="slmo.registration.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     User user = (User) session.getAttribute("user");
