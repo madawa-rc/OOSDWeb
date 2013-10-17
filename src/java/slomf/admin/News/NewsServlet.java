@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package slomf.admin.News;
 
 import java.io.IOException;
@@ -14,10 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import slomf.registration.User;
 
-/**
- *
- * @author New
- */
 public class NewsServlet extends HttpServlet {
 
     /**
@@ -43,29 +35,21 @@ public class NewsServlet extends HttpServlet {
             System.out.println(request.getParameter("new"));
         }
 
-
-
-        ArrayList<NewsItem> list = slomf.admin.News.NewsDA.getNews();
+        ArrayList<NewsItem> list = NewsDA.getNews();
         if (list != null && !list.isEmpty()) {
             for (int i = 0; i < list.size(); i++) {
                 int id = list.get(i).getId();
                 if (request.getParameter("delete" + id) != null) {
                     NewsDA.deleteNews(id);
                 } else {
-                    if (request.getParameter("show" + id) != null) {
-                        System.out.println("show " + id);
-                        NewsDA.show(id, 1);
-                    } else {
-                        NewsDA.show(id, 0);
-                    }
-                }
-            }
-            NewsDA.processNews();
-            if (request.getParameter("main") != null) {
-                try {
-                    System.out.println(request.getParameter("main"));
-                    NewsDA.setMainNews(Integer.parseInt(request.getParameter("main")));
-                } catch (Exception e) {
+                    boolean show=false,main=false;
+                    if (request.getParameter("show" + id) != null) 
+                        show=true;
+                    if (request.getParameter("main" + id) != null) 
+                        main=true;
+                    
+                    NewsItem item = new NewsItem(request.getParameter("edit" + id),id,show,main);
+                    NewsDA.updateNews(item);  
                 }
             }
         }

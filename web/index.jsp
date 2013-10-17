@@ -1,3 +1,5 @@
+<%@page import="slomf.admin.News.NewsItem"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="slomf.admin.News.NewsDA"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
@@ -177,9 +179,14 @@
 
                         <h1>Welcome to Sri Lanka Mathematical Olympiad Foundation </h1>
                         <%
-                            if (NewsDA.getMainNews() != null && NewsDA.getMainNews().getNews() != null) {
-                                out.print(NewsDA.getMainNews().getNews());
-                                out.print("<br><br>");
+                            if (NewsDA.getNews() != null) {
+                                ArrayList<NewsItem> newsList = NewsDA.getNews();
+                                for (int i = 0; i < newsList.size(); i++) {
+                                    if (newsList.get(i).isMain()) {
+                                        out.println(newsList.get(i).getNews());
+                                        out.println("<br><hr><br>");
+                                    }
+                                }
                             }
                         %>
                         <div>

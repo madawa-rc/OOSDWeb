@@ -32,6 +32,22 @@
             src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
         <script type="text/javascript">
+            function edit(){
+                var table  = document.getElementById('rounded-corner');
+                for (var n=0; n<table.rows.length; n++) {
+                    if(table.rows[n].cells[3].style.display=='none'){
+                        table.rows[n].cells[3].style.display='block';
+                        table.rows[n].cells[2].style.display='none';
+                        document.getElementById('editButton').disabled = "disabled";
+                    }
+                    else{
+                        table.rows[n].cells[3].style.display='none';
+                        table.rows[n].cells[2].style.display='block';
+                    }
+                }
+            }
+        </script>
+        <script type="text/javascript">
             ddaccordion.init({
                 headerclass: "submenuheader", //Shared CSS class name of headers group
                 contentclass: "submenu", //Shared CSS class name of contents group
@@ -112,18 +128,9 @@
                             ArrayList<NewsItem> newsList = NewsDA.getNews();
                     %>
                     <div class="right_content">
-                        <%
-                            if(NewsDA.getMainNews()!=null){ 
-                                String news = NewsDA.getMainNews().getNews();
-                                if(news!=null&&!news.equals(" ")){
-                                    out.print("<h1>Main News Item</h1>");
-                                    out.print(news);
-                                }
-                            }
-                            %>
                             <h1>Add New News Item</h1>
                         <form action="NewsServlet" method="post">
-                                <textarea name="new" rows =10 cols =75></textarea><br><br>
+                                <textarea name="new" rows =10 cols =75 style="resize:vertical"></textarea><br><br>
                                 <input type="submit" value="Submit" class="button"/>
                         </form>
                         <br></br>
@@ -143,19 +150,18 @@
                             &#36 &#36 formula &#36 &#36 and &#92 &#91 formula &#92 &#93 for displayed mathematics <br></br>
                             &#92 &#91 formula &#92 &#93 for inline mathematics <br></br>
                             
-                            <%
-                            if(newsList.isEmpty())
-                                out.print("asdasdsdasdasd");
-                            %>
-                        <h1>Show/Delete News Items</h1>
+                        <h1>Edit News Items</h1>
                         <form name="myform" action="NewsServlet" method="post">
+                            <input id ="editButton" type="button" value="Edit" onclick="edit();" class="button"/>
+                            <br></br>
                             <table id="rounded-corner">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="rounded">SetMain</th>
-                                        <th scope="col" class="rounded">Delete</th>
-                                        <th scope="col" class="rounded">Show</th>
+                                        <th scope="col" class="rounded">Main</th>
+                                        <th scope="col" class="rounded">News</th>
                                         <th scope="col" class="rounded">NewsItem</th>
+                                        <th scope="col" class="rounded">Edit</th>
+                                        <th scope="col" class="rounded">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -165,18 +171,21 @@
                                     %>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="main" value=<%=n.getId()%> />
-                                        </td>
-                                        <td>
-                                            <input type="checkbox" name=<%="delete" + n.getId() %> <% if(i==newsList.size()-1) out.print("disabled=\"true\""); %>/>
+                                            <input type="checkbox" name=<%="main" + n.getId() %> <%if(n.isMain()) out.print("checked=\"true\""); %>/>
                                         </td>
                                         <td>      
-                                            <input type="checkbox" name=<%="show" + n.getId() %> <%if(n.isShow()) out.print("checked=\"true\""); if(i==newsList.size()-1) out.print("disabled=\"true\""); %> />
+                                            <input type="checkbox" name=<%="show" + n.getId() %> <%if(n.isShow()) out.print("checked=\"true\""); %> />
                                         </td>
                                         <td>      
                                             <%
-                                            out.print(n.getNews());
+                                            out.print(n.getNews()+"<br></br>");
                                             %>
+                                        </td>
+                                        <td>
+                                            <textarea id="editCol" name="<%="edit" + n.getId() %>" rows=1 cols =55 style="resize:vertical;" ><%=n.getNews()%></textarea><br><br>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" name=<%="delete" + n.getId() %> />
                                         </td>
                                     </tr>     
                                     <%
@@ -202,3 +211,6 @@
     </body>
     <% }%>
 </html>
+<script type="text/javascript">
+    window.onload=edit();
+</script>

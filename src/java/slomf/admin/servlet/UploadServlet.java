@@ -86,33 +86,45 @@ public class UploadServlet extends HttpServlet {
 
             List<FileItem> formItems = upload.parseRequest(request);
             FileItem fileItem = null;
-            String fileType =null;
+            String fileType = null;
             if (formItems != null && formItems.size() > 0) {
                 // iterates over form's fields
                 for (FileItem item : formItems) {
                     // processes only fields that are not form fields
                     if (!item.isFormField()) {
-                        fileItem=item;
+                        fileItem = item;
                     } else {
-                        fileType=item.getString();
+                        fileType = item.getString();
                     }
                 }
             }
             //  String filePath = uploadPath + File.separator + fileName;
 
             String fileName = new File(fileItem.getName()).getName();
-            String message, filePath;
+            String message = "The following photograph names exists, <br><br>", filePath;
+            boolean success = true;
             if (fileType.equals("Photographs")) {
-                filePath = uploadPath + File.separator + fileName;
-                File storeFile = new File(filePath);
-                if(storeFile.exists()){
-                    message = "Photograph already exists";
+                if (formItems != null && formItems.size() > 0) {
+                    for (FileItem item : formItems) {
+                        if (!item.isFormField()) {
+                            fileItem = item;
+                            fileName = new File(fileItem.getName()).getName();
+                            filePath = uploadPath + File.separator + fileName;
+                            File storeFile = new File(filePath);
+                            if (storeFile.exists()) {
+                                message += fileName + "<br>";
+                                success = false;
+                            } else {
+                                fileItem.write(storeFile);
+                            }
+                        }
+                    }
                 }
-                else{
-                    // saves the file on disk
-                    fileItem.write(storeFile);
-                    message = "The photograph has been uploaded successfully!";
+                if (success) {
+                    message = "The photographs have been uploaded successfully!";
                 }
+
+
             } else {
                 filePath = Constants.LOCATION + "Uploads\\" + fileName;
                 File storeFile = new File(filePath);

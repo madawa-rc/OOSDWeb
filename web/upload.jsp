@@ -105,7 +105,7 @@
                         <div class="box-2">
                             <form name="addFile" action="UploadServlet" method="post" id="ContactForm" enctype="multipart/form-data">
                                 <h2>Upload <%=request.getParameter("file") %> :</h2>
-                                <input type="file" name="uploadFile" class=""/>
+                                <input type="file" name="uploadFile" class="" multiple />
                                 <input type="hidden" name="fileType" value ="<%=request.getParameter("file") %>" class=""/>
                                 <br></br>
                                 <input type="submit" value="Upload" class="button"/>

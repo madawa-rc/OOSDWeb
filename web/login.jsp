@@ -26,6 +26,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Login</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="shortcut icon" href="images/logo.png"/>
         <script type="text/javascript" src="css/jquery.min.js"></script>
         <script type="text/javascript" src="css/ddaccordion.js"></script>
         <script type="text/javascript">
