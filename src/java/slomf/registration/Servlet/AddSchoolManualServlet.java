@@ -52,7 +52,6 @@ public class AddSchoolManualServlet extends HttpServlet {
         
         for (int i = 1; i <= studentCount; i++) {
                 String name = request.getParameter("student" + i);
-                System.out.println(name);
                 if (name != null) {
                     Student s = school.addStudent(
                             request.getParameter("student" + i),
@@ -60,11 +59,11 @@ public class AddSchoolManualServlet extends HttpServlet {
                             Integer.parseInt(request.getParameter("month" + i)),
                             Integer.parseInt(request.getParameter("year" + i)),
                             request.getParameter("medium" + i));
-                    System.out.println(request.getParameter("student" + i));
                     StudentDA.addStudent(s);
                 }
 
             }
+        System.out.println("School added manually "+school.getEmail());
         request.getSession().setAttribute("message","Registration successfull!");
             response.sendRedirect("message.jsp");
     }

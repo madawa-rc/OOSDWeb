@@ -13,11 +13,19 @@
 <!DOCTYPE html>
 <%
     User user = (User) session.getAttribute("user");
+    NewsItem article = null;
+    try {
+        article = NewsDA.getArticleByName(request.getParameter("name"));
+    } catch (NullPointerException e) {
+    }
+    if (article == null) {
+        response.sendRedirect("index.jsp");
+    } else {
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
-        <title>Home- SLOMF</title>
+        <title><%=article.getTitle()%></title>
         <link rel="shortcut icon" href="images/logo.png"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" src="css/clockp.js"></script>
@@ -25,7 +33,7 @@
         <script type="text/javascript" src="css/jquery.min.js"></script>
         <script type="text/javascript" src="css/ddaccordion.js"></script>
         <script type="text/javascript"
-            src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+                src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
         <script type="text/javascript">
             ddaccordion.init({
@@ -106,22 +114,10 @@
                     <%@ include file="userLeftBar.jsp" %>
                     <div class="right_content">            
 
-                        <h1>Welcome to Sri Lanka Mathematical Olympiad Foundation </h1>
-                        <hr></hr>
+
                         <%
-                            if (NewsDA.getNews() != null) {
-                                ArrayList<NewsItem> newsList = NewsDA.getNews();
-                                for (int i = 0; i < newsList.size(); i++) {
-                                    if (newsList.get(i).isMain()) {
-                                        out.println(newsList.get(i).getNews());
-                                        out.println("<br><hr><br>");
-                                    }
-                                }
-                            }
+                            out.print(article.getNews());
                         %>
-                        <div>
-                            <img src="images/front.jpg" alt="" align="left"/>
-                        </div>
                     </div><!-- end of right content-->
                 </div>   <!--end of center content -->
 
@@ -143,3 +139,6 @@
         </div>		
     </body>
 </html>
+
+<%}
+%>

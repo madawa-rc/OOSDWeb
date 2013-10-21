@@ -137,30 +137,23 @@
                                         <td>
                                             <a href="questionStats.jsp?qNum=<%=i%>"><%="Q" + i%></a>
                                         </td>
+                                        <% for(int j=0;j<8;j++){
+                                               if(j==stats[10]){
+                                         %>
                                         <td >
-                                            <%=(int) stats[0]%>
+                                            <strong>
+                                                <%=(int) stats[j]%>
+                                            </strong>
                                         </td>
-                                        <td>
-                                            <%=(int) stats[1]%>
-                                        </td>
-                                        <td>
-                                            <%=(int) stats[2]%>
-                                        </td>
-                                        <td>
-                                            <%=(int) stats[3]%>
-                                        </td>
-                                        <td>
-                                            <%=(int) stats[4]%>
-                                        </td>
-                                        <td>
-                                            <%=(int) stats[5]%>
-                                        </td>
-                                        <td>
-                                            <%=(int) stats[6]%>
-                                        </td>
-                                        <td>
-                                            <%=(int) stats[7]%>
-                                        </td>
+                                        <%      }
+                                               else{
+                                         %>         
+                                        <td >
+                                                <%=(int) stats[j]%>
+                                        </td> 
+                                        <%       }
+                                        }%>
+                                        
                                     </tr>
                                 </tbody>
                                             <%

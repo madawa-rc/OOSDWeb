@@ -59,9 +59,9 @@ public class SchoolDA  {
                  "Thank you for registering for Sri Lanka Mathematics Competition 2013.\n\n"
                  + "If you did not register, please ignore this email.\n\n"
                  + "Please click the following to verify your email address \n\n\n"+
-                 "http://localhost:8080/OOSDWeb/EmailConfirmation?id="
+                 "http://webapp.slmathsolympiad.org/webapp/EmailConfirmation?id="
                  + school.getVerification()
-                 +"\n\nSri Lanka Mathematics Olympiad Foundation,\n"
+                 +"\n\nSrsi Lanka Mathematics Olympiad Foundation,\n"
                  + "Department of Mathematics,\n"
                  + "University of Colombo.");
         
@@ -173,10 +173,11 @@ public class SchoolDA  {
                 int id=Integer.parseInt(rs.getString("id"));
                 student.setId(id);
                 studentList.add(student);
-                System.out.println("Student found!  "+student.getId()+"  "+student.getName());
             }
             if(studentList.isEmpty())
-                System.out.println("Empty");
+                System.out.println("Empty Student List "+school.getName());
+            else
+                System.out.println("Got Student List "+school.getName());
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

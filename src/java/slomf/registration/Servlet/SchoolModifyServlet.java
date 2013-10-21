@@ -41,7 +41,7 @@ public class SchoolModifyServlet extends HttpServlet {
             //added rows+previous student count
             int newcount = Integer.parseInt(request.getParameter("num"));
             //previous student count
-            System.out.println(newcount);
+            System.out.println("School modified "+school.getEmail());
             int oldCount = school.getStudentList().size();
             String[] ids = new String[oldCount];
             for (int i = 1; i <= oldCount; i++) {

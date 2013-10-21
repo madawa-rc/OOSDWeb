@@ -17,6 +17,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import slomf.registration.User;
 import slomf.admin.result.Marks;
 import slomf.admin.result.ReadExcel;
+import slomf.registration.UniqueID;
 
 public class UploadServlet extends HttpServlet {
 
@@ -125,14 +126,20 @@ public class UploadServlet extends HttpServlet {
                 }
 
 
-            } else {
-                filePath = Constants.LOCATION + "Uploads\\" + fileName;
+            } else if(fileType.equals("Excel File")){
+                filePath = uploadPath + File.separator +fileName+UniqueID.generate();
                 File storeFile = new File(filePath);
                 // saves the file on disk
                 fileItem.write(storeFile);
                 ReadExcel.readResults(filePath);
                 Marks.calculate();
                 message = "Results have been uploaded and updated successfully!";
+            }
+            else{
+                filePath = Constants.LOCATION+"\\ReportTemplates\\"+fileName;
+                File storeFile = new File(filePath);
+                fileItem.write(storeFile);
+                message = "Report template changed!";
             }
             request.getSession().setAttribute("message", message);
             response.sendRedirect("message.jsp");

@@ -53,7 +53,9 @@ public class sendMail {
             return message;
 
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            System.out.println("Email setup failed");
+            System.out.println("Error "+e.getLocalizedMessage());
+            return null;
         }
     }
 /**
@@ -71,7 +73,8 @@ public class sendMail {
             message.setText(text);
             Transport.send(message);
         } catch (MessagingException ex) {
-            ex.printStackTrace();
+            System.out.println("Email sending failed to "+email);
+            System.out.println("Error "+ex.getLocalizedMessage());
         }
     }
 /**
@@ -91,7 +94,7 @@ public class sendMail {
             message.setReplyTo(InternetAddress.parse(emailReplyTo));
             Transport.send(message);
         } catch (MessagingException ex) {
-            ex.printStackTrace();
+            System.out.println("Email sending failed to us from "+emailReplyTo+" "+text);
         }
     }
 /**

@@ -133,14 +133,16 @@
                                     %>
                                     <tr>
                                         <td><%="Q" + qNumber %></td>
-                                        <td ><%=(int) stats[0]%></td>
-                                        <td><%=(int) stats[1]%></td>
-                                        <td><%=(int) stats[2]%></td>
-                                        <td><%=(int) stats[3]%></td>
-                                        <td><%=(int) stats[4]%></td>
-                                        <td><%=(int) stats[5]%></td>
-                                        <td><%=(int) stats[6]%></td>
-                                        <td><%=(int) stats[7]%></td>
+                                        <% for (int j = 0; j < 8; j++) {
+                                                if (j == stats[10]) {
+                                        %>
+                                        <td ><strong><%=(int) stats[j]%></strong></td>
+                                        <%      } else {
+                                        %>         
+                                        <td ><%=(int) stats[j]%> </td> 
+                                        <%       }
+                                        }%>
+                                        
                                     </tr>
                                 </tbody>
                             </table>
@@ -185,14 +187,14 @@
                             %>
                         <tr>
                             <td><%="Q"+1%></td>
-                            <td ><%=(int)stats[0]%></td>
-                            <td><%=(int)stats[1]%></td>
-                            <td><%=(int)stats[2]%></td>
-                            <td><%=(int)stats[3]%></td>
-                            <td><%=(int)stats[4]%></td>
-                            <td><%=(int)stats[5]%></td>
-                            <td><%=(int)stats[6]%></td>
-                            <td><%=(int)stats[7]%></td>
+                            <td><%=(int) stats[0]%></td>
+                            <td><%=(int) stats[1]%></td>
+                            <td><%=(int) stats[2]%></td>
+                            <td><%=(int) stats[3]%></td>
+                            <td><%=(int) stats[4]%></td>
+                            <td><%=(int) stats[5]%></td>
+                            <td><%=(int) stats[6]%></td>
+                            <td><%=(int) stats[7]%></td>
                             <td><%=stats[8]%></td>
                             <td><%=stats[9]%></td>
                         </tr>

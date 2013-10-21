@@ -13,7 +13,7 @@ import slomf.registration.dao.StudentDA;
 
 public class sendAdmissionCards {
 
-    static final String admissionCardNames = Constants.LOCATION + "Reports\\AdmissionCard";
+    static final String admissionCardNames = Constants.LOCATION + "ReportTemplates\\AdmissionCard";
 
     public static void sendtoPrivate() {
         ArrayList<Student> list = StudentDA.getAllPrivateStudents();
@@ -25,6 +25,7 @@ public class sendAdmissionCards {
             a.setField("Medium", s.getMedium());
             a.setField("Name", s.getName());
             a.setField("Index", s.getIndex() + "");
+            a.setField("Exam", s.getAssigned_centre());
             a.save(admissionCardNames + s.getIndex() + ".pdf");
             String message = "Dear " + s.getName() + ",\n"
                     + "Please find attached the admission card for SLMC 2014.\n\n"
@@ -52,6 +53,7 @@ public class sendAdmissionCards {
                 a.setField("Medium", s.getMedium());
                 a.setField("Name", s.getName());
                 a.setField("Index", s.getIndex() + "");
+                a.setField("Exam", s.getAssigned_centre());
                 a.save(admissionCardNames + s.getIndex() + ".pdf");
                 files.add(admissionCardNames + s.getIndex() + ".pdf");
             }

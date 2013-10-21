@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import slomf.admin.center.ExamCenter;
 import slomf.admin.center.CenterDA;
+import slomf.api.reportGeneration.Report;
 import slomf.registration.School;
 import slomf.registration.dao.SchoolDA;
 
@@ -36,28 +37,41 @@ public class DownloadServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String filePath = Constants.LOCATION;
         String fileSource = Constants.LOCATION;
+        
+        File dir = new File(filePath+"\\ReportTemplates");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        
         if (request.getParameter("name").equals("Database")) {
             //filePath = getServletContext().getRealPath("") + File.separator + "Downloads\\Database.xlsx";
-            filePath+="Reports\\Database.xlsx";
+            filePath+="Database.xlsx";
             ExportStudentList.exportStudentsToExcel(filePath);
         } else if (request.getParameter("name").equals("AttendanceSheets")) {
-            filePath+= "Reports\\AttendanceSheet.docx";
+            filePath+= "AttendanceSheet.docx";
             fileSource+="ReportTemplates\\AttendanceSheet.docx";
             ArrayList<ExamCenter> centers = CenterDA.getAllPopulatedCenters();
-            slomf.api.reportGeneration.Report.generate(filePath,fileSource, "centers", centers);
+            Report.generate(filePath,fileSource, "centers", centers);
         }
          else if (request.getParameter("name").equals("Classrooms")) {
-            filePath+= "Reports\\Classroom.docx";
+            filePath+= "Classroom.docx";
             fileSource+="ReportTemplates\\Classroom.docx";
             ArrayList<ExamCenter> centers = CenterDA.getAllPopulatedCenters();
-            slomf.api.reportGeneration.Report.generate(filePath, fileSource, "centers", centers);
+            Report.generate(filePath, fileSource, "centers", centers);
         }else if(request.getParameter("name").equals("ResultSheet")){
-            filePath+= "Reports\\ResultsSchool.docx";
+            filePath+= "ResultsSchool.docx";
             fileSource+="ReportTemplates\\ResultsSchool.docx";
             ArrayList<School> allSchools = SchoolDA.getAllSchools();            
-            slomf.api.reportGeneration.Report.generate(filePath,fileSource, "schools",allSchools);
+            Report.generate(filePath,fileSource, "schools",allSchools);
+        }
+        else if(request.getParameter("name").equals("Templates")){
+            filePath+= "ReportTemplates\\"+request.getParameter("template");
+        }
+        else if(request.getParameter("name").equals("Defaults")){
+            filePath+= "ReportTemplates\\Defaults\\"+request.getParameter("template");
         }
         else
             return;
@@ -91,6 +105,9 @@ public class DownloadServlet extends HttpServlet {
 
         in.close();
         outStream.close();
+        if(!request.getParameter("name").equals("Templates")&&!request.getParameter("name").equals("Defaults")){
+            file.delete();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

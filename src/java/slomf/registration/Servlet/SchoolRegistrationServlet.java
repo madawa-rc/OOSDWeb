@@ -50,11 +50,10 @@ public class SchoolRegistrationServlet extends HttpServlet {
             out.println("<h1>Servlet SchoolServlet at " + request.getContextPath() + "</h1>");
             if(UniqueID.searchSchoolEmail(request.getParameter("email")))
             {
-                System.out.println("Email is already registered.");
-                response.setHeader("Refresh", "10; URL=register.jsp");
+                System.out.println("Email is already registered. "+request.getParameter("email"));
+                response.setHeader("Refresh", "10; URL=schoolRegistration.jsp");
                 return;
             }
-             System.out.println(request.getParameter("name"));
             out.println("</body>");
             out.println("</html>");
         } finally {            
@@ -82,7 +81,7 @@ public class SchoolRegistrationServlet extends HttpServlet {
                 );
         try {
             SchoolDA.addSchool(s);
-            System.out.println("done adding school ");
+            System.out.println("School registered "+s.getEmail());
 
             request.getSession().setAttribute("schoolObject",s);
             request.getSession().setAttribute("user", s);

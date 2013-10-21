@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="slomf.admin.News.NewsItem"%>
 <%@page import="slomf.admin.News.NewsDA"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,8 +10,8 @@
 <%@page import="slomf.registration.School"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="slomf.registration.User"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    response.setCharacterEncoding("UTF-8");
     User user = (User) session.getAttribute("user");
     if (user == null || !user.getName().equals("Admin")) {
         request.getSession().removeAttribute("user");
@@ -35,14 +36,14 @@
             function edit(){
                 var table  = document.getElementById('rounded-corner');
                 for (var n=0; n<table.rows.length; n++) {
-                    if(table.rows[n].cells[3].style.display=='none'){
-                        table.rows[n].cells[3].style.display='block';
-                        table.rows[n].cells[2].style.display='none';
+                    if(table.rows[n].cells[4].style.display=='none'){
+                        table.rows[n].cells[4].style.display='block';
+                        table.rows[n].cells[3].style.display='none';
                         document.getElementById('editButton').disabled = "disabled";
                     }
                     else{
-                        table.rows[n].cells[3].style.display='none';
-                        table.rows[n].cells[2].style.display='block';
+                        table.rows[n].cells[4].style.display='none';
+                        table.rows[n].cells[3].style.display='block';
                     }
                 }
             }
@@ -113,10 +114,10 @@
                     <ul>
                         <li><a href="index.jsp">User Home<!--[if IE 7]><!--></a><!--<![endif]-->
                         </li>
-                        <li><a href="newsDashboard.jsp">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
+                        <li><a class="current" href="newsDashboard.jsp">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
                         </li>
-                            <li><a class="current" href="<%=user.getLink()%>">Dashboard</a>
-                            </li>
+                        <li><a  href="<%=user.getLink()%>">Dashboard</a>
+                        </li>
                             
                     </ul>
                 </div> 
@@ -129,9 +130,12 @@
                     %>
                     <div class="right_content">
                             <h1>Add New News Item</h1>
-                        <form action="NewsServlet" method="post">
-                                <textarea name="new" rows =10 cols =75 style="resize:vertical"></textarea><br><br>
-                                <input type="submit" value="Submit" class="button"/>
+                        <form action="NewsServlet" method="post" >
+                            One line title<br></br>
+                            <input name="newTitle" size="101" /><br></br>
+                            Text
+                            <textarea name="newNews" rows =10 cols =75 style="resize:vertical"></textarea><br></br>
+                            <input type="submit" value="Submit" class="button"/>
                         </form>
                         <br></br>
                         <h2>
@@ -148,7 +152,8 @@
                             \( \LaTeX \)
                         </h2>
                             &#36 &#36 formula &#36 &#36 and &#92 &#91 formula &#92 &#93 for displayed mathematics <br></br>
-                            &#92 &#91 formula &#92 &#93 for inline mathematics <br></br>
+                            &#92 &#40 formula &#92 &#41 for inline mathematics <br></br>
+                            For \( \LaTeX \) symbols <a href="http://detexify.kirelabs.org/classify.html" target="new"> click here</a>.
                             
                         <h1>Edit News Items</h1>
                         <form name="myform" action="NewsServlet" method="post">
@@ -159,6 +164,7 @@
                                     <tr>
                                         <th scope="col" class="rounded">Main</th>
                                         <th scope="col" class="rounded">News</th>
+                                        <th scope="col" class="rounded">Article</th>
                                         <th scope="col" class="rounded">NewsItem</th>
                                         <th scope="col" class="rounded">Edit</th>
                                         <th scope="col" class="rounded">Delete</th>
@@ -177,12 +183,16 @@
                                             <input type="checkbox" name=<%="show" + n.getId() %> <%if(n.isShow()) out.print("checked=\"true\""); %> />
                                         </td>
                                         <td>      
+                                            <input type="checkbox" name=<%="article" + n.getId() %> <%if(n.isArticle()) out.print("checked=\"true\""); %> />
+                                        </td>
+                                        <td>      
                                             <%
                                             out.print(n.getNews()+"<br></br>");
                                             %>
                                         </td>
                                         <td>
-                                            <textarea id="editCol" name="<%="edit" + n.getId() %>" rows=1 cols =55 style="resize:vertical;" ><%=n.getNews()%></textarea><br><br>
+                                            <textarea id="editCol" name="<%="editNews" + n.getId() %>" rows=1 cols =55 style="resize:vertical;" ><%=n.getNews()%></textarea><br><br>
+                                            <input type="hidden" name="<%="editTitle" + n.getId() %>" value ="<%=n.getTitle()%>" />
                                         </td>
                                         <td>
                                             <input type="checkbox" name=<%="delete" + n.getId() %> />

@@ -102,8 +102,8 @@
                 <div class="center_content">
                     <%@ include file="adminLeftBar.html" %>
                     <div class="right_content">
-                        <h2>Examination Centre Statistics</h2><br>
-                        <h4>Preferred Centre</h4><br>
+                        <h2>Examination Centre Statistics</h2><br></br>
+                        <h4>Preferred Centre</h4><br></br>
                         <table id="rounded-corner">
                             <thead>
                                 <tr>
@@ -151,7 +151,7 @@
 %>
                         </table>
                         <br></br>
-                        <h4>Assigned Centre</h4><br>
+                        <h4>Assigned Centre</h4><br></br>
                         <table id="rounded-corner">
                             <thead>
                                 <tr>

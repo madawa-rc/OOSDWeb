@@ -18,14 +18,20 @@ public class NewsDA {
     public static void setNews(ArrayList<NewsItem> news) {
         NewsDA.news = news;
     }
-    
-    public static void addNews(String news) {
+    public static NewsItem getArticleByName(String title){
+        for(int i=0;i<news.size();i++)
+            if(news.get(i).getTitle().equals(title))
+                return news.get(i);
+        return null;
+    }
+    public static void addNews(String news, String title) {
         try {
             Connection con = DatabaseConnectionHandler.getConnection();
 
-            String queryCheck = "INSERT INTO news (news) VALUES (?)";
+            String queryCheck = "INSERT INTO news (news, title) VALUES (?,?)";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, news);
+            ps.setString(2, title);
             ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -53,7 +59,7 @@ public class NewsDA {
             ResultSet rs = ps.executeQuery();
             NewsItem item;
             while (rs.next()) {
-                item = new NewsItem(rs.getString("news"), rs.getInt("id"),rs.getBoolean("show_news"),rs.getBoolean("main_news"));
+                item = new NewsItem(rs.getString("news"), rs.getString("title"), rs.getInt("id"),rs.getBoolean("show_news"),rs.getBoolean("main_news"),rs.getBoolean("article"));
                 newsList.add(item);
             }
             Comparator<NewsItem> comparator = new Comparator<NewsItem>() {
@@ -74,14 +80,16 @@ public class NewsDA {
             Connection con = DatabaseConnectionHandler.getConnection();
 
             String queryCheck = "UPDATE news "
-                    + "SET show_news = ? , main_news = ? , news = ? "
+                    + "SET show_news = ? , main_news = ? , article = ? , news = ? , title = ? "
                     + "WHERE id = ? ";
 
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setBoolean(1, item.isShow());
             ps.setBoolean(2, item.isMain());
-            ps.setString(3, item.getNews());
-            ps.setInt(4, item.getId());
+            ps.setBoolean(3, item.isArticle());
+            ps.setString(4, item.getNews());
+            ps.setString(5, item.getTitle());
+            ps.setInt(6, item.getId());
             ps.executeUpdate();
 
         } catch (SQLException ex) {

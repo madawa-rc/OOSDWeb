@@ -57,7 +57,7 @@ public class StudentDA {
                 "Thank you for registering for Sri Lanka Mathematics Competition 2013.\n\n"
                 + "If you did not register, please ignore this email.\n\n"
                 + "Please click the following to verify your email address \n\n\n"
-                + "http://localhost:8080/OOSDWeb/EmailConfirmation?id="
+                + "webapp.slmathsolympiad.org/webapp/EmailConfirmation?id="
                 + student.getVerification()
                 + "\n\nSri Lanka Mathematics Olympiad Foundation,\n"
                 + "Department of Mathematics,\n"

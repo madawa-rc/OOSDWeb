@@ -1,19 +1,13 @@
 package slomf.registration.Servlet;
 import slomf.api.Database.DatabaseConnectionHandler;
-import slomf.admin.sendAdmissionCards;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import slomf.admin.center.ExamCenter;
-import slomf.admin.center.CenterDA;
 
 public class EmailConfirmation extends HttpServlet {
 
@@ -42,6 +36,7 @@ public class EmailConfirmation extends HttpServlet {
             ps = con.prepareStatement(queryCheck);
             ps.setString(1, link);
             ps.executeUpdate();
+            System.out.println("Email confirmation "+link);
             request.getSession().setAttribute("message","Email is verified successfully!");
             response.sendRedirect("message.jsp");
         } catch (Exception ex) {

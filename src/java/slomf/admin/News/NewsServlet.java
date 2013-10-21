@@ -1,9 +1,10 @@
 package slomf.admin.News;
 
+import com.sun.net.httpserver.Filter.Chain;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.util.ArrayList;
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,9 +31,14 @@ public class NewsServlet extends HttpServlet {
         if (user == null || !user.getName().equals("Admin")) {
             return;
         }
-        if (request.getParameter("new") != null) {
-            NewsDA.addNews(request.getParameter("new"));
-            System.out.println(request.getParameter("new"));
+        System.out.println(request.getCharacterEncoding());
+        if (request.getParameter("newNews") != null) {
+            String news = new String(request.getParameter("newNews").getBytes("8859_1"),"UTF-8");
+            String title = new String(request.getParameter("newTitle").getBytes("8859_1"),"UTF-8");
+            NewsDA.addNews(news, title);
+            System.out.println("News Added "+news);
+            response.sendRedirect("newsDashboard.jsp");
+            return;
         }
 
         ArrayList<NewsItem> list = NewsDA.getNews();
@@ -42,13 +48,16 @@ public class NewsServlet extends HttpServlet {
                 if (request.getParameter("delete" + id) != null) {
                     NewsDA.deleteNews(id);
                 } else {
-                    boolean show=false,main=false;
+                    boolean show=false,main=false,article=false;
                     if (request.getParameter("show" + id) != null) 
                         show=true;
                     if (request.getParameter("main" + id) != null) 
                         main=true;
-                    
-                    NewsItem item = new NewsItem(request.getParameter("edit" + id),id,show,main);
+                    if (request.getParameter("article" + id) != null) 
+                        article=true;
+                    String editNews = new String(request.getParameter("editNews" + id).getBytes("8859_1"),"UTF-8"); 
+                    String editTitle = new String(request.getParameter("editTitle" + id).getBytes("8859_1"),"UTF-8"); 
+                    NewsItem item = new NewsItem(editNews,editTitle,id,show,main,article);
                     NewsDA.updateNews(item);  
                 }
             }

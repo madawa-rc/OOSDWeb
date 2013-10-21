@@ -41,18 +41,15 @@ public class StudentRegistrationServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet StudentServlet</title>");
+            out.println("<title>Student REgistration</title>");
             out.println("</head>");
             out.println("<body>");
             if(UniqueID.searchStudentEmail(request.getParameter("email")))
             {
                 out.println("Email is already registered.");
-                response.setHeader("Refresh", "10; URL=register.jsp");
+                response.setHeader("Refresh", "10; URL=studentRegistration.jsp");
                 return;
             }
-            System.out.println("adsadsasasdas");
-            out.println(request.getParameter("name"));
-            out.println("<h1>Servlet StudentServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -77,16 +74,12 @@ public class StudentRegistrationServlet extends HttpServlet {
         try {
             StudentDA.addStudent(s);
             out.println("Please wait while we send you the verification email and redirect you.");
+            response.setHeader("Refresh", "5; URL=index.jsp");
             out.close();
             StudentDA.sendVerification(s);
-            System.out.println("email sent to "+s.getEmail());
-
-         
+            out.flush();
         } catch (Exception ex) {
-            out.println("*******Problem in connecting to the database*********");
-            String sErrorMessage = ex.getMessage();
-            out.println(sErrorMessage);
-            out.println("--------------------");
+            out.println("There was an error processing your request. Please contact us at slomfoundation@gmail.com for more assisstance");
             out.close();
         }
 

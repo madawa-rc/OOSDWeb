@@ -13,7 +13,7 @@ public class Constants {
     /**
      *  Database connection URL name
      */
-    public static final String DB_URL = "jdbc:mysql:///oosd";
+    public static final String DB_URL = "jdbc:mysql:///oosd?useUnicode=true&characterEncoding=UTF-8";
     /**
      *  Database schema user name
      */

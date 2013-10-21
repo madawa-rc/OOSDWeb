@@ -84,11 +84,11 @@
 
                 <div class="menu">
                     <ul>
-                        <li><a class="current" href="./">Home</a></li>
-                        <li><a href="news.jsp">News</a></li>
+                        <li><a href="./">Home</a></li>
+                        <li><a class="current" href="news.jsp">News</a></li>
                         <li><a href="#">Register</a>
                             <ul>
-                                <li><a href="register.jsp" title="">As a Private Applicant</a></li>
+                                <li><a href="studentRegistration.jsp" title="">As a Private Applicant</a></li>
                                 <li><a href="schoolRegistration.jsp" title="">As a School</a></li>
                             </ul>
                         </li>
@@ -103,77 +103,7 @@
                 </div>
                 <div class="center_content">
 
-                    <div class="left_content">
-                        <div>
-                            <p>
-                                <img src ="images/logo2.png"alt="" align="left">
-                                    <font color="white">You got it!</font>                          
-                            </p>
-                        </div> 
-                        <div class="sidebarmenu">            
-                            <a class="menuitem submenuheader" href="">IMO</a>
-                            <div class="submenu">
-                                <ul>
-                                    <li><a href="">IMO 2013</a></li>
-                                    <li><a href="">IMO 2012</a></li>
-                                    <li><a href="">IMO 2011</a></li>
-                                </ul>
-                            </div>
-                            <a class="menuitem submenuheader" href="">SLMO</a>
-                            <div class="submenu">
-                                <ul>
-                                    <li><a href="">SLMO 2013</a></li>
-                                    <li><a href="">SLMO 2012</a></li>
-                                    <li><a href="">SLMO 2011</a></li>
-                                </ul>
-                            </div>
-                            <a class="menuitem" href="" >Our Vision</a>
-                            <a class="menuitem" href="">Our Mission</a>
-                        </div>
-                        <div class="sidebar_box">
-                            <div class="sidebar_box_top"></div>
-                            <div class="sidebar_box_content">
-                                <h3>Latest News</h3>
-
-                                <p>
-                                    News 1 <br></br>
-                                    News 2 <br></br>
-                                </p>                
-                            </div>
-                            <div class="sidebar_box_bottom"></div>
-                        </div>
-
-                        <div class="sidebar_box">
-                            <div class="sidebar_box_top"></div>
-                            <div class="sidebar_box_content">
-                                <h3>User help desk</h3>
-                                <img src="css/images/info.png" alt="" title="" class="sidebar_icon_right" />
-                                <p>
-                                    Thousands of students love to participate in Mathematics Olympiad every year to improve their knowledge.
-                                    Register today and get an awesome cookie free!
-                                </p>                
-                            </div>
-                            <div class="sidebar_box_bottom"></div>
-                        </div>
-
-
-
-                        <div class="sidebar_box">
-                            <div class="sidebar_box_top"></div>
-                            <div class="sidebar_box_content">
-                                <h3>Follow us</h3>
-                                <p>
-                                    <a href="#"><img src="images/social-link-1.jpg" style="margin:0 5px"alt="" align="left"/></a>
-                                    <a href="https://www.facebook.com/photo.php?fbid=531306523587668&set=pb.285656058152717.-2207520000.1380090385.&type=3&theater" target="new">
-                                        <img src="images/social-link-2.jpg" style="margin:0 5px"alt="" align="left"/></a>
-                                    <a href="#"><img src="images/social-link-3.jpg"style="margin:0 5px" alt="" align="left"/></a>
-                                    <a href="#"><img src="images/social-link-4.jpg"style="margin:0 5px" alt="" align="left"/></a>
-                                    <br></br>
-                                </p>
-                            </div>
-                            <div class="sidebar_box_bottom"></div>
-                        </div>
-                    </div> <!-- end of left content--> 
+                    <%@ include file="userLeftBar.jsp" %>
 
                     <div class="right_content">            
 
@@ -184,6 +114,7 @@
                                 ArrayList<NewsItem> newsList = NewsDA.getNews();
                                 for (int i = 0; i < newsList.size(); i++) {
                                     if (newsList.get(i).isShow()) {
+                                        out.println("<a name= \""+newsList.get(i).getTitle()+"\"/>");
                                         out.println(newsList.get(i).getNews());
                                         out.println("<hr>");
                                     }

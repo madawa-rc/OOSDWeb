@@ -3,13 +3,14 @@
  */
 package slomf.registration;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  * @author Fiontar
  */
 
-public class Student{
+public class Student implements Serializable{
     private String name;
     private Date dob;
     private int date;

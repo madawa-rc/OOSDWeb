@@ -3,14 +3,14 @@
  */
 package slomf.registration;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * @author Fiontar
  */
 
-public class School extends User{
+public class School extends User implements Serializable{
     private String contactname;
     private String email;
     private String name;

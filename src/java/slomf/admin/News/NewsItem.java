@@ -2,16 +2,32 @@ package slomf.admin.News;
 
 public class NewsItem {
     public String news;
+    public String title;
     public int id;
     public boolean show;
     public boolean main;
+    public boolean article;
 
-    public NewsItem(String news, int id, boolean show, boolean main) {
+    public NewsItem(String news, String title, int id, boolean show, boolean main, boolean article) {
         this.news = news;
+        this.title = title;
         this.id = id;
         this.show = show;
         this.main = main;
+        this.article = article;
     }
+
+
+
+    public boolean isArticle() {
+        return article;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    
 
     
 

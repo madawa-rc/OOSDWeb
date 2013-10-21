@@ -56,6 +56,7 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = sb.toString();
         if(email.equals("isuruf@gmail.com") && request.getParameter("password").equals("slomf")){
+                System.out.println("Admin Log in");
                  response.setHeader("Refresh","0; URL=admin.jsp");
                  request.getSession().setAttribute("user", new Admin("Admin"));
                  return;
@@ -70,7 +71,7 @@ public class LoginServlet extends HttpServlet {
              */
             
             String queryCheck = "SELECT * from school WHERE password = ? AND email = ? ";
-            System.out.println(password+"  "+email);
+            System.out.println("School log in  "+email);
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, password);
             ps.setString(2, email);

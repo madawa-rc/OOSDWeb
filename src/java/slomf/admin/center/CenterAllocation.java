@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import slomf.admin.center.CenterDA;
 import slomf.registration.School;
 import slomf.registration.Student;
 import slomf.registration.dao.SchoolDA;
@@ -65,6 +64,7 @@ public class CenterAllocation {
     }
 
     public static void allocateCenters() {
+        System.out.println("Allocating Centers");
         ArrayList<Student> studentList = StudentDA.getAllPrivateStudents();
         ArrayList<School> schoolList = SchoolDA.getAllSchools();
 
@@ -198,7 +198,6 @@ public class CenterAllocation {
 
         for (int i = 0; i < studentList.size(); i++) {
             student = studentList.get(i);
-            System.out.println("list "+student.getName()+"  "+student.getAssigned_centre());
             if (student.getAssigned_centre().equals(prevCenter)) {
                 count++;
                 if (count > capacity) {
@@ -211,7 +210,6 @@ public class CenterAllocation {
                 classRoomNum = 1;
                 count = 1;
                 center = get(centerList, student.getAssigned_centre());
-                System.out.println("asdasdasdasd"+student.getAssigned_centre());
                 prevCenter = center.getCenterName();
                 capacity = center.getCapacity() / center.getClassrooms();
                 //System.out.println(student.getAssigned_centre());
