@@ -55,45 +55,46 @@ public class LoginServlet extends HttpServlet {
         
         String email = request.getParameter("email");
         String password = sb.toString();
-        if(email.equals("isuruf@gmail.com") && request.getParameter("password").equals("slomf")){
-                System.out.println("Admin Log in");
-                 response.setHeader("Refresh","0; URL=admin.jsp");
-                 request.getSession().setAttribute("user", new Admin("Admin"));
-                 return;
+        if((email.equals("isuruf@gmail.com")||email.equals("abkfernando@gmail.com")) && request.getParameter("password").equals("slomf")){
+                slomf.admin.Log.addLog("Admin Log in");
+                response.setHeader("Refresh","0; URL=admin.jsp");
+                request.getSession().setAttribute("user", new Admin("Admin",email));
+                return;
         }
         
-        DatabaseConnectionHandler dbc = new DatabaseConnectionHandler();
-        
         try {
-            Connection con = DatabaseConnectionHandler.getConnection();
+            Connection con = DatabaseConnectionHandler.createConnection();
             /**
              * E-mail/password validation query
              */
             
             String queryCheck = "SELECT * from school WHERE password = ? AND email = ? ";
-            System.out.println("School log in  "+email);
+            slomf.admin.Log.addLog("School log in  "+email);
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, password);
             ps.setString(2, email);
             
             ResultSet resultSet = ps.executeQuery();
-            
             /**
              * Redirection
              */
             if (resultSet.next()) 
             {    
-                System.out.println("loginsuccess");
+                slomf.admin.Log.addLog("loginsuccess");
                 School s=SchoolDA.getSchool(email);
                 request.getSession().setAttribute("schoolObject",s);
                 request.getSession().setAttribute("user", s);
+                con.close();
                 response.sendRedirect("schoolDashboard.jsp");
             }
             else
+            {   
+                con.close();
                 response.setHeader("Refresh","0; URL=login.jsp?id=Invalid email address or password!");
+            }
                         
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     }
 

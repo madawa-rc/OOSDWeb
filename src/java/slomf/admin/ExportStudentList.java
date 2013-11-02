@@ -7,6 +7,7 @@ package slomf.admin;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -21,7 +22,7 @@ import slomf.registration.dao.StudentDA;
  */
 public class ExportStudentList {
 
-    public static void exportStudentsToExcel(String filepath) {
+    public static void exportStudentsToExcel(OutputStream fos) {
         ArrayList<Student> studentList = StudentDA.getAllStudents();
 
         XSSFWorkbook workbook = new XSSFWorkbook();
@@ -87,13 +88,12 @@ public class ExportStudentList {
             cells[17].setCellValue(s.getWithin16());
         }
         try {
-            FileOutputStream fos = new FileOutputStream(filepath);
             workbook.write(fos);
             fos.close();
         } catch (FileNotFoundException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     }
 }

@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import slomf.registration.School;
 import slomf.registration.Student;
 import slomf.registration.dao.StudentDA;
 
@@ -29,7 +30,7 @@ public class CenterDA {
     public static ArrayList<ExamCenter> getAllCenters() {
         ArrayList<ExamCenter> examCenterList = new ArrayList<ExamCenter>();
         try {
-            Connection con = slomf.api.Database.DatabaseConnectionHandler.getConnection();
+            Connection con = slomf.api.Database.DatabaseConnectionHandler.createConnection();
 
             String queryCheck = "SELECT * FROM centers";
 
@@ -50,8 +51,9 @@ public class CenterDA {
                 //adding center to the arrayList
                 examCenterList.add(center);
             }
+            con.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
         Comparator<ExamCenter> comparator = new Comparator<ExamCenter>() {
             @Override
@@ -63,7 +65,7 @@ public class CenterDA {
         return examCenterList;
     }
     /**
-     * method update details of exam centers
+     * method updateStudents details of exam centers
      * @param name exam center name
      * @param location location
      * @param capacity capacity
@@ -73,7 +75,7 @@ public class CenterDA {
      */
     public static void updateCenter(String name, String location, int capacity, int classrooms, String supervisor, String phone) {
         try {
-            Connection con = DatabaseConnectionHandler.getConnection();
+            Connection con = DatabaseConnectionHandler.createConnection();
 
             String queryCheck = "UPDATE centers "
                     + "SET location= ? , capacity = ? , classrooms = ? , supervisor = ? , phone = ?"
@@ -88,9 +90,9 @@ public class CenterDA {
             ps.setString(6, name);
 
             ps.executeUpdate();
-
+             con.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     }
     /**
@@ -100,7 +102,7 @@ public class CenterDA {
      */
     public static ExamCenter getCenter(String name) {
         try {
-            Connection con = slomf.api.Database.DatabaseConnectionHandler.getConnection();
+            Connection con = slomf.api.Database.DatabaseConnectionHandler.createConnection();
 
             String queryCheck = "SELECT * FROM centers WHERE name=?";
 
@@ -122,9 +124,10 @@ public class CenterDA {
                 //adding center to the arrayList
 
             }
+            con.close();
             return center;
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
         return null;
     }
@@ -147,7 +150,7 @@ public class CenterDA {
         for (int k = 0; k < studentList.size(); k++) {
             Student student = studentList.get(k);
             center = get(centerList,student.getAssigned_centre());
-       //     System.out.println(center.getClassrooms()+"asd"+center.getCenterName()+"  "+center.getClassroomList().size());
+       //     slomf.admin.Log.addLog(center.getClassrooms()+"asd"+center.getCenterName()+"  "+center.getClassroomList().size());
             if (student.getAssigned_classrm() != null&&!student.getAssigned_classrm().startsWith("0")) {
                 center.addStudent(student);
             }
@@ -170,5 +173,79 @@ public class CenterDA {
             }
         }
         return null;
+    }
+    public static void updateStudents(String pref, String assign){
+     try {
+
+            Connection con = DatabaseConnectionHandler.getConnection();
+
+            String queryCheck = "UPDATE student "
+                    + "SET assigned_centre = ? "
+                    + "WHERE preferred_centre = ?";
+
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, assign);
+            ps.setString(2, pref);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            slomf.admin.Log.addLog(ex.getMessage());
+        }   
+    }
+    public static void updateStudents(String pref, String assign, String medium){
+     try {
+
+            Connection con = DatabaseConnectionHandler.getConnection();
+
+            String queryCheck = "UPDATE student "
+                    + "SET assigned_centre = ? "
+                    + "WHERE preferred_centre = ? AND medium = ?";
+
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, assign);
+            ps.setString(2, pref);
+            ps.setString(3, medium);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            slomf.admin.Log.addLog(ex.getMessage());
+        }   
+    }
+    public static void updateStudents(String assign, School s){
+     try {
+
+            Connection con = DatabaseConnectionHandler.getConnection();
+
+            String queryCheck = "UPDATE student "
+                    + "SET assigned_centre = ? "
+                    + "WHERE school = ? AND email = ?";
+
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, assign);
+            ps.setString(2, s.getName());
+            ps.setString(3, s.getEmail());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            slomf.admin.Log.addLog(ex.getMessage());
+        }   
+    }
+    public static int getNumberOfPrivateStudents(String center){
+        try {
+
+            Connection con = DatabaseConnectionHandler.getConnection();
+
+            String queryCheck = "SELECT COUNT(*) from student "
+                    + "WHERE preferred_centre = ? AND "
+                    + "pvt_applicant = 1";
+
+            PreparedStatement ps = con.prepareStatement(queryCheck);
+            ps.setString(1, center);
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count;
+            }
+        } catch (SQLException ex) {
+            slomf.admin.Log.addLog(ex.getMessage());
+        }  
+        return -1;
     }
 }

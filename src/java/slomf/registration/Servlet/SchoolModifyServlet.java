@@ -35,13 +35,12 @@ public class SchoolModifyServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         School school =null;
-        try {
             //school
             school = SchoolDA.getSchool(request.getParameter("email"));
             //added rows+previous student count
             int newcount = Integer.parseInt(request.getParameter("num"));
             //previous student count
-            System.out.println("School modified "+school.getEmail());
+            slomf.admin.Log.addLog("School modified "+school.getEmail());
             int oldCount = school.getStudentList().size();
             String[] ids = new String[oldCount];
             for (int i = 1; i <= oldCount; i++) {
@@ -60,7 +59,7 @@ public class SchoolModifyServlet extends HttpServlet {
             for (int i = 0; i < oldCount; i++) {
                 boolean found = false;
                 String id = school.getStudentList().get(i).getId() + "";
-                System.out.println("student id = " + id + "p");
+                slomf.admin.Log.addLog("student id = " + id + "p");
                 for (int j = 0; j < oldCount; j++) {
                     if (ids[j] != null && ids[j].equals(id)) {
                         found = true;
@@ -74,13 +73,13 @@ public class SchoolModifyServlet extends HttpServlet {
 
                 if (ss[i] != null) {
                     SchoolDA.deleteStudent(school, ss[i]);
-                    System.out.println("deleting " + ss[i].getName() + "p");
+                    slomf.admin.Log.addLog("deleting " + ss[i].getName() + "p");
                 }
             }
 
             for (int i = oldCount + 1; i <= newcount; i++) {
                 String name = request.getParameter("student" + i);
-                System.out.println(name);
+                slomf.admin.Log.addLog(name);
                 if (name != null) {
                     Student s = school.addStudent(
                             request.getParameter("student" + i),
@@ -88,19 +87,18 @@ public class SchoolModifyServlet extends HttpServlet {
                             Integer.parseInt(request.getParameter("month" + i)),
                             Integer.parseInt(request.getParameter("year" + i)),
                             request.getParameter("medium" + i));
-                    System.out.println(request.getParameter("student" + i));
+                    slomf.admin.Log.addLog(request.getParameter("student" + i));
                     StudentDA.addStudent(s);
                 }
 
             }
-        } finally {
             school=SchoolDA.getSchool(school.getEmail());
             request.getSession().setAttribute("schoolObject", school);
             request.getSession().setAttribute("user", school);
             response.sendRedirect("schoolDashboard.jsp");
             //    request.setAttribute("schoolObject", SchoolDA.getSchool(request.getParameter("email"))); // Login user.
             //  response.sendRedirect("schoolDashboard.jsp");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

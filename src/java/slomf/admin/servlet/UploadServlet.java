@@ -1,8 +1,8 @@
 package slomf.admin.servlet;
 
-import slomf.api.Database.Constants;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -14,16 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.net.ftp.FTPClient;
 import slomf.registration.User;
 import slomf.admin.result.Marks;
 import slomf.admin.result.ReadExcel;
-import slomf.registration.UniqueID;
+import slomf.api.Database.FTPTransfer;
 
 public class UploadServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     // location to store file uploaded
-    private static final String UPLOAD_DIRECTORY = "Uploads";
+ //   private static final String UPLOAD_DIRECTORY = "Uploads";
     // upload settings
     private static final int MEMORY_THRESHOLD = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
@@ -61,7 +62,7 @@ public class UploadServlet extends HttpServlet {
         // sets memory threshold - beyond which files are stored in disk 
         factory.setSizeThreshold(MEMORY_THRESHOLD);
         // sets temporary location to store files
-        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+//        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
 
         ServletFileUpload upload = new ServletFileUpload(factory);
 
@@ -73,15 +74,15 @@ public class UploadServlet extends HttpServlet {
 
         // constructs the directory path to store upload file
         // this path is relative to application's directory
-        String uploadPath = getServletContext().getRealPath("")
-                + File.separator + UPLOAD_DIRECTORY;
+ //       String uploadPath = getServletContext().getRealPath("")
+   //             + File.separator + UPLOAD_DIRECTORY;
 
         // creates the directory if it does not exist
-        File uploadDir = new File(uploadPath);
-        if (!uploadDir.exists()) {
-            uploadDir.mkdir();
-        }
-
+ /*       File uploadDir = new File(uploadPath);
+         if (!uploadDir.exists()) {
+         uploadDir.mkdir();
+         }
+         */
         try {
             // parses the request's content to extract file data
 
@@ -101,22 +102,34 @@ public class UploadServlet extends HttpServlet {
             }
             //  String filePath = uploadPath + File.separator + fileName;
 
-            String fileName = new File(fileItem.getName()).getName();
-            String message = "The following photograph names exists, <br><br>", filePath;
+            String fileName = fileItem.getName();
+            String message = "The following photograph names exists, <br><br>";
             boolean success = true;
             if (fileType.equals("Photographs")) {
+                FTPClient ftp = FTPTransfer.setup(false);
                 if (formItems != null && formItems.size() > 0) {
                     for (FileItem item : formItems) {
                         if (!item.isFormField()) {
                             fileItem = item;
-                            fileName = new File(fileItem.getName()).getName();
-                            filePath = uploadPath + File.separator + fileName;
-                            File storeFile = new File(filePath);
-                            if (storeFile.exists()) {
+                            fileName = fileItem.getName();
+                            /*     System.out.println(fileItem.getName());
+                             filePath = uploadPath + File.separator + fileName;
+                             File storeFile = new File(filePath);
+                             if (storeFile.exists()) {
+                             message += fileName + "<br>";
+                             success = false;
+                             } else {
+                             fileItem.write(storeFile);
+                                
+                             }*/
+                            String[] names = ftp.listNames(fileName);
+                            if (names!=null&&names.length!=0) {
                                 message += fileName + "<br>";
                                 success = false;
                             } else {
-                                fileItem.write(storeFile);
+                                InputStream inputStream = fileItem.getInputStream();
+                                ftp.storeFile(fileName, inputStream);
+                                inputStream.close();
                             }
                         }
                     }
@@ -126,19 +139,22 @@ public class UploadServlet extends HttpServlet {
                 }
 
 
-            } else if(fileType.equals("Excel File")){
-                filePath = uploadPath + File.separator +fileName+UniqueID.generate();
-                File storeFile = new File(filePath);
+            } else if (fileType.equals("Excel File")) {
+                //      filePath = uploadPath + File.separator +fileName+UniqueID.generate();
+                //     File storeFile = new File(filePath);
                 // saves the file on disk
-                fileItem.write(storeFile);
-                ReadExcel.readResults(filePath);
-                Marks.calculate();
+                //    fileItem.write(storeFile);
+                ReadExcel.readResults(fileItem.getInputStream());
+             //   Marks.calculate();
                 message = "Results have been uploaded and updated successfully!";
-            }
-            else{
-                filePath = Constants.LOCATION+"\\ReportTemplates\\"+fileName;
-                File storeFile = new File(filePath);
-                fileItem.write(storeFile);
+            } else {
+                FTPClient ftp = FTPTransfer.setup(true);
+                //        filePath = Constants.LOCATION+"\\ReportTemplates\\"+fileName;
+                //      File storeFile = new File(filePath);
+                //         fileItem.write(storeFile);
+                InputStream inputStream = fileItem.getInputStream();
+                ftp.storeFile(fileName, inputStream);
+                inputStream.close();
                 message = "Report template changed!";
             }
             request.getSession().setAttribute("message", message);

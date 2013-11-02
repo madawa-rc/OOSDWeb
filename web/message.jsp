@@ -1,26 +1,20 @@
+<%@page import="slomf.registration.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%-- 
-    Document   : schoolDashboard
-    Created on : 23-Sep-2013, 21:36:04
-    Author     : Madawa
+    Document   : contactUs
+    Created on : Sep 25, 2013, 11:22:06 AM
+    Author     : Fiontar
 --%>
-<%@page import="slomf.registration.School"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="slomf.registration.User"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%
     User user = (User) session.getAttribute("user");
-    if (user == null || !user.getName().equals("Admin")) {
-        request.getSession().removeAttribute("user");
-        response.setHeader("Refresh", "0; URL=login.jsp?id=You are not logged in as an Administrator!");
-    } else {
-        ArrayList<School> list;
-        list = (ArrayList<School>) session.getAttribute("schoolList");
 %>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>ADMIN PANEL</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
+        <title>Contact Us</title>
         <link rel="shortcut icon" href="images/logo.png"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <script type="text/javascript" src="css/clockp.js"></script>
@@ -55,26 +49,17 @@
 	
             $(document).ready(function() {
                 $('.ask').jConfirmAction();
-            });
-	
+            });	
         </script>
 
         <script language="javascript" type="text/javascript" src="css/niceforms.js"></script>
         <link rel="stylesheet" type="text/css" media="all" href="css/niceforms-default.css" />
-        <script type="text/javascript">
-            function message(){
-                var result = confirm("Are you really want to do this?");
-                return result;
-            }
-        </script>
-
     </head>
     <body>
         <div id="main_container">
 
             <div class="header">
                 <div class="logo"><a href="#"><img src="css/images/logo.png" alt="" title="" border="0" /></a></div>
-
                 <%
                     if (user != null) {
                 %>
@@ -92,17 +77,35 @@
 
                 <div class="menu">
                     <ul>
-                        <li><a href="index.jsp">User Home<!--[if IE 7]><!--></a><!--<![endif]-->
+                        <li><a href="./">Home</a></li>
+                        <li><a href="news.jsp">News</a></li>
+                        <li><a href="#">Register</a>
+                            <ul>
+                                <li><a href="studentRegistration.jsp" title="">As a Private Applicant</a></li>
+                                <li><a href="schoolRegistration.jsp" title="">As a School</a></li>
+                            </ul>
                         </li>
-                        <li><a href="newsDashboard.jsp">Add News<!--[if IE 7]><!--></a><!--<![endif]-->
+                        <li><a href="login.jsp">Login</a></li>
+                        <% if (user != null) {
+                        %>
+                        <li><a href="<%=user.getLink()%>">Dashboard</a>
                         </li>
-                        <li><a class="current" href="<%=user.getLink()%>">Dashboard</a>
-                        </li>
-                       
+                        <%}%>
+                        <li><a class="current" href="contactUs.jsp">Contact us</a></li>
                     </ul>
-                </div> 
+                </div>
                 <div class="center_content">
+                   <% if(user!=null&&user.getLink().equals("admin.jsp")){
+                        %>
                     <%@ include file="adminLeftBar.html" %>
+                    <%} 
+                    else{
+                        %>
+                    <%@ include file="userLeftBar.jsp" %>   
+                    <%
+                   }
+                        %>    
+                        
                     <div class="right_content">
                         <div>
                             <% 
@@ -111,36 +114,22 @@
                             session.removeAttribute("message");
                             %>
                         </div>
-                        
-                        
-                        
-                        <%
-                            
-                            if (list == null); else if (list.size() == 0) {
-                                out.print("<h3>Search Results:</h3><br><br><br>");
-                                out.print("<ul type=\"none\"><li>&nbsp;&nbsp;&nbsp;No match found!</li></ul>");
-                            } else {
-                                out.print("<h3>Search Results:</h3><br><br><br>");
-                        %>
-                        <%
-                            for (int i = 0; i < list.size(); ++i) {
-                        %>
-                        <ul type="square"><li>
-                                &nbsp;&nbsp;&nbsp;<a href="<%="AdminServlet?schoolEmail=" + list.get(i).getEmail()%>" target="new"><%out.print(list.get(i).getName());%></a>
-                            </li>
-                        </ul>
-                        <%}
-                                        }%>
-                                            
-                    </div><!-- end of right content-->
-                </div>   <!--end of center content -->        
+                    </div>
+
+
+                </div>   <!--end of center content -->
+
                 <div class="clear"></div>
             </div> <!--end of main content-->
+
+
             <div class="footer">
-                <div class="left_footer">SLOMF ADMIN PANEL | Powered by Fiontar</div>
-                <div class="right_footer"><a href="http://indeziner.com"><img src="css/images/fiontar.png"/></a></div>
+
+                <div class="left_footer">SLOMF ADMIN PANEL | Powered by <a href="http://indeziner.com">INDEZINER</a></div>
+                <div class="right_footer"><a href="http://indeziner.com"><img src="css/images/fiontar.png" alt="" title="" border="0" /></a></div>
+
             </div>
+
         </div>		
     </body>
-                            <% }%>
 </html>

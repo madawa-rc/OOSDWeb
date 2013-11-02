@@ -163,11 +163,11 @@
                                             <div  class="wrapper">
                                                 <span>Medium:</span>
                                                 <div class="bg">
-                                                    <input type="radio" name="medium" value="sinhala" required="true">
+                                                    <input type="radio" name="medium" value="SINHALA" required="true"/>
                                                     <label for="sinhala">Sinhala</label>
-                                                    <input type="radio" name="medium" value="english" required="true">
+                                                    <input type="radio" name="medium" value="ENGLISH" required="true"/>
                                                     <label for="english">English</label>
-                                                    <input type="radio" name="medium" value="tamil" required="true">
+                                                    <input type="radio" name="medium" value="TAMIL" required="true"/>
                                                     <label for="english">Tamil</label>
                                                 </div>								
                                             </div>

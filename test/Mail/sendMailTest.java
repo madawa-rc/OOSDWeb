@@ -17,7 +17,7 @@ public class sendMailTest {
     }
     @Test
     public void testSendmail() {
-        System.out.println("sendmail");
+        slomf.admin.Log.addLog("sendmail");
         String email = "isuruf@gmail.com";
         String title = "Email Confirmation for the SLMC 2014";
         String text = "Follow the link to register,"+ "http://webapp.slmathsolympiad.org/webapp/EmailConfirmation?id=asdkbvxkcvxjcvs";

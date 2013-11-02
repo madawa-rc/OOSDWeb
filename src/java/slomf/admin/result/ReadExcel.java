@@ -8,6 +8,7 @@ import slomf.api.Database.DatabaseConnectionHandler;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -38,11 +39,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ReadExcel {
     
-    public static void readResults(String filePath){
+    public static void readResults(InputStream in){
         try {
-            FileInputStream fis = new FileInputStream(filePath);
             //getting the workbook
-            XSSFWorkbook workbook = new XSSFWorkbook(fis);
+            XSSFWorkbook workbook = new XSSFWorkbook(in);
             //getting the sheet
             XSSFSheet sheet = workbook.getSheetAt(0);
             
@@ -72,20 +72,22 @@ public class ReadExcel {
                 }
                 try {
                     writeToDatabase(index, answers);
+                    slomf.admin.Log.addLog("Reading excel file.");
                 } catch (SQLException ex) {
-                    Logger.getLogger(ReadExcel.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
             }
-            fis.close();
+            in.close();
+             slomf.admin.Log.addLog("Reading excel file done");
         } catch (FileNotFoundException ex) {
-            System.out.println("NO FILE");
+            slomf.admin.Log.addLog("NO FILE");
         } catch (IOException ex) {
-            System.out.println("IOE");
+            slomf.admin.Log.addLog("IOE");
         }
     }
     
     private static void writeToDatabase(int index,String[] answers) throws SQLException{
-        Connection con = DatabaseConnectionHandler.getConnection();
+        Connection con = DatabaseConnectionHandler.createConnection();
         String queryCheck = "DELETE FROM marks WHERE indexNum = ?";;
         PreparedStatement ps = con.prepareStatement(queryCheck);
         ps.setString(1, ""+index);
@@ -102,6 +104,6 @@ public class ReadExcel {
         }
         
         ps.executeUpdate();
-        
+        con.close();
     }
 }

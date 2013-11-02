@@ -20,7 +20,7 @@ public class Marks {
      */
     public static void calculate() {
         try {
-            Connection con = DatabaseConnectionHandler.getConnection();
+            Connection con = DatabaseConnectionHandler.createConnection();
             String queryCheck = "SELECT * FROM marks";
 
             PreparedStatement ps = con.prepareStatement(queryCheck);
@@ -43,12 +43,14 @@ public class Marks {
                     for (int i = 1; i <= 30; i++) {
                         list[i] = rs.getString("q" + i);
                     }
-                    updatemarks(list, check);
+                    updatemarks(list, check,con);
                 }
             }
+            con.close();
+            slomf.admin.Log.addLog("Marks updated");
             Rank.generateRank();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     }
 
@@ -58,7 +60,7 @@ public class Marks {
      * @param list applicant's answers
      * @param check answer sheet
      */
-    private static void updatemarks(String[] list, String[] check) {
+    private static void updatemarks(String[] list, String[] check, Connection con) {
         int score = 0;
         for (int i = 1; i <= 30; i++) {
             if (list[i].equals("")) {
@@ -69,8 +71,8 @@ public class Marks {
         }
         String queryCheck = "UPDATE student SET marks = ? WHERE indexNum = ?";
         String queryCheck2 = "UPDATE marks SET score = ? WHERE indexNum = ?";
-        Connection con = DatabaseConnectionHandler.getConnection();
         try {
+       //     con = DatabaseConnectionHandler.createConnection();
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setInt(1, score);
             ps.setString(2, list[0]);
@@ -80,9 +82,9 @@ public class Marks {
             ps.setInt(1, score);
             ps.setString(2, list[0]);
             ps.executeUpdate();
-
+            
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     }
 
@@ -95,7 +97,7 @@ public class Marks {
      * @throws SQLException database exceptions
      */
     public static double[] getStatistcs(int qNumber) throws SQLException {
-        Connection con = DatabaseConnectionHandler.getConnection();
+        Connection con = DatabaseConnectionHandler.createConnection();
         double allStudents =0.0, attemptedStudents = 0.0, correctStudents = 0.0;
         double[] statistics = new double[11];
         for(int i=0;i<11;i++)
@@ -111,13 +113,15 @@ public class Marks {
         while (rs.next()) {
             ans = rs.getString(question);
             col=getInt(ans);
-            if (rs.getString("indexNum").startsWith("0")) {
-                correctAnswer = rs.getString(question);
-            } else {
-                statistics[col]++;
+            if(col!=-1){
+                if (rs.getString("indexNum").startsWith("0")) {
+                    correctAnswer = rs.getString(question);
+                } else {
+                    statistics[col]++;
+                }
             }
         }
-        
+        con.close();
         correctStudents+=statistics[getInt(correctAnswer)];
         statistics[10]=getInt(correctAnswer);
         for(int i=0;i<7;i++){
@@ -146,19 +150,20 @@ public class Marks {
     }
 
     private static int getInt(String ans) {
-        if (ans.equals("A")) {
+        System.out.println(ans);
+        if ("A".equals(ans)) {
             return 0;
-        } else if (ans.equals("B")) {
+        } else if ("B".equals(ans)) {
             return 1;
-        } else if (ans.equals("C")) {
+        } else if ("C".equals(ans)) {
             return 2;
-        } else if (ans.equals("D")) {
+        } else if ("D".equals(ans)) {
             return 3;
-        } else if (ans.equals("E")) {
+        } else if ("E".equals(ans)) {
             return 4;
-        } else if (ans.equals("Unanswered")) {
+        } else if ("Unanswered".equals(ans)) {
             return 5;
-        } else if (ans.equals("Multiple")) {
+        } else if ("Multiple".equals(ans)) {
             return 6;
         }
         return -1;

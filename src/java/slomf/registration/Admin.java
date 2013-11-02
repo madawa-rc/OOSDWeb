@@ -12,7 +12,14 @@ public class Admin extends User{
      * constructor of Admin class
      * @param name user name
      */
-    public Admin(String name){
+    private String email;
+    public Admin(String name, String email){
         super("admin.jsp", name);
+        this.email=email; 
     }
+
+    public String getEmail() {
+        return email;
+    }
+    
 }

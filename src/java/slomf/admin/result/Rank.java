@@ -38,5 +38,6 @@ public class Rank {
            }
            StudentDA.update(studentList.get(i), rank);
        }
+       slomf.admin.Log.addLog("Ranks Updated");
     }
 }

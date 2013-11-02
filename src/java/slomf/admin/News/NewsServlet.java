@@ -31,12 +31,12 @@ public class NewsServlet extends HttpServlet {
         if (user == null || !user.getName().equals("Admin")) {
             return;
         }
-        System.out.println(request.getCharacterEncoding());
+        slomf.admin.Log.addLog(request.getCharacterEncoding());
         if (request.getParameter("newNews") != null) {
             String news = new String(request.getParameter("newNews").getBytes("8859_1"),"UTF-8");
             String title = new String(request.getParameter("newTitle").getBytes("8859_1"),"UTF-8");
             NewsDA.addNews(news, title);
-            System.out.println("News Added "+news);
+            slomf.admin.Log.addLog("News Added "+news);
             response.sendRedirect("newsDashboard.jsp");
             return;
         }

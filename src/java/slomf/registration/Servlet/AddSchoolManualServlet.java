@@ -63,7 +63,7 @@ public class AddSchoolManualServlet extends HttpServlet {
                 }
 
             }
-        System.out.println("School added manually "+school.getEmail());
+        slomf.admin.Log.addLog("School added manually "+school.getEmail());
         request.getSession().setAttribute("message","Registration successfull!");
             response.sendRedirect("message.jsp");
     }

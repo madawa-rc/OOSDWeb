@@ -142,11 +142,11 @@
                             HTML
                         </h2>
                         <p>
-                            &lt h1&gt text &lt/h1&gt for Heading 1 <br></br>
-                            &lt p&gt text &lt/p&gt for Paragraph <br></br>
-                            &lt br&gt &lt/br&gt  for New Line <br></br>
-                            &lt img src="Uploads/imageName"&gt &lt/img&gt for images <br></br> 
-                            &lt a href="link"&gt text&lt /a&gt for links <br></br>
+                            &lth1&gttext&lt/h1&gt for Heading 1 <br></br>
+                            &ltp&gttext&lt/p&gt for Paragraph <br></br>
+                            &ltbr&gt&lt/br&gt  for New Line <br></br>
+                            &ltimg src="http://www.slmathsolympiad.org/resources/image.extension"&gt&lt/img&gt for images <br></br> 
+                            &lta href="link"&gttext&lt/a&gt for links <br></br>
                         </p>
                         <h2>
                             \( \LaTeX \)

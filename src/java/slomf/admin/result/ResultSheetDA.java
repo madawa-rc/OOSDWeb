@@ -23,7 +23,7 @@ public class ResultSheetDA {
     public static ResultSheet getResultSheet(int indexNum) {
         ResultSheet resultSheet = null;
         try {
-            Connection con = DatabaseConnectionHandler.getConnection();
+            Connection con = DatabaseConnectionHandler.createConnection();
             String queryCheck = "SELECT * from marks WHERE indexNum = ?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setInt(1, indexNum);
@@ -41,10 +41,10 @@ public class ResultSheetDA {
             }
 
             // SQL query to get result set with the index
-
-            System.out.println("Index gotten from DB");
+            con.close();
+            slomf.admin.Log.addLog("Index gotten from DB");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
         return resultSheet;
     }

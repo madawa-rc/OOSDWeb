@@ -26,7 +26,7 @@ public class EmailConfirmation extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            Connection con = DatabaseConnectionHandler.getConnection();
+            Connection con = DatabaseConnectionHandler.createConnection();
             String link = request.getParameter("id");
             String queryCheck = "UPDATE student SET verified=1 WHERE verification =?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
@@ -36,7 +36,8 @@ public class EmailConfirmation extends HttpServlet {
             ps = con.prepareStatement(queryCheck);
             ps.setString(1, link);
             ps.executeUpdate();
-            System.out.println("Email confirmation "+link);
+            con.close();
+            slomf.admin.Log.addLog("Email confirmation "+link);
             request.getSession().setAttribute("message","Email is verified successfully!");
             response.sendRedirect("message.jsp");
         } catch (Exception ex) {

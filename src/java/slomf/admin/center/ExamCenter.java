@@ -36,8 +36,8 @@ public class ExamCenter {
 
     public void addStudent(Student student) {
         int classroom = Integer.parseInt(student.getAssigned_classrm());
-        System.out.println(student.getAssigned_classrm());
-        System.out.println(student.getName()+"  "+student.getAssigned_centre()+"  ");
+        slomf.admin.Log.addLog(student.getAssigned_classrm());
+        slomf.admin.Log.addLog(student.getName()+"  "+student.getAssigned_centre()+"  ");
         classroomList.get(classroom-1).addStudent(student);
     }
 

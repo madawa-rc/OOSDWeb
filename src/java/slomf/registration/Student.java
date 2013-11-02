@@ -69,7 +69,7 @@ public class Student implements Serializable{
         this.verification=verification;
     }
 
-    public Student(String name, int date, int month, int year, String email, String school, String school_addr, String home_addr, int pvt_applicant, String phone, String medium, String preferred_centre, String assigned_classrm, int index, int id, String assigned_centre, int payment, int marks, String verification, int verified,int rank) {
+    public Student(String name, int date, int month, int year, String email, String school, String school_addr, String home_addr, int pvt_applicant, String phone, String medium, String preferred_centre, String assigned_classrm, int index, int id, String assigned_centre, int payment, int marks, String award, String verification, int verified,int rank) {
         this.name = name;
         this.date = date;
         this.month = month;
@@ -88,6 +88,7 @@ public class Student implements Serializable{
         this.assigned_centre = assigned_centre;
         this.payment = payment;
         this.marks = marks;
+        this.award=award;
         this.verification = verification;
         this.verified = verified;
         this.rank = rank;

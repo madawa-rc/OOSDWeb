@@ -34,7 +34,7 @@ public class AdminServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         if(request.getParameter("schoolEmail")!=null)
         {
-            System.out.println(request.getParameter("schoolEmail"));
+            slomf.admin.Log.addLog(request.getParameter("schoolEmail"));
            
             request.getSession().setAttribute("schoolObject",SchoolDA.getSchool(request.getParameter("schoolEmail")));
             response.sendRedirect("schoolDashboard.jsp");

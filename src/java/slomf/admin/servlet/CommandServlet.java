@@ -63,6 +63,9 @@ public class CommandServlet extends HttpServlet {
             request.getSession().setAttribute("message","Centers have been assigned successfully!");
             response.sendRedirect("message.jsp");
         }
+        else if(request.getParameter("id").equals("test")){
+            sendAdmissionCards.main(null);
+        }
         out.close();
     }
 

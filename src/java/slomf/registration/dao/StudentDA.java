@@ -20,9 +20,8 @@ public class StudentDA {
  */
     public static void addStudent(Student student) {
         try {
-            Connection con = DatabaseConnectionHandler.getConnection();
+            Connection con = DatabaseConnectionHandler.createConnection();
 
-            Statement st = con.createStatement();
             String queryCheck = "INSERT INTO student ("
                     + "name,date,month,year,email,school,school_addr,home_addr,pvt_applicant,phone,medium,preferred_centre,"
                     + "verification"
@@ -42,10 +41,10 @@ public class StudentDA {
             ps.setString(12, student.getPreferred_centre());
             ps.setString(13, student.getVerification());
             ps.executeUpdate();
-
-            System.out.println("Database updated");
+            con.close();
+            slomf.admin.Log.addLog("Database updated");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     }
 /**
@@ -72,9 +71,7 @@ public class StudentDA {
     private static ArrayList<Student> getStudents(boolean pvt) {
         ArrayList<Student> studentList = new ArrayList<Student>();
         try {
-            Connection con = DatabaseConnectionHandler.getConnection();
-            Statement st = con.createStatement();
-
+            Connection con = DatabaseConnectionHandler.createConnection();
             String queryCheck = "SELECT * FROM student";
             if (pvt == true) {
                 queryCheck = "SELECT * FROM student where pvt_applicant=1";
@@ -83,7 +80,6 @@ public class StudentDA {
             PreparedStatement ps = con.prepareStatement(queryCheck);
 
             ResultSet rs = ps.executeQuery();
-
             Student student;
             while (rs.next()) {
                 //retrieving student from database
@@ -106,15 +102,17 @@ public class StudentDA {
                         rs.getString("assigned_centre"),
                         rs.getInt("payment"),
                         rs.getInt("marks"),
+                        rs.getString("award"),
                         rs.getString("verification"),
                         rs.getInt("verified"),
                         rs.getInt("rank"));
                 //adding student to the arrayList
                 studentList.add(student);
             }
+            con.close();
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
         return studentList;
     }
@@ -140,15 +138,15 @@ public class StudentDA {
         Connection con;
 
         try {
-            con = DatabaseConnectionHandler.getConnection();
+            con = DatabaseConnectionHandler.createConnection();
 
-            Statement st = con.createStatement();
             String queryCheck = "DELETE FROM student WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(queryCheck);
             ps.setString(1, id);
             ps.execute();
+            con.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     }
 /**
@@ -168,7 +166,7 @@ public class StudentDA {
             s.setYear(Integer.parseInt(year));
             s.setMedium(medium);
 
-            Connection con = DatabaseConnectionHandler.getConnection();
+            Connection con = DatabaseConnectionHandler.createConnection();
 
             String queryCheck = "UPDATE student "
                     + "SET name= ? , date = ? , month = ? , year = ? , medium = ?"
@@ -183,9 +181,10 @@ public class StudentDA {
             ps.setString(6, s.getId() + "");
 
             ps.executeUpdate();
+            con.close();
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     }
 /**
@@ -199,7 +198,7 @@ public class StudentDA {
             Connection con = DatabaseConnectionHandler.getConnection();
 
             String queryCheck = "UPDATE student "
-                    + "SET assigned_centre = ?"
+                    + "SET assigned_centre = ? "
                     + "WHERE id = ?";
 
             PreparedStatement ps = con.prepareStatement(queryCheck);
@@ -207,9 +206,8 @@ public class StudentDA {
             ps.setString(2, s.getId() + "");
 
             ps.executeUpdate();
-
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     }
 /**
@@ -221,7 +219,7 @@ public class StudentDA {
     public static void update(Student s, int index, int classroom) {
         try {
 
-            Connection con = DatabaseConnectionHandler.getConnection();
+            Connection con = DatabaseConnectionHandler.createConnection();
 
             String queryCheck = "UPDATE student "
                     + "SET assigned_classrm = ? , indexNum = ? "
@@ -233,15 +231,15 @@ public class StudentDA {
             ps.setString(3, s.getId() + "");
 
             ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     }
     public static void update(Student s,int rank){
         try {
             int id= s.getId();
-            Connection con = DatabaseConnectionHandler.getConnection();
+            Connection con = DatabaseConnectionHandler.createConnection();
 
             String queryCheck = "UPDATE student "
                     + "SET rank = ? "
@@ -252,9 +250,9 @@ public class StudentDA {
             ps.setInt(2, id);
 
             ps.executeUpdate();
-
+            con.close();
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            slomf.admin.Log.addLog(ex.getMessage());
         }
     
     

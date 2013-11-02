@@ -37,7 +37,6 @@ public class CenterUpdateServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         int size = Integer.parseInt(request.getParameter("size"));
-        System.out.println(size);
         
         for(int i = 1; i <= size; i++){
             CenterDA.updateCenter(
@@ -51,13 +50,10 @@ public class CenterUpdateServlet extends HttpServlet {
             System.out.print(request.getParameter("name"+i)+" "+request.getParameter("location"+i)+" "+
                     request.getParameter("capacity"+i)+" "+request.getParameter("classrooms"+i)+" "+
                     request.getParameter("supervisor"+i)+" "+request.getParameter("phone"+i));
-            System.out.println("");
+            slomf.admin.Log.addLog("");
         }
-        out.println("<html><head></head><body>");
-        out.println("<p align=\"center\"> Centre Information Successfully Updated</p>");
-        out.println("<p align=\"center\"> You will be redirected to the dashboard in 5 seconds</p>");
-        out.println("</body></html>");
-        response.setHeader("Refresh", "5; URL=centreInformation.jsp");
+        request.getSession().setAttribute("message", "Centre Information updated successfully");
+        response.setHeader("Refresh", "0; URL=message.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

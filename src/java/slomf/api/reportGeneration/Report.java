@@ -1,6 +1,4 @@
 package slomf.api.reportGeneration;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -8,18 +6,16 @@ import fr.opensagres.xdocreport.document.IXDocReport;
 import fr.opensagres.xdocreport.document.registry.XDocReportRegistry;
 import fr.opensagres.xdocreport.template.IContext;
 import fr.opensagres.xdocreport.template.TemplateEngineKind;
-import java.io.FileInputStream;
 
 public class Report
 {
 
-    public static void generate(String filepath, String fileSource, String objectName, Object object)
+    public static void generate(InputStream in, String objectName, Object object, OutputStream out)
     {
         try
         {
             // 1) Load Docx file by filling Velocity template engine and cache
             // it to the registry
-            InputStream in = new FileInputStream( fileSource);
             IXDocReport report = XDocReportRegistry.getRegistry().loadReport( in, TemplateEngineKind.Velocity );
 
             // 2) Create context Java model
@@ -28,9 +24,8 @@ public class Report
             context.put(objectName,object);
             
             // 3) Generate report by merging Java model with the Docx
-            OutputStream out = new FileOutputStream( new File( filepath) );
+     //      OutputStream out = new FileOutputStream( new File( filepath) );
             report.process( context, out );
-
         }
         catch ( Exception e )
         {

@@ -51,6 +51,7 @@ public class UniqueID {
                     return false;
                 }
             }
+            con.close();
         } catch (Exception e) {
         }
         return false;
@@ -73,6 +74,7 @@ public class UniqueID {
                 if (count > 0) {
                     return true;
             }}
+            con.close();
         } catch (Exception e) {
         }
         return false;
@@ -95,6 +97,7 @@ public class UniqueID {
                 if (count > 0) {
                     return true;
             }}
+            con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -40,6 +40,7 @@ public class SchoolRegistrationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
+            slomf.admin.Log.addLog("School Registration");
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -50,8 +51,10 @@ public class SchoolRegistrationServlet extends HttpServlet {
             out.println("<h1>Servlet SchoolServlet at " + request.getContextPath() + "</h1>");
             if(UniqueID.searchSchoolEmail(request.getParameter("email")))
             {
-                System.out.println("Email is already registered. "+request.getParameter("email"));
-                response.setHeader("Refresh", "10; URL=schoolRegistration.jsp");
+                slomf.admin.Log.addLog("Email is already registered. "+request.getParameter("email"));
+                request.getSession().setAttribute("message","Your email address is already registered");
+                response.sendRedirect("message.jsp");
+                response.setHeader("Refresh", "3; URL=schoolRegistration.jsp");
                 return;
             }
             out.println("</body>");
@@ -81,7 +84,7 @@ public class SchoolRegistrationServlet extends HttpServlet {
                 );
         try {
             SchoolDA.addSchool(s);
-            System.out.println("School registered "+s.getEmail());
+            slomf.admin.Log.addLog("School registered "+s.getEmail());
 
             request.getSession().setAttribute("schoolObject",s);
             request.getSession().setAttribute("user", s);

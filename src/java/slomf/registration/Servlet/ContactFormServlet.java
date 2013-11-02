@@ -27,10 +27,7 @@ public class ContactFormServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String eAddress="slomfoundation@gmail.com";
-        
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         String name = request.getParameter("name");
         String address = request.getParameter("address");
         String email = request.getParameter("email");
@@ -38,9 +35,9 @@ public class ContactFormServlet extends HttpServlet {
         
         message = "Name : "+name+"\n"+"Address : "+address+"\n"+"Email : "+email+"\n"+"Message : "+message;
         sendmail("isuruf@gmail.com",email,"ContactUs Form SLMO Website",message);
-       // request.getSession().setAttribute("message","Your message was successfully sent. We will reply to your message"
-         //       + " as soon as possible");
-     //   response.sendRedirect("message.jsp");
+        request.getSession().setAttribute("message","Your message was successfully sent. We will reply to your message"
+               + " as soon as possible");
+        response.sendRedirect("message.jsp");
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

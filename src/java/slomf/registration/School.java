@@ -93,7 +93,7 @@ public class School extends User implements Serializable{
     public Student addStudent(String name, int date, int month, int year, String medium){
         Student student = new Student(name, date, month, year,this.email,this.name,this.school_addr, "private", 0, this.phone, medium,this.preferred_centre,this.verification);
         StudentList.add(student);
-        System.out.println(this.name);
+        slomf.admin.Log.addLog(this.name);
         return student;
     }
     /**
